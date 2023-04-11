@@ -1,3 +1,76 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+  },
+  "extends": [
+      "next/core-web-vitals",
+      "plugin:react/recommended",
+      "standard-with-typescript",
+      "plugin:@typescript-eslint/recommended",
+      "prettier",
+      "plugin:prettier/recommended"
+  ],
+  "overrides": [
+  ],
+  "parserOptions": {
+      "project": "./tsconfig.json",
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "prettier/prettier": "error",
+    "space-before-function-paren": "off",
+    "react/prop-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "semi": [2, "always"],
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/jsx-no-bind": "off",
+    "react/button-has-type": "off",
+    "@typescript-eslint/promise-function-async": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "import/no-extraneous-dependencies": [
+        "error",
+        {
+            "devDependencies": [
+                "**/*.test.ts",
+                "**/*.test.tsx",
+                "**/*.spec.ts",
+                "**/*.spec.tsx",
+                "**/*.setup.ts"
+            ]
+        }
+    ],
+    "import/extensions":[
+        "error",
+        "ignorePackages",
+        {
+            "ts":"never",
+            "tsx":"never"
+        }
+    ]
+},
+"settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+}
 }
