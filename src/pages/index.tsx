@@ -1,9 +1,6 @@
 import React from "react";
+import { Home } from "@/Screens";
 
-export function InitiaScreen(): JSX.Element {
-  return (
-    <div>
-      <h1>ROSIVAN</h1>
-    </div>
-  );
+export default function InitiaScreen(): JSX.Element {
+  return <Home />;
 }
