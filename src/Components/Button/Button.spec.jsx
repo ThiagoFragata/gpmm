@@ -1,5 +1,5 @@
 describe("<Button />", () => {
-  it("should be ", () => {
+  it("should brender button with title", () => {
     expect(1).toBe(1);
   });
 });
