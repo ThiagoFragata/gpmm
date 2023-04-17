@@ -1,3 +1,4 @@
+import { colors } from "@/style/theme";
 import styled, { keyframes } from "styled-components";
 
 const rotateAnimation = keyframes`
@@ -9,7 +10,6 @@ const rotateAnimation = keyframes`
   }
   100% {
     transform: rotate(0deg);
-    animation-play-state: paused;
   }
 `;
 
@@ -20,7 +20,7 @@ const directionAnimation = keyframes`
   }
   50% {
     top: 50px;
-        left: 50px;
+    left: 50px;
   }
   100% {
     top: 0;
@@ -28,42 +28,59 @@ const directionAnimation = keyframes`
   }
 `;
 
-export const ContainerPublic = styled.main`
-  border: 2px solid red;
+export const ContainerPublic = styled.section`
   height: 100vh;
-  .public__side {
-    background-image: url("/images/side.webp");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 80%;
-    width: 100%;
-    display: flex;
-    /* border: 2px solid red;
-    height: 80vh;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  background-color: ${colors.BACKGROUND_PRIMARY};
+  .public__children {
+    width: 30%;
+    border: 2px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 350px;
+    max-width: 380px;
+    margin: auto;
+    max-height: 90vh;
+    overflow: auto;
+  }
+  .public__side {
+    background-image: url("/images/side.png");
+    background-color: royalblue;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
     column-gap: 20px;
     .side__bar {
+      display: block;
       width: 40px;
       height: 150px;
-      background-color: purple;
-      border-radius: 15px;
+      background-color: ${colors.WHITE};
+      border-radius: 20px;
       position: relative;
       transform: rotate(30deg);
+      /* animation: ${rotateAnimation} 3s ease-in-out infinite; */
       z-index: 2;
-      ::before {
+      ::after {
         z-index: -1;
         content: "";
         position: absolute;
         width: 40px;
         height: 150px;
-        background-color: gray;
-        border-radius: 15px;
-        animation: ${directionAnimation} 3s ease-in-out infinite;
+        background-color: ${colors.GRAY_PRIMARY};
+        border-radius: 20px;
+        top: 30px;
+        left: 51px;
+        /* animation: ${directionAnimation} 3s ease-in-out infinite; */
       }
-      animation: ${rotateAnimation} 3s ease-in-out infinite;
-    } */
+    }
   }
 `;
