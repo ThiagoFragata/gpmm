@@ -4,7 +4,7 @@ import { ContainerButton } from "./style";
 
 export function Button({
   title,
-  variant = "blue",
+  variant = "primary",
   className,
   onClick
 }: ButtonProps): JSX.Element {

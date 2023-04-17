@@ -1,4 +1,4 @@
-type variantButton = "green" | "orange" | "blue" | "red";
+type variantButton = "primary" | "outline" | "danger";
 export interface ButtonProps {
   title: string;
   className?: string;
