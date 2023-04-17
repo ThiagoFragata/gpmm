@@ -1,6 +1,7 @@
 import { colors } from "@/style/theme";
 import { type ButtonModifier } from "@/_types/Button";
 import styled, { css } from "styled-components";
+import { pxToRem } from "@/_utils/pxToRem";
 
 const containerButtonModifier = {
   variant: {
@@ -28,6 +29,7 @@ export const ContainerButton = styled.button<ButtonModifier>`
     padding: 8px 24px;
     border-radius: 8px;
     transition: all 0.3s;
+    font-size: ${pxToRem(16)};
     :hover {
       transform: translateY(-3px);
       cursor: pointer;

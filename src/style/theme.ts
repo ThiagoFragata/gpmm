@@ -7,10 +7,11 @@ export const colors = {
   BLUE_PRIMARY: "#0069FB",
   BLUE_DARK: "#034EA5",
   GRAY_PRIMARY: "#94949D",
+  GRAY_SECONDARY: "#797D87",
   RED_PRIMARY: "#F63634",
   RED_DARK: "#BC0503",
   ORANGE_PRIMARY: "#FE5C00",
-  SUCCESS: "#1DD263",
+  SUCCESS: "#1DD263"
 };
 
 const theme = {

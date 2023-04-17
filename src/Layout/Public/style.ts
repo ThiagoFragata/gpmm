@@ -36,7 +36,6 @@ export const ContainerPublic = styled.section`
   background-color: ${colors.BACKGROUND_PRIMARY};
   .public__children {
     width: 30%;
-    border: 2px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,7 +47,7 @@ export const ContainerPublic = styled.section`
   }
   .public__side {
     background-image: url("/images/side.png");
-    background-color: royalblue;
+    background-color: ${colors.GREEN_PRIMARY};
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
