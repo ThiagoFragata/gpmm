@@ -30,6 +30,7 @@ export const ContainerButton = styled.button<ButtonModifier>`
     transition: all 0.3s;
     :hover {
       transform: translateY(-3px);
+      cursor: pointer;
     }
     ${containerButtonModifier.variant[variant]};
   `}
