@@ -46,18 +46,7 @@
     "@typescript-eslint/promise-function-async": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-floating-promises": "off",
-    "import/no-extraneous-dependencies": [
-        "error",
-        {
-            "devDependencies": [
-                "**/*.test.ts",
-                "**/*.test.tsx",
-                "**/*.spec.ts",
-                "**/*.spec.tsx",
-                "**/*.setup.ts"
-            ]
-        }
-    ],
+    "import/no-extraneous-dependencies": "off",
     "import/extensions":[
         "error",
         "ignorePackages",
