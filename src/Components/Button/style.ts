@@ -27,7 +27,7 @@ export const ContainerButton = styled.button<ButtonModifier>`
   ${({ variant }) => css`
     border: none;
     padding: 8px 24px;
-    border-radius: 8px;
+    border-radius: 12px;
     transition: all 0.3s;
     font-size: ${pxToRem(16)};
     :hover {

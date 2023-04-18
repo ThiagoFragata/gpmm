@@ -32,7 +32,7 @@ export default createGlobalStyle`
   }
 
   input{
-    outline: 1px solid green;
+    outline: 1px solid transparent;
   }
 
   h1, h2, h3, span, p, label, a, button, input, strong {

@@ -33,6 +33,7 @@ export const ContainerLogin = styled.div`
         width: 43%;
         background-color: ${colors.DARK_PRIMARY};
       }
+
       ::before {
         right: 0;
       }

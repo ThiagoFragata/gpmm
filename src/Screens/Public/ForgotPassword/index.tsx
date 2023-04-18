@@ -41,7 +41,6 @@ export function Login(): JSX.Element {
                 label="SIAPE *"
                 name="user_name"
                 placeholder="Digite seu código SIAPE"
-                maxLength={10}
               />
               <TextInput
                 label="Senha *"

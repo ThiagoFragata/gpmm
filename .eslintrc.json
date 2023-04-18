@@ -47,6 +47,7 @@
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/naming-convention": "off",
     "import/extensions":[
         "error",
         "ignorePackages",

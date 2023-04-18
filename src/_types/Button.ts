@@ -4,6 +4,7 @@ export interface ButtonProps {
   className?: string;
   variant?: variantButton;
   onClick?: () => void;
+  type?: "submit" | "button";
 }
 
 export interface ButtonModifier {

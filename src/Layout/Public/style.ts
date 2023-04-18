@@ -31,7 +31,7 @@ const directionAnimation = keyframes`
 export const ContainerPublic = styled.section`
   height: 100vh;
   display: flex;
-  padding: 20px;
+  /* padding: 20px; */
   justify-content: space-between;
   background-color: ${colors.BACKGROUND_PRIMARY};
   .public__children {
@@ -42,7 +42,7 @@ export const ContainerPublic = styled.section`
     min-width: 350px;
     max-width: 380px;
     margin: auto;
-    max-height: 90vh;
+    max-height: 100vh;
     overflow: auto;
   }
   .public__side {
@@ -56,7 +56,7 @@ export const ContainerPublic = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    /* border-radius: 20px 0 0 20px; */
     column-gap: 20px;
     .side__bar {
       display: block;
