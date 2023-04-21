@@ -43,9 +43,9 @@ export const ContainerTextInput = styled.div<TextInputModifier>`
     margin: 0;
     display: flex;
     .input__text {
-      padding: 8px 12px;
+      padding: 10px 12px;
       font-size: ${pxToRem(16)};
-      border-radius: 12px;
+      border-radius: 4px;
       transition: all 0.3s;
       width: 100%;
       ::placeholder {
