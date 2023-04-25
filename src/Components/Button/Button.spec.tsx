@@ -4,6 +4,6 @@ import { Button } from "../index";
 
 describe("<Button />", () => {
   it("should render button with title", () => {
-    render(<Button title="Teste" />)
+    render(<Button title="Teste" />);
   });
 });

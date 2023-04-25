@@ -11,7 +11,7 @@ export function LayoutDashboard({
   const { onHandlerExpand, isExpanded } = useLayoutDashboard();
 
   return (
-    <ContainerLayoutDashboard>
+    <ContainerLayoutDashboard isExpanded={isExpanded}>
       <SideBar onHandlerExpand={onHandlerExpand} isExpanded={isExpanded} />
       <div className="layout__children">{children}</div>
     </ContainerLayoutDashboard>
