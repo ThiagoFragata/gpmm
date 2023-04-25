@@ -1,10 +1,17 @@
 export const colors = {
-  light: "#F2F6FF",
-  blue: "#03a9f4",
-  orange: "#ff9800",
-  dark: "#211C1F",
-  green: "#4CD964",
-  red: "#ff3b30"
+  BACKGROUND_PRIMARY: "#F3F3F3",
+  WHITE: "#FFFFFF",
+  DARK_PRIMARY: "#171718",
+  GREEN_PRIMARY: "#048E7E",
+  GREEN_DARK: "#003A34",
+  BLUE_PRIMARY: "#0069FB",
+  BLUE_DARK: "#034EA5",
+  GRAY_PRIMARY: "#94949D",
+  GRAY_SECONDARY: "#797D87",
+  RED_PRIMARY: "#F63634",
+  RED_DARK: "#BC0503",
+  ORANGE_PRIMARY: "#FE5C00",
+  SUCCESS: "#1DD263"
 };
 
 const theme = {
