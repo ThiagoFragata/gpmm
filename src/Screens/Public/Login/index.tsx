@@ -2,18 +2,21 @@ import React from "react";
 import Image from "next/image";
 import { ContainerLogin } from "./style";
 import { Form } from "react-final-form";
-import { Button, TextInput, TitleSubtitle } from "@/Components";
+import { AwaitRequest, Button, TextInput, TitleSubtitle } from "@/Components";
 import { useLogin } from "./useLogin";
 import {
   validateLogin,
   initialValuesLogin
 } from "@/_utils/form/validations/login";
+import Link from "next/link";
+import { PATHS } from "@/_utils/constants";
 
 export function Login(): JSX.Element {
-  const { onSubmitLogin } = useLogin();
+  const { onSubmitLogin, isLoading, titleButton } = useLogin();
 
   return (
     <ContainerLogin>
+      <AwaitRequest isVisible={isLoading} />
       <Image
         src="/images/logo.png"
         alt="Logo da aplicação"
@@ -24,7 +27,6 @@ export function Login(): JSX.Element {
         title="Seja bem vindo!"
         subtitle="Para prosseguir informe os dados abaixo"
       />
-
       <Form
         onSubmit={values => {
           onSubmitLogin({
@@ -38,24 +40,29 @@ export function Login(): JSX.Element {
           <form onSubmit={handleSubmit}>
             <div className="login__fields">
               <TextInput
-                label="SIAPE *"
-                name="user_name"
-                placeholder="Digite seu código SIAPE"
-                maxLength={10}
+                label="E-mail *"
+                name="email"
+                placeholder="Digite seu e-mail"
+                disabled={isLoading}
               />
               <TextInput
                 label="Senha *"
                 name="password"
-                placeholder="Digite sau senha"
+                type="password"
+                placeholder="Digite sua senha"
+                disabled={isLoading}
+                className="login__password"
               />
             </div>
             <div className="login__buttons">
-              <Button type="submit" className="button__item" title="Entrar" />
-              <span className="button__divider">ou</span>
+              <Link href={PATHS.forgotPassword} className="link__forgot">
+                Esqueci minha senha!
+              </Link>
               <Button
+                type="submit"
                 className="button__item"
-                title="Novo Registro"
-                variant="outline"
+                title={titleButton}
+                disabled={isLoading}
               />
             </div>
           </form>

@@ -1,12 +1,19 @@
-import { type onSubmitLoginProps, type useLoginData } from "@/_types/Login";
+import type { onSubmitLoginProps, useLoginData } from "@/_types/Login";
+import React from "react";
 
 export function useLogin(): useLoginData {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const titleButton = isLoading ? "Aguarde..." : "Entrar";
   function onSubmitLogin({ user_name, password }: onSubmitLoginProps): void {
-    console.log("🔥🔥🔥🔥________________________🚑");
-    console.log(JSON.stringify({ user_name, password }, null, 2));
-    console.log("🔥🔥🔥🔥________________________🚑");
+    setIsLoading(true);
+    setIsLoading(!isLoading);
+    // setTimeout(() => {
+    //   setIsLoading(false);
+    // }, 2500);
   }
   return {
-    onSubmitLogin
+    onSubmitLogin,
+    isLoading,
+    titleButton
   };
 }

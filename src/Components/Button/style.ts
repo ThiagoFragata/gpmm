@@ -34,6 +34,11 @@ export const ContainerButton = styled.button<ButtonModifier>`
       transform: translateY(-3px);
       cursor: pointer;
     }
+    :disabled {
+      opacity: 0.5;
+      transform: translateY(0);
+      cursor: default;
+    }
     ${containerButtonModifier.variant[variant]};
   `}
 `;

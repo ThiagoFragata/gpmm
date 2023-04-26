@@ -7,7 +7,8 @@ export function Button({
   variant = "primary",
   className,
   onClick,
-  type = "button"
+  type = "button",
+  disabled
 }: ButtonProps): JSX.Element {
   return (
     <ContainerButton
@@ -15,6 +16,7 @@ export function Button({
       onClick={onClick}
       variant={variant}
       type={type}
+      disabled={disabled}
     >
       {title}
     </ContainerButton>

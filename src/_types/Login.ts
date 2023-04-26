@@ -5,4 +5,6 @@ export interface onSubmitLoginProps {
 
 export interface useLoginData {
   onSubmitLogin: (data: onSubmitLoginProps) => void;
+  isLoading: boolean;
+  titleButton: string;
 }
