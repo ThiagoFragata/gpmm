@@ -2,18 +2,20 @@ import React from "react";
 import Image from "next/image";
 import { ContainerLogin } from "./style";
 import { Form } from "react-final-form";
-import { Button, TextInput, TitleSubtitle } from "@/Components";
-import { useLogin } from "./useLogin";
+import { AwaitRequest, Button, TextInput, TitleSubtitle } from "@/Components";
 import {
-  validateLogin,
-  initialValuesLogin
-} from "@/_utils/form/validations/login";
+  initialValuesForgotPassword,
+  validateForgotPassword
+} from "@/_utils/form/validations/forgotPassword";
+import { useForgotPassword } from "./useForgotPassword";
 
-export function Login(): JSX.Element {
-  const { onSubmitLogin } = useLogin();
+export function ForgotPassword(): JSX.Element {
+  const { onSubmitForgotPassword, goToLogin, isLoading, titleButton } =
+    useForgotPassword();
 
   return (
     <ContainerLogin>
+      <AwaitRequest isVisible={isLoading} />
       <Image
         src="/images/logo.png"
         alt="Logo da aplicação"
@@ -21,40 +23,42 @@ export function Login(): JSX.Element {
         height={83}
       />
       <TitleSubtitle
-        title="Seja bem vindo!"
-        subtitle="Para prosseguir informe os dados abaixo"
+        title="Esqueceu a senha?"
+        subtitle="Informe seu e-mail que enviaremos instruções
+        para recuperar seu acesso."
       />
-
       <Form
         onSubmit={values => {
-          onSubmitLogin({
-            user_name: values?.user_name,
-            password: values?.password
+          onSubmitForgotPassword({
+            email: values?.email
           });
         }}
-        initialValues={initialValuesLogin}
-        validate={validateLogin}
+        initialValues={initialValuesForgotPassword}
+        validate={validateForgotPassword}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <div className="login__fields">
+            <div className="form__fields">
               <TextInput
-                label="SIAPE *"
-                name="user_name"
-                placeholder="Digite seu código SIAPE"
-              />
-              <TextInput
-                label="Senha *"
-                name="password"
-                placeholder="Digite sau senha"
+                label="E-mail *"
+                name="email"
+                placeholder="Digite seu e-mail"
+                disabled={isLoading}
               />
             </div>
-            <div className="login__buttons">
-              <Button type="submit" className="button__item" title="Entrar" />
+            <div className="form__buttons">
+              <Button
+                type="submit"
+                className="button__item"
+                title={titleButton}
+                disabled={isLoading}
+              />
               <span className="button__divider">ou</span>
               <Button
                 className="button__item"
-                title="Novo Registro"
+                onClick={goToLogin}
+                title="Voltar ao login"
                 variant="outline"
+                disabled={isLoading}
               />
             </div>
           </form>

@@ -1,12 +1,22 @@
-import { type onSubmitLoginProps, type useLoginData } from "@/_types/Login";
+import React from "react";
+import type { onSubmitLoginProps, useLoginData } from "@/_types/Login";
+import { useRouter } from "next/router";
+import { PATHS } from "@/_utils/constants";
 
 export function useLogin(): useLoginData {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const titleButton = isLoading ? "Aguarde..." : "Entrar";
   function onSubmitLogin({ user_name, password }: onSubmitLoginProps): void {
-    console.log("🔥🔥🔥🔥________________________🚑");
-    console.log(JSON.stringify({ user_name, password }, null, 2));
-    console.log("🔥🔥🔥🔥________________________🚑");
+    setIsLoading(true);
+    setIsLoading(!isLoading);
+    setTimeout(() => {
+      router.push(PATHS.dashboard.inicio);
+    }, 2500);
   }
   return {
-    onSubmitLogin
+    onSubmitLogin,
+    isLoading,
+    titleButton
   };
 }

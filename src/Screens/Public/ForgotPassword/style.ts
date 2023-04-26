@@ -2,14 +2,15 @@ import { pxToRem } from "@/_utils/pxToRem";
 import { colors } from "@/style/theme";
 import styled from "styled-components";
 
-export const ContainerLogin = styled.div`
+export const ContainerLogin = styled.section`
   width: 100%;
-  .login__fields {
+  .form__fields {
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    margin-top: 50px;
+    row-gap: 12px;
   }
-  .login__buttons {
+  .form__buttons {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
@@ -33,7 +34,6 @@ export const ContainerLogin = styled.div`
         width: 43%;
         background-color: ${colors.DARK_PRIMARY};
       }
-
       ::before {
         right: 0;
       }

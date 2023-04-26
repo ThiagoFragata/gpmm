@@ -1,15 +1,19 @@
 import React from "react";
-import { ContainerPublic } from "./style";
+import { ContainerLayoutPublic } from "./style";
 
-export function Public({ children }: { children: JSX.Element }): JSX.Element {
+export function LayoutPublic({
+  children
+}: {
+  children: JSX.Element;
+}): JSX.Element {
   return (
-    <ContainerPublic>
+    <ContainerLayoutPublic>
       <div className="public__children">{children}</div>
       <aside className="public__side">
         <div className="side__bar" />
         <div className="side__bar" />
         <div className="side__bar" />
       </aside>
-    </ContainerPublic>
+    </ContainerLayoutPublic>
   );
 }

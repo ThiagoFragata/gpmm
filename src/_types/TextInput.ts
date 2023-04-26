@@ -12,3 +12,16 @@ export type TextInputProps = {
 export interface TextInputModifier {
   error: boolean;
 }
+
+export type useTextInputDataProps = Pick<TextInputProps, "type">;
+
+export interface useTextInputData {
+  onHandlerInputPassword: () => void;
+  shouldRenderButton: boolean;
+  isPassword: boolean;
+}
+
+export interface ButtonChangeInputProps {
+  onClick: () => void;
+  isPassword: boolean;
+}

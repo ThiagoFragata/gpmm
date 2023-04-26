@@ -1,44 +1,37 @@
+import styled from "styled-components";
 import { pxToRem } from "@/_utils/pxToRem";
 import { colors } from "@/style/theme";
-import styled from "styled-components";
 
-export const ContainerLogin = styled.div`
+export const ContainerLogin = styled.section`
   width: 100%;
   .login__fields {
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    margin-top: 50px;
+    row-gap: 12px;
+    .login__password {
+      padding-right: 40px;
+    }
   }
   .login__buttons {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     row-gap: ${pxToRem(12)};
+    .link__forgot {
+      transition: all 0.3s;
+      font-size: ${pxToRem(16)};
+      color: ${colors.GRAY_PRIMARY};
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      text-decoration: none;
+      :hover {
+        color: ${colors.GREEN_PRIMARY};
+        border-bottom: 1px solid ${colors.GREEN_PRIMARY};
+      }
+    }
     .button__item {
       width: 100%;
-    }
-    .button__divider {
-      text-align: center;
-      position: relative;
-      color: ${colors.DARK_PRIMARY};
-      font-size: ${pxToRem(16)};
-      ::after,
-      ::before {
-        content: "";
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        position: absolute;
-        height: 1px;
-        width: 43%;
-        background-color: ${colors.DARK_PRIMARY};
-      }
-      ::before {
-        right: 0;
-      }
-      ::after {
-        left: 0;
-      }
     }
   }
 `;

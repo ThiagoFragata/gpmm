@@ -1,11 +1,11 @@
 import React from "react";
-import { Login } from "@/Screens";
+import { ForgotPassword } from "@/Screens";
 import { LayoutPublic } from "@/Layout/LayoutPublic";
 
-export default function LoginScreen(): JSX.Element {
+export default function ForgotPasswordScreen(): JSX.Element {
   return (
     <LayoutPublic>
-      <Login />
+      <ForgotPassword />
     </LayoutPublic>
   );
 }

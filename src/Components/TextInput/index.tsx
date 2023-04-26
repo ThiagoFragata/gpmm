@@ -1,8 +1,10 @@
-import { Field } from "react-final-form";
 import React from "react";
+import { Field } from "react-final-form";
 import { ContainerTextInput, TextWarning } from "./style";
-import { type TextInputProps } from "@/_types/TextInput";
 import { Button } from "../Button";
+import { useTextInput } from "./useTextInput";
+import type { TextInputProps } from "@/_types/TextInput";
+import { ButtonChangeInput } from "./Partials/ButtonChangeInput";
 
 export function TextInput({
   label,
@@ -15,7 +17,8 @@ export function TextInput({
   disabled = false,
   ...rest
 }: TextInputProps): JSX.Element {
-  const shouldRenderOptionPassword = type === "password";
+  const { onHandlerInputPassword, shouldRenderButton, isPassword } =
+    useTextInput({ type });
   return (
     <Field
       parse={parse}
@@ -28,16 +31,21 @@ export function TextInput({
             <span className="input__label">{label}</span>
             <div className="container__input">
               <input
-                type={type}
+                type={!isPassword ? "text" : "password"}
                 autoComplete="off"
-                className="input__text"
+                className={`input__text ${className ?? ""}`}
                 placeholder={placeholder}
                 id={name}
                 disabled={disabled}
                 {...rest}
                 {...input}
               />
-              {shouldRenderOptionPassword && <Button title="mudar senha" />}
+              {shouldRenderButton && (
+                <ButtonChangeInput
+                  onClick={onHandlerInputPassword}
+                  isPassword={isPassword}
+                />
+              )}
             </div>
             <TextWarning show={isInvalid}>{meta.error}</TextWarning>
           </ContainerTextInput>
