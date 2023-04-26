@@ -1,11 +1,11 @@
 import React from "react";
 import { ForgotPassword } from "@/Screens";
-import { Public as PublicTemplate } from "@/Layout/Public";
+import { LayoutPublic } from "@/Layout/LayoutPublic";
 
 export default function ForgotPasswordScreen(): JSX.Element {
   return (
-    <PublicTemplate>
+    <LayoutPublic>
       <ForgotPassword />
-    </PublicTemplate>
+    </LayoutPublic>
   );
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "@/style/theme";
 
-export const ContainerPublic = styled.section`
+export const ContainerLayoutPublic = styled.section`
   height: 100vh;
   display: flex;
   justify-content: space-between;

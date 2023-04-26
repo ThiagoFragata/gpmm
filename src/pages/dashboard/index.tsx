@@ -1,8 +1,8 @@
 import React from "react";
-import { LayoutDashboard } from "@/Components";
 import { Home } from "@/Screens";
+import { LayoutDashboard } from "@/Components";
 
-export default function ScreenInicio(): JSX.Element {
+export default function LoginScreen(): JSX.Element {
   return (
     <LayoutDashboard>
       <Home />

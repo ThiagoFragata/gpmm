@@ -3,5 +3,8 @@ export const widthSideBarRetractable = 50;
 
 export const PATHS = {
   login: "/",
-  forgotPassword: "/recuperar-conta"
+  forgotPassword: "/recuperar-conta",
+  dashboard: {
+    inicio: "/dashboard"
+  }
 };

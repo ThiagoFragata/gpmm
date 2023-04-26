@@ -2,7 +2,7 @@ import { pxToRem } from "@/_utils/pxToRem";
 import { colors } from "@/style/theme";
 import styled from "styled-components";
 
-export const ContainerLogin = styled.div`
+export const ContainerLogin = styled.section`
   width: 100%;
   .form__fields {
     display: flex;

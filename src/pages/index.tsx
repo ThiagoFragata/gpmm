@@ -1,11 +1,11 @@
 import React from "react";
 import { Login } from "@/Screens";
-import { Public as PublicTemplate } from "@/Layout/Public";
+import { LayoutPublic } from "@/Layout/LayoutPublic";
 
 export default function LoginScreen(): JSX.Element {
   return (
-    <PublicTemplate>
+    <LayoutPublic>
       <Login />
-    </PublicTemplate>
+    </LayoutPublic>
   );
 }
