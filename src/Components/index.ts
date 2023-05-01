@@ -6,3 +6,4 @@ export { AwaitRequest } from "./AwaitRequest";
 export { HeaderBox } from "./HeaderBox";
 export { Search } from "./Search";
 export { BreadCrumb } from "./BreadCrumb";
+export { DataBox } from "./DataBox";

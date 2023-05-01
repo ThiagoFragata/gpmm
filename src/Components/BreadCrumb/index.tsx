@@ -1,6 +1,6 @@
 import React from "react";
-import { ContainerBreadCrumb } from "./style";
 import type { BreadCrumbProps } from "@/_types/BreadCrumb";
+import { ContainerBreadCrumb } from "./style";
 import { ArrowIcon } from "@/assets/icons";
 import Link from "next/link";
 

@@ -6,3 +6,18 @@ export interface DefaultIconPros {
 export type ArrowIconPros = {
   direction?: "left" | "right" | "top" | "bottom";
 } & DefaultIconPros;
+
+export type IconsName =
+  | "CloseEyeIcon"
+  | "OpenEyeIcon"
+  | "MySolicitationIcon"
+  | "NotificationIcon"
+  | "ProfileIcon"
+  | "UsersIcon"
+  | "DashboardIcon"
+  | "AboutIcon"
+  | "LogOutIcon"
+  | "ArrowLeftIcon"
+  | "ArrowIcon"
+  | "SearchIcon"
+  | "MoreIcon";

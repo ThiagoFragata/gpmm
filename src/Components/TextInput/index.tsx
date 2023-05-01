@@ -1,7 +1,6 @@
 import React from "react";
 import { Field } from "react-final-form";
 import { ContainerTextInput, TextWarning } from "./style";
-import { Button } from "../Button";
 import { useTextInput } from "./useTextInput";
 import type { TextInputProps } from "@/_types/TextInput";
 import { ButtonChangeInput } from "./Partials/ButtonChangeInput";
