@@ -1,6 +1,11 @@
 import React from "react";
 import { ContainerHome } from "./style";
+import type { NextPageWithLayout } from "@/pages/_app";
 
-export function Home(): JSX.Element {
-  return <ContainerHome>{/* <h1>Home</h1> */}</ContainerHome>;
-}
+export const Home: NextPageWithLayout = () => {
+  return (
+    <ContainerHome>
+      <h1>Home</h1>
+    </ContainerHome>
+  );
+};

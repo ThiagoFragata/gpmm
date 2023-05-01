@@ -4,11 +4,13 @@ import Image from "next/image";
 import type { SideBarProps } from "@/_types/LayoutDashboard";
 import { ITEMS__SIDEBAR } from "../options";
 import Link from "next/link";
+import { useSideBar } from "./useSideBar";
 
 export function SideBar({
   isExpanded,
   onHandlerExpand
 }: SideBarProps): JSX.Element {
+  const { currentPath } = useSideBar();
   return (
     <ContainerSideBar isExpanded={isExpanded}>
       <Image
@@ -23,9 +25,13 @@ export function SideBar({
           <TitleDivider className="option__title">Principal</TitleDivider>
         </li>
         {ITEMS__SIDEBAR.MAIN.map(({ id, label, path, icon: Icon }) => {
+          const classOptionLink =
+            path === currentPath
+              ? "option__link option__link--selected"
+              : "option__link";
           return (
             <li key={id} className="option__item">
-              <Link href={path} className="option__link">
+              <Link href={path} className={classOptionLink}>
                 <Icon className="option__icon" />
                 <span className="option__text">{label}</span>
               </Link>

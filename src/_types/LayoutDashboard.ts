@@ -17,4 +17,8 @@ export type SideBarProps = Pick<
   "isExpanded" | "onHandlerExpand"
 >;
 
+export interface useSideBarData {
+  currentPath: string;
+}
+
 export type SideBarModifier = Pick<useLayoutDashboardData, "isExpanded">;

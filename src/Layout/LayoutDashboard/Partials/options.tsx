@@ -24,7 +24,7 @@ export const ITEMS__SIDEBAR = {
     {
       id: "solicitacoes",
       label: "Solicitações",
-      path: PATHS.dashboard.inicio,
+      path: PATHS.dashboard.solicitacoes,
       paths: [],
       icon: ({ className }: { className?: string }) => (
         <MySolicitationIcon className={className} />
@@ -33,7 +33,7 @@ export const ITEMS__SIDEBAR = {
     {
       id: "usuarios",
       label: "Usuários",
-      path: PATHS.dashboard.inicio,
+      path: PATHS.dashboard.usuarios,
       paths: [],
       icon: ({ className }: { className?: string }) => (
         <UsersIcon className={className} />
@@ -42,7 +42,7 @@ export const ITEMS__SIDEBAR = {
     {
       id: "perfil",
       label: "Perfil",
-      path: PATHS.dashboard.inicio,
+      path: PATHS.dashboard.perfil,
       paths: [],
       icon: ({ className }: { className?: string }) => (
         <UsersIcon className={className} />
@@ -51,7 +51,7 @@ export const ITEMS__SIDEBAR = {
     {
       id: "notificacoes",
       label: "Notificações",
-      path: PATHS.dashboard.inicio,
+      path: PATHS.dashboard.notificoes,
       paths: [],
       icon: ({ className }: { className?: string }) => (
         <NotificationIcon className={className} />
@@ -60,7 +60,7 @@ export const ITEMS__SIDEBAR = {
   ],
   ABOUT: {
     label: "Sobre",
-    path: PATHS.dashboard.inicio,
+    path: PATHS.dashboard.sobre,
     paths: [],
     icon: ({ className }: { className?: string }) => (
       <AboutIcon className={className} />

@@ -73,6 +73,9 @@ export const ContainerSideBar = styled.aside<SideBarModifier>`
         padding: 12px;
         font-weight: 500;
         transition: all 0.3s;
+        border-radius: 0px 8px 8px 0px;
+        position: relative;
+        cursor: pointer;
         .option__text {
           transition: all 0.2s;
           font-size: ${pxToRem(16)};
@@ -84,15 +87,47 @@ export const ContainerSideBar = styled.aside<SideBarModifier>`
           transition: all 0.3s;
         }
         :hover {
-          cursor: pointer;
-          background-color: ${colors.BACKGROUND_PRIMARY};
-          color: ${colors.DARK_PRIMARY};
+          background: rgba(4, 142, 126, 0.07);
+          .option__text {
+            color: ${colors.GREEN_PRIMARY};
+          }
           .option__icon {
             path {
               transition: all 0.3s;
-              fill: ${colors.DARK_PRIMARY};
+              fill: ${colors.GREEN_PRIMARY};
             }
           }
+        }
+        ::before {
+          content: " ";
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          left: 0;
+          width: 0;
+          height: 0;
+          background-color: ${colors.GREEN_PRIMARY};
+          border-radius: 0px 4px 4px 0px;
+          transition: all 0.3s;
+        }
+      }
+      .option__link--selected {
+        cursor: not-allowed;
+        background: rgba(4, 142, 126, 0.05);
+        .option__text {
+          color: ${colors.GREEN_PRIMARY};
+        }
+        .option__icon {
+          path {
+            transition: all 0.3s;
+            fill: ${colors.GREEN_PRIMARY};
+          }
+        }
+        ::before {
+          content: " ";
+          width: 5px;
+          height: 100%;
         }
       }
       .option__link--button {
@@ -100,11 +135,11 @@ export const ContainerSideBar = styled.aside<SideBarModifier>`
         background-color: transparent;
       }
     }
+    .side__options--end {
+      margin-top: auto;
+    }
   }
-  .side__options--end {
-    margin-top: auto;
-  }
-  ${({ isExpanded }) => modifier[isExpanded ? "expand" : "retractable"]}
+  ${({ isExpanded }) => modifier[isExpanded ? "expand" : "retractable"]};
 `;
 
 export const TitleDivider = styled.h3`

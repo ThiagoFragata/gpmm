@@ -5,6 +5,11 @@ export const PATHS = {
   login: "/",
   forgotPassword: "/recuperar-conta",
   dashboard: {
-    inicio: "/dashboard"
+    inicio: "/dashboard",
+    solicitacoes: "/dashboard/solicitacoes",
+    usuarios: "/dashboard/usuarios",
+    perfil: "/dashboard/perfil",
+    notificoes: "/dashboard/notificoes",
+    sobre: "/dashboard/sobre"
   }
 };
