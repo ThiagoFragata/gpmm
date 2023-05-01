@@ -8,3 +8,4 @@ export { DashboardIcon } from "./DashboardIcon";
 export { AboutIcon } from "./AboutIcon";
 export { LogOutIcon } from "./LogOutIcon";
 export { ArrowLeftIcon } from "./ArrowLeftIcon";
+export { ArrowIcon } from "./ArrowIcon";

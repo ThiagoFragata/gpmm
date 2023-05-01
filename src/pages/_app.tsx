@@ -8,7 +8,7 @@ import type { NextPage } from "next";
 
 import localFont from "next/font/local";
 
-export const roboto = localFont({
+const roboto = localFont({
   src: [
     {
       path: "../assets/fonts/Roboto-Bold.ttf",
