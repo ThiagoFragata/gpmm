@@ -18,3 +18,7 @@ export interface TableItemProps {
   item?: tableItems;
   children?: JSX.Element;
 }
+
+export interface TableScrollProps {
+  children?: JSX.Element[];
+}

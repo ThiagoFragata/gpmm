@@ -1,3 +1,3 @@
 export interface DataBoxProps {
-  children: JSX.Element;
+  children: JSX.Element[];
 }

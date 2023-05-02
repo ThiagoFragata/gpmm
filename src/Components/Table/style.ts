@@ -38,3 +38,13 @@ export const ContainerTableItem = styled.li`
     color: ${colors.DARK_PRIMARY};
   }
 `;
+
+export const ContainerTableScroll = styled.div`
+  flex: 1;
+  overflow: scroll;
+  position: relative;
+  .scroll__box {
+    position: absolute;
+    width: 100%;
+  }
+`;

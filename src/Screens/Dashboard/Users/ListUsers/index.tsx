@@ -6,10 +6,12 @@ import {
   BreadCrumb,
   Button,
   DataBox,
+  FooterData,
   Search,
   Status,
   TableContent,
   TableItem,
+  TableScroll,
   TableTitle
 } from "@/Components";
 import { useListUsers } from "./useListUsers";
@@ -111,13 +113,12 @@ export const ListUsers: NextPageWithLayout = () => {
     <ContainerListUsers>
       <BreadCrumb items={breadCrumb} />
       <DataBox>
-        <>
-          <div className="top__options">
-            <Search />
-            <Button title="Novo" iconName="MoreIcon" />
-          </div>
-          <TableTitle items={tableTitle} />
-
+        <div className="top__options">
+          <Search />
+          <Button title="Novo" iconName="MoreIcon" />
+        </div>
+        <TableTitle items={tableTitle} />
+        <TableScroll>
           {fakeData.map((item, index) => (
             <TableContent key={index}>
               <TableItem className="size__name">
@@ -143,7 +144,8 @@ export const ListUsers: NextPageWithLayout = () => {
               </TableItem>
             </TableContent>
           ))}
-        </>
+        </TableScroll>
+        <FooterData />
       </DataBox>
     </ContainerListUsers>
   );

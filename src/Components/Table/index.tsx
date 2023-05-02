@@ -2,12 +2,14 @@ import React from "react";
 import {
   ContainerTable,
   ContainerTableContent,
-  ContainerTableItem
+  ContainerTableItem,
+  ContainerTableScroll
 } from "./style";
 import type {
   TableTitleProps,
   TableContentProps,
-  TableItemProps
+  TableItemProps,
+  TableScrollProps
 } from "@/_types/Table";
 
 export function TableTitle({ className, items }: TableTitleProps): JSX.Element {
@@ -54,5 +56,13 @@ export function TableItem({
         </ContainerTableItem>
       )}
     </>
+  );
+}
+
+export function TableScroll({ children }: TableScrollProps): JSX.Element {
+  return (
+    <ContainerTableScroll>
+      <div className="scroll__box">{children}</div>
+    </ContainerTableScroll>
   );
 }
