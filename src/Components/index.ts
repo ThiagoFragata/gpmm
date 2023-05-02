@@ -7,3 +7,5 @@ export { HeaderBox } from "./HeaderBox";
 export { Search } from "./Search";
 export { BreadCrumb } from "./BreadCrumb";
 export { DataBox } from "./DataBox";
+export { TableTitle, TableContent, TableItem } from "./Table";
+export { Status } from "./Status";

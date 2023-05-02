@@ -1,4 +1,4 @@
-export const widthSideBarExpanded = 300;
+export const widthSideBarExpanded = 220;
 export const widthSideBarRetractable = 60;
 
 export const PATHS = {
