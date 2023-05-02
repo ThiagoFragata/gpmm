@@ -27,9 +27,13 @@ export const ContainerButton = styled.button<ButtonModifier>`
   ${({ variant }) => css`
     border: none;
     padding: 10px 24px;
-    border-radius: 4px;
+    border-radius: 12px;
     transition: all 0.3s;
     font-size: ${pxToRem(16)};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 6px;
     :hover {
       transform: translateY(-3px);
       cursor: pointer;
@@ -38,6 +42,13 @@ export const ContainerButton = styled.button<ButtonModifier>`
       opacity: 0.5;
       transform: translateY(0);
       cursor: default;
+    }
+    .button__icon {
+      width: 18px;
+      height: 18px;
+      path {
+        fill: currentColor;
+      }
     }
     ${containerButtonModifier.variant[variant]};
   `}

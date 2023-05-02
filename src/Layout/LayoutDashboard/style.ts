@@ -26,6 +26,10 @@ export const ContainerLayoutDashboard = styled.section<LayoutDashboardModifier>`
   .layout__children {
     transition: all 0.3s;
     background-color: ${colors.BACKGROUND_PRIMARY};
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     ${({ isExpanded }) =>
       modifier.sidebar[isExpanded ? "expand" : "retractable"]}
   }
