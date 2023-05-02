@@ -139,6 +139,9 @@ export const ContainerSideBar = styled.aside<SideBarModifier>`
       margin-top: auto;
     }
   }
+  .side__options--end {
+    margin-top: auto;
+  }
   ${({ isExpanded }) => modifier[isExpanded ? "expand" : "retractable"]};
 `;
 

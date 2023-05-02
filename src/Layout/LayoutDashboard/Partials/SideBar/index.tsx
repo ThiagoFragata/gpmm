@@ -1,10 +1,10 @@
 import React from "react";
-import { ContainerSideBar, TitleDivider } from "./style";
-import Image from "next/image";
 import type { SideBarProps } from "@/_types/LayoutDashboard";
+import { ContainerSideBar, TitleDivider } from "./style";
 import { ITEMS__SIDEBAR } from "../options";
-import Link from "next/link";
 import { useSideBar } from "./useSideBar";
+import Link from "next/link";
+import Image from "next/image";
 
 export function SideBar({
   isExpanded,
