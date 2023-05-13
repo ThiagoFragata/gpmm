@@ -7,6 +7,7 @@ import {
   LogOutIcon,
   MySolicitationIcon,
   NotificationIcon,
+  ResourcesIcon,
   UsersIcon
 } from "@/assets/icons";
 
@@ -28,6 +29,15 @@ export const ITEMS__SIDEBAR = {
       paths: [],
       icon: ({ className }: { className?: string }) => (
         <MySolicitationIcon className={className} />
+      )
+    },
+    {
+      id: "recursos",
+      label: "Recursos",
+      path: PATHS.dashboard.recursos,
+      paths: [],
+      icon: ({ className }: { className?: string }) => (
+        <ResourcesIcon className={className} />
       )
     },
     {

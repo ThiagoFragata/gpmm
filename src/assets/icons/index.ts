@@ -11,3 +11,4 @@ export { ArrowLeftIcon } from "./ArrowLeftIcon";
 export { ArrowIcon } from "./ArrowIcon";
 export { SearchIcon } from "./SearchIcon";
 export { MoreIcon } from "./MoreIcon";
+export { ResourcesIcon } from "./ResourcesIcon";

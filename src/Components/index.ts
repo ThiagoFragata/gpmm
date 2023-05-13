@@ -12,3 +12,4 @@ export { Status } from "./Status";
 export { FooterData } from "./FooterData";
 export { IconButton } from "./IconButton";
 export { ShowBack } from "./ShowBack";
+export { TabResources } from "./TabResources";

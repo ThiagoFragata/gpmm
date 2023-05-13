@@ -5,7 +5,7 @@ import type { StatusProps } from "@/_types/Status";
 export function Status({ type }: StatusProps): JSX.Element {
   const labelType = {
     active: "Ativo",
-    waiting: "Aguardando permissão",
+    waiting: "Aguardando",
     inactive: "Inativo"
   };
   return (

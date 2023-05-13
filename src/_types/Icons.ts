@@ -20,4 +20,5 @@ export type IconsName =
   | "ArrowLeftIcon"
   | "ArrowIcon"
   | "SearchIcon"
-  | "MoreIcon";
+  | "MoreIcon"
+  | "ResourcesIcon";
