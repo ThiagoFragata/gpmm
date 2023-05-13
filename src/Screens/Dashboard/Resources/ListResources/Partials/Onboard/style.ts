@@ -22,6 +22,9 @@ export const ContainerOnboard = styled.div`
   flex: 1;
   position: relative;
   overflow: hidden;
+  .onboard__picture {
+    margin-bottom: 20px;
+  }
   .onboard__title {
     font-size: ${pxToRem(42)};
     line-height: ${pxToRem(55)};
@@ -64,23 +67,5 @@ export const ContainerOnboard = styled.div`
       border: 5px solid ${colors.WHITE};
       border-radius: 50%;
     }
-    /* .onboard__inside-circle {
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      border: 2px solid red;
-      position: relative;
-      ::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100px;
-        height: 50px;
-        width: 50px;
-        border: 2px solid red;
-        background-color: red;
-      }
-    } */
   }
 `;

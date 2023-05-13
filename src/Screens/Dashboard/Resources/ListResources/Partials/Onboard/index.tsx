@@ -3,11 +3,19 @@ import { ContainerOnboard } from "./style";
 import { Button } from "@/Components";
 import { useRouter } from "next/navigation";
 import { PATHS } from "@/_utils/constants";
+import Image from "next/image";
 
 export function Onboard(): JSX.Element {
   const router = useRouter();
   return (
     <ContainerOnboard>
+      <Image
+        src="/images/data_control.webp"
+        alt="Logo da aplicação"
+        width={386}
+        height={186}
+        className="onboard__picture"
+      />
       <h1 className="onboard__title">
         Gerencia os recursos de forma <br /> fácil e simplificada
       </h1>
@@ -35,7 +43,7 @@ export function Onboard(): JSX.Element {
           }}
         />
       </div>
-      <div className="onboard__circle" />
+      {/* <div className="onboard__circle" /> */}
     </ContainerOnboard>
   );
 }
