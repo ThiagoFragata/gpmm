@@ -1,34 +1,28 @@
 {
   "env": {
-      "browser": true,
-      "es2021": true,
-      "node": true,
-      "jest": true
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
   },
   "extends": [
-      "next/core-web-vitals",
-      "plugin:react/recommended",
-      "standard-with-typescript",
-      "plugin:@typescript-eslint/recommended",
-      "prettier",
-      "plugin:prettier/recommended"
-  ],
-  "overrides": [
-  ],
-  "parserOptions": {
-      "project": "./tsconfig.json",
-      "ecmaFeatures": {
-          "jsx": true
-      },
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-  },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "plugin:@typescript-eslint/recommended",
     "prettier",
-    "jest"
+    "plugin:prettier/recommended"
   ],
+  "overrides": [],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier", "jest"],
   "rules": {
     "react/jsx-props-no-spreading": "off",
     "prettier/prettier": "error",
@@ -48,21 +42,21 @@
     "@typescript-eslint/no-floating-promises": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/naming-convention": "off",
-    "import/extensions":[
-        "error",
-        "ignorePackages",
-        {
-            "ts":"never",
-            "tsx":"never"
-        }
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
     ]
-},
-"settings": {
+  },
+  "settings": {
     "react": {
       "version": "detect"
     },
     "import/resolver": {
       "typescript": {}
     }
-}
+  }
 }
