@@ -1,4 +1,4 @@
-import { type ITabOptions } from "@/_types/ListResources";
+import { type ITabOptions } from "@/_types/Resources";
 
 export const widthSideBarExpanded = 220;
 export const widthSideBarRetractable = 60;

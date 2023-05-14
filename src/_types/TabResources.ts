@@ -1,4 +1,4 @@
-import { type ITabOptions } from "./ListResources";
+import { type ITabOptions } from "./Resources";
 
 export interface TabResourcesProps {
   onChange: (value: ITabOptions) => void;
