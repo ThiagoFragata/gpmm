@@ -21,6 +21,7 @@ export function TabResources({
             type="button"
             key={item.id}
             className={classButton}
+            disabled={isSelected}
             onClick={() => {
               onChange(item.id);
             }}

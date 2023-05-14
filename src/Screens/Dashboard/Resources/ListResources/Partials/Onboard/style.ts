@@ -26,8 +26,7 @@ export const ContainerOnboard = styled.div`
     margin-bottom: 20px;
   }
   .onboard__title {
-    font-size: ${pxToRem(42)};
-    line-height: ${pxToRem(55)};
+    font-size: ${pxToRem(32)};
     color: ${colors.DARK_PRIMARY};
     font-weight: 500;
     text-align: center;

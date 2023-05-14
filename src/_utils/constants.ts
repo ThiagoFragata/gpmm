@@ -4,9 +4,10 @@ export const widthSideBarExpanded = 220;
 export const widthSideBarRetractable = 60;
 
 export const TABS_RESOURCES: Record<string, ITabOptions> = {
-  LIST_PLACE: 0,
-  LIST_TRANSPORT: 1,
-  LIST_DRIVER: 2
+  TAB_ONBOARD: 0,
+  TAB_LIST_PLACE: 1,
+  TAB_LIST_TRANSPORT: 2,
+  TAB_LIST_DRIVER: 3
 };
 
 export const PATHS = {

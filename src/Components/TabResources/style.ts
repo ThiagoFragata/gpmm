@@ -19,7 +19,7 @@ export const ContainerTabResources = styled.div`
     border: none;
     :disabled {
       cursor: no-drop;
-      opacity: 0.5;
+      /* opacity: 0.5; */
     }
   }
   .resource__button--selected {
@@ -31,20 +31,25 @@ export const ContainerTabResources = styled.div`
     position: absolute;
     display: block;
     background-color: ${colors.GREEN_PRIMARY};
-    width: ${pxToRem(125)};
     transition: all 0.2s;
     border-radius: 4px;
+    width: 0;
     height: 3px;
     bottom: -2px;
   }
+  .resource__line--position-1,
+  .resource__line--position-2,
+  .resource__line--position-3 {
+    width: ${pxToRem(125)};
+  }
 
-  .resource__line--position-0 {
+  .resource__line--position-1 {
     left: 0;
   }
-  .resource__line--position-1 {
+  .resource__line--position-2 {
     left: ${pxToRem(145)};
   }
-  .resource__line--position-2 {
+  .resource__line--position-3 {
     left: ${pxToRem(290)};
   }
 `;
