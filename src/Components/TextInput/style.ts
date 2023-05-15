@@ -30,6 +30,7 @@ export const ContainerTextInput = styled.div<TextInputModifier>`
   padding-bottom: 15px;
   position: relative;
   width: 100%;
+  height: fit-content;
   .input__label {
     font-size: ${pxToRem(16)};
     color: ${colors.DARK_PRIMARY};

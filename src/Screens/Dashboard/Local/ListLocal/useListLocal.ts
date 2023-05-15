@@ -1,11 +1,14 @@
+import React from "react";
+// import { useRouter } from "next/navigation";
 import type { useListLocalData } from "@/_types/Local/ListLocal";
 import type { IItemLocal } from "@/_types/Local/ServiceLocal";
 import { serviceGetLocal } from "@/services/api/local";
-import React from "react";
+// import { PATHS } from "@/_utils/constants";
 
 export function useListLocal(): useListLocalData {
   const [dataLocal, setDataLocal] = React.useState<IItemLocal[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  // const router = useRouter();
   const tableTitle = [
     {
       label: "Descrição",

@@ -18,6 +18,7 @@ export const PATHS = {
     solicitacoes: "/dashboard/solicitacoes",
     recursos: "/dashboard/recursos",
     recursosLocais: "/dashboard/recursos/locais",
+    recursosNovoLocal: "/dashboard/recursos/locais/novo",
     recursosTransportes: "/dashboard/recursos/transportes",
     recursosMotoristas: "/dashboard/recursos/motoristas",
     usuarios: "/dashboard/usuarios",

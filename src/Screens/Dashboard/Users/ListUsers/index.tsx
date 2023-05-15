@@ -7,6 +7,7 @@ import {
   Button,
   DataBox,
   FooterData,
+  MenuAction,
   Search,
   Status,
   TableContent,
@@ -119,31 +120,45 @@ export const ListUsers: NextPageWithLayout = () => {
         </div>
         <TableTitle items={tableTitle} />
         <TableScroll>
-          {fakeData.map((item, index) => (
-            <TableContent key={index}>
-              <TableItem className="size__name">
-                <div className="table__user">
-                  <p className="user__name">{item?.name}</p>
-                  <p className="user__email">{item?.email}</p>
-                </div>
-              </TableItem>
-              <TableItem
-                item={{ label: item?.SIAPE, className: "size__siape" }}
-              />
-              <TableItem
-                item={{ label: item?.phone, className: "size__phone" }}
-              />
-              <TableItem className="size__status">
-                <Status type={item?.status as typeStatus} />
-              </TableItem>
-              <TableItem
-                item={{ label: item?.link, className: "size__link" }}
-              />
-              <TableItem className="size__action">
-                <p>...</p>
-              </TableItem>
-            </TableContent>
-          ))}
+          {fakeData.map((item, index) => {
+            const directionMenu = index < 4 ? "bottom" : "top";
+            return (
+              <TableContent key={index}>
+                <TableItem className="size__name">
+                  <div className="table__user">
+                    <p className="user__name">{item?.name}</p>
+                    <p className="user__email">{item?.email}</p>
+                  </div>
+                </TableItem>
+                <TableItem
+                  item={{ label: item?.SIAPE, className: "size__siape" }}
+                />
+                <TableItem
+                  item={{ label: item?.phone, className: "size__phone" }}
+                />
+                <TableItem className="size__status">
+                  <Status type={item?.status as typeStatus} />
+                </TableItem>
+                <TableItem
+                  item={{ label: item?.link, className: "size__link" }}
+                />
+                <TableItem className="size__action">
+                  <MenuAction
+                    direction={directionMenu}
+                    onDelete={() => {
+                      alert("onDelete");
+                    }}
+                    onEdit={() => {
+                      alert("onEdit");
+                    }}
+                    onShowDetails={() => {
+                      alert("onShowDetails");
+                    }}
+                  />
+                </TableItem>
+              </TableContent>
+            );
+          })}
         </TableScroll>
         <FooterData />
       </DataBox>

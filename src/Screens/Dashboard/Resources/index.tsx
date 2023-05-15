@@ -6,7 +6,7 @@ import { BreadCrumb, DataBox, TabResources } from "@/Components";
 import { Onboard } from "./Partials/Onboard";
 import { ListTransport } from "./Partials/ListTransport";
 import { type RenderCurrenTabProps } from "@/_types/Resources";
-import { ListLocal } from "./Partials/ListLocal";
+import { ListLocal } from "../Local/ListLocal";
 import { ListDriver } from "./Partials/ListDriver";
 
 function RenderCurrenTab({

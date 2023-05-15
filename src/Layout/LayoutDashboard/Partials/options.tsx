@@ -39,7 +39,8 @@ export const ITEMS__SIDEBAR = {
         PATHS.dashboard.recursos,
         PATHS.dashboard.recursosLocais,
         PATHS.dashboard.recursosTransportes,
-        PATHS.dashboard.recursosMotoristas
+        PATHS.dashboard.recursosMotoristas,
+        PATHS.dashboard.recursosNovoLocal
       ],
       icon: ({ className }: { className?: string }) => (
         <ResourcesIcon className={className} />

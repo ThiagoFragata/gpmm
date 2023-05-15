@@ -6,3 +6,4 @@ export { ForgotPassword } from "./Public/ForgotPassword";
 export { Home } from "./Dashboard/Home";
 export { ListUsers } from "./Dashboard/Users/ListUsers";
 export { Resources } from "./Dashboard/Resources";
+export { CreateLocal } from "./Dashboard/Local/CreateLocal";

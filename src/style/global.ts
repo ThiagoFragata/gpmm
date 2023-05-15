@@ -40,4 +40,22 @@ export default createGlobalStyle`
     display: flex;
     justify-content: center;
   }
+  .container__form {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .childrens__form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    flex: 1;
+  }
+  .form__buttons {
+    display: flex;
+    align-items: center;    
+    justify-content: flex-end;
+    column-gap: 16px;
+    margin-top: auto;
+  }
 `;

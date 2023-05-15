@@ -1,5 +1,5 @@
 export interface IItemLocal {
-  id: number;
+  id?: number;
   descricao: string;
   identificacao: string;
   totalDeAssento: string;
@@ -8,3 +8,5 @@ export interface IItemLocal {
 export interface serviceGetLocalResponse {
   content: IItemLocal[];
 }
+
+export type servicePostLocalProps = IItemLocal;
