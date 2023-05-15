@@ -12,10 +12,11 @@ function RenderIcon({ iconName, ...props }: RenderIconProps): JSX.Element {
 export function IconButton({
   name,
   className,
+  onClick,
   ...props
 }: IconButtonProps): JSX.Element {
   return (
-    <ContainerIconButton className={className}>
+    <ContainerIconButton className={className} onClick={onClick}>
       <RenderIcon iconName={name} {...props} />
     </ContainerIconButton>
   );

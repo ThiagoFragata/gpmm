@@ -12,3 +12,7 @@ export { ArrowIcon } from "./ArrowIcon";
 export { SearchIcon } from "./SearchIcon";
 export { MoreIcon } from "./MoreIcon";
 export { ResourcesIcon } from "./ResourcesIcon";
+export { DotsIcon } from "./DotsIcon";
+export { DetailsIcon } from "./DetailsIcon";
+export { EditIcon } from "./EditIcon";
+export { TrashIcon } from "./TrashIcon";

@@ -35,7 +35,9 @@ export default createGlobalStyle`
     outline: 1px solid transparent;
   }
 
-  h1, h2, h3, span, p, label, a, button, input, strong {
-    /* font-family: 'Roboto', sans-serif; */
+  .size__action {
+    width: 5%;
+    display: flex;
+    justify-content: center;
   }
 `;

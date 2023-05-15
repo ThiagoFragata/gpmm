@@ -38,24 +38,30 @@ export function TableContent({
 export function TableItem({
   className,
   item,
-  children
+  children,
+  loading
 }: TableItemProps): JSX.Element {
   const shouldRenderLabel = item !== undefined;
   const shouldRenderChildren = children !== undefined;
-  return shouldRenderLabel ? (
-    <ContainerTableItem
-      className={`${className ?? ""} ${item?.className ?? ""}`}
-    >
-      {shouldRenderLabel && <p className="table__text">{item?.label}</p>}
-    </ContainerTableItem>
+  const shouldRenderLoading = loading !== undefined;
+  return !shouldRenderLoading ? (
+    shouldRenderLabel ? (
+      <ContainerTableItem
+        className={`${className ?? ""} ${item?.className ?? ""}`}
+      >
+        {shouldRenderLabel && <p className="table__text">{item?.label}</p>}
+      </ContainerTableItem>
+    ) : (
+      <React.Fragment>
+        {shouldRenderChildren && (
+          <ContainerTableItem className={className}>
+            {children}
+          </ContainerTableItem>
+        )}
+      </React.Fragment>
+    )
   ) : (
-    <>
-      {shouldRenderChildren && (
-        <ContainerTableItem className={className}>
-          {children}
-        </ContainerTableItem>
-      )}
-    </>
+    <React.Fragment>{loading}</React.Fragment>
   );
 }
 

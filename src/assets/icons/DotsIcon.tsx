@@ -1,7 +1,7 @@
 import React from "react";
 import type { DefaultIconPros } from "@/_types/Icons";
 
-export function MySolicitationIcon({
+export function DotsIcon({
   fill = "#94949D",
   className
 }: DefaultIconPros): JSX.Element {
@@ -15,7 +15,7 @@ export function MySolicitationIcon({
       className={className}
     >
       <path
-        d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM8 5H4V19H8V5ZM10 5V19H20V5H10Z"
+        d="M12 3C10.9 3 10 3.9 10 5C10 6.1 10.9 7 12 7C13.1 7 14 6.1 14 5C14 3.9 13.1 3 12 3ZM12 17C10.9 17 10 17.9 10 19C10 20.1 10.9 21 12 21C13.1 21 14 20.1 14 19C14 17.9 13.1 17 12 17ZM12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
         fill={fill}
       />
     </svg>

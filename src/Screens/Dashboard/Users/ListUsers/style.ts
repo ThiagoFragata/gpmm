@@ -23,12 +23,6 @@ export const ContainerListUsers = styled(ContainerDashboard)`
     width: 12.36%;
     /* border: 1px solid purple; */
   }
-  .size__action {
-    width: 4.75%;
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid purple; */
-  }
   .table__user {
     .user__name {
       color: ${colors.DARK_PRIMARY};

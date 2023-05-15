@@ -1,5 +1,5 @@
-import type { DefaultIconPros } from "@/_types/Icons";
 import React from "react";
+import type { DefaultIconPros } from "@/_types/Icons";
 
 export function AboutIcon({
   fill = "#94949D",

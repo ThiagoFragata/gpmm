@@ -10,6 +10,7 @@ export const ContainerTable = styled.ul`
   justify-content: space-between;
   padding: 12px;
   border-bottom: 1px solid ${colors.GRAY_PRIMARY};
+  width: calc(100% - 4px);
   .table__title {
     font-size: ${pxToRem(15)};
     line-height: ${pxToRem(23)};
@@ -41,8 +42,15 @@ export const ContainerTableItem = styled.li`
 
 export const ContainerTableScroll = styled.div`
   flex: 1;
-  overflow: scroll;
+  overflow-y: scroll;
   position: relative;
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${colors.GRAY_LIGHT};
+    border-radius: 10px;
+  }
   .scroll__box {
     position: absolute;
     width: 100%;

@@ -10,15 +10,16 @@ export interface TableTitleProps {
 
 export interface TableContentProps {
   className?: string;
-  children?: JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
 }
 
 export interface TableItemProps {
   className?: string;
   item?: tableItems;
   children?: JSX.Element;
+  loading?: JSX.Element | JSX.Element[];
 }
 
 export interface TableScrollProps {
-  children?: JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
 }
