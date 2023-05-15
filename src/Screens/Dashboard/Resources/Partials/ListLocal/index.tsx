@@ -56,7 +56,7 @@ export function ListLocal(): JSX.Element {
                         alert("onDelete");
                       }}
                       onEdit={() => {
-                        alert("onDelete");
+                        alert("onEdit");
                       }}
                       onShowDetails={() => {
                         alert("onShowDetails");

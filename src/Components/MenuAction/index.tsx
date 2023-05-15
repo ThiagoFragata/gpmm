@@ -34,11 +34,11 @@ export function MenuAction({
           onClick={onOpenMenu}
         />
         <ContainerMenuOptions direction={direction} isOpen={isOpen}>
-          {shouldRenderOptionDelete && (
+          {shouldRenderOptionShowDetails && (
             <button
               className="option__button option__button--show"
               onClick={() => {
-                onDelete();
+                onShowDetails();
                 onCloseMenu();
               }}
             >
@@ -58,11 +58,11 @@ export function MenuAction({
               Editar
             </button>
           )}
-          {shouldRenderOptionShowDetails && (
+          {shouldRenderOptionDelete && (
             <button
               className="option__button option__button--delete"
               onClick={() => {
-                onShowDetails();
+                onDelete();
                 onCloseMenu();
               }}
             >
