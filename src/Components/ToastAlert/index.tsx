@@ -1,23 +1,41 @@
 import React from "react";
 import { ContainerToastAlert } from "./style";
-import { useSelector } from "react-redux";
-import { selectToastAlert } from "@/_config/store/slices/toastAlertSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  onResetToastAlert,
+  selectToastAlert
+} from "@/_config/store/slices/toastAlertSlice";
+import { useToastAlert } from "./useToastAlert";
 
-export function ToastAlert({
-  children
-}: {
-  children: JSX.Element;
-}): JSX.Element {
-  const { isVisible } = useSelector(selectToastAlert);
+export function ToastAlert(): JSX.Element {
+  const { isVisible, variant, title, description } =
+    useSelector(selectToastAlert);
+  const dispatch = useDispatch();
+  const { icons, mapTitle, mapDescription } = useToastAlert();
+  const Icon = icons[variant];
+  const geTitle = title !== "" ? title : mapTitle[variant];
+  const geDescription =
+    description !== "" ? description : mapDescription[variant];
+
+  function onResetAlert(): void {
+    dispatch(onResetToastAlert());
+  }
+
+  React.useEffect(() => {
+    if (isVisible) {
+      setTimeout(() => {
+        onResetAlert();
+      }, 5000);
+    }
+  }, [isVisible]);
+
   return (
-    <React.Fragment>
-      <ContainerToastAlert>
-        <textarea
-          style={{ height: "150px", minWidth: "300px" }}
-          value={JSON.stringify(isVisible, null, 2)}
-        />
-      </ContainerToastAlert>
-      {children}
-    </React.Fragment>
+    <ContainerToastAlert variant={variant} isVisible={isVisible}>
+      <Icon />
+      <div className="alert__texts">
+        <h2 className="alert__title">{geTitle}</h2>
+        <p className="alert__description">{geDescription}</p>
+      </div>
+    </ContainerToastAlert>
   );
 }

@@ -1,40 +1,38 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { type RootState } from "..";
+import { type ToastAlertProps } from "@/_types/Store/ToastAlert";
 
-// Type for our state
-export interface ToastAlertProps {
-  isVisible: boolean;
-}
-
-// Initial state
 const initialState: ToastAlertProps = {
-  isVisible: false
+  isVisible: false,
+  variant: "ghost",
+  title: "",
+  description: ""
 };
 
-// Actual Slice
 export const toastAlertSlice = createSlice({
   name: "toastAlert",
   initialState,
   reducers: {
-    // Action to set the authentication status
-    onChangeToastAlert(_, { payload }: PayloadAction<ToastAlertProps>) {
-      return payload;
+    onChangeToastAlert(state, { payload }: PayloadAction<ToastAlertProps>) {
+      return { ...state, ...payload };
+    },
+    onResetToastAlert() {
+      return initialState;
     }
   },
-
-  // Special reducer for hydrating the state. Special case for next-redux-wrapper
   extraReducers: {
     [HYDRATE]: (state, action) => {
       return {
         ...state,
-        ...action.payload.auth
+        ...action
       };
     }
   }
 });
 
-export const { onChangeToastAlert } = toastAlertSlice.actions;
+export const { onChangeToastAlert, onResetToastAlert } =
+  toastAlertSlice.actions;
 export const toastAlert = toastAlertSlice.reducer;
 
 export const selectToastAlert = (state: RootState): ToastAlertProps =>

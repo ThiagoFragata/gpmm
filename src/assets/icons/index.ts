@@ -16,3 +16,7 @@ export { DotsIcon } from "./DotsIcon";
 export { DetailsIcon } from "./DetailsIcon";
 export { EditIcon } from "./EditIcon";
 export { TrashIcon } from "./TrashIcon";
+export { CheckIcon } from "./CheckIcon";
+export { ErrorIcon } from "./ErrorIcon";
+export { InfoIcon } from "./InfoIcon";
+export { WarningIcon } from "./WarningIcon";

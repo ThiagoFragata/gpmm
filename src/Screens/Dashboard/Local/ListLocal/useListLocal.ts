@@ -3,11 +3,14 @@ import React from "react";
 import type { useListLocalData } from "@/_types/Local/ListLocal";
 import type { IItemLocal } from "@/_types/Local/ServiceLocal";
 import { serviceGetLocal } from "@/services/api/local";
+import { useDispatch } from "react-redux";
+import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 // import { PATHS } from "@/_utils/constants";
 
 export function useListLocal(): useListLocalData {
   const [dataLocal, setDataLocal] = React.useState<IItemLocal[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const dispatch = useDispatch();
   // const router = useRouter();
   const tableTitle = [
     {
@@ -28,16 +31,24 @@ export function useListLocal(): useListLocalData {
     }
   ];
   const getListData = React.useCallback(async () => {
+    console.log(JSON.stringify("teste", null, 2));
     try {
       setIsLoading(true);
       const data = await serviceGetLocal();
       setDataLocal(data?.content);
     } catch (error) {
-      console.log(error);
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "error",
+          title: "Falha ao buscar",
+          description: "Não foi possível recuperar os dados dos locais"
+        })
+      );
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [dispatch]);
 
   React.useEffect(() => {
     getListData();

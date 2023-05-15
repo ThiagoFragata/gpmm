@@ -53,9 +53,8 @@ function MyApp({ Component, ...rest }: AppPropsWithLayout): JSX.Element {
       <main className={roboto.className}>
         {getLayout(
           <Provider store={store}>
-            <ToastAlert>
-              <Component {...props?.pageProps} />
-            </ToastAlert>
+            <ToastAlert />
+            <Component {...props?.pageProps} />
           </Provider>
         )}
         <GlobalStyle />
