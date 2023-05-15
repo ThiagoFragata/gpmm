@@ -7,6 +7,9 @@ import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 
 import localFont from "next/font/local";
+import { wrapper } from "@/_config/store";
+import { ToastAlert } from "@/Components";
+import { Provider } from "react-redux";
 
 const roboto = localFont({
   src: [
@@ -42,12 +45,19 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
+function MyApp({ Component, ...rest }: AppPropsWithLayout): JSX.Element {
   const getLayout = Component.getLayout ?? (page => page);
+  const { store, props } = wrapper.useWrappedStore(rest);
   return (
     <ThemeProvider>
       <main className={roboto.className}>
-        {getLayout(<Component {...pageProps} />)}
+        {getLayout(
+          <Provider store={store}>
+            <ToastAlert>
+              <Component {...props?.pageProps} />
+            </ToastAlert>
+          </Provider>
+        )}
         <GlobalStyle />
       </main>
     </ThemeProvider>

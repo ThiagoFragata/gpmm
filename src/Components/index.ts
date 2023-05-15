@@ -15,3 +15,4 @@ export { ShowBack } from "./ShowBack";
 export { TabResources } from "./TabResources";
 export { MenuAction } from "./MenuAction";
 export { Skeleton, MultSkeleton } from "./Skeleton";
+export { ToastAlert } from "./ToastAlert";
