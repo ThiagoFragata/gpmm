@@ -8,6 +8,7 @@ export type ButtonProps = {
   type?: "submit" | "button";
   iconName?: IconsName;
   onClick?: () => void;
+  navigateTo?: string;
 } & React.HTMLProps<HTMLButtonElement>;
 
 export interface ButtonModifier {

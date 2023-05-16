@@ -17,7 +17,7 @@ export const ITEMS__SIDEBAR = {
       id: "inicio",
       label: "Início",
       path: PATHS.dashboard.inicio,
-      paths: [],
+      paths: [PATHS.dashboard.inicio],
       icon: ({ className }: { className?: string }) => (
         <DashboardIcon className={className} />
       )
@@ -26,7 +26,7 @@ export const ITEMS__SIDEBAR = {
       id: "solicitacoes",
       label: "Solicitações",
       path: PATHS.dashboard.solicitacoes,
-      paths: [],
+      paths: [PATHS.dashboard.solicitacoes],
       icon: ({ className }: { className?: string }) => (
         <MySolicitationIcon className={className} />
       )
@@ -35,7 +35,13 @@ export const ITEMS__SIDEBAR = {
       id: "recursos",
       label: "Recursos",
       path: PATHS.dashboard.recursos,
-      paths: [],
+      paths: [
+        PATHS.dashboard.recursos,
+        PATHS.dashboard.recursosLocais,
+        PATHS.dashboard.recursosTransportes,
+        PATHS.dashboard.recursosMotoristas,
+        PATHS.dashboard.recursosNovoLocal
+      ],
       icon: ({ className }: { className?: string }) => (
         <ResourcesIcon className={className} />
       )
@@ -44,7 +50,7 @@ export const ITEMS__SIDEBAR = {
       id: "usuarios",
       label: "Usuários",
       path: PATHS.dashboard.usuarios,
-      paths: [],
+      paths: [PATHS.dashboard.usuarios],
       icon: ({ className }: { className?: string }) => (
         <UsersIcon className={className} />
       )
@@ -53,7 +59,7 @@ export const ITEMS__SIDEBAR = {
       id: "perfil",
       label: "Perfil",
       path: PATHS.dashboard.perfil,
-      paths: [],
+      paths: [PATHS.dashboard.perfil],
       icon: ({ className }: { className?: string }) => (
         <UsersIcon className={className} />
       )
@@ -62,7 +68,7 @@ export const ITEMS__SIDEBAR = {
       id: "notificacoes",
       label: "Notificações",
       path: PATHS.dashboard.notificoes,
-      paths: [],
+      paths: [PATHS.dashboard.notificoes],
       icon: ({ className }: { className?: string }) => (
         <NotificationIcon className={className} />
       )

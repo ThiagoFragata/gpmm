@@ -1,5 +1,5 @@
-import type { ArrowIconPros } from "@/_types/Icons";
 import React from "react";
+import type { ArrowIconPros } from "@/_types/Icons";
 
 export function ArrowIcon({
   fill = "#94949D",

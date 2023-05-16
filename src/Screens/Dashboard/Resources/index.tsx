@@ -1,12 +1,12 @@
 import React from "react";
-import { ContainerListResources } from "./style";
-import { useListResources } from "./useListResources";
+import { ContainerResources } from "./style";
+import { useResources } from "./useResources";
 import { type NextPageWithLayout } from "@/pages/_app";
 import { BreadCrumb, DataBox, TabResources } from "@/Components";
 import { Onboard } from "./Partials/Onboard";
 import { ListTransport } from "./Partials/ListTransport";
-import { type RenderCurrenTabProps } from "@/_types/ListResources";
-import { ListLocal } from "./Partials/ListLocal";
+import { type RenderCurrenTabProps } from "@/_types/Resources";
+import { ListLocal } from "../Local/ListLocal";
 import { ListDriver } from "./Partials/ListDriver";
 
 function RenderCurrenTab({
@@ -23,7 +23,7 @@ function RenderCurrenTab({
   return tabs[currentTab] ?? <Onboard onChangeTab={onChangeTab} />;
 }
 
-export const ListResources: NextPageWithLayout = () => {
+export const Resources: NextPageWithLayout = () => {
   const {
     onChangeTab,
     currentTab,
@@ -31,21 +31,14 @@ export const ListResources: NextPageWithLayout = () => {
     isListPlace,
     isListTransport,
     isListDriver
-  } = useListResources();
+  } = useResources();
   return (
-    <ContainerListResources>
+    <ContainerResources>
       <BreadCrumb items={breadCrumb} />
       <DataBox>
         <TabResources onChange={onChangeTab} currentTab={currentTab} />
         <RenderCurrenTab currentTab={currentTab} onChangeTab={onChangeTab} />
-
-        {/* <Onboard onChangeTab={onChangeTab} />
-        <ListTransport /> */}
-        {/* <div className="top__options">
-          <Search />
-          <Button title="Novo" iconName="MoreIcon" />
-        </div> */}
       </DataBox>
-    </ContainerListResources>
+    </ContainerResources>
   );
 };

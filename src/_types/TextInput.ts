@@ -2,7 +2,7 @@ export type TextInputProps = {
   label: string;
   name: string;
   placeholder: string;
-  type?: "text" | "email" | "password";
+  type?: "text" | "email" | "password" | "number";
   inputMode?: "text";
   parse?: (value: string) => string;
   className?: string;

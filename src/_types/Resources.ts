@@ -2,7 +2,7 @@ import type { itemBreadCrumb } from "./BreadCrumb";
 
 export type ITabOptions = 0 | 1 | 2 | 3;
 
-export interface useListResourcesData {
+export interface useResourcesData {
   onChangeTab: (tab: ITabOptions) => void;
   currentTab: ITabOptions;
   breadCrumb: itemBreadCrumb[];
@@ -12,6 +12,6 @@ export interface useListResourcesData {
 }
 
 export type RenderCurrenTabProps = Pick<
-  useListResourcesData,
+  useResourcesData,
   "onChangeTab" | "currentTab"
 >;

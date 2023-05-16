@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/navigation";
 import type { RenderIconProps, ButtonProps } from "@/_types/Button";
 import { ContainerButton } from "./style";
 import * as icons from "@/assets/icons";
@@ -15,13 +16,26 @@ export function Button({
   type = "button",
   disabled,
   iconName,
+  navigateTo,
   onClick
 }: ButtonProps): JSX.Element {
+  const router = useRouter();
   const shouldRenderIcon = iconName !== undefined;
+
+  function onAction(): void {
+    const isNavigate = navigateTo !== undefined;
+    const isExistonClick = onClick !== undefined;
+    if (isNavigate) {
+      router.push(navigateTo);
+    }
+    if (isExistonClick) {
+      onClick();
+    }
+  }
   return (
     <ContainerButton
       className={className}
-      onClick={onClick}
+      onClick={onAction}
       variant={variant}
       type={type}
       disabled={disabled}

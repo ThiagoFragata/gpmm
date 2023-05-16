@@ -1,4 +1,4 @@
 import { ContainerDashboard } from "@/style/shareStyle";
 import styled from "styled-components";
 
-export const ContainerListResources = styled(ContainerDashboard)``;
+export const ContainerCreateLocal = styled(ContainerDashboard)``;

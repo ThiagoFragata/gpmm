@@ -18,7 +18,7 @@ export type SideBarProps = Pick<
 >;
 
 export interface useSideBarData {
-  currentPath: string;
+  checkPathSelected: (value: string[]) => boolean;
 }
 
 export type SideBarModifier = Pick<useLayoutDashboardData, "isExpanded">;

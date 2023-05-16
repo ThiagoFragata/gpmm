@@ -10,7 +10,7 @@ export function SideBar({
   isExpanded,
   onHandlerExpand
 }: SideBarProps): JSX.Element {
-  const { currentPath } = useSideBar();
+  const { checkPathSelected } = useSideBar();
   return (
     <ContainerSideBar isExpanded={isExpanded}>
       <Image
@@ -24,11 +24,11 @@ export function SideBar({
         <li className="option__item">
           <TitleDivider className="option__title">Principal</TitleDivider>
         </li>
-        {ITEMS__SIDEBAR.MAIN.map(({ id, label, path, icon: Icon }) => {
-          const classOptionLink =
-            path === currentPath
-              ? "option__link option__link--selected"
-              : "option__link";
+        {ITEMS__SIDEBAR.MAIN.map(({ id, label, path, paths, icon: Icon }) => {
+          const shouldSelectTab = checkPathSelected(paths);
+          const classOptionLink = shouldSelectTab
+            ? "option__link option__link--selected"
+            : "option__link";
           return (
             <li key={id} className="option__item">
               <Link href={path} className={classOptionLink}>

@@ -1,10 +1,10 @@
 import React from "react";
 import type { itemBreadCrumb } from "@/_types/BreadCrumb";
-import type { ITabOptions, useListResourcesData } from "@/_types/ListResources";
+import type { ITabOptions, useResourcesData } from "@/_types/Resources";
 import { PATHS, TABS_RESOURCES } from "@/_utils/constants";
 import { useRouter, usePathname } from "next/navigation";
 
-export function useListResources(): useListResourcesData {
+export function useResources(): useResourcesData {
   const { TAB_ONBOARD, TAB_LIST_DRIVER, TAB_LIST_PLACE, TAB_LIST_TRANSPORT } =
     TABS_RESOURCES;
   const [currentTab, setCurrentTab] = React.useState<ITabOptions>(TAB_ONBOARD);
