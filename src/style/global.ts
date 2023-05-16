@@ -12,7 +12,8 @@ export default createGlobalStyle`
   body,
   main,
   h1,
-  h2 {
+  h2,
+  h3 {
     box-sizing: border-box;
     margin: 0;
     padding: 0;

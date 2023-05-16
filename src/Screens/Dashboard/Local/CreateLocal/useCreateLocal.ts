@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/navigation";
 import { type itemBreadCrumb } from "@/_types/BreadCrumb";
 import type {
   onCreateLocalProps,
@@ -6,8 +7,12 @@ import type {
 } from "@/_types/Local/CreateLocal";
 import { PATHS } from "@/_utils/constants";
 import { servicePostLocal } from "@/services/api/local";
+import { useDispatch } from "react-redux";
+import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 
 export function useCreateLocal(): useCreateLocalData {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const breadCrumb: itemBreadCrumb[] = [
     {
@@ -25,12 +30,23 @@ export function useCreateLocal(): useCreateLocalData {
   async function onCreateLocal(payload: onCreateLocalProps): Promise<void> {
     try {
       setIsLoading(true);
-      const data = await servicePostLocal(payload);
-      console.log("🔥🔥🔥🔥________________________🚑");
-      console.log(JSON.stringify(data, null, 2));
-      console.log("🔥🔥🔥🔥________________________🚑");
+      await servicePostLocal(payload);
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "success",
+          description: "Novo local registrado"
+        })
+      );
+      router.push(PATHS.dashboard.recursosLocais);
     } catch (error) {
-      console.log(JSON.stringify(error, null, 2));
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "error",
+          description: "Falha ao criar registro, tente novamente"
+        })
+      );
     } finally {
       setIsLoading(false);
     }

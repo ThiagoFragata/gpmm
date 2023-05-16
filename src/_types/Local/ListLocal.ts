@@ -5,4 +5,6 @@ export interface useListLocalData {
   dataLocal: IItemLocal[];
   tableTitle: tableItems[];
   isLoading: boolean;
+  isNotFoundData: boolean;
+  onTryAgainGetData: () => void;
 }

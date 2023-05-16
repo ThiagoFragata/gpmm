@@ -1,7 +1,13 @@
 import React from "react";
 import { ContainerCreateLocal } from "./style";
 import { type NextPageWithLayout } from "@/pages/_app";
-import { BreadCrumb, Button, DataBox, TextInput } from "@/Components";
+import {
+  AwaitRequest,
+  BreadCrumb,
+  Button,
+  DataBox,
+  TextInput
+} from "@/Components";
 import { useCreateLocal } from "./useCreateLocal";
 import { Form } from "react-final-form";
 import { PATHS } from "@/_utils/constants";
@@ -16,6 +22,7 @@ export const CreateLocal: NextPageWithLayout = () => {
 
   return (
     <ContainerCreateLocal>
+      <AwaitRequest isVisible={isLoading} />
       <BreadCrumb items={breadCrumb} />
       <DataBox>
         <Form

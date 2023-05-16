@@ -8,9 +8,9 @@ import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 // import { PATHS } from "@/_utils/constants";
 
 export function useListLocal(): useListLocalData {
+  const dispatch = useDispatch();
   const [dataLocal, setDataLocal] = React.useState<IItemLocal[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const dispatch = useDispatch();
   // const router = useRouter();
   const tableTitle = [
     {
@@ -41,7 +41,7 @@ export function useListLocal(): useListLocalData {
         onChangeToastAlert({
           isVisible: true,
           variant: "error",
-          title: "Falha ao buscar",
+          title: "Falha ao buscar dados",
           description: "Não foi possível recuperar os dados dos locais"
         })
       );
@@ -57,6 +57,8 @@ export function useListLocal(): useListLocalData {
   return {
     dataLocal,
     tableTitle,
-    isLoading
+    isLoading,
+    isNotFoundData: !isLoading && dataLocal.length === 0,
+    onTryAgainGetData: () => getListData()
   };
 }
