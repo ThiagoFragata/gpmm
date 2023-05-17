@@ -5,8 +5,9 @@ import {
   ArrowLeftIcon,
   DashboardIcon,
   LogOutIcon,
-  MySolicitationIcon,
+  // MySolicitationIcon,
   NotificationIcon,
+  ProfileIcon,
   ResourcesIcon,
   UsersIcon
 } from "@/assets/icons";
@@ -22,15 +23,15 @@ export const ITEMS__SIDEBAR = {
         <DashboardIcon className={className} />
       )
     },
-    {
-      id: "solicitacoes",
-      label: "Solicitações",
-      path: PATHS.dashboard.solicitacoes,
-      paths: [PATHS.dashboard.solicitacoes],
-      icon: ({ className }: { className?: string }) => (
-        <MySolicitationIcon className={className} />
-      )
-    },
+    // {
+    //   id: "solicitacoes",
+    //   label: "Solicitações",
+    //   path: PATHS.dashboard.solicitacoes,
+    //   paths: [PATHS.dashboard.solicitacoes],
+    //   icon: ({ className }: { className?: string }) => (
+    //     <MySolicitationIcon className={className} />
+    //   )
+    // },
     {
       id: "recursos",
       label: "Recursos",
@@ -61,7 +62,7 @@ export const ITEMS__SIDEBAR = {
       path: PATHS.dashboard.perfil,
       paths: [PATHS.dashboard.perfil],
       icon: ({ className }: { className?: string }) => (
-        <UsersIcon className={className} />
+        <ProfileIcon className={className} />
       )
     },
     {
