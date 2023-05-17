@@ -19,6 +19,8 @@ export type SideBarProps = Pick<
 
 export interface useSideBarData {
   checkPathSelected: (value: string[]) => boolean;
+  onHandlerDialogModal: () => void;
+  isOpenModal: boolean;
 }
 
 export type SideBarModifier = Pick<useLayoutDashboardData, "isExpanded">;
