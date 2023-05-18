@@ -15,4 +15,8 @@ export const ContainerIconButton = styled.button`
   :hover {
     background-color: ${colors.BACKGROUND_PRIMARY};
   }
+  :disabled {
+    opacity: 0.6;
+    cursor: no-drop;
+  }
 `;

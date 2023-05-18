@@ -19,6 +19,7 @@ export const PATHS = {
     recursos: "/dashboard/recursos",
     recursosLocais: "/dashboard/recursos/locais",
     recursosNovoLocal: "/dashboard/recursos/locais/novo",
+    recursosEditarLocal: "/dashboard/recursos/locais/editar/",
     recursosTransportes: "/dashboard/recursos/transportes",
     recursosMotoristas: "/dashboard/recursos/motoristas",
     usuarios: "/dashboard/usuarios",

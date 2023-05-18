@@ -6,7 +6,8 @@ import {
   DashboardIcon,
   LogOutIcon,
   MySolicitationIcon,
-  NotificationIcon,
+  // NotificationIcon,
+  ProfileIcon,
   ResourcesIcon,
   UsersIcon
 } from "@/assets/icons";
@@ -61,18 +62,18 @@ export const ITEMS__SIDEBAR = {
       path: PATHS.dashboard.perfil,
       paths: [PATHS.dashboard.perfil],
       icon: ({ className }: { className?: string }) => (
-        <UsersIcon className={className} />
-      )
-    },
-    {
-      id: "notificacoes",
-      label: "Notificações",
-      path: PATHS.dashboard.notificoes,
-      paths: [PATHS.dashboard.notificoes],
-      icon: ({ className }: { className?: string }) => (
-        <NotificationIcon className={className} />
+        <ProfileIcon className={className} />
       )
     }
+    // {
+    //   id: "notificacoes",
+    //   label: "Notificações",
+    //   path: PATHS.dashboard.notificoes,
+    //   paths: [PATHS.dashboard.notificoes],
+    //   icon: ({ className }: { className?: string }) => (
+    //     <NotificationIcon className={className} />
+    //   )
+    // }
   ],
   ABOUT: {
     label: "Sobre",

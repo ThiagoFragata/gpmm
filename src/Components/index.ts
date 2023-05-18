@@ -17,3 +17,4 @@ export { MenuAction } from "./MenuAction";
 export { Skeleton, MultSkeleton } from "./Skeleton";
 export { ToastAlert } from "./ToastAlert";
 export { DataNotFound } from "./DataNotFound";
+export { DialogModal } from "./DialogModal";

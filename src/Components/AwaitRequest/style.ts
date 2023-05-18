@@ -30,6 +30,7 @@ export const ContainerAwaitRequest = styled.div<{ isVisible: boolean }>`
   transition: all 0.2s;
   top: 0;
   left: 0;
+  z-index: 3;
   ${({ isVisible }) =>
     modifier[isVisible ? "showAnimation" : "hiddenAnimation"]}
 `;

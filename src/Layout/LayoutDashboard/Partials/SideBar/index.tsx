@@ -5,14 +5,26 @@ import { ITEMS__SIDEBAR } from "../options";
 import { useSideBar } from "./useSideBar";
 import Link from "next/link";
 import Image from "next/image";
+import { DialogModal } from "@/Components";
 
 export function SideBar({
   isExpanded,
   onHandlerExpand
 }: SideBarProps): JSX.Element {
-  const { checkPathSelected } = useSideBar();
+  const { onHandlerDialogModal, isOpenModal, checkPathSelected } = useSideBar();
   return (
     <ContainerSideBar isExpanded={isExpanded}>
+      <DialogModal
+        title="Deseja realmente sair?"
+        description="Ao realizar esta ação, será solicitado o login novamente para acessar o sistema."
+        onActionConfirm={() => {
+          alert("quero sair");
+        }}
+        isOpen={isOpenModal}
+        ocActionCancel={onHandlerDialogModal}
+        titleActionCancel="Não"
+        titleActionConfirm="Sim"
+      />
       <Image
         src="/images/logo.png"
         alt="Logo da aplicação"
@@ -50,7 +62,11 @@ export function SideBar({
           </Link>
         </li>
         <li className="option__item">
-          <button type="button" className="option__link option__link--button">
+          <button
+            type="button"
+            className="option__link option__link--button"
+            onClick={onHandlerDialogModal}
+          >
             <ITEMS__SIDEBAR.CLOSE.icon className="option__icon" />
             <span className="option__text">{ITEMS__SIDEBAR.CLOSE.label}</span>
           </button>
