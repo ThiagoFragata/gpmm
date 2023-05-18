@@ -1,4 +1,5 @@
 import type {
+  serviceDeleteLocalProps,
   serviceGetLocalResponse,
   servicePostLocalProps,
   servicePutLocalProps
@@ -28,8 +29,12 @@ export async function servicePutLocal(
     RESOURCE_LOCAL,
     payload
   );
-  console.log("🔥🔥🔥🔥________________________🚑");
-  console.log(JSON.stringify(data, null, 2));
-  console.log("🔥🔥🔥🔥________________________🚑");
   return data;
+}
+
+export async function serviceDeleteLocal(
+  payload: serviceDeleteLocalProps
+): Promise<void> {
+  const { id } = payload;
+  await baseAPI.delete(`${RESOURCE_LOCAL}${id}`);
 }

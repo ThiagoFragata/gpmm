@@ -9,7 +9,8 @@ export function MenuAction({
   onDelete,
   onEdit,
   onShowDetails,
-  direction = "top"
+  direction = "top",
+  disabled
 }: MenuActionProps): JSX.Element {
   const [isOpen, setIsOpen] = React.useState(false);
   const shouldRenderOptionDelete = onDelete !== undefined;
@@ -32,6 +33,7 @@ export function MenuAction({
           name="DotsIcon"
           className="action__button"
           onClick={onOpenMenu}
+          disabled={disabled}
         />
         <ContainerMenuOptions direction={direction} isOpen={isOpen}>
           {shouldRenderOptionShowDetails && (

@@ -4,6 +4,7 @@ import { useListLocal } from "./useListLocal";
 import {
   Button,
   DataNotFound,
+  DialogModal,
   FooterData,
   MenuAction,
   MultSkeleton,
@@ -19,13 +20,28 @@ import { PATHS } from "@/_utils/constants";
 export function ListLocal(): JSX.Element {
   const {
     onTryAgainGetData,
+    onHandlerDialogModal,
+    onGetDataDelete,
+    onConfirmDelete,
+    dataDelete,
+    isOpenModal,
     isNotFoundData,
     tableTitle,
     dataLocal,
-    isLoading
+    isLoading,
+    isAwaitDelete
   } = useListLocal();
   return (
     <ContainerListLocal>
+      <DialogModal
+        title={`Deseja realmente excluir o local ${dataDelete.name}?`}
+        description="Ao realizar está ação, o item não poderá ser recuperado."
+        isOpen={isOpenModal}
+        titleActionCancel="Não"
+        titleActionConfirm="Sim"
+        onActionConfirm={onConfirmDelete}
+        ocActionCancel={onHandlerDialogModal}
+      />
       <div className="top__options">
         <Search />
         <Button
@@ -63,9 +79,13 @@ export function ListLocal(): JSX.Element {
                     />
                     <TableItem className="size__action">
                       <MenuAction
+                        disabled={isAwaitDelete}
                         direction={directionMenu}
                         onDelete={() => {
-                          alert("onDelete");
+                          onGetDataDelete({
+                            name: item?.descricao,
+                            id: Number(item?.id)
+                          });
                         }}
                         onEdit={() => {
                           alert("onEdit");

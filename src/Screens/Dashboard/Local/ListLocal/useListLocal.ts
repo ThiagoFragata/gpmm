@@ -1,8 +1,12 @@
 import React from "react";
 // import { useRouter } from "next/navigation";
-import type { useListLocalData } from "@/_types/Local/ListLocal";
+import type {
+  dataDeleteProps,
+  onGetDataDeleteProps,
+  useListLocalData
+} from "@/_types/Local/ListLocal";
 import type { IItemLocal } from "@/_types/Local/ServiceLocal";
-import { serviceGetLocal } from "@/services/api/local";
+import { serviceDeleteLocal, serviceGetLocal } from "@/services/api/local";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 // import { PATHS } from "@/_utils/constants";
@@ -11,6 +15,12 @@ export function useListLocal(): useListLocalData {
   const dispatch = useDispatch();
   const [dataLocal, setDataLocal] = React.useState<IItemLocal[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isAwaitDelete, setIsAwaitDelete] = React.useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [dataDelete, setDataDelete] = React.useState<dataDeleteProps>({
+    name: "",
+    id: 0
+  });
   // const router = useRouter();
   const tableTitle = [
     {
@@ -30,6 +40,7 @@ export function useListLocal(): useListLocalData {
       className: "size__action"
     }
   ];
+
   const getListData = React.useCallback(async () => {
     console.log(JSON.stringify("teste", null, 2));
     try {
@@ -50,6 +61,37 @@ export function useListLocal(): useListLocalData {
     }
   }, [dispatch]);
 
+  function onHandlerDialogModal(): void {
+    setIsOpenModal(!isOpenModal);
+  }
+
+  function onGetDataDelete(data: onGetDataDeleteProps): void {
+    onHandlerDialogModal();
+    setDataDelete(data);
+  }
+
+  async function onConfirmDelete(): Promise<void> {
+    try {
+      setIsAwaitDelete(true);
+      onHandlerDialogModal();
+      await serviceDeleteLocal({
+        id: dataDelete?.id
+      });
+      getListData();
+    } catch {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "error",
+          title: `Falha excluir o item "${dataDelete.name}"`,
+          description: "Não foi realizar a ação, tente novamente mais tarde"
+        })
+      );
+    } finally {
+      setIsAwaitDelete(false);
+    }
+  }
+
   React.useEffect(() => {
     getListData();
   }, []);
@@ -59,6 +101,12 @@ export function useListLocal(): useListLocalData {
     tableTitle,
     isLoading,
     isNotFoundData: !isLoading && dataLocal.length === 0,
-    onTryAgainGetData: () => getListData()
+    isOpenModal,
+    dataDelete,
+    isAwaitDelete,
+    onTryAgainGetData: () => getListData(),
+    onHandlerDialogModal,
+    onGetDataDelete,
+    onConfirmDelete
   };
 }

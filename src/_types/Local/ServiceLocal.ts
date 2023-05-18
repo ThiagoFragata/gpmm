@@ -12,3 +12,7 @@ export interface serviceGetLocalResponse {
 export type servicePostLocalProps = IItemLocal;
 
 export type servicePutLocalProps = IItemLocal;
+
+export interface serviceDeleteLocalProps {
+  id: number;
+}

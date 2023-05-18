@@ -3,6 +3,7 @@ export interface MenuActionProps {
   onEdit?: () => void;
   onShowDetails?: () => void;
   direction?: "top" | "bottom";
+  disabled?: boolean;
 }
 
 export type MenuActionModifier = Pick<MenuActionProps, "direction"> & {

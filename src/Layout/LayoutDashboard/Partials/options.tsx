@@ -5,8 +5,8 @@ import {
   ArrowLeftIcon,
   DashboardIcon,
   LogOutIcon,
-  // MySolicitationIcon,
-  NotificationIcon,
+  MySolicitationIcon,
+  // NotificationIcon,
   ProfileIcon,
   ResourcesIcon,
   UsersIcon
@@ -23,15 +23,15 @@ export const ITEMS__SIDEBAR = {
         <DashboardIcon className={className} />
       )
     },
-    // {
-    //   id: "solicitacoes",
-    //   label: "Solicitações",
-    //   path: PATHS.dashboard.solicitacoes,
-    //   paths: [PATHS.dashboard.solicitacoes],
-    //   icon: ({ className }: { className?: string }) => (
-    //     <MySolicitationIcon className={className} />
-    //   )
-    // },
+    {
+      id: "solicitacoes",
+      label: "Solicitações",
+      path: PATHS.dashboard.solicitacoes,
+      paths: [PATHS.dashboard.solicitacoes],
+      icon: ({ className }: { className?: string }) => (
+        <MySolicitationIcon className={className} />
+      )
+    },
     {
       id: "recursos",
       label: "Recursos",
@@ -64,16 +64,16 @@ export const ITEMS__SIDEBAR = {
       icon: ({ className }: { className?: string }) => (
         <ProfileIcon className={className} />
       )
-    },
-    {
-      id: "notificacoes",
-      label: "Notificações",
-      path: PATHS.dashboard.notificoes,
-      paths: [PATHS.dashboard.notificoes],
-      icon: ({ className }: { className?: string }) => (
-        <NotificationIcon className={className} />
-      )
     }
+    // {
+    //   id: "notificacoes",
+    //   label: "Notificações",
+    //   path: PATHS.dashboard.notificoes,
+    //   paths: [PATHS.dashboard.notificoes],
+    //   icon: ({ className }: { className?: string }) => (
+    //     <NotificationIcon className={className} />
+    //   )
+    // }
   ],
   ABOUT: {
     label: "Sobre",
