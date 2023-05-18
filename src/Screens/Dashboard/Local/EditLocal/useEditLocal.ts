@@ -26,7 +26,7 @@ export function useEditLocal(): useEditLocalData {
       destiny: PATHS.dashboard.recursosLocais
     },
     {
-      label: "Edição local"
+      label: `Edição ${dataLocal?.descricao ?? "local"}`
     }
   ];
 
@@ -61,9 +61,6 @@ export function useEditLocal(): useEditLocalData {
         setIsLoading(true);
         const data = await serviceGetLocalById(id);
         setDataLocal(data);
-        console.log("🔥🔥🔥🔥________________________🚑");
-        console.log(JSON.stringify(data, null, 2));
-        console.log("🔥🔥🔥🔥________________________🚑");
       } catch (error) {
         dispatch(
           onChangeToastAlert({
@@ -82,11 +79,8 @@ export function useEditLocal(): useEditLocalData {
 
   React.useEffect(() => {
     const isExistIdParam = idLocal !== undefined;
-    console.log(JSON.stringify(idLocal, null, 2));
     if (isExistIdParam) {
       getDataLocal(Number(idLocal));
-    } else {
-      console.log(JSON.stringify("nao exist parametro", null, 2));
     }
   }, [idLocal]);
   return {

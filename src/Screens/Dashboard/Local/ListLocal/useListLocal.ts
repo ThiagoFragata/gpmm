@@ -42,7 +42,6 @@ export function useListLocal(): useListLocalData {
   ];
 
   const getListData = React.useCallback(async () => {
-    console.log(JSON.stringify("teste", null, 2));
     try {
       setIsLoading(true);
       const data = await serviceGetLocal();
