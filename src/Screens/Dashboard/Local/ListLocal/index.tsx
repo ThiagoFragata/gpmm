@@ -2,6 +2,7 @@ import React from "react";
 import { ContainerListLocal } from "./style";
 import { useListLocal } from "./useListLocal";
 import {
+  AwaitRequest,
   Button,
   DataNotFound,
   DialogModal,
@@ -34,6 +35,7 @@ export function ListLocal(): JSX.Element {
   } = useListLocal();
   return (
     <ContainerListLocal>
+      <AwaitRequest isVisible={isAwaitDelete} />
       <DialogModal
         title={`Deseja realmente excluir o local ${dataDelete.name}?`}
         description="Ao realizar está ação, o item não poderá ser recuperado."
