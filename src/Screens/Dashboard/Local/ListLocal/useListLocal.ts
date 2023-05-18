@@ -1,5 +1,5 @@
 import React from "react";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import type {
   dataDeleteProps,
   onGetDataDeleteProps,
@@ -9,7 +9,7 @@ import type { IItemLocal } from "@/_types/Local/ServiceLocal";
 import { serviceDeleteLocal, serviceGetLocal } from "@/services/api/local";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-// import { PATHS } from "@/_utils/constants";
+import { PATHS } from "@/_utils/constants";
 
 export function useListLocal(): useListLocalData {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export function useListLocal(): useListLocalData {
     name: "",
     id: 0
   });
-  // const router = useRouter();
+  const router = useRouter();
   const tableTitle = [
     {
       label: "Descrição",
@@ -105,6 +105,9 @@ export function useListLocal(): useListLocalData {
     dataDelete,
     isAwaitDelete,
     onTryAgainGetData: () => getListData(),
+    onSendToEdit: id => {
+      router.push(`${PATHS.dashboard.recursosEditarLocal}${id}`);
+    },
     onHandlerDialogModal,
     onGetDataDelete,
     onConfirmDelete

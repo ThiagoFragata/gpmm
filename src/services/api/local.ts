@@ -1,14 +1,24 @@
 import type {
   serviceDeleteLocalProps,
+  serviceGetLocalByIdResponse,
   serviceGetLocalResponse,
   servicePostLocalProps,
   servicePutLocalProps
 } from "@/_types/Local/ServiceLocal";
 import { baseAPI } from "./";
-import { RESOURCE_LOCAL } from "./endpoints";
+import { RESOURCE, RESOURCE_LOCAL } from "./endpoints";
 
 export async function serviceGetLocal(): Promise<serviceGetLocalResponse> {
   const { data } = await baseAPI.get<serviceGetLocalResponse>(RESOURCE_LOCAL);
+  return data;
+}
+
+export async function serviceGetLocalById(
+  id: number
+): Promise<serviceGetLocalByIdResponse> {
+  const { data } = await baseAPI.get<serviceGetLocalByIdResponse>(
+    `${RESOURCE}/${id}`
+  );
   return data;
 }
 

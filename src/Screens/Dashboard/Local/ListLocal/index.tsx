@@ -23,6 +23,7 @@ export function ListLocal(): JSX.Element {
     onHandlerDialogModal,
     onGetDataDelete,
     onConfirmDelete,
+    onSendToEdit,
     dataDelete,
     isOpenModal,
     isNotFoundData,
@@ -88,7 +89,7 @@ export function ListLocal(): JSX.Element {
                           });
                         }}
                         onEdit={() => {
-                          alert("onEdit");
+                          onSendToEdit(Number(item?.id));
                         }}
                       />
                     </TableItem>

@@ -14,6 +14,7 @@ export interface useListLocalData {
   isOpenModal: boolean;
   dataDelete: dataDeleteProps;
   isAwaitDelete: boolean;
+  onSendToEdit: (id: number) => void;
   onTryAgainGetData: () => void;
   onHandlerDialogModal: () => void;
   onGetDataDelete: (data: dataDeleteProps) => void;
