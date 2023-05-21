@@ -1,7 +1,8 @@
 import type {
   serviceDeleteTransportProps,
   serviceGetTransportProps,
-  serviceGetTransportResponse
+  serviceGetTransportResponse,
+  servicePostTransportProps
 } from "@/_types/Transport/serviceTransport";
 import { baseAPI } from "./";
 import { RESOURCE_TRANSPORT } from "./endpoints";
@@ -12,6 +13,16 @@ export async function serviceGetTransport({
 }: serviceGetTransportProps): Promise<serviceGetTransportResponse> {
   const { data } = await baseAPI.get<serviceGetTransportResponse>(
     `${RESOURCE_TRANSPORT}?page=${page}&size=${size}`
+  );
+  return data;
+}
+
+export async function servicePosTransport(
+  payload: servicePostTransportProps
+): Promise<serviceGetTransportResponse> {
+  const { data } = await baseAPI.post<serviceGetTransportResponse>(
+    RESOURCE_TRANSPORT,
+    payload
   );
   return data;
 }

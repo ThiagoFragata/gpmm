@@ -2,11 +2,13 @@ import React from "react";
 import { ContainerListTransport } from "./style";
 import {
   AwaitRequest,
+  Button,
   DataNotFound,
   DialogModal,
   FooterData,
   MenuAction,
   MultSkeleton,
+  Search,
   Skeleton,
   TableContent,
   TableItem,
@@ -14,6 +16,7 @@ import {
   TableTitle
 } from "@/Components";
 import { useListTransport } from "./useListTransport";
+import { PATHS } from "@/_utils/constants";
 
 export function ListTransport(): JSX.Element {
   const {
@@ -46,6 +49,14 @@ export function ListTransport(): JSX.Element {
         ocActionCancel={onHandlerDialogModal}
         variant="danger"
       />
+      <div className="top__options">
+        <Search />
+        <Button
+          title="Novo"
+          iconName="MoreIcon"
+          navigateTo={PATHS.dashboard.recursosNovoTransporte}
+        />
+      </div>
       <TableTitle items={tableTitle} />
       {!isNotFoundData ? (
         <React.Fragment>

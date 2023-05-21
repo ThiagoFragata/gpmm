@@ -43,6 +43,7 @@ export const ITEMS__SIDEBAR = {
         PATHS.dashboard.recursosNovoLocal,
         PATHS.dashboard.recursosEditarLocal,
         PATHS.dashboard.recursosTransportes,
+        PATHS.dashboard.recursosNovoTransporte,
         PATHS.dashboard.recursosMotoristas
       ],
       icon: ({ className }: { className?: string }) => (

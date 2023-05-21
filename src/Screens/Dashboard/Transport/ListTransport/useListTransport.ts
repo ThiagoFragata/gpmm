@@ -135,7 +135,7 @@ export function useListTransport(): useListTransportData {
     onChangeSizePage,
     onTryAgainGetData: () => getListData(),
     onSendToEdit: id => {
-      router.push(`${PATHS.dashboard.recursosEditarTransportes}${id}`);
+      router.push(`${PATHS.dashboard.recursosEditarTransporte}${id}`);
     },
     onHandlerDialogModal,
     onGetDataDelete,
