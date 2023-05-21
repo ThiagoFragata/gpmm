@@ -1,6 +1,7 @@
 import { type IconsName } from "./Icons";
 
-type variantButton = "primary" | "outline" | "danger" | "ghost";
+type variantButton = "primary" | "outline" | "danger" | "ghost" | "light";
+
 export type ButtonProps = {
   title: string;
   className?: string;

@@ -10,6 +10,8 @@ export const TABS_RESOURCES: Record<string, ITabOptions> = {
   TAB_LIST_DRIVER: 3
 };
 
+export const AMOUNT_PAGE_ITEMS = 2;
+
 export const PATHS = {
   login: "/",
   forgotPassword: "/recuperar-conta",
@@ -23,6 +25,7 @@ export const PATHS = {
     recursosTransportes: "/dashboard/recursos/transportes",
     recursosMotoristas: "/dashboard/recursos/motoristas",
     usuarios: "/dashboard/usuarios",
+    usuarioNovo: "/dashboard/usuarios/novo",
     perfil: "/dashboard/perfil",
     notificoes: "/dashboard/notificoes",
     sobre: "/dashboard/sobre"

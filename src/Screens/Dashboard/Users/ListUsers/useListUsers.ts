@@ -1,5 +1,5 @@
 import type { itemBreadCrumb } from "@/_types/BreadCrumb";
-import type { useListUsersData } from "@/_types/ListUsers";
+import type { useListUsersData } from "@/_types/Users/ListUsers";
 
 export function useListUsers(): useListUsersData {
   const breadCrumb: itemBreadCrumb[] = [

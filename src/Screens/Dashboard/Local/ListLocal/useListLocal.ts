@@ -17,6 +17,14 @@ export function useListLocal(): useListLocalData {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isAwaitDelete, setIsAwaitDelete] = React.useState<boolean>(false);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const [currentSizePage, setCurrentSizePage] = React.useState(10);
+  const [dataPagination, setDataPagination] = React.useState({
+    totalPages: 0,
+    totalPerPage: 0,
+    currentPage: 0
+  });
+
   const [dataDelete, setDataDelete] = React.useState<dataDeleteProps>({
     name: "",
     id: 0
@@ -44,7 +52,15 @@ export function useListLocal(): useListLocalData {
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
-      const data = await serviceGetLocal();
+      const data = await serviceGetLocal({
+        size: currentSizePage,
+        page: currentPage
+      });
+      setDataPagination({
+        totalPages: data?.totalPages,
+        totalPerPage: data?.size,
+        currentPage: data?.number
+      });
       setDataLocal(data?.content);
     } catch (error) {
       dispatch(
@@ -58,7 +74,7 @@ export function useListLocal(): useListLocalData {
     } finally {
       setIsLoading(false);
     }
-  }, [dispatch]);
+  }, [currentPage, currentSizePage, dispatch]);
 
   function onHandlerDialogModal(): void {
     setIsOpenModal(!isOpenModal);
@@ -67,6 +83,11 @@ export function useListLocal(): useListLocalData {
   function onGetDataDelete(data: onGetDataDeleteProps): void {
     onHandlerDialogModal();
     setDataDelete(data);
+  }
+
+  function onChangeSizePage(value: number): void {
+    setCurrentPage(0);
+    setCurrentSizePage(value);
   }
 
   async function onConfirmDelete(): Promise<void> {
@@ -93,7 +114,7 @@ export function useListLocal(): useListLocalData {
 
   React.useEffect(() => {
     getListData();
-  }, []);
+  }, [currentPage, currentSizePage]);
 
   return {
     dataLocal,
@@ -103,12 +124,17 @@ export function useListLocal(): useListLocalData {
     isOpenModal,
     dataDelete,
     isAwaitDelete,
+    dataPagination,
     onTryAgainGetData: () => getListData(),
     onSendToEdit: id => {
       router.push(`${PATHS.dashboard.recursosEditarLocal}${id}`);
     },
     onHandlerDialogModal,
     onGetDataDelete,
-    onConfirmDelete
+    onConfirmDelete,
+    onChangePage: (value: number): void => {
+      setCurrentPage(value);
+    },
+    onChangeSizePage
   };
 }

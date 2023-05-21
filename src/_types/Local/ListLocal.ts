@@ -1,3 +1,4 @@
+import { type IRestDataPagination } from "../Common";
 import { type tableItems } from "../Table";
 import { type IItemLocal } from "./ServiceLocal";
 
@@ -6,7 +7,7 @@ export interface dataDeleteProps {
   id: number;
 }
 
-export interface useListLocalData {
+export type useListLocalData = {
   dataLocal: IItemLocal[];
   tableTitle: tableItems[];
   isLoading: boolean;
@@ -19,6 +20,11 @@ export interface useListLocalData {
   onHandlerDialogModal: () => void;
   onGetDataDelete: (data: dataDeleteProps) => void;
   onConfirmDelete: () => void;
+} & IRestDataPagination;
+
+export interface getListDataProps {
+  sizePage?: number;
+  page?: number;
 }
 
 export type onGetDataDeleteProps = dataDeleteProps;
