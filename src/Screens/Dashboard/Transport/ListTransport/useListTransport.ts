@@ -1,20 +1,25 @@
-import React from "react";
-import { useRouter } from "next/navigation";
-import type {
-  onGetDataDeleteProps,
-  useListLocalData
-} from "@/_types/Local/ListLocal";
-import type { IItemLocal } from "@/_types/Local/ServiceLocal";
-import { serviceDeleteLocal, serviceGetLocal } from "@/services/api/local";
-import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { PATHS } from "@/_utils/constants";
 import { type dataDeleteProps } from "@/_types/Common";
+import { useRouter } from "next/navigation";
+import {
+  type onGetDataDeleteProps,
+  type useListTransportData
+} from "@/_types/Transport/ListTransport";
+import { type IItemTransport } from "@/_types/Transport/serviceTransport";
+import { PATHS } from "@/_utils/constants";
+import {
+  serviceDeleteTransport,
+  serviceGetTransport
+} from "@/services/api/transport";
+import React from "react";
+import { useDispatch } from "react-redux";
 
-export function useListLocal(): useListLocalData {
+export function useListTransport(): useListTransportData {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [dataLocal, setDataLocal] = React.useState<IItemLocal[]>([]);
+  const [dataTransport, setDataTransport] = React.useState<IItemTransport[]>(
+    []
+  );
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isAwaitDelete, setIsAwaitDelete] = React.useState<boolean>(false);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
@@ -29,13 +34,14 @@ export function useListLocal(): useListLocalData {
     totalPerPage: 0,
     currentPage: 0
   });
+
   const tableTitle = [
     {
       label: "Descrição",
       className: "column__table"
     },
     {
-      label: "Identificação",
+      label: "Placa",
       className: "column__table"
     },
     {
@@ -65,7 +71,7 @@ export function useListLocal(): useListLocalData {
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
-      const data = await serviceGetLocal({
+      const data = await serviceGetTransport({
         size: currentSizePage,
         page: currentPage
       });
@@ -74,14 +80,14 @@ export function useListLocal(): useListLocalData {
         totalPerPage: data?.size,
         currentPage: data?.number
       });
-      setDataLocal(data?.content);
+      setDataTransport(data?.content);
     } catch (error) {
       dispatch(
         onChangeToastAlert({
           isVisible: true,
           variant: "error",
           title: "Falha ao buscar dados",
-          description: "Não foi possível recuperar os dados dos locais"
+          description: "Não foi possível recuperar os dados dos transportes"
         })
       );
     } finally {
@@ -93,7 +99,7 @@ export function useListLocal(): useListLocalData {
     try {
       setIsAwaitDelete(true);
       onHandlerDialogModal();
-      await serviceDeleteLocal({
+      await serviceDeleteTransport({
         id: dataDelete?.id
       });
       getListData();
@@ -110,30 +116,29 @@ export function useListLocal(): useListLocalData {
       setIsAwaitDelete(false);
     }
   }
-
   React.useEffect(() => {
     getListData();
   }, [currentPage, currentSizePage]);
 
   return {
-    dataLocal,
+    dataTransport,
     tableTitle,
     isLoading,
-    isNotFoundData: !isLoading && dataLocal.length === 0,
+    isNotFoundData: !isLoading && dataTransport.length === 0,
     isOpenModal,
     dataDelete,
     isAwaitDelete,
     dataPagination,
-    onTryAgainGetData: () => getListData(),
-    onSendToEdit: id => {
-      router.push(`${PATHS.dashboard.recursosEditarLocal}${id}`);
-    },
-    onHandlerDialogModal,
-    onGetDataDelete,
-    onConfirmDelete,
     onChangePage: (value: number): void => {
       setCurrentPage(value);
     },
-    onChangeSizePage
+    onChangeSizePage,
+    onTryAgainGetData: () => getListData(),
+    onSendToEdit: id => {
+      router.push(`${PATHS.dashboard.recursosEditarTransportes}${id}`);
+    },
+    onHandlerDialogModal,
+    onGetDataDelete,
+    onConfirmDelete
   };
 }

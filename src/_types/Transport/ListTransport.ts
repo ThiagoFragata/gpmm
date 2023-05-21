@@ -1,9 +1,9 @@
-import { type dataDeleteProps, type IRestDataPagination } from "../Common";
+import { type IRestDataPagination, type dataDeleteProps } from "../Common";
 import { type tableItems } from "../Table";
-import { type IItemLocal } from "./ServiceLocal";
+import { type IItemTransport } from "./serviceTransport";
 
-export type useListLocalData = {
-  dataLocal: IItemLocal[];
+export type useListTransportData = {
+  dataTransport: IItemTransport[];
   tableTitle: tableItems[];
   isLoading: boolean;
   isNotFoundData: boolean;
@@ -16,10 +16,5 @@ export type useListLocalData = {
   onGetDataDelete: (data: dataDeleteProps) => void;
   onConfirmDelete: () => void;
 } & IRestDataPagination;
-
-export interface getListDataProps {
-  sizePage?: number;
-  page?: number;
-}
 
 export type onGetDataDeleteProps = dataDeleteProps;

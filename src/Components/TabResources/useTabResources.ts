@@ -11,7 +11,7 @@ export function useTabResources(): useTabResourcesData {
     },
     {
       id: TAB_LIST_TRANSPORT,
-      label: "Tranportes"
+      label: "Transportes"
     },
     {
       id: TAB_LIST_DRIVER,

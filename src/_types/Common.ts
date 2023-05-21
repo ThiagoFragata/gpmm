@@ -18,3 +18,8 @@ export interface IRestDataPagination {
   onChangeSizePage: (value: number) => void;
   dataPagination: IDataPagination;
 }
+
+export interface dataDeleteProps {
+  name: string;
+  id: number;
+}

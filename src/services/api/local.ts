@@ -52,5 +52,5 @@ export async function serviceDeleteLocal(
   payload: serviceDeleteLocalProps
 ): Promise<void> {
   const { id } = payload;
-  await baseAPI.delete(`${RESOURCE_LOCAL}${id}`);
+  await baseAPI.delete(`${RESOURCE_LOCAL}/${id}`);
 }

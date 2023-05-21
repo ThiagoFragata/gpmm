@@ -4,10 +4,10 @@ import { useResources } from "./useResources";
 import { type NextPageWithLayout } from "@/pages/_app";
 import { BreadCrumb, DataBox, TabResources } from "@/Components";
 import { Onboard } from "./Partials/Onboard";
-import { ListTransport } from "./Partials/ListTransport";
 import { type RenderCurrenTabProps } from "@/_types/Resources";
 import { ListLocal } from "../Local/ListLocal";
 import { ListDriver } from "./Partials/ListDriver";
+import { ListTransport } from "../Transport/ListTransport";
 
 function RenderCurrenTab({
   currentTab,
