@@ -1,3 +1,4 @@
+import { type IScreenSteps } from "@/_types/FirstAccess";
 import { type ITabOptions } from "@/_types/Resources";
 
 export const widthSideBarExpanded = 220;
@@ -8,6 +9,12 @@ export const TABS_RESOURCES: Record<string, ITabOptions> = {
   TAB_LIST_PLACE: 1,
   TAB_LIST_TRANSPORT: 2,
   TAB_LIST_DRIVER: 3
+};
+
+export const FIRST_ACCESS_SCREENS: Record<string, IScreenSteps> = {
+  SCREEN_GET_EMAIL: 0,
+  SCREEN_GET_CODE: 1,
+  SCREEN_GET_PASSWORD: 2
 };
 
 export const AMOUNT_PAGE_ITEMS = 2;
@@ -26,6 +33,7 @@ const PATHS_TRANSPORTS = {
 
 export const PATHS = {
   login: "/",
+  primeiroAcesso: "/primeiro-acesso",
   forgotPassword: "/recuperar-conta",
   dashboard: {
     inicio: "/dashboard",

@@ -64,6 +64,14 @@ export function Login(): JSX.Element {
                 title={titleButton}
                 disabled={isLoading}
               />
+              <Button
+                type="button"
+                className="button__item"
+                variant="light"
+                title="Primeiro acesso"
+                disabled={isLoading}
+                navigateTo={PATHS.primeiroAcesso}
+              />
             </div>
           </form>
         )}

@@ -1,5 +1,6 @@
 /* PUBLIC */
 export { Login } from "./Public/Login";
+export { FirstAccess } from "./Public/FirstAccess";
 export { ForgotPassword } from "./Public/ForgotPassword";
 
 /* DASHBOARD */
