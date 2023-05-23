@@ -3,6 +3,7 @@ import type { FirstAccessData, IScreenSteps } from "@/_types/FirstAccess";
 import { FIRST_ACCESS_SCREENS } from "@/_utils/constants";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { useDispatch } from "react-redux";
+import { servicePostRequestCode } from "@/services/api/firstAccess";
 const { SCREEN_GET_EMAIL, SCREEN_GET_CODE, SCREEN_GET_PASSWORD } =
   FIRST_ACCESS_SCREENS;
 
@@ -17,8 +18,15 @@ export function useFirstAccess(): FirstAccessData {
 
   async function onRequestCode(email: string): Promise<void> {
     try {
-      console.log(JSON.stringify("data", null, 2));
+      setIsLoading(true);
+      const data = servicePostRequestCode(email);
+      console.log("🔥🔥🔥🔥________________________🚑");
+      console.log(JSON.stringify(data, null, 2));
+      console.log("🔥🔥🔥🔥________________________🚑");
     } catch (error) {
+      console.log(JSON.stringify(error, null, 2));
+      console.log("🔥🔥🔥🔥________________________🚑");
+      console.log(error);
       dispatch(
         onChangeToastAlert({
           isVisible: true,

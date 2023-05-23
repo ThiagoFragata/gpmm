@@ -17,7 +17,7 @@ export async function serviceGetTransport({
   return data;
 }
 
-export async function servicePosTransport(
+export async function servicePostTransport(
   payload: servicePostTransportProps
 ): Promise<serviceGetTransportResponse> {
   const { data } = await baseAPI.post<serviceGetTransportResponse>(

@@ -8,7 +8,7 @@ import {
   type useCreateTransportData
 } from "@/_types/Transport/CreateTransport";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { servicePosTransport } from "@/services/api/transport";
+import { servicePostTransport } from "@/services/api/transport";
 
 export function useCreateTransport(): useCreateTransportData {
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export function useCreateTransport(): useCreateTransportData {
   ): Promise<void> {
     try {
       setIsLoading(true);
-      await servicePosTransport(payload);
+      await servicePostTransport(payload);
       dispatch(
         onChangeToastAlert({
           isVisible: true,

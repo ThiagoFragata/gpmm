@@ -40,7 +40,7 @@ export function GetEmail({
             <Button
               type="submit"
               className="button__item"
-              title="Solicitar código"
+              title={isLoading ? "Aguarde..." : "Solicitar código"}
               disabled={isLoading}
             />
           </form>

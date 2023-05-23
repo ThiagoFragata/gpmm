@@ -7,6 +7,7 @@ import { GetEmail } from "./Partials/GetEmail";
 import { GetCode } from "./Partials/GetCode";
 import { ChangePassword } from "./Partials/ChangePassword";
 import { useFirstAccess } from "./useFirstAccess";
+import { AwaitRequest } from "@/Components";
 
 export function FirstAccess(): JSX.Element {
   const {
@@ -18,6 +19,7 @@ export function FirstAccess(): JSX.Element {
   } = useFirstAccess();
   return (
     <ContainerFirstAccess>
+      <AwaitRequest isVisible={isLoading} />
       <header className="top__bar">
         <Image
           src="/images/logo.png"
