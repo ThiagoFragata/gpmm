@@ -3,7 +3,13 @@ import { ContainerCreateUser } from "./style";
 import { useCreateUser } from "./useCreateUser";
 import { type NextPageWithLayout } from "@/pages/_app";
 import { Form } from "react-final-form";
-import { BreadCrumb, Button, DataBox, TextInput } from "@/Components";
+import {
+  BreadCrumb,
+  Button,
+  DataBox,
+  ListSectors,
+  TextInput
+} from "@/Components";
 import { PATHS } from "@/_utils/constants";
 
 export const CreateUser: NextPageWithLayout = () => {
@@ -12,6 +18,7 @@ export const CreateUser: NextPageWithLayout = () => {
     <ContainerCreateUser>
       <BreadCrumb items={breadCrumb} />
       <DataBox>
+        <ListSectors />
         <Form
           onSubmit={values => {
             console.log(JSON.stringify(values, null, 2));
@@ -42,7 +49,7 @@ export const CreateUser: NextPageWithLayout = () => {
                 <TextInput
                   label="Data de nascimento *"
                   name="dataNascimento"
-                  placeholder="Informe o número de data de nascimento do usuário"
+                  placeholder="Informe a nascimento do usuário"
                   disabled={isLoading}
                 />
                 <TextInput
