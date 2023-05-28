@@ -9,6 +9,7 @@ export function MenuAction({
   onDelete,
   onEdit,
   onShowDetails,
+  isShadow,
   direction = "top",
   disabled
 }: MenuActionProps): JSX.Element {
@@ -27,7 +28,7 @@ export function MenuAction({
 
   return (
     <React.Fragment>
-      <ShowBack isOpen={isOpen} onClose={onCloseMenu} />
+      <ShowBack isOpen={isOpen} onClose={onCloseMenu} isShadow={isShadow} />
       <ContainerMenuAction>
         <IconButton
           name="DotsIcon"

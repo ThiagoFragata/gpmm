@@ -36,10 +36,10 @@ export const ContainerFormToggle = styled.div<FormToggleModifier>`
     font-size: ${pxToRem(16)};
     font-weight: 400;
     color: ${colors.DARK_PRIMARY};
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
   .toggle__button {
-    height: 48px;
+    height: 45px;
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 25px;

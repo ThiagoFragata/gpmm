@@ -17,15 +17,15 @@ export async function serviceGetSectors({
   return data;
 }
 
-//   export async function servicePostSectors(
-//     payload: servicePostSectorsProps
-//   ): Promise<serviceGetSectorsResponse> {
-//     const { data } = await baseAPI.post<serviceGetSectorsResponse>(
-//       SECTORS,
-//       payload
-//     );
-//     return data;
-//   }
+export async function servicePostSectors(
+  payload: servicePostSectorsProps
+): Promise<serviceGetSectorsResponse> {
+  const { data } = await baseAPI.post<serviceGetSectorsResponse>(
+    SECTORS,
+    payload
+  );
+  return data;
+}
 
 //   export async function serviceDeleteSectors(
 //     payload: serviceDeleteSectorsProps

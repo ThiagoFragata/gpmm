@@ -11,20 +11,31 @@ import {
   TextInput
 } from "@/Components";
 import { PATHS } from "@/_utils/constants";
+import {
+  initialValuesUser,
+  validateUser
+} from "@/_utils/form/validations/users";
+import { regexCPF, regexOnlyNumber, regexPhone } from "@/_utils/maks";
 
 export const CreateUser: NextPageWithLayout = () => {
-  const { isLoading, breadCrumb } = useCreateUser();
+  const {
+    isLoading,
+    breadCrumb,
+    isShowSectors,
+    onOpenListSectors,
+    onCloseListSectors
+  } = useCreateUser();
   return (
     <ContainerCreateUser>
       <BreadCrumb items={breadCrumb} />
+      <ListSectors isShow={isShowSectors} onClose={onCloseListSectors} />
       <DataBox>
-        <ListSectors />
         <Form
           onSubmit={values => {
             console.log(JSON.stringify(values, null, 2));
           }}
-          // initialValues={initialValuesLocal}
-          // validate={validateCreateLocal}
+          initialValues={initialValuesUser}
+          validate={validateUser}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit} className="container__form">
               <div className="childrens__form">
@@ -33,18 +44,22 @@ export const CreateUser: NextPageWithLayout = () => {
                   name="nome"
                   placeholder="Informe o nome completo do usuário"
                   disabled={isLoading}
+                  maxLength={200}
                 />
                 <TextInput
                   label="CPF *"
                   name="cpf"
                   placeholder="Informe o número de CPF do usuário"
                   disabled={isLoading}
+                  parse={regexCPF}
                 />
                 <TextInput
                   label="SIAPE *"
                   name="siape"
                   placeholder="Informe o número de SIAPE do usuário"
                   disabled={isLoading}
+                  maxLength={12}
+                  parse={regexOnlyNumber}
                 />
                 <TextInput
                   label="Data de nascimento *"
@@ -69,13 +84,25 @@ export const CreateUser: NextPageWithLayout = () => {
                   name="telefone"
                   placeholder="Informe o número de telefone do usuário"
                   disabled={isLoading}
+                  parse={regexPhone}
                 />
-                <TextInput
-                  label="Setor *"
-                  name="setor"
-                  placeholder="Informe o setor do usuário"
-                  disabled={isLoading}
-                />
+                <div>
+                  <TextInput
+                    type="hidden"
+                    name="setor"
+                    parse={regexOnlyNumber}
+                  />
+                  <TextInput
+                    label="Setor *"
+                    name="label_setor"
+                    placeholder="Informe o setor do usuário"
+                    disabled={isLoading}
+                    maxLength={5}
+                    onFocus={() => {
+                      onOpenListSectors();
+                    }}
+                  />
+                </div>
               </div>
               <div className="form__buttons">
                 <Button

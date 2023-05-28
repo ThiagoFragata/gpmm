@@ -4,6 +4,7 @@ export interface MenuActionProps {
   onShowDetails?: () => void;
   direction?: "top" | "bottom";
   disabled?: boolean;
+  isShadow?: boolean;
 }
 
 export type MenuActionModifier = Pick<MenuActionProps, "direction"> & {

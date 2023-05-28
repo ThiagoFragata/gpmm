@@ -4,6 +4,7 @@ import React from "react";
 
 export function useCreateUser(): useCreateUserData {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isShowSectors, setIsShowSectors] = React.useState<boolean>(false);
   const breadCrumb: itemBreadCrumb[] = [
     {
       label: "Usuários"
@@ -12,8 +13,17 @@ export function useCreateUser(): useCreateUserData {
       label: "Novo usuário"
     }
   ];
+  function onOpenListSectors(): void {
+    setIsShowSectors(true);
+  }
+  function onCloseListSectors(): void {
+    setIsShowSectors(false);
+  }
   return {
     isLoading,
-    breadCrumb
+    breadCrumb,
+    isShowSectors,
+    onOpenListSectors,
+    onCloseListSectors
   };
 }

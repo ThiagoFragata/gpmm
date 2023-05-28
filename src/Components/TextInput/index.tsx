@@ -18,6 +18,7 @@ export function TextInput({
 }: TextInputProps): JSX.Element {
   const { onHandlerInputPassword, shouldRenderButton, isPassword } =
     useTextInput({ type });
+  const isHidden = type === "hidden";
   return (
     <Field
       parse={parse}
@@ -26,7 +27,7 @@ export function TextInput({
         const isInvalid: boolean =
           meta.error !== undefined && meta.touched === true;
         return (
-          <ContainerTextInput error={isInvalid}>
+          <ContainerTextInput error={isInvalid} isHidden={isHidden}>
             <span className="input__label">{label}</span>
             <div className="container__input">
               <input
@@ -36,8 +37,8 @@ export function TextInput({
                 placeholder={placeholder}
                 id={name}
                 disabled={disabled}
-                {...rest}
                 {...input}
+                {...rest}
               />
               {shouldRenderButton && (
                 <ButtonChangeInput

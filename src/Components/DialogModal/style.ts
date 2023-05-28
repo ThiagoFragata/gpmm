@@ -21,6 +21,7 @@ const modifier = {
 
 export const ContainerDialogModal = styled.div<{ isOpen: boolean }>`
   display: flex;
+  border: 20px solid purple;
   background: rgba(0, 0, 0, 0.2);
   justify-content: center;
   align-items: center;
@@ -36,6 +37,7 @@ export const ContainerDialogModal = styled.div<{ isOpen: boolean }>`
     border-radius: 16px;
     transition: all 0.2s;
     transition-delay: 0.1s;
+    max-width: 700px;
     .box__top {
       border-radius: 16px 16px 0 0;
       padding: 32px 32px 40px;

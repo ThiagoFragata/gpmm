@@ -1,6 +1,5 @@
 import React from "react";
 import { ContainerTopNewSector } from "./style";
-import { TitleSubtitle } from "@/Components/TitleSubtitle";
 import { Form } from "react-final-form";
 import { TextInput } from "@/Components/TextInput";
 import { Button } from "@/Components/Button";
@@ -13,13 +12,18 @@ import {
 
 export function TopNewSector({
   isVisible,
-  isLoading
+  isLoading,
+  onCreateSector
 }: TopNewSectorProps): JSX.Element {
   return (
     <ContainerTopNewSector isVisible={isVisible}>
       <Form
-        onSubmit={values => {
-          console.log(JSON.stringify(values?.nome, null, 2));
+        onSubmit={(values, form) => {
+          onCreateSector({
+            nome: values?.nome,
+            set_item: values?.set_item,
+            form
+          });
         }}
         initialValues={initialValuesSector}
         validate={validateSector}
@@ -32,7 +36,11 @@ export function TopNewSector({
                 placeholder="Digite o nome do setor"
                 disabled={isLoading}
               />
-              <FormToggle name="set_item" label="Usar este" />
+              <FormToggle
+                name="set_item"
+                label="Usar este"
+                disabled={isLoading}
+              />
             </div>
             <Button
               type="submit"
