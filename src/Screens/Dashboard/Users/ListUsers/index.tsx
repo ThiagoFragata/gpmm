@@ -16,6 +16,7 @@ import {
   TableTitle
 } from "@/Components";
 import { useListUsers } from "./useListUsers";
+import { PATHS } from "@/_utils/constants";
 
 export const ListUsers: NextPageWithLayout = () => {
   const { breadCrumb, tableTitle } = useListUsers();
@@ -116,7 +117,11 @@ export const ListUsers: NextPageWithLayout = () => {
       <DataBox>
         <div className="top__options">
           <Search />
-          <Button title="Novo" iconName="MoreIcon" />
+          <Button
+            title="Novo"
+            iconName="MoreIcon"
+            navigateTo={PATHS.dashboard.usuarioNovo}
+          />
         </div>
         <TableTitle items={tableTitle} />
         <TableScroll>

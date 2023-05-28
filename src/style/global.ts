@@ -50,7 +50,7 @@ export default createGlobalStyle`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
-    flex: 1;
+    /* flex: 1; */
   }
   .form__buttons {
     display: flex;

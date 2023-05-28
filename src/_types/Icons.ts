@@ -25,4 +25,5 @@ export type IconsName =
   | "DotsIcon"
   | "DetailsIcon"
   | "EditIcon"
-  | "TrashIcon";
+  | "TrashIcon"
+  | "CloseIcon";

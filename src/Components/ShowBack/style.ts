@@ -11,13 +11,17 @@ const modifier = {
   `
 };
 
-export const ContainerShowBack = styled.div<{ isOpen: boolean }>`
+export const ContainerShowBack = styled.div<{
+  isOpen: boolean;
+  isShadow: boolean;
+}>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.1);
+  background: ${({ isShadow }) =>
+    isShadow ? "rgba(0, 0, 0, 0.1)" : "transparent"};
   ${({ isOpen }) => modifier[isOpen ? "open" : "close"]};
 `;

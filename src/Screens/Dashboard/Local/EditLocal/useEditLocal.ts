@@ -83,6 +83,7 @@ export function useEditLocal(): useEditLocalData {
       getDataLocal(Number(idLocal));
     }
   }, [idLocal]);
+
   return {
     onEditLocal,
     dataLocal,

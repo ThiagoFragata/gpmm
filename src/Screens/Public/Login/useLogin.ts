@@ -1,6 +1,6 @@
 import React from "react";
 import type { onSubmitLoginProps, useLoginData } from "@/_types/Login";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { PATHS } from "@/_utils/constants";
 
 export function useLogin(): useLoginData {

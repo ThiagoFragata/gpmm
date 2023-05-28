@@ -1,8 +1,8 @@
 export type TextInputProps = {
-  label: string;
+  label?: string;
   name: string;
-  placeholder: string;
-  type?: "text" | "email" | "password" | "number";
+  placeholder?: string;
+  type?: "text" | "email" | "password" | "number" | "hidden";
   inputMode?: "text";
   parse?: (value: string) => string;
   className?: string;
@@ -11,6 +11,7 @@ export type TextInputProps = {
 
 export interface TextInputModifier {
   error: boolean;
+  isHidden: boolean;
 }
 
 export type useTextInputDataProps = Pick<TextInputProps, "type">;

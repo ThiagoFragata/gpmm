@@ -24,6 +24,11 @@ const containerButtonModifier = {
       background-color: transparent;
       border: 2px solid ${colors.GRAY_LIGHT};
       color: ${colors.GRAY_SECONDARY};
+    `,
+    light: css`
+      background-color: ${colors.BLUE_PRIMARY};
+      border: 2px solid ${colors.BLUE_DARK};
+      color: ${colors.WHITE};
     `
   }
 };

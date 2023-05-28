@@ -21,3 +21,4 @@ export { ErrorIcon } from "./ErrorIcon";
 export { InfoIcon } from "./InfoIcon";
 export { WarningIcon } from "./WarningIcon";
 export { QuestionIcon } from "./QuestionIcon";
+export { CloseIcon } from "./CloseIcon";

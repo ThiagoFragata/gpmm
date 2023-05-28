@@ -1,3 +1,5 @@
+import { type IDataPage } from "../Common";
+
 export interface IItemLocal {
   id?: number;
   descricao: string;
@@ -5,8 +7,13 @@ export interface IItemLocal {
   totalDeAssento: string;
 }
 
-export interface serviceGetLocalResponse {
+export type serviceGetLocalResponse = {
   content: IItemLocal[];
+} & IDataPage;
+
+export interface serviceGetLocalProps {
+  page: number;
+  size: number;
 }
 
 export type serviceGetLocalByIdResponse = IItemLocal;

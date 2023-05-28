@@ -25,6 +25,9 @@ export function ListLocal(): JSX.Element {
     onGetDataDelete,
     onConfirmDelete,
     onSendToEdit,
+    onChangePage,
+    onChangeSizePage,
+    dataPagination,
     dataDelete,
     isOpenModal,
     isNotFoundData,
@@ -44,6 +47,7 @@ export function ListLocal(): JSX.Element {
         titleActionConfirm="Sim"
         onActionConfirm={onConfirmDelete}
         ocActionCancel={onHandlerDialogModal}
+        variant="danger"
       />
       <div className="top__options">
         <Search />
@@ -119,7 +123,11 @@ export function ListLocal(): JSX.Element {
               </React.Fragment>
             )}
           </TableScroll>
-          <FooterData />
+          <FooterData
+            onChangePage={onChangePage}
+            onChangeSizePage={onChangeSizePage}
+            data={dataPagination}
+          />
         </React.Fragment>
       ) : (
         <DataNotFound onAction={onTryAgainGetData} />

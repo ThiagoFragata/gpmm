@@ -8,7 +8,9 @@ export function useSideBar(): useSideBarData {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
 
   function checkPathSelected(arrayPath: string[]): boolean {
-    const isExistInArray = arrayPath.some(item => item === currentPath);
+    const isExistInArray = arrayPath.some(
+      item => item === String(currentPath).replace("[id]", "")
+    );
     return isExistInArray;
   }
 

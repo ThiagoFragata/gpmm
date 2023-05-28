@@ -1,5 +1,6 @@
 import React from "react";
 import { PATHS } from "@/_utils/constants";
+
 import {
   AboutIcon,
   ArrowLeftIcon,
@@ -39,9 +40,11 @@ export const ITEMS__SIDEBAR = {
       paths: [
         PATHS.dashboard.recursos,
         PATHS.dashboard.recursosLocais,
+        PATHS.dashboard.recursosNovoLocal,
+        PATHS.dashboard.recursosEditarLocal,
         PATHS.dashboard.recursosTransportes,
-        PATHS.dashboard.recursosMotoristas,
-        PATHS.dashboard.recursosNovoLocal
+        PATHS.dashboard.recursosNovoTransporte,
+        PATHS.dashboard.recursosMotoristas
       ],
       icon: ({ className }: { className?: string }) => (
         <ResourcesIcon className={className} />
@@ -51,7 +54,7 @@ export const ITEMS__SIDEBAR = {
       id: "usuarios",
       label: "Usuários",
       path: PATHS.dashboard.usuarios,
-      paths: [PATHS.dashboard.usuarios],
+      paths: [PATHS.dashboard.usuarios, PATHS.dashboard.usuarioNovo],
       icon: ({ className }: { className?: string }) => (
         <UsersIcon className={className} />
       )

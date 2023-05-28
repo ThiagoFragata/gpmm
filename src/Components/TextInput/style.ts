@@ -24,6 +24,20 @@ const modifier = {
   `
 };
 
+const modifierTypeInput = {
+  default: css``,
+  hidden: css`
+    padding: 0;
+    height: 0;
+    width: 0;
+    .container__input .input__text {
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+  `
+};
+
 export const ContainerTextInput = styled.div<TextInputModifier>`
   display: flex;
   flex-direction: column;
@@ -58,7 +72,8 @@ export const ContainerTextInput = styled.div<TextInputModifier>`
       }
     }
   }
-  ${({ error }) => modifier[error ? "error" : "default"]}
+  ${({ error }) => modifier[error ? "error" : "default"]};
+  ${({ isHidden }) => modifierTypeInput[isHidden ? "hidden" : "default"]};
 `;
 
 const modifiersWarning = {

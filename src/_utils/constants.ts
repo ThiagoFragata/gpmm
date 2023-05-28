@@ -1,3 +1,4 @@
+import { type IScreenSteps } from "@/_types/FirstAccess";
 import { type ITabOptions } from "@/_types/Resources";
 
 export const widthSideBarExpanded = 220;
@@ -10,21 +11,41 @@ export const TABS_RESOURCES: Record<string, ITabOptions> = {
   TAB_LIST_DRIVER: 3
 };
 
+export const FIRST_ACCESS_SCREENS: Record<string, IScreenSteps> = {
+  SCREEN_GET_EMAIL: 0,
+  SCREEN_GET_CODE: 1,
+  SCREEN_GET_PASSWORD: 2
+};
+
+export const AMOUNT_PAGE_ITEMS = 2;
+
+const PATHS_LOCAL = {
+  recursosLocais: "/dashboard/recursos/locais",
+  recursosNovoLocal: "/dashboard/recursos/locais/novo",
+  recursosEditarLocal: "/dashboard/recursos/locais/editar/"
+};
+
+const PATHS_TRANSPORTS = {
+  recursosTransportes: "/dashboard/recursos/transportes",
+  recursosNovoTransporte: "/dashboard/recursos/transportes/novo",
+  recursosEditarTransporte: "/dashboard/recursos/transportes/editar/"
+};
+
 export const PATHS = {
   login: "/",
+  primeiroAcesso: "/primeiro-acesso",
   forgotPassword: "/recuperar-conta",
   dashboard: {
     inicio: "/dashboard",
     solicitacoes: "/dashboard/solicitacoes",
     recursos: "/dashboard/recursos",
-    recursosLocais: "/dashboard/recursos/locais",
-    recursosNovoLocal: "/dashboard/recursos/locais/novo",
-    recursosEditarLocal: "/dashboard/recursos/locais/editar/",
-    recursosTransportes: "/dashboard/recursos/transportes",
     recursosMotoristas: "/dashboard/recursos/motoristas",
     usuarios: "/dashboard/usuarios",
+    usuarioNovo: "/dashboard/usuarios/novo",
     perfil: "/dashboard/perfil",
     notificoes: "/dashboard/notificoes",
-    sobre: "/dashboard/sobre"
+    sobre: "/dashboard/sobre",
+    ...PATHS_LOCAL,
+    ...PATHS_TRANSPORTS
   }
 };

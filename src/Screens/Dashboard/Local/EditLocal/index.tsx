@@ -35,7 +35,7 @@ export const EditLocal: NextPageWithLayout = () => {
             totalDeAssento: dataLocal?.totalDeAssento
           }}
           validate={validateEditLocal}
-          render={({ handleSubmit }) => (
+          render={({ handleSubmit, pristine }) => (
             <form onSubmit={handleSubmit} className="container__form">
               <div className="childrens__form">
                 <TextInput
@@ -63,12 +63,17 @@ export const EditLocal: NextPageWithLayout = () => {
               </div>
               <div className="form__buttons">
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   title="Cancelar"
                   disabled={isLoading}
                   navigateTo={PATHS.dashboard.recursosLocais}
                 />
-                <Button type="submit" title="Salvar" disabled={isLoading} />
+                <Button
+                  type="submit"
+                  variant="light"
+                  title="Atualizar"
+                  disabled={isLoading || pristine}
+                />
               </div>
             </form>
           )}

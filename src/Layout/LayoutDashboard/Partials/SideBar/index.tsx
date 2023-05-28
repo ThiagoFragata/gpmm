@@ -24,6 +24,7 @@ export function SideBar({
         ocActionCancel={onHandlerDialogModal}
         titleActionCancel="Não"
         titleActionConfirm="Sim"
+        variant="danger"
       />
       <Image
         src="/images/logo.png"
