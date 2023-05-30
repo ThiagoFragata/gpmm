@@ -5,6 +5,9 @@ export const messageValidations = {
   number: "Número inválido.",
   sector: "O setor é obrigatório.",
   date: "Formato de data inválido.",
+  document: "Formato de documento inválido.",
   maxSize: ({ name, size }: { name: string; size: number }) =>
-    `${name} pode ter no máximo ${size} caracteres.`
+    `${name} pode ter no máximo ${size} caracteres.`,
+  minSize: ({ name, size }: { name: string; size: number }) =>
+    `${name} deve ter no mínimo ${size} caracteres.`
 };

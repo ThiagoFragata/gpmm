@@ -29,3 +29,11 @@ export function regexDate(value: string): string {
     .replace(/(\d{4})\d+?$/, "$1");
   return date;
 }
+
+export function formatDateToBack(value: string): string {
+  const formated = `${value.slice(6, 10)}-${value.slice(3, 5)}-${value.slice(
+    0,
+    2
+  )}`;
+  return formated;
+}

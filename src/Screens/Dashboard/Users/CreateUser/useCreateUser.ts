@@ -1,13 +1,15 @@
 import React from "react";
 import { type itemBreadCrumb } from "@/_types/BreadCrumb";
 import { useRouter } from "next/navigation";
-import { PATHS } from "@/_utils/constants";
+import { PATHS, PROFILE_TYPE } from "@/_utils/constants";
 import {
   type onCreateUserProps,
   type useCreateUserData
 } from "@/_types/Users/CreateUsers";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
+import { formatDateToBack } from "@/_utils/masks";
+import { servicePostUser } from "@/services/api/user";
 
 export function useCreateUser(): useCreateUserData {
   const dispatch = useDispatch();
@@ -23,10 +25,22 @@ export function useCreateUser(): useCreateUserData {
     }
   ];
 
-  async function onCreateUser(payload: onCreateUserProps): Promise<void> {
+  async function onCreateUser(data: onCreateUserProps): Promise<void> {
     try {
       setIsLoading(true);
-      // await servicePostLocal(payload);
+      const typeProfile =
+        PROFILE_TYPE.find(item => item.id === 1)?.name ?? "NORMAL";
+      const payload = {
+        nome: data?.nome,
+        cpf: data?.cpf,
+        siape: data?.siape,
+        dataNascimento: formatDateToBack(data?.dataNascimento),
+        tipoPerfil: typeProfile,
+        telefone: data?.telefone,
+        setor: Number(data?.setor),
+        email: data?.email
+      };
+      await servicePostUser(payload);
       dispatch(
         onChangeToastAlert({
           isVisible: true,
@@ -34,10 +48,7 @@ export function useCreateUser(): useCreateUserData {
           description: "Novo usuário registrado"
         })
       );
-      console.log("🔥🔥🔥🔥________________________🚑");
-      console.log(JSON.stringify(payload, null, 2));
-      console.log("🔥🔥🔥🔥________________________🚑");
-      // router.push(PATHS.dashboard.usuarios);
+      router.push(PATHS.dashboard.usuarios);
     } catch (error) {
       dispatch(
         onChangeToastAlert({

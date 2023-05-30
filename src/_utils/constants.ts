@@ -63,7 +63,7 @@ export const NAME_DAYS = {
   short: ["Dom.", "Seg.", "Ter.", "Qua.", "Qui.", "Sex.", "Sáb."]
 };
 
-export const PROFILE_TYPE = [
+export const PROFILE_TYPE: Array<{ id: number; name: string }> = [
   {
     id: 0,
     name: "NORMAL"

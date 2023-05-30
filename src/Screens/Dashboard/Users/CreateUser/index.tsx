@@ -34,7 +34,6 @@ export const CreateUser: NextPageWithLayout = () => {
     onCreateUser
   } = useCreateUser();
   const formRef = React.useRef<FormApi<any, any>>();
-  // how use: formRef.current?.change("label_setor", "asdsadsa")
   return (
     <ContainerCreateUser>
       <BreadCrumb items={breadCrumb} />
@@ -45,7 +44,7 @@ export const CreateUser: NextPageWithLayout = () => {
           }}
           initialValues={initialValuesUser}
           validate={validateUser}
-          render={({ handleSubmit, form, values, errors }) => {
+          render={({ handleSubmit, form, values }) => {
             formRef.current = form;
             return (
               <form onSubmit={handleSubmit} className="container__form">
@@ -69,7 +68,7 @@ export const CreateUser: NextPageWithLayout = () => {
                     name="siape"
                     placeholder="Informe o número de SIAPE do usuário"
                     disabled={isLoading}
-                    maxLength={12}
+                    maxLength={11}
                     parse={regexOnlyNumber}
                   />
                   <TextInput
@@ -120,6 +119,10 @@ export const CreateUser: NextPageWithLayout = () => {
                     />
                   </div>
                 </div>
+                <textarea
+                  style={{ height: "150px", minWidth: "300px" }}
+                  value={JSON.stringify(values, null, 2)}
+                />
                 <div className="form__buttons">
                   <Button
                     variant="outline"

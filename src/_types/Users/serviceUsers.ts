@@ -17,7 +17,11 @@ export interface IItemUser {
   };
   email: string;
   codigoAtivacao?: string;
-  status?: string;
+  status?:
+    | "PENDENTE_ATIVACAO_USUARIO"
+    | "PENDENTE_ATIVACAO_ADMIN"
+    | "DESATIVADA"
+    | "ATIVADA";
   motorista: {
     numeroCnh: string;
   };
@@ -35,14 +39,14 @@ export type serviceGetUserResponse = {
   content: IItemUser[];
 } & IDataPage;
 
-export interface serviceGetUserProps {
+export interface serviceGetUsersProps {
   page: number;
   size: number;
 }
 
 export type serviceGetUserByIdResponse = IItemUser;
 
-export type servicePostUserProps = IItemUser;
+export type servicePostUserProps = IItemUserRegister;
 
 export type servicePutUserProps = IItemUser;
 
