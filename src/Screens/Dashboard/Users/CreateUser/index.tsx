@@ -7,10 +7,11 @@ import {
   BreadCrumb,
   Button,
   DataBox,
+  InputSelect,
   ListSectors,
   TextInput
 } from "@/Components";
-import { PATHS } from "@/_utils/constants";
+import { PATHS, PROFILE_TYPE } from "@/_utils/constants";
 import {
   initialValuesUser,
   validateUser
@@ -42,7 +43,7 @@ export const CreateUser: NextPageWithLayout = () => {
           }}
           initialValues={initialValuesUser}
           validate={validateUser}
-          render={({ handleSubmit }) => (
+          render={({ handleSubmit, form, values }) => (
             <form onSubmit={handleSubmit} className="container__form">
               <div className="childrens__form">
                 <TextInput
@@ -74,18 +75,21 @@ export const CreateUser: NextPageWithLayout = () => {
                   disabled={isLoading}
                   parse={regexDate}
                 />
-                {/* <CommonCalendar isOpen={isOpenCalendar} /> */}
                 <TextInput
                   label="E-mail*"
                   name="email"
                   placeholder="Informe o e-mail do usuário"
                   disabled={isLoading}
                 />
-                <TextInput
+                <InputSelect
                   label="Tipo de perfil *"
                   name="tipoPerfil"
                   placeholder="Informe o tipo de perfil para o usuário"
                   disabled={isLoading}
+                  data={PROFILE_TYPE}
+                  direction="bottom"
+                  form={form}
+                  isAwaiting={isLoading}
                 />
                 <TextInput
                   label="Telefone *"

@@ -62,3 +62,14 @@ export const NAME_DAYS = {
   ],
   short: ["Dom.", "Seg.", "Ter.", "Qua.", "Qui.", "Sex.", "Sáb."]
 };
+
+export const PROFILE_TYPE = [
+  {
+    id: 0,
+    name: "NORMAL"
+  },
+  {
+    id: 1,
+    name: "ADMIN"
+  }
+];
