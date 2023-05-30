@@ -18,6 +18,7 @@ export function IconButton({
 }: IconButtonProps): JSX.Element {
   return (
     <ContainerIconButton
+      type="button"
       disabled={disabled}
       className={className}
       onClick={onClick}

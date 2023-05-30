@@ -49,3 +49,16 @@ export const PATHS = {
     ...PATHS_TRANSPORTS
   }
 };
+
+export const NAME_DAYS = {
+  full: [
+    "Domingo",
+    "Segunda-Feira",
+    "Terça-Feira",
+    "Quarta-Feira",
+    "Quinta-Feira",
+    "Sexta-Feira",
+    "Sábado"
+  ],
+  short: ["Dom.", "Seg.", "Ter.", "Qua.", "Qui.", "Sex.", "Sáb."]
+};

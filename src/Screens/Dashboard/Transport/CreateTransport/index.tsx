@@ -14,8 +14,8 @@ import {
   initialValuesTransport,
   validateCreateTransport
 } from "@/_utils/form/validations/transports";
-import { formOnlyNumber } from "@/_utils/form/validations/masks";
 import { PATHS } from "@/_utils/constants";
+import { regexOnlyNumber } from "@/_utils/masks";
 
 export const CreateTransport: NextPageWithLayout = () => {
   const { onCreateTransport, isLoading, breadCrumb } = useCreateTransport();
@@ -53,7 +53,7 @@ export const CreateTransport: NextPageWithLayout = () => {
                   disabled={isLoading}
                   className="login__password"
                   type="number"
-                  parse={formOnlyNumber}
+                  parse={regexOnlyNumber}
                 />
               </div>
               <div className="form__buttons">

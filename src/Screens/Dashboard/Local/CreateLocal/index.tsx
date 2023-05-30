@@ -15,7 +15,7 @@ import {
   initialValuesLocal,
   validateCreateLocal
 } from "@/_utils/form/validations/local";
-import { formOnlyNumber } from "@/_utils/form/validations/masks";
+import { regexOnlyNumber } from "@/_utils/masks";
 
 export const CreateLocal: NextPageWithLayout = () => {
   const { onCreateLocal, breadCrumb, isLoading } = useCreateLocal();
@@ -54,7 +54,7 @@ export const CreateLocal: NextPageWithLayout = () => {
                   disabled={isLoading}
                   className="login__password"
                   type="number"
-                  parse={formOnlyNumber}
+                  parse={regexOnlyNumber}
                 />
               </div>
               <div className="form__buttons">

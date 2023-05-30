@@ -15,7 +15,12 @@ import {
   initialValuesUser,
   validateUser
 } from "@/_utils/form/validations/users";
-import { regexCPF, regexOnlyNumber, regexPhone } from "@/_utils/maks";
+import {
+  regexCPF,
+  regexDate,
+  regexOnlyNumber,
+  regexPhone
+} from "@/_utils/masks";
 
 export const CreateUser: NextPageWithLayout = () => {
   const {
@@ -25,6 +30,7 @@ export const CreateUser: NextPageWithLayout = () => {
     onOpenListSectors,
     onCloseListSectors
   } = useCreateUser();
+
   return (
     <ContainerCreateUser>
       <BreadCrumb items={breadCrumb} />
@@ -66,7 +72,9 @@ export const CreateUser: NextPageWithLayout = () => {
                   name="dataNascimento"
                   placeholder="Informe a nascimento do usuário"
                   disabled={isLoading}
+                  parse={regexDate}
                 />
+                {/* <CommonCalendar isOpen={isOpenCalendar} /> */}
                 <TextInput
                   label="E-mail*"
                   name="email"

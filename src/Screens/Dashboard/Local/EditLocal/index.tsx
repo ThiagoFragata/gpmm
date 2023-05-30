@@ -11,8 +11,8 @@ import {
 import { Form } from "react-final-form";
 import { PATHS } from "@/_utils/constants";
 import { validateEditLocal } from "@/_utils/form/validations/local";
-import { formOnlyNumber } from "@/_utils/form/validations/masks";
 import { useEditLocal } from "./useEditLocal";
+import { regexOnlyNumber } from "@/_utils/masks";
 
 export const EditLocal: NextPageWithLayout = () => {
   const { onEditLocal, breadCrumb, isLoading, dataLocal } = useEditLocal();
@@ -58,7 +58,7 @@ export const EditLocal: NextPageWithLayout = () => {
                   disabled={isLoading}
                   className="login__password"
                   type="number"
-                  parse={formOnlyNumber}
+                  parse={regexOnlyNumber}
                 />
               </div>
               <div className="form__buttons">

@@ -13,17 +13,16 @@ export function useCreateUser(): useCreateUserData {
       label: "Novo usuário"
     }
   ];
-  function onOpenListSectors(): void {
-    setIsShowSectors(true);
-  }
-  function onCloseListSectors(): void {
-    setIsShowSectors(false);
-  }
+
   return {
     isLoading,
     breadCrumb,
     isShowSectors,
-    onOpenListSectors,
-    onCloseListSectors
+    onOpenListSectors: () => {
+      setIsShowSectors(true);
+    },
+    onCloseListSectors: () => {
+      setIsShowSectors(false);
+    }
   };
 }

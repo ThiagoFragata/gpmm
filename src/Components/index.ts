@@ -21,3 +21,4 @@ export { DialogModal } from "./DialogModal";
 export { Steps } from "./Steps";
 export { ListSectors } from "./ListSectors";
 export { FormToggle } from "./FormToggle";
+export { CommonCalendar } from "./Calendar/CommonCalendar";
