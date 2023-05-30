@@ -96,6 +96,7 @@ export function InputSelect({
               type="button"
               className={`view__text ${classNameInput}`}
               onClick={onShowOptions}
+              onFocus={onShowOptions}
               disabled={shouldDisable}
             >
               <p className="input__text">{showTextValue}</p>

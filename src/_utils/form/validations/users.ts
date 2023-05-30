@@ -7,7 +7,7 @@ export const initialValuesUser = {
   cpf: "",
   siape: "",
   dataNascimento: "",
-  // tipoPerfil: "",
+  tipoPerfil: "",
   telefone: "",
   label_setor: null,
   email: ""
