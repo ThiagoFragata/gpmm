@@ -12,6 +12,7 @@ import { DialogModal } from "../DialogModal";
 
 export function ListSectors({
   isShow,
+  formRef,
   onClose
 }: ListSectorsProps): JSX.Element {
   const {
@@ -21,6 +22,7 @@ export function ListSectors({
     onGetDataDelete,
     onConfirmDelete,
     onCreateSector,
+    onSelectSector,
     isAwaitDelete,
     isOpenModalDialog,
     dataDelete,
@@ -30,7 +32,7 @@ export function ListSectors({
     isVisibleDefaultTop,
     isVisibleNewSector,
     tableTitle
-  } = useListSectors();
+  } = useListSectors({ onClose, formRef });
   return (
     <ContainerListSectors isShow={isShow}>
       <AwaitRequest isVisible={isAwaitDelete} />
@@ -64,6 +66,7 @@ export function ListSectors({
           isVisible={isVisibleNewSector}
           isLoading={isLoading}
           onCreateSector={onCreateSector}
+          onCallTopDefault={onCallTopDefault}
         />
         <List
           dataSector={dataSector}
@@ -72,6 +75,7 @@ export function ListSectors({
           tableTitle={tableTitle}
           isAwaitDelete={isAwaitDelete}
           onGetDataDelete={onGetDataDelete}
+          onSelectSector={onSelectSector}
         />
       </div>
     </ContainerListSectors>

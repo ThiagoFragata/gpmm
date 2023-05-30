@@ -4,7 +4,7 @@ import { Form } from "react-final-form";
 import { TextInput } from "@/Components/TextInput";
 import { Button } from "@/Components/Button";
 import { type TopNewSectorProps } from "@/_types/Sectors/ListSectors";
-import { FormToggle } from "@/Components/FormToggle";
+// import { FormToggle } from "@/Components/FormToggle";
 import {
   initialValuesSector,
   validateSector
@@ -13,7 +13,8 @@ import {
 export function TopNewSector({
   isVisible,
   isLoading,
-  onCreateSector
+  onCreateSector,
+  onCallTopDefault
 }: TopNewSectorProps): JSX.Element {
   return (
     <ContainerTopNewSector isVisible={isVisible}>
@@ -27,7 +28,7 @@ export function TopNewSector({
         }}
         initialValues={initialValuesSector}
         validate={validateSector}
-        render={({ handleSubmit }) => (
+        render={({ form, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className="sector__fields">
               <TextInput
@@ -36,18 +37,30 @@ export function TopNewSector({
                 placeholder="Digite o nome do setor"
                 disabled={isLoading}
               />
-              <FormToggle
+              {/* <FormToggle
                 name="set_item"
                 label="Usar este"
                 disabled={isLoading}
+              /> */}
+            </div>
+            <div className="sector__buttons">
+              <Button
+                variant="outline"
+                className="button__item"
+                title={isLoading ? "Aguarde..." : "Cancelar"}
+                disabled={isLoading}
+                onClick={() => {
+                  form.restart();
+                  onCallTopDefault();
+                }}
+              />
+              <Button
+                type="submit"
+                className="button__item"
+                title={isLoading ? "Aguarde..." : "Cadastrar"}
+                disabled={isLoading}
               />
             </div>
-            <Button
-              type="submit"
-              className="button__item"
-              title={isLoading ? "Aguarde..." : "Cadastrar"}
-              disabled={isLoading}
-            />
           </form>
         )}
       />

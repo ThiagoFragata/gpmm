@@ -40,7 +40,7 @@ export const validateUser = validateFormValues(
     tipoPerfil: yup.string().required(messageValidations.required),
     telefone: yup.string().required(messageValidations.required),
     label_setor: yup
-      .number()
+      .string()
       .required(messageValidations.required)
       .typeError(messageValidations.number),
     email: yup

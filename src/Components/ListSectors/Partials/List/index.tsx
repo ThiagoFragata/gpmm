@@ -17,7 +17,8 @@ export function List({
   isLoading,
   tableTitle,
   isAwaitDelete,
-  onGetDataDelete
+  onGetDataDelete,
+  onSelectSector
 }: ListProps): JSX.Element {
   return (
     <React.Fragment>
@@ -31,12 +32,20 @@ export function List({
                   const directionMenu = index < 4 ? "bottom" : "top";
                   return (
                     <TableContent key={item?.id}>
-                      <TableItem
-                        item={{
-                          label: item?.nome,
-                          className: "column__table"
-                        }}
-                      />
+                      <TableItem className="column__table">
+                        <button
+                          type="button"
+                          className="column__button"
+                          onClick={() => {
+                            onSelectSector({
+                              setor: Number(item?.id),
+                              label_setor: item?.nome
+                            });
+                          }}
+                        >
+                          {item?.nome}
+                        </button>
+                      </TableItem>
                       <TableItem className="size__action">
                         <MenuAction
                           isShadow={false}

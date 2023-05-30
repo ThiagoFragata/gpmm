@@ -4,12 +4,17 @@ import { serviceGetSectors, servicePostSectors } from "@/services/api/sectors";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import {
+  type useListSectorsProps,
   type onCreateSectorProps,
-  type useListSectorsData
+  type useListSectorsData,
+  type onSelectSectorProps
 } from "@/_types/Sectors/ListSectors";
 import { type dataDeleteProps } from "@/_types/Common";
 
-export function useListSectors(): useListSectorsData {
+export function useListSectors({
+  formRef,
+  onClose
+}: useListSectorsProps): useListSectorsData {
   const dispatch = useDispatch();
   const SHOW_TOP_DEFAULT = 0;
   const SHOW_NEW = 1;
@@ -42,6 +47,12 @@ export function useListSectors(): useListSectorsData {
     setDataDelete(data);
   }
 
+  function onSelectSector({ setor, label_setor }: onSelectSectorProps): void {
+    formRef.current?.change("setor", setor);
+    formRef.current?.change("label_setor", label_setor);
+    onClose();
+  }
+
   const getDataSectors = React.useCallback(async () => {
     try {
       setIsLoading(true);
@@ -63,16 +74,17 @@ export function useListSectors(): useListSectorsData {
       setIsLoading(false);
     }
   }, []);
-  React.useEffect(() => {
-    getDataSectors();
-  }, []);
 
   async function onCreateSector(payload: onCreateSectorProps): Promise<void> {
     const { form } = payload;
     try {
       setIsLoading(true);
+
       await servicePostSectors({ nome: payload?.nome });
       form.restart();
+      // if (set_item) {
+      //   onClose();
+      // }
       setShowComponentTop(SHOW_TOP_DEFAULT);
       getDataSectors();
       dispatch(
@@ -117,6 +129,10 @@ export function useListSectors(): useListSectorsData {
     }
   }
 
+  React.useEffect(() => {
+    getDataSectors();
+  }, []);
+
   return {
     onCallTopNew: () => {
       setShowComponentTop(SHOW_NEW);
@@ -128,6 +144,7 @@ export function useListSectors(): useListSectorsData {
     onGetDataDelete,
     onConfirmDelete,
     onCreateSector,
+    onSelectSector,
     isNotFoundData: !isLoading && dataSector.length === 0,
     isLoading,
     dataSector,

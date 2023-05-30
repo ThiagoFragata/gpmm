@@ -12,5 +12,9 @@ export const ContainerTopNewSector = styled.div<TopItemModifier>`
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+  .sector__buttons {
+    display: flex;
+    column-gap: 16px;
+  }
   ${({ isVisible }) => modifierTop[isVisible ? "visible" : "hidden"]};
 `;

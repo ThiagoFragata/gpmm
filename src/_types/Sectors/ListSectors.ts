@@ -19,6 +19,7 @@ export interface useListSectorsData {
   onGetDataDelete: (data: dataDeleteProps) => void;
   onConfirmDelete: () => void;
   onCreateSector: (data: createSector) => void;
+  onSelectSector: (data: { setor: number; label_setor: string }) => void;
   isNotFoundData: boolean;
   isLoading: boolean;
   dataSector: IItemSector[];
@@ -30,9 +31,17 @@ export interface useListSectorsData {
   isAwaitDelete: boolean;
 }
 
+export interface useListSectorsProps {
+  onClose: () => void;
+  formRef: React.MutableRefObject<FormApi<any, any> | undefined>;
+}
+
 export type TopNewSectorProps = {
   isVisible: boolean;
-} & Pick<useListSectorsData, "onCreateSector" | "isLoading">;
+} & Pick<
+  useListSectorsData,
+  "onCreateSector" | "isLoading" | "onCallTopDefault"
+>;
 
 export interface TopItemModifier {
   isVisible: boolean;
@@ -46,6 +55,12 @@ export type ListProps = Pick<
   | "tableTitle"
   | "isAwaitDelete"
   | "onGetDataDelete"
+  | "onSelectSector"
 >;
 
 export type onCreateSectorProps = createSector;
+
+export interface onSelectSectorProps {
+  setor: number;
+  label_setor: string;
+}
