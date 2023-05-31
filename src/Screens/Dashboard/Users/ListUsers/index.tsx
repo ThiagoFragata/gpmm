@@ -10,6 +10,7 @@ import {
   FooterData,
   MenuAction,
   Search,
+  SideView,
   Status,
   TableContent,
   TableItem,
@@ -18,6 +19,7 @@ import {
 } from "@/Components";
 import { useListUsers } from "./useListUsers";
 import { PATHS } from "@/_utils/constants";
+import { ShowDetails } from "./Partials/ShowDetails";
 
 export const ListUsers: NextPageWithLayout = () => {
   const {
@@ -30,17 +32,27 @@ export const ListUsers: NextPageWithLayout = () => {
     dataDelete,
     isAwaitDelete,
     dataPagination,
+    dataShowUser,
+    isOpenShowDetails,
     onTryAgainGetData,
     onChangePage,
-    onChangeSizePage
+    onChangeSizePage,
+    onGetDataShowDetails,
+    onCloseDetails
   } = useListUsers();
 
   return (
     <ContainerListUsers>
       <BreadCrumb items={breadCrumb} />
+      <ShowDetails
+        isOpen={isOpenShowDetails}
+        data={dataShowUser}
+        onClose={onCloseDetails}
+      />
+
       <DataBox>
         <div className="top__options">
-          <Search />
+          <span />
           <Button
             title="Novo"
             iconName="MoreIcon"
@@ -89,7 +101,10 @@ export const ListUsers: NextPageWithLayout = () => {
                           alert("onEdit");
                         }}
                         onShowDetails={() => {
-                          alert("onShowDetails");
+                          onGetDataShowDetails(item);
+                          // console.log("🔥🔥🔥🔥________________________🚑");
+                          // console.log(JSON.stringify(item, null, 2));
+                          // console.log("🔥🔥🔥🔥________________________🚑");
                         }}
                       />
                     </TableItem>

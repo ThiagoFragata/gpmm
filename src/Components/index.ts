@@ -23,3 +23,6 @@ export { ListSectors } from "./ListSectors";
 export { FormToggle } from "./FormToggle";
 export { CommonCalendar } from "./Calendar/CommonCalendar";
 export { InputSelect } from "./InputSelect";
+export { SideView } from "./SideView";
+export { TitleDetails } from "./TitleDetails";
+export { LineDetails } from "./LineDetails";

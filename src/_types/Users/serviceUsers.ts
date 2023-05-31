@@ -23,7 +23,7 @@ export interface IItemUser {
     | "DESATIVADA"
     | "ATIVADA";
   motorista: {
-    numeroCnh: string;
+    numeroCnh?: string;
   };
 }
 
