@@ -47,7 +47,7 @@ export const EditUser: NextPageWithLayout = () => {
             decorators={[focusOnError]}
             initialValues={dataUser}
             validate={validateEditUser}
-            render={({ handleSubmit, form, values, errors }) => {
+            render={({ handleSubmit, form, values, pristine }) => {
               formRef.current = form;
               const shouldRenderFieldCNH = values?.auth__drive;
               return (
@@ -151,16 +151,17 @@ export const EditUser: NextPageWithLayout = () => {
                     />
                     <div className="form__buttons">
                       <Button
-                        variant="outline"
                         type="button"
+                        variant="ghost"
                         title="Cancelar"
                         disabled={isLoading}
                         navigateTo={PATHS.dashboard.usuarios}
                       />
                       <Button
                         type="submit"
-                        title="Salvar"
-                        disabled={isLoading}
+                        variant="light"
+                        title="Atualizar"
+                        disabled={isLoading || pristine}
                       />
                     </div>
                   </form>

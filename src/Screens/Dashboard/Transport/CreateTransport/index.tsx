@@ -58,7 +58,8 @@ export const CreateTransport: NextPageWithLayout = () => {
               </div>
               <div className="form__buttons">
                 <Button
-                  variant="outline"
+                  type="button"
+                  variant="ghost"
                   title="Cancelar"
                   disabled={isLoading}
                   navigateTo={PATHS.dashboard.recursosTransportes}

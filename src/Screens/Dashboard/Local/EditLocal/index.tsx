@@ -63,6 +63,7 @@ export const EditLocal: NextPageWithLayout = () => {
               </div>
               <div className="form__buttons">
                 <Button
+                  type="button"
                   variant="ghost"
                   title="Cancelar"
                   disabled={isLoading}
