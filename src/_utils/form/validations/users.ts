@@ -7,9 +7,7 @@ export const initialValuesUser = {
   cpf: "",
   siape: "",
   dataNascimento: "",
-  tipoPerfil: "",
   telefone: "",
-  label_setor: null,
   auth__drive: false,
   email: ""
 };
@@ -65,3 +63,5 @@ export const validateUser = validateFormValues(
     })
   })
 );
+
+export const validateEditUser = validateUser;

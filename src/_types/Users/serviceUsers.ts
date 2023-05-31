@@ -32,7 +32,7 @@ export type IItemUserRegister = {
   setor: number;
 } & Pick<
   IItemUser,
-  "nome" | "cpf" | "siape" | "dataNascimento" | "tipoPerfil" | "email"
+  "nome" | "cpf" | "siape" | "dataNascimento" | "email" | "status"
 >;
 
 export type serviceGetUserResponse = {

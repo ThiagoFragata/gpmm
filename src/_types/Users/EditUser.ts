@@ -2,14 +2,15 @@ import { type Decorator } from "final-form";
 import type { itemBreadCrumb } from "../BreadCrumb";
 import { type IDataFormUser } from "../Common";
 
-export interface useCreateUserData {
+export interface useEditUserData {
   breadCrumb: itemBreadCrumb[];
   isLoading: boolean;
   isShowSectors: boolean;
+  dataUser: IDataFormUser;
   onOpenListSectors: () => void;
   onCloseListSectors: () => void;
-  onCreateUser: (payload: IDataFormUser) => void;
+  //   onEditUser: (payload: IDataFormUser) => void;
   focusOnError: Decorator<IDataFormUser, Partial<IDataFormUser>>;
 }
 
-export type onCreateUserProps = IDataFormUser;
+export type onEditUserProps = IDataFormUser;

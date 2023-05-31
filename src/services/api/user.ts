@@ -1,4 +1,5 @@
 import type {
+  serviceGetUserByIdResponse,
   serviceGetUserResponse,
   serviceGetUsersProps,
   servicePostUserProps
@@ -16,14 +17,14 @@ export async function serviceGetUsers({
   return data;
 }
 
-// export async function serviceGetUserById(
-// id: number
-// ): Promise<serviceGetUserByIdResponse> {
-// const { data } = await baseAPI.get<serviceGetUserByIdResponse>(
-// `${RESOURCE}/${id}`
-// );
-// return data;
-// }
+export async function serviceGetUserById(
+  id: number
+): Promise<serviceGetUserByIdResponse> {
+  const { data } = await baseAPI.get<serviceGetUserByIdResponse>(
+    `${USERS}/${id}`
+  );
+  return data;
+}
 
 export async function servicePostUser(
   payload: servicePostUserProps

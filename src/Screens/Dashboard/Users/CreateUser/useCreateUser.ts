@@ -12,6 +12,7 @@ import { formatDateToBack } from "@/_utils/masks";
 import { servicePostUser } from "@/services/api/user";
 import createDecorator from "final-form-focus";
 import { type IDataFormUser } from "@/_types/Common";
+import { getLabelTypeProfile } from "@/_utils/getTypeProfile";
 
 export function useCreateUser(): useCreateUserData {
   const dispatch = useDispatch();
@@ -30,8 +31,7 @@ export function useCreateUser(): useCreateUserData {
   async function onCreateUser(data: onCreateUserProps): Promise<void> {
     try {
       setIsLoading(true);
-      const typeProfile =
-        PROFILE_TYPE.find(item => item.id === 1)?.name ?? "NORMAL";
+      const typeProfile = getLabelTypeProfile(data?.tipoPerfil);
       const shouldSendCHN = data?.auth__drive && data?.numeroCnh !== undefined;
 
       const payload = {

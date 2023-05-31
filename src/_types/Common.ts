@@ -35,4 +35,6 @@ export type typeStringStatus =
 export type IDataFormUser = {
   auth__drive: boolean;
   numeroCnh?: string;
+  label_setor?: string;
+  tipoPerfil: number;
 } & IItemUserRegister;
