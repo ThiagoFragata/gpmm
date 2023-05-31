@@ -6,10 +6,12 @@ import { useSettingsStatusAccount } from "./useSettingsStatusAccount";
 import { Button } from "../Button";
 
 export function SettingsStatusAccount({
-  status = "unknow"
+  status = "unknow",
+  className
 }: SettingsStatusAccountProps): JSX.Element {
-  const [currentStatus, setCurrentStatus] =
-    React.useState<typeStringStatus>(status);
+  const [currentStatus, setCurrentStatus] = React.useState<typeStringStatus>(
+    status === null ? "unknow" : status
+  );
   React.useEffect(() => {
     setCurrentStatus(status);
   }, [status]);
@@ -19,7 +21,7 @@ export function SettingsStatusAccount({
   const Icon = dataCard.icon;
 
   return (
-    <ContainerSettingsStatusAccount status={status}>
+    <ContainerSettingsStatusAccount status={status} className={className}>
       <div className="status__header">
         <div className="status__circle">
           <Icon />

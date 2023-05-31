@@ -21,7 +21,6 @@ const modifier = {
 
 export const ContainerDialogModal = styled.div<{ isOpen: boolean }>`
   display: flex;
-  border: 20px solid purple;
   background: rgba(0, 0, 0, 0.2);
   justify-content: center;
   align-items: center;

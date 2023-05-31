@@ -21,7 +21,8 @@ export interface IItemUser {
     | "PENDENTE_ATIVACAO_USUARIO"
     | "PENDENTE_ATIVACAO_ADMIN"
     | "DESATIVADA"
-    | "ATIVADA";
+    | "ATIVADA"
+    | "unknow";
   motorista: {
     numeroCnh?: string;
   };
@@ -48,7 +49,10 @@ export type serviceGetUserByIdResponse = IItemUser;
 
 export type servicePostUserProps = IItemUserRegister;
 
-export type servicePutUserProps = IItemUser;
+export interface servicePutUserProps {
+  id: number;
+  payload: IItemUserRegister;
+}
 
 export interface serviceDeleteUserProps {
   id: number;

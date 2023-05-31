@@ -1,16 +1,19 @@
 import React from "react";
 import { type itemBreadCrumb } from "@/_types/BreadCrumb";
 import { useRouter } from "next/router";
-import { PATHS, PROFILE_TYPE } from "@/_utils/constants";
+import { PATHS, PROFILE_TYPE, TYPES_STATUS } from "@/_utils/constants";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { formatDateToBack, regexCPF, regexPhone } from "@/_utils/masks";
-import { serviceGetUserById } from "@/services/api/user";
+import { serviceGetUserById, servicePutUser } from "@/services/api/user";
 import createDecorator from "final-form-focus";
-import { type IDataFormUser } from "@/_types/Common";
+import { type typeStringStatus, type IDataFormUser } from "@/_types/Common";
 import moment from "moment";
-import { type useEditUserData } from "@/_types/Users/EditUser";
-import { getIdTypeProfile } from "@/_utils/getTypeProfile";
+import {
+  type onEditUserProps,
+  type useEditUserData
+} from "@/_types/Users/EditUser";
+import { getIdTypeProfile, getLabelTypeProfile } from "@/_utils/getTypeProfile";
 
 export function useEditUser(): useEditUserData {
   const dispatch = useDispatch();
@@ -35,6 +38,8 @@ export function useEditUser(): useEditUserData {
       try {
         setIsLoading(true);
         const data = await serviceGetUserById(id);
+        const status: typeStringStatus =
+          TYPES_STATUS.find(item => item === data?.status) ?? "unknow";
         const formInitialData = {
           auth__drive: data?.motorista?.numeroCnh !== undefined,
           numeroCnh:
@@ -50,7 +55,7 @@ export function useEditUser(): useEditUserData {
           dataNascimento: moment(data?.dataNascimento).format("DD[/]MM[/]YYYY"),
           tipoPerfil: getIdTypeProfile(data?.tipoPerfil),
           email: data?.email,
-          status: data?.status
+          status
         };
         setDataUser(formInitialData);
       } catch (error) {
@@ -76,6 +81,45 @@ export function useEditUser(): useEditUserData {
     }
   }, [idUser]);
 
+  async function onEditUser(data: onEditUserProps): Promise<void> {
+    try {
+      setIsLoading(true);
+      const typeProfile = getLabelTypeProfile(data?.tipoPerfil);
+      const shouldSendCHN = data?.auth__drive && data?.numeroCnh !== undefined;
+
+      const payload = {
+        nome: data?.nome,
+        cpf: data?.cpf,
+        siape: data?.siape,
+        dataNascimento: formatDateToBack(data?.dataNascimento),
+        tipoPerfil: typeProfile,
+        telefone: data?.telefone,
+        setor: Number(data?.setor),
+        email: data?.email,
+        numeroCnh: shouldSendCHN ? data?.numeroCnh : ""
+      };
+      await servicePutUser({ id: Number(idUser), payload });
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "success",
+          description: "Usuário atualizado com sucesso"
+        })
+      );
+      router.push(PATHS.dashboard.usuarios);
+    } catch (error) {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "error",
+          description: "Falha ao atualizar registro, tente novamente"
+        })
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   const focusOnError = React.useMemo(
     () => createDecorator<IDataFormUser, Partial<IDataFormUser>>(),
     []
@@ -92,7 +136,7 @@ export function useEditUser(): useEditUserData {
     onCloseListSectors: () => {
       setIsShowSectors(false);
     },
-    // onEditUser,
+    onEditUser,
     focusOnError
   };
 }

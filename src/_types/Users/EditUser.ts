@@ -9,7 +9,7 @@ export interface useEditUserData {
   dataUser: IDataFormUser;
   onOpenListSectors: () => void;
   onCloseListSectors: () => void;
-  //   onEditUser: (payload: IDataFormUser) => void;
+  onEditUser: (payload: IDataFormUser) => void;
   focusOnError: Decorator<IDataFormUser, Partial<IDataFormUser>>;
 }
 

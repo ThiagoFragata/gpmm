@@ -2,7 +2,8 @@ import type {
   serviceGetUserByIdResponse,
   serviceGetUserResponse,
   serviceGetUsersProps,
-  servicePostUserProps
+  servicePostUserProps,
+  servicePutUserProps
 } from "@/_types/Users/serviceUsers";
 import { baseAPI } from "./";
 import { USERS, USER_ADM_SEND_CODE } from "./endpoints";
@@ -36,12 +37,13 @@ export async function servicePostUser(
   return data;
 }
 
-// export async function servicePutLocal(
-// payload: servicePutLocalProps
-// ): Promise<serviceGetUserResponse> {
-// const { data } = await baseAPI.put<serviceGetUserResponse>(
-// USERS,
-// payload
-// );
-// return data;
-// }
+export async function servicePutUser({
+  id,
+  payload
+}: servicePutUserProps): Promise<serviceGetUserResponse> {
+  const { data } = await baseAPI.put<serviceGetUserResponse>(
+    `${USERS}/${id}`,
+    payload
+  );
+  return data;
+}

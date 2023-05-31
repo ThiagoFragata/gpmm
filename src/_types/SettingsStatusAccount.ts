@@ -20,6 +20,7 @@ export interface useSettingsStatusAccountProps {
 
 export interface SettingsStatusAccountProps {
   status?: typeStringStatus;
+  className?: string;
 }
 
 export interface SettingsStatusAccountModifier {

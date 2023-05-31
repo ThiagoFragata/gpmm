@@ -1,3 +1,4 @@
+import { type typeStringStatus } from "@/_types/Common";
 import { type IScreenSteps } from "@/_types/FirstAccess";
 import { type ITabOptions } from "@/_types/Resources";
 
@@ -77,4 +78,11 @@ export const PROFILE_TYPE: Array<{ id: number; name: string }> = [
     id: 1,
     name: "ADMIN"
   }
+];
+
+export const TYPES_STATUS: typeStringStatus[] = [
+  "PENDENTE_ATIVACAO_USUARIO",
+  "PENDENTE_ATIVACAO_ADMIN",
+  "DESATIVADA",
+  "ATIVADA"
 ];
