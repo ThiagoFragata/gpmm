@@ -145,6 +145,9 @@ export function useListUsers(): useListUsersData {
       setCurrentPage(value);
     },
     onChangeSizePage,
-    onGetDataShowDetails
+    onGetDataShowDetails,
+    onSendToEdit: id => {
+      router.push(`${PATHS.dashboard.usuarioEditar}${id}`);
+    }
   };
 }

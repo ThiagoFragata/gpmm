@@ -38,7 +38,8 @@ export const ListUsers: NextPageWithLayout = () => {
     onChangePage,
     onChangeSizePage,
     onGetDataShowDetails,
-    onCloseDetails
+    onCloseDetails,
+    onSendToEdit
   } = useListUsers();
 
   return (
@@ -98,7 +99,7 @@ export const ListUsers: NextPageWithLayout = () => {
                           alert("onDelete");
                         }}
                         onEdit={() => {
-                          alert("onEdit");
+                          onSendToEdit(Number(item?.id));
                         }}
                         onShowDetails={() => {
                           onGetDataShowDetails(item);

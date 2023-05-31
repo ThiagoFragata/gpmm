@@ -32,6 +32,7 @@ export const CreateUser: NextPageWithLayout = () => {
     isLoading,
     breadCrumb,
     isShowSectors,
+    focusOnError,
     onOpenListSectors,
     onCloseListSectors,
     onCreateUser
@@ -45,11 +46,12 @@ export const CreateUser: NextPageWithLayout = () => {
           onSubmit={values => {
             onCreateUser(values);
           }}
+          decorators={[focusOnError]}
           initialValues={initialValuesUser}
           validate={validateUser}
           render={({ handleSubmit, form, values, errors }) => {
             formRef.current = form;
-            const shouldRenderFieldCNH = values?.auth__drive !== false;
+            const shouldRenderFieldCNH = values?.auth__drive;
             return (
               <ContentScroll>
                 <form onSubmit={handleSubmit} className="container__form">

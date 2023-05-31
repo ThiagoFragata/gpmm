@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { formatDateToBack } from "@/_utils/masks";
 import { servicePostUser } from "@/services/api/user";
+import createDecorator from "final-form-focus";
+import { type IDataFormUser } from "@/_types/Common";
 
 export function useCreateUser(): useCreateUserData {
   const dispatch = useDispatch();
@@ -65,6 +67,11 @@ export function useCreateUser(): useCreateUserData {
     }
   }
 
+  const focusOnError = React.useMemo(
+    () => createDecorator<IDataFormUser, Partial<IDataFormUser>>(),
+    []
+  );
+
   return {
     isLoading,
     breadCrumb,
@@ -75,6 +82,7 @@ export function useCreateUser(): useCreateUserData {
     onCloseListSectors: () => {
       setIsShowSectors(false);
     },
-    onCreateUser
+    onCreateUser,
+    focusOnError
   };
 }

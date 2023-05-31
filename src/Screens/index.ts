@@ -10,4 +10,5 @@ export { Resources } from "./Dashboard/Resources";
 export { CreateLocal } from "./Dashboard/Local/CreateLocal";
 export { EditLocal } from "./Dashboard/Local/EditLocal";
 export { CreateUser } from "./Dashboard/Users/CreateUser";
+export { EditUser } from "./Dashboard/Users/EditUser";
 export { CreateTransport } from "./Dashboard/Transport/CreateTransport";

@@ -31,6 +31,12 @@ const PATHS_TRANSPORTS = {
   recursosEditarTransporte: "/dashboard/recursos/transportes/editar/"
 };
 
+const PATHS_USERS = {
+  usuarios: "/dashboard/usuarios",
+  usuarioNovo: "/dashboard/usuarios/novo",
+  usuarioEditar: "/dashboard/usuarios/editar/"
+};
+
 export const PATHS = {
   login: "/",
   primeiroAcesso: "/primeiro-acesso",
@@ -40,13 +46,12 @@ export const PATHS = {
     solicitacoes: "/dashboard/solicitacoes",
     recursos: "/dashboard/recursos",
     recursosMotoristas: "/dashboard/recursos/motoristas",
-    usuarios: "/dashboard/usuarios",
-    usuarioNovo: "/dashboard/usuarios/novo",
     perfil: "/dashboard/perfil",
     notificoes: "/dashboard/notificoes",
     sobre: "/dashboard/sobre",
     ...PATHS_LOCAL,
-    ...PATHS_TRANSPORTS
+    ...PATHS_TRANSPORTS,
+    ...PATHS_USERS
   }
 };
 

@@ -20,6 +20,7 @@ export type useListUsersData = {
   onCloseDetails: () => void;
   onTryAgainGetData: () => void;
   onGetDataShowDetails: (value: IItemUser) => void;
+  onSendToEdit: (value: number) => void;
 } & IRestDataPagination;
 export interface ShowDetailsProps {
   isOpen: boolean;
