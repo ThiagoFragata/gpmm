@@ -11,6 +11,7 @@ import {
   FormToggle,
   InputSelect,
   ListSectors,
+  SettingsStatusAccount,
   TextInput,
   TitleDivider
 } from "@/Components";
@@ -54,6 +55,11 @@ export const EditUser: NextPageWithLayout = () => {
                 <ContentScroll>
                   <form onSubmit={handleSubmit} className="container__form">
                     <TitleDivider title="Dados gerais" />
+                    <SettingsStatusAccount status="ATIVADA" />
+                    <SettingsStatusAccount status="DESATIVADA" />
+                    <SettingsStatusAccount status="PENDENTE_ATIVACAO_ADMIN" />
+                    <SettingsStatusAccount status="PENDENTE_ATIVACAO_USUARIO" />
+                    <SettingsStatusAccount status="unknow" />
                     <div className="childrens__form user__fields">
                       <TextInput
                         label="Nome *"
@@ -149,6 +155,7 @@ export const EditUser: NextPageWithLayout = () => {
                       title="Status da conta"
                       className="user__divider"
                     />
+                    {/* <SettingsStatusAccount status={dataUser?.status} /> */}
                     <div className="form__buttons">
                       <Button
                         type="button"

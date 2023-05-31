@@ -30,7 +30,8 @@ export type typeStringStatus =
   | "PENDENTE_ATIVACAO_USUARIO"
   | "PENDENTE_ATIVACAO_ADMIN"
   | "DESATIVADA"
-  | "ATIVADA";
+  | "ATIVADA"
+  | "unknow";
 
 export type IDataFormUser = {
   auth__drive: boolean;
