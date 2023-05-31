@@ -54,7 +54,11 @@ export const ITEMS__SIDEBAR = {
       id: "usuarios",
       label: "Usuários",
       path: PATHS.dashboard.usuarios,
-      paths: [PATHS.dashboard.usuarios, PATHS.dashboard.usuarioNovo],
+      paths: [
+        PATHS.dashboard.usuarios,
+        PATHS.dashboard.usuarioNovo,
+        PATHS.dashboard.usuarioEditar
+      ],
       icon: ({ className }: { className?: string }) => (
         <UsersIcon className={className} />
       )

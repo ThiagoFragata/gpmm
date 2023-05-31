@@ -158,6 +158,7 @@ export const CreateUser: NextPageWithLayout = () => {
 
                   <div className="form__buttons">
                     <Button
+                      type="button"
                       variant="outline"
                       title="Cancelar"
                       disabled={isLoading}

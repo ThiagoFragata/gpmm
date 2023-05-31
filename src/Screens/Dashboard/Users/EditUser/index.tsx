@@ -152,6 +152,7 @@ export const EditUser: NextPageWithLayout = () => {
                     <div className="form__buttons">
                       <Button
                         variant="outline"
+                        type="button"
                         title="Cancelar"
                         disabled={isLoading}
                         navigateTo={PATHS.dashboard.usuarios}
