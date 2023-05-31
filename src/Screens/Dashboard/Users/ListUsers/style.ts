@@ -33,4 +33,9 @@ export const ContainerListUsers = styled(ContainerDashboard)`
       font-size: ${pxToRem(13)};
     }
   }
+  .table__user--loading {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+  }
 `;

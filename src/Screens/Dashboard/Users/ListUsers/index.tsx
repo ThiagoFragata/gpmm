@@ -8,8 +8,10 @@ import {
   DataNotFound,
   FooterData,
   MenuAction,
+  MultSkeleton,
   Search,
   SideView,
+  Skeleton,
   Status,
   TableContent,
   TableItem,
@@ -64,51 +66,81 @@ export const ListUsers: NextPageWithLayout = () => {
         {!isNotFoundData ? (
           <React.Fragment>
             <TableScroll>
-              {dataUsers.map((item, index) => {
-                const directionMenu = index < 4 ? "bottom" : "top";
-                return (
-                  <TableContent key={index}>
-                    <TableItem className="size__name">
-                      <div className="table__user">
-                        <p className="user__name">{item?.nome}</p>
-                        <p className="user__email">{item?.email}</p>
-                      </div>
-                    </TableItem>
-                    <TableItem
-                      item={{ label: item?.siape, className: "size__siape" }}
-                    />
-                    <TableItem
-                      item={{
-                        label: item?.telefone.numero,
-                        className: "size__phone"
-                      }}
-                    />
-                    <TableItem className="size__status">
-                      <Status type={item?.status as typeStringStatus} />
-                    </TableItem>
-                    <TableItem
-                      item={{
-                        label: item?.setor?.nome,
-                        className: "size__link"
-                      }}
-                    />
-                    <TableItem className="size__action">
-                      <MenuAction
-                        direction={directionMenu}
-                        onDelete={() => {
-                          alert("onDelete");
-                        }}
-                        onEdit={() => {
-                          onSendToEdit(Number(item?.id));
-                        }}
-                        onShowDetails={() => {
-                          onGetDataShowDetails(item);
+              {!isLoading ? (
+                dataUsers.map((item, index) => {
+                  const directionMenu = index < 4 ? "bottom" : "top";
+                  return (
+                    <TableContent key={index}>
+                      <TableItem className="size__name">
+                        <div className="table__user">
+                          <p className="user__name">{item?.nome}</p>
+                          <p className="user__email">{item?.email}</p>
+                        </div>
+                      </TableItem>
+                      <TableItem
+                        item={{ label: item?.siape, className: "size__siape" }}
+                      />
+                      <TableItem
+                        item={{
+                          label: item?.telefone.numero,
+                          className: "size__phone"
                         }}
                       />
-                    </TableItem>
-                  </TableContent>
-                );
-              })}
+                      <TableItem className="size__status">
+                        <Status type={item?.status as typeStringStatus} />
+                      </TableItem>
+                      <TableItem
+                        item={{
+                          label: item?.setor?.nome,
+                          className: "size__link"
+                        }}
+                      />
+                      <TableItem className="size__action">
+                        <MenuAction
+                          direction={directionMenu}
+                          // onDelete={() => {
+                          //   alert("onDelete");
+                          // }}
+                          onEdit={() => {
+                            onSendToEdit(Number(item?.id));
+                          }}
+                          onShowDetails={() => {
+                            onGetDataShowDetails(item);
+                          }}
+                        />
+                      </TableItem>
+                    </TableContent>
+                  );
+                })
+              ) : (
+                <React.Fragment>
+                  <MultSkeleton amount={10}>
+                    <TableContent>
+                      <TableItem className="size__name">
+                        <div className="table__user--loading">
+                          <Skeleton width="60%" />
+                          <Skeleton />
+                        </div>
+                      </TableItem>
+                      <TableItem className="size__siape">
+                        <Skeleton />
+                      </TableItem>
+                      <TableItem className="size__phone">
+                        <Skeleton />
+                      </TableItem>
+                      <TableItem className="size__status">
+                        <Skeleton />
+                      </TableItem>
+                      <TableItem className="size__link">
+                        <Skeleton />
+                      </TableItem>
+                      <TableItem className="size__action">
+                        <Skeleton width="70%" />
+                      </TableItem>
+                    </TableContent>
+                  </MultSkeleton>
+                </React.Fragment>
+              )}
             </TableScroll>
             <FooterData
               onChangePage={onChangePage}

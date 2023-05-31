@@ -16,7 +16,7 @@ export interface TableContentProps {
 export interface TableItemProps {
   className?: string;
   item?: tableItems;
-  children?: JSX.Element;
+  children?: JSX.Element | JSX.Element[];
   loading?: JSX.Element | JSX.Element[];
 }
 
