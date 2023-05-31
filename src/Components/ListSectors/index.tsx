@@ -31,7 +31,8 @@ export function ListSectors({
     dataSector,
     isVisibleDefaultTop,
     isVisibleNewSector,
-    tableTitle
+    tableTitle,
+    amountSector
   } = useListSectors({ onClose, formRef });
   return (
     <ContainerListSectors isShow={isShow}>
@@ -59,7 +60,9 @@ export function ListSectors({
           </div>
         </div>
         <TopDefault isVisible={isVisibleDefaultTop}>
-          <h3 className="top__title">Exibindo todos 10 setores registrados</h3>
+          <h3 className="top__title">
+            Exibindo todos {amountSector} setores registrados
+          </h3>
           <Button title="Novo" onClick={onCallTopNew} />
         </TopDefault>
         <TopNewSector

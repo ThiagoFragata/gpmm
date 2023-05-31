@@ -153,6 +153,7 @@ export function useListSectors({
     tableTitle,
     isAwaitDelete,
     isOpenModalDialog,
-    dataDelete
+    dataDelete,
+    amountSector: dataSector.length ?? 0
   };
 }

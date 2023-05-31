@@ -29,6 +29,7 @@ export interface useListSectorsData {
   isOpenModalDialog: boolean;
   dataDelete: dataDeleteProps;
   isAwaitDelete: boolean;
+  amountSector: number;
 }
 
 export interface useListSectorsProps {
