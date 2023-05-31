@@ -119,10 +119,6 @@ export const CreateUser: NextPageWithLayout = () => {
                     />
                   </div>
                 </div>
-                <textarea
-                  style={{ height: "150px", minWidth: "300px" }}
-                  value={JSON.stringify(values, null, 2)}
-                />
                 <div className="form__buttons">
                   <Button
                     variant="outline"
