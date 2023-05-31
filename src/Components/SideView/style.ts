@@ -28,6 +28,15 @@ export const ContainerSideView = styled.aside<SideViewModifier>`
     top: 0;
     z-index: 2;
     height: 100vh;
+    border: 2px solid red;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${colors.GRAY_LIGHT};
+      border-radius: 10px;
+    }
     background-color: ${colors.WHITE};
     border-radius: 20px 0 0 20px;
     padding: 32px;

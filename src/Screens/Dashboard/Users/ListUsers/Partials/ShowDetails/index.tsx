@@ -1,6 +1,8 @@
 import React from "react";
 import { ContainerShowDetails } from "./style";
 import { type ShowDetailsProps } from "@/_types/Users/ListUsers";
+import moment from "moment";
+import "moment/locale/pt-br";
 import {
   IconButton,
   LineDetails,
@@ -21,6 +23,14 @@ export function ShowDetails({
       ? regexPhone(data?.telefone?.numero)
       : "";
   const shouldRenderCNH = data?.motorista?.numeroCnh !== undefined;
+  const formatedBirthDate =
+    data?.dataNascimento !== undefined
+      ? moment(data?.dataNascimento).format("DD [de] MMMM [de] YYYY")
+      : "";
+  const currentAge =
+    data?.dataNascimento !== undefined
+      ? `(${moment().diff(data?.dataNascimento, "years")} anos)`
+      : "";
   return (
     <SideView isVisible={isOpen} size="large" onClose={onClose}>
       <ContainerShowDetails>
@@ -42,7 +52,7 @@ export function ShowDetails({
           <LineDetails label="CPF" value={cpf} />
           <LineDetails
             label="Data de nascimento"
-            value={data?.dataNascimento}
+            value={`${formatedBirthDate} ${currentAge ?? ""}`}
           />
           <LineDetails label="Celular" value={phone} />
           <LineDetails label="Setor" value={data?.setor?.nome} />
@@ -50,6 +60,10 @@ export function ShowDetails({
             <LineDetails label="CNH" value={data?.motorista?.numeroCnh} />
           )}
         </div>
+        <TitleSubtitle
+          title="Autorização para dirigir"
+          className="title__section"
+        />
       </ContainerShowDetails>
     </SideView>
   );
