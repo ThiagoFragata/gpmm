@@ -1,3 +1,5 @@
+import { type IItemUserRegister } from "./Users/serviceUsers";
+
 export interface IDataPage {
   last: boolean;
   totalPages: number;
@@ -23,3 +25,14 @@ export interface dataDeleteProps {
   name: string;
   id: number;
 }
+
+export type typeStringStatus =
+  | "PENDENTE_ATIVACAO_USUARIO"
+  | "PENDENTE_ATIVACAO_ADMIN"
+  | "DESATIVADA"
+  | "ATIVADA";
+
+export type IDataFormUser = {
+  auth__drive: boolean;
+  numeroCnh?: string;
+} & IItemUserRegister;

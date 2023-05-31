@@ -1,10 +1,6 @@
-export type typeStatus = "active" | "waiting" | "inactive";
+import { type typeStringStatus } from "./Common";
 
-export type typeStringStatus =
-  | "PENDENTE_ATIVACAO_USUARIO"
-  | "PENDENTE_ATIVACAO_ADMIN"
-  | "DESATIVADA"
-  | "ATIVADA";
+export type typeStatus = "active" | "waiting" | "inactive";
 
 export interface StatusProps {
   type: typeStringStatus;

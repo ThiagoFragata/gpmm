@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import { colors } from "./theme";
+import { pxToRem } from "@/_utils/pxToRem";
 
 export default createGlobalStyle`
   html,
@@ -45,6 +47,7 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     flex: 1;
+    height: 100%;
   }
   .childrens__form {
     display: grid;
@@ -58,5 +61,10 @@ export default createGlobalStyle`
     justify-content: flex-end;
     column-gap: 16px;
     margin-top: auto;
+  }
+
+  .text__default {
+    color: ${colors.GRAY_SECONDARY};
+    font-size: ${pxToRem(16)};
   }
 `;

@@ -1,6 +1,5 @@
 import React from "react";
 import type { NextPageWithLayout } from "@/pages/_app";
-import type { typeStringStatus } from "@/_types/Status";
 import { ContainerListUsers } from "./style";
 import {
   BreadCrumb,
@@ -20,6 +19,7 @@ import {
 import { useListUsers } from "./useListUsers";
 import { PATHS } from "@/_utils/constants";
 import { ShowDetails } from "./Partials/ShowDetails";
+import { type typeStringStatus } from "@/_types/Common";
 
 export const ListUsers: NextPageWithLayout = () => {
   const {

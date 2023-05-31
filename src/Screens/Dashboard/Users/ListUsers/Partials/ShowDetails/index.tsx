@@ -13,7 +13,7 @@ import {
   TitleSubtitle
 } from "@/Components";
 import { regexCPF, regexPhone } from "@/_utils/masks";
-import { type typeStringStatus } from "@/_types/Status";
+import { type typeStringStatus } from "@/_types/Common";
 
 export function ShowDetails({
   isOpen,

@@ -30,6 +30,8 @@ export function useCreateUser(): useCreateUserData {
       setIsLoading(true);
       const typeProfile =
         PROFILE_TYPE.find(item => item.id === 1)?.name ?? "NORMAL";
+      const shouldSendCHN = data?.auth__drive && data?.numeroCnh !== undefined;
+
       const payload = {
         nome: data?.nome,
         cpf: data?.cpf,
@@ -38,7 +40,8 @@ export function useCreateUser(): useCreateUserData {
         tipoPerfil: typeProfile,
         telefone: data?.telefone,
         setor: Number(data?.setor),
-        email: data?.email
+        email: data?.email,
+        numeroCnh: shouldSendCHN ? data?.numeroCnh : null
       };
       await servicePostUser(payload);
       dispatch(

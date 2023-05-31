@@ -29,7 +29,6 @@ const modifier = {
 };
 
 export const ContainerFormToggle = styled.div<FormToggleModifier>`
-  width: 100px;
   display: flex;
   flex-direction: column;
   .toggle__label {
@@ -39,6 +38,7 @@ export const ContainerFormToggle = styled.div<FormToggleModifier>`
     margin-bottom: 12px;
   }
   .toggle__button {
+    width: 100px;
     height: 45px;
     cursor: pointer;
     transition: all 0.3s;

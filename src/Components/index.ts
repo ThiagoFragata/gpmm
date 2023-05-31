@@ -27,3 +27,6 @@ export { SideView } from "./SideView";
 export { TitleDetails } from "./TitleDetails";
 export { LineDetails } from "./LineDetails";
 export { DriveStatusAuthorization } from "./DriveStatusAuthorization";
+export { TitleDivider } from "./TitleDivider";
+export { ContentScroll } from "./ContentScroll";
+export { SettingsStatusAccount } from "./SettingsStatusAccount";

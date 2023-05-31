@@ -10,6 +10,7 @@ export const initialValuesUser = {
   tipoPerfil: "",
   telefone: "",
   label_setor: null,
+  auth__drive: false,
   email: ""
 };
 
@@ -45,7 +46,10 @@ export const validateUser = validateFormValues(
         checkValidDate(value)
       ),
     tipoPerfil: yup.string().required(messageValidations.required),
-    telefone: yup.string().required(messageValidations.required),
+    telefone: yup
+      .string()
+      .required(messageValidations.required)
+      .min(14, messageValidations.phone),
     label_setor: yup
       .string()
       .required(messageValidations.required)
@@ -53,6 +57,11 @@ export const validateUser = validateFormValues(
     email: yup
       .string()
       .email(messageValidations.email)
-      .required(messageValidations.required)
+      .required(messageValidations.required),
+    auth__drive: yup.bool(),
+    numeroCnh: yup.string().when("auth__drive", {
+      is: true,
+      then: schema => schema.required(messageValidations.required)
+    })
   })
 );

@@ -1,5 +1,5 @@
 import type { itemBreadCrumb } from "../BreadCrumb";
-import { type IItemUserRegister } from "./serviceUsers";
+import { type IDataFormUser } from "../Common";
 
 export interface useCreateUserData {
   breadCrumb: itemBreadCrumb[];
@@ -7,7 +7,7 @@ export interface useCreateUserData {
   isShowSectors: boolean;
   onOpenListSectors: () => void;
   onCloseListSectors: () => void;
-  onCreateUser: (payload: IItemUserRegister) => void;
+  onCreateUser: (payload: IDataFormUser) => void;
 }
 
-export type onCreateUserProps = IItemUserRegister;
+export type onCreateUserProps = IDataFormUser;
