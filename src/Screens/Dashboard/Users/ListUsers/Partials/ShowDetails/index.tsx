@@ -4,13 +4,16 @@ import { type ShowDetailsProps } from "@/_types/Users/ListUsers";
 import moment from "moment";
 import "moment/locale/pt-br";
 import {
+  DriveStatusAuthorization,
   IconButton,
   LineDetails,
   SideView,
+  Status,
   TitleDetails,
   TitleSubtitle
 } from "@/Components";
 import { regexCPF, regexPhone } from "@/_utils/masks";
+import { type typeStringStatus } from "@/_types/Status";
 
 export function ShowDetails({
   isOpen,
@@ -31,6 +34,7 @@ export function ShowDetails({
     data?.dataNascimento !== undefined
       ? `(${moment().diff(data?.dataNascimento, "years")} anos)`
       : "";
+  const isDriverAuthorization = data?.motorista?.numeroCnh !== undefined;
   return (
     <SideView isVisible={isOpen} size="large" onClose={onClose}>
       <ContainerShowDetails>
@@ -41,6 +45,12 @@ export function ShowDetails({
           />
           <IconButton name="CloseIcon" onClick={onClose} />
         </div>
+        <TitleSubtitle title="Status da conta" className="title__section" />
+        <Status
+          type={data?.status as typeStringStatus}
+          size="large"
+          className="details__status"
+        />
         <TitleSubtitle
           title="Informações principais"
           className="title__section"
@@ -63,6 +73,10 @@ export function ShowDetails({
         <TitleSubtitle
           title="Autorização para dirigir"
           className="title__section"
+        />
+        <DriveStatusAuthorization
+          authorization={isDriverAuthorization}
+          className="details__auth"
         />
       </ContainerShowDetails>
     </SideView>

@@ -28,7 +28,6 @@ export const ContainerSideView = styled.aside<SideViewModifier>`
     top: 0;
     z-index: 2;
     height: 100vh;
-    border: 2px solid red;
     overflow-y: scroll;
     ::-webkit-scrollbar {
       width: 4px;

@@ -8,6 +8,8 @@ export type typeStringStatus =
 
 export interface StatusProps {
   type: typeStringStatus;
+  className?: string;
+  size?: "large" | "short";
 }
 
 export interface StatusModifier {

@@ -6,6 +6,9 @@ export const ContainerShowDetails = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+  .details__status {
+    margin-top: 25px;
+  }
   .title__section {
     margin-top: 40px;
   }
@@ -14,5 +17,8 @@ export const ContainerShowDetails = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
+  }
+  .details__auth {
+    margin-top: 25px;
   }
 `;

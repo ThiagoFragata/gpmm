@@ -102,9 +102,6 @@ export const ListUsers: NextPageWithLayout = () => {
                         }}
                         onShowDetails={() => {
                           onGetDataShowDetails(item);
-                          // console.log("🔥🔥🔥🔥________________________🚑");
-                          // console.log(JSON.stringify(item, null, 2));
-                          // console.log("🔥🔥🔥🔥________________________🚑");
                         }}
                       />
                     </TableItem>

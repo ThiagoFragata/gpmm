@@ -2,18 +2,24 @@ import React from "react";
 import { ContainerStatus } from "./style";
 import type { StatusProps, typeStatus } from "@/_types/Status";
 
-export function Status({ type }: StatusProps): JSX.Element {
-  // const labelType = {
-  // active: "Ativo",
-  // waiting: "Aguardando",
-  // inactive: "Inativo"
-  // };
-
+export function Status({
+  type,
+  className,
+  size = "short"
+}: StatusProps): JSX.Element {
   const labelType = {
-    PENDENTE_ATIVACAO_USUARIO: "Usuário precisa ativar",
-    PENDENTE_ATIVACAO_ADMIN: "Admin precisa ativar",
-    DESATIVADA: "Inativo",
-    ATIVADA: "Ativo"
+    large: {
+      PENDENTE_ATIVACAO_USUARIO: "Pendente ativação pelo usuário",
+      PENDENTE_ATIVACAO_ADMIN: "Pendente aprovação pelo administrador",
+      DESATIVADA: "Conta do usuário atualmente inativa",
+      ATIVADA: "Conta do usuário atualmente ativa"
+    },
+    short: {
+      PENDENTE_ATIVACAO_USUARIO: "Usuário precisa ativar",
+      PENDENTE_ATIVACAO_ADMIN: "Admin precisa ativar",
+      DESATIVADA: "Inativo",
+      ATIVADA: "Ativo"
+    }
   };
 
   function getTypeStyle(): typeStatus {
@@ -30,8 +36,8 @@ export function Status({ type }: StatusProps): JSX.Element {
   }
 
   return (
-    <ContainerStatus type={getTypeStyle()}>
-      <p className="status__label">{labelType[type]}</p>
+    <ContainerStatus type={getTypeStyle()} className={className}>
+      <p className="status__label">{labelType[size][type]}</p>
     </ContainerStatus>
   );
 }
