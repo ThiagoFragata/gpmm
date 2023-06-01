@@ -1,6 +1,6 @@
 export interface onSubmitLoginProps {
-  user_name: string;
-  password: string;
+  email: string;
+  senha: string;
 }
 
 export interface useLoginData {

@@ -1,4 +1,5 @@
 import { type IDataPage } from "../Common";
+import { type IUserSession } from "../Session";
 
 export interface IItemUser {
   id?: number;
@@ -16,7 +17,7 @@ export interface IItemUser {
     nome: string;
   };
   email: string;
-  codigoAtivacao?: string;
+  codigoAtivacao?: string | null;
   status?:
     | "PENDENTE_ATIVACAO_USUARIO"
     | "PENDENTE_ATIVACAO_ADMIN"
@@ -44,6 +45,13 @@ export interface serviceGetUsersProps {
   page: number;
   size: number;
 }
+
+export interface servicePostLoginProps {
+  email: string;
+  senha: string;
+}
+
+export type servicePostLoginResponse = IUserSession;
 
 export type serviceGetUserByIdResponse = IItemUser;
 

@@ -32,7 +32,7 @@ export function FirstAccess(): JSX.Element {
           width={169}
           height={67.76}
         />
-        <Link href={PATHS.forgotPassword} className="top__login">
+        <Link href={PATHS.login} className="top__login">
           Voltar ao login
         </Link>
       </header>

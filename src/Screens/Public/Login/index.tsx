@@ -30,8 +30,8 @@ export function Login(): JSX.Element {
       <Form
         onSubmit={values => {
           onSubmitLogin({
-            user_name: values?.user_name,
-            password: values?.password
+            email: values?.email,
+            senha: values?.password
           });
         }}
         initialValues={initialValuesLogin}

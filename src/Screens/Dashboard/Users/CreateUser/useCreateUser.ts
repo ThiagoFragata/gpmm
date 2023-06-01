@@ -1,7 +1,7 @@
 import React from "react";
 import { type itemBreadCrumb } from "@/_types/BreadCrumb";
 import { useRouter } from "next/navigation";
-import { PATHS, PROFILE_TYPE } from "@/_utils/constants";
+import { PATHS } from "@/_utils/constants";
 import {
   type onCreateUserProps,
   type useCreateUserData
@@ -33,7 +33,6 @@ export function useCreateUser(): useCreateUserData {
       setIsLoading(true);
       const typeProfile = getLabelTypeProfile(data?.tipoPerfil);
       const shouldSendCHN = data?.auth__drive && data?.numeroCnh !== undefined;
-
       const payload = {
         nome: data?.nome,
         cpf: data?.cpf,

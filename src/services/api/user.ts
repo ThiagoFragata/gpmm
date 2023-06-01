@@ -2,11 +2,20 @@ import type {
   serviceGetUserByIdResponse,
   serviceGetUserResponse,
   serviceGetUsersProps,
+  servicePostLoginProps,
+  servicePostLoginResponse,
   servicePostUserProps,
   servicePutUserProps
 } from "@/_types/Users/serviceUsers";
 import { baseAPI } from "./";
-import { USERS, USER_ADM_SEND_CODE } from "./endpoints";
+import { LOGIN, USERS, USER_ADM_SEND_CODE } from "./endpoints";
+
+export async function servicePostLogin(
+  payload: servicePostLoginProps
+): Promise<servicePostLoginResponse> {
+  const { data } = await baseAPI.post<servicePostLoginResponse>(LOGIN, payload);
+  return data;
+}
 
 export async function serviceGetUsers({
   page,
