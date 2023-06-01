@@ -4,13 +4,14 @@ import type {
   IScreenSteps,
   onCreatePasswordProps
 } from "@/_types/FirstAccess";
-import { FIRST_ACCESS_SCREENS } from "@/_utils/constants";
+import { FIRST_ACCESS_SCREENS, PATHS } from "@/_utils/constants";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import {
   servicePostRequestCode,
-  servicePostValidCode
+  servicePostValidCode,
+  servicePutCreatePassword
 } from "@/services/api/firstAccess";
 import { type IDataServeError } from "@/_types/Common";
 const { SCREEN_GET_EMAIL, SCREEN_GET_CODE, SCREEN_GET_PASSWORD } =
@@ -106,19 +107,35 @@ export function useFirstAccess(): FirstAccessData {
     idUser,
     senha
   }: onCreatePasswordProps): Promise<void> {
-    console.log("🔥🔥🔥🔥________________________🚑");
-    console.log(
-      JSON.stringify(
-        {
-          codigo,
-          idUser,
-          senha
-        },
-        null,
-        2
-      )
-    );
-    console.log("🔥🔥🔥🔥________________________🚑");
+    try {
+      setIsLoading(true);
+      await servicePutCreatePassword({ codigo, idUser, senha });
+      router.push(PATHS.login);
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "success",
+          title: "Senha criada com sucesso!",
+          description:
+            "Agora basta informar seus dados de acesso para entrar no sistema"
+        })
+      );
+    } catch (error) {
+      const _error = error as IDataServeError;
+      const messageError =
+        _error?.response?.data?.errors[0] ??
+        "Não foi possível criar a senha, tente novamente";
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "error",
+          title: "Falha na solicitação",
+          description: messageError
+        })
+      );
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   React.useEffect(() => {
