@@ -3,15 +3,13 @@ import { ContainerBoxScreen } from "../../style";
 import { Button, Steps, TextInput, TitleSubtitle } from "@/Components";
 import { type GetEmailProps } from "@/_types/FirstAccess";
 import { Form } from "react-final-form";
-import {
-  initialValuesFirstAccess,
-  validateFirstAccess
-} from "@/_utils/form/validations/firstAccess";
+import { validateEmailFirstAccess } from "@/_utils/form/validations/firstAccess";
 
 export function GetEmail({
   onRequestCode,
   isLoading,
-  isCurrentScreen
+  isCurrentScreen,
+  email
 }: GetEmailProps): JSX.Element {
   return (
     <ContainerBoxScreen isCurrentScreen={isCurrentScreen}>
@@ -25,14 +23,18 @@ export function GetEmail({
         onSubmit={values => {
           onRequestCode(values?.email);
         }}
-        initialValues={initialValuesFirstAccess}
-        validate={validateFirstAccess}
+        initialValues={{
+          email: email ?? ""
+        }}
+        validate={validateEmailFirstAccess}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className="box__fields">
+              <TextInput type="hidden" name="user" />
               <TextInput
                 label="E-mail *"
                 name="email"
+                autoComplete="off"
                 placeholder="Digite seu e-mail"
                 disabled={isLoading}
               />
@@ -40,7 +42,7 @@ export function GetEmail({
             <Button
               type="submit"
               className="button__item"
-              title={isLoading ? "Aguarde..." : "Solicitar código"}
+              title={isLoading ? "Enviando e-mail..." : "Solicitar código"}
               disabled={isLoading}
             />
           </form>

@@ -12,10 +12,13 @@ import { AwaitRequest } from "@/Components";
 export function FirstAccess(): JSX.Element {
   const {
     onRequestCode,
+    goBackGetEmail,
+    onValidateCode,
     isScreenGetEmail,
     isScreenGetCode,
     isScreenGetPassword,
-    isLoading
+    isLoading,
+    capturedEmail
   } = useFirstAccess();
   return (
     <ContainerFirstAccess>
@@ -36,8 +39,16 @@ export function FirstAccess(): JSX.Element {
           onRequestCode={onRequestCode}
           isCurrentScreen={isScreenGetEmail}
           isLoading={isLoading}
+          email={capturedEmail}
         />
-        <GetCode isCurrentScreen={isScreenGetCode} isLoading={isLoading} />
+        <GetCode
+          isCurrentScreen={isScreenGetCode}
+          isLoading={isLoading}
+          email={capturedEmail}
+          goBackGetEmail={goBackGetEmail}
+          onRequestCode={onRequestCode}
+          onValidateCode={onValidateCode}
+        />
         <ChangePassword
           isCurrentScreen={isScreenGetPassword}
           isLoading={isLoading}

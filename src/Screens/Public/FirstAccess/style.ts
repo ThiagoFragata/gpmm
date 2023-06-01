@@ -60,6 +60,36 @@ export const ContainerBoxScreen = styled.div<{ isCurrentScreen: boolean }>`
   top: 0;
   transition: all 0.7s;
   bottom: 0;
+  .resend__email {
+    margin: 16px 0 20px;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    .resend__text {
+      font-size: ${pxToRem(16)};
+      color: ${colors.GRAY_SECONDARY};
+    }
+    .resend__button {
+      cursor: pointer;
+      font-weight: 700;
+      background-color: transparent;
+      border: none;
+      color: ${colors.GREEN_PRIMARY};
+      font-size: ${pxToRem(16)};
+      transition: all 0.2s;
+      border-bottom: 1px solid transparent;
+      :hover {
+        border-bottom: 1px solid ${colors.GREEN_PRIMARY};
+      }
+    }
+  }
+  .control__buttons {
+    column-gap: 16px;
+    display: flex;
+    .button__control {
+      width: 50%;
+    }
+  }
   ${({ isCurrentScreen }) =>
     modifier.box[isCurrentScreen ? "visible" : "hidden"]};
   .box__steps {

@@ -39,3 +39,14 @@ export type IDataFormUser = {
   label_setor?: string;
   tipoPerfil: number;
 } & IItemUserRegister;
+
+export interface IDataServeError {
+  response: {
+    status: number;
+    data: {
+      timestamp: string;
+      message?: string;
+      errors: string[];
+    };
+  };
+}

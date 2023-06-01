@@ -82,7 +82,7 @@ export const ListUsers: NextPageWithLayout = () => {
                       />
                       <TableItem
                         item={{
-                          label: item?.telefone.numero,
+                          label: item?.telefone?.numero,
                           className: "size__phone"
                         }}
                       />

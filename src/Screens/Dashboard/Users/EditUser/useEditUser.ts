@@ -1,7 +1,7 @@
 import React from "react";
 import { type itemBreadCrumb } from "@/_types/BreadCrumb";
 import { useRouter } from "next/router";
-import { PATHS, PROFILE_TYPE, TYPES_STATUS } from "@/_utils/constants";
+import { PATHS, TYPES_STATUS } from "@/_utils/constants";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { formatDateToBack, regexCPF, regexPhone } from "@/_utils/masks";
