@@ -9,7 +9,11 @@ export async function servicePostRequestCode(email: string): Promise<string> {
 export async function servicePostValidCode(payload: {
   codigo: string;
   email: string;
-}): Promise<string> {
-  const { data } = await baseAPI.post<string>(VALID_CODE, payload);
+}): Promise<{
+  id: number;
+}> {
+  const { data } = await baseAPI.post<{
+    id: number;
+  }>(VALID_CODE, payload);
   return data;
 }

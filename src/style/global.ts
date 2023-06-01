@@ -67,4 +67,8 @@ export default createGlobalStyle`
     color: ${colors.GRAY_SECONDARY};
     font-size: ${pxToRem(16)};
   }
+  .field__password {
+    padding-right: 40px;
+    border: 2px solid red;
+  }
 `;

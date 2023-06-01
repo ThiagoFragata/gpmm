@@ -14,11 +14,13 @@ export function FirstAccess(): JSX.Element {
     onRequestCode,
     goBackGetEmail,
     onValidateCode,
+    onCreatePassword,
     isScreenGetEmail,
     isScreenGetCode,
     isScreenGetPassword,
     isLoading,
-    capturedEmail
+    capturedEmail,
+    dataCreatePassword
   } = useFirstAccess();
   return (
     <ContainerFirstAccess>
@@ -50,6 +52,8 @@ export function FirstAccess(): JSX.Element {
           onValidateCode={onValidateCode}
         />
         <ChangePassword
+          onCreatePassword={onCreatePassword}
+          dataCreatePassword={dataCreatePassword}
           isCurrentScreen={isScreenGetPassword}
           isLoading={isLoading}
         />

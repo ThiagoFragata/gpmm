@@ -9,8 +9,9 @@ export const ContainerFirstAccess = styled.section`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  padding: 2px 32px 0;
   .top__bar {
-    padding: 2px 32px;
+    padding-top: 2px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,7 +31,6 @@ export const ContainerFirstAccess = styled.section`
   .box__form {
     position: relative;
     flex: 1;
-    padding: 0 20px;
   }
 `;
 

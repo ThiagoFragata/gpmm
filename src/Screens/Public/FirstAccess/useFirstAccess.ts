@@ -1,5 +1,9 @@
-import React from "react";
-import type { FirstAccessData, IScreenSteps } from "@/_types/FirstAccess";
+import React, { useState } from "react";
+import type {
+  FirstAccessData,
+  IScreenSteps,
+  onCreatePasswordProps
+} from "@/_types/FirstAccess";
 import { FIRST_ACCESS_SCREENS } from "@/_utils/constants";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { useDispatch } from "react-redux";
@@ -22,11 +26,16 @@ export function useFirstAccess(): FirstAccessData {
   const isScreenGetEmail = SCREEN_GET_EMAIL === currentscreen;
   const isScreenGetCode = SCREEN_GET_CODE === currentscreen;
   const isScreenGetPassword = SCREEN_GET_PASSWORD === currentscreen;
+  const [dataCreatePassword, setDataCreatePassword] = useState({
+    codigo: "",
+    idUser: 0
+  });
 
   async function onRequestCode(email: string): Promise<void> {
     try {
       setIsLoading(true);
       await servicePostRequestCode(email);
+      setCapturedEmail(email);
       setCurrentScreen(SCREEN_GET_CODE);
       dispatch(
         onChangeToastAlert({
@@ -60,7 +69,11 @@ export function useFirstAccess(): FirstAccessData {
   }): Promise<void> {
     try {
       setIsLoading(true);
-      await servicePostValidCode(payload);
+      const data = await servicePostValidCode(payload);
+      setDataCreatePassword({
+        codigo: payload?.codigo,
+        idUser: data?.id
+      });
       setCurrentScreen(SCREEN_GET_PASSWORD);
       dispatch(
         onChangeToastAlert({
@@ -88,6 +101,26 @@ export function useFirstAccess(): FirstAccessData {
     }
   }
 
+  async function onCreatePassword({
+    codigo,
+    idUser,
+    senha
+  }: onCreatePasswordProps): Promise<void> {
+    console.log("🔥🔥🔥🔥________________________🚑");
+    console.log(
+      JSON.stringify(
+        {
+          codigo,
+          idUser,
+          senha
+        },
+        null,
+        2
+      )
+    );
+    console.log("🔥🔥🔥🔥________________________🚑");
+  }
+
   React.useEffect(() => {
     const isExistQueryEmail = router.query?.email !== undefined;
     if (isExistQueryEmail) {
@@ -102,6 +135,8 @@ export function useFirstAccess(): FirstAccessData {
       setCurrentScreen(SCREEN_GET_EMAIL);
     },
     onValidateCode,
+    onCreatePassword,
+    dataCreatePassword,
     capturedEmail,
     isLoading,
     isScreenGetEmail,

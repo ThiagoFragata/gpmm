@@ -24,3 +24,15 @@ export const validateCodeFirstAccess = validateFormValues(
       .required(messageValidations.required)
   })
 );
+
+export const validatePasswordFirstAccess = validateFormValues(
+  yup.object({
+    senha: yup
+      .string()
+      .min(8, messageValidations.minSize({ name: "A senha", size: 8 }))
+      .required(messageValidations.required),
+    confirmaSenha: yup
+      .string()
+      .oneOf([yup.ref("senha")], messageValidations.confirmPassword)
+  })
+);

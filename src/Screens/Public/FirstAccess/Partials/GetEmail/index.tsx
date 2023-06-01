@@ -16,7 +16,7 @@ export function GetEmail({
       <TitleSubtitle
         title="Quase lá, vamos validar sua conta?"
         subtitle="Para validar sua conta e liberar seu acesso precisamos do seu e-mail para enviar
-        o código de ativação da sua conta. Insira seu e-mail abaixo"
+        o código de ativação da sua conta. Insira seu e-mail abaixo."
       />
       <Steps step={1} className="box__steps" />
       <Form
