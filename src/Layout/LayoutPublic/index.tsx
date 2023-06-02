@@ -1,10 +1,9 @@
 import React from "react";
 import { ContainerLayoutPublic } from "./style";
-
 export function LayoutPublic({
   children
 }: {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }): JSX.Element {
   return (
     <ContainerLayoutPublic>

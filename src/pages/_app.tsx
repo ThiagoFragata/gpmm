@@ -1,6 +1,7 @@
 import React from "react";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@/style/ThemeProvider";
+import { SessionProvider } from "next-auth/react";
 import GlobalStyle from "@/style/global";
 
 import type { ReactElement, ReactNode } from "react";
@@ -51,12 +52,14 @@ function MyApp({ Component, ...rest }: AppPropsWithLayout): JSX.Element {
   return (
     <ThemeProvider>
       <main className={roboto.className}>
-        {getLayout(
-          <Provider store={store}>
-            <ToastAlert />
-            <Component {...props?.pageProps} />
-          </Provider>
-        )}
+        <SessionProvider session={props?.session}>
+          {getLayout(
+            <Provider store={store}>
+              <ToastAlert />
+              <Component {...props?.pageProps} />
+            </Provider>
+          )}
+        </SessionProvider>
         <GlobalStyle />
       </main>
     </ThemeProvider>

@@ -119,7 +119,7 @@ export function useListLocal(): useListLocalData {
     dataLocal,
     tableTitle,
     isLoading,
-    isNotFoundData: !isLoading && dataLocal.length === 0,
+    isNotFoundData: !isLoading && dataLocal?.length === 0,
     isOpenModal,
     dataDelete,
     isAwaitDelete,

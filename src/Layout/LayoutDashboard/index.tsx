@@ -2,7 +2,6 @@ import React from "react";
 import { ContainerLayoutDashboard } from "./style";
 import { SideBar } from "./Partials/SideBar";
 import { useLayoutDashboard } from "./useLayoutDashboard";
-
 export function LayoutDashboard({
   children
 }: {
