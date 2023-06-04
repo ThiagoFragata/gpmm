@@ -1,13 +1,14 @@
 import React from "react";
 import { Resources } from "@/Screens";
 import { LayoutDashboard } from "@/Components";
-import { checkExistSession } from "@/_utils/permissionRules";
+import { checkPermissionRules } from "@/_utils/permissionRules";
 import { type GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const permission = checkExistSession({
+  const permission = checkPermissionRules({
     context
   });
+  console.log(JSON.stringify(permission, null, 2));
   return permission;
 };
 

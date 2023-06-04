@@ -2,10 +2,10 @@ import React from "react";
 import { EditUser } from "@/Screens";
 import { LayoutDashboard } from "@/Components";
 import { type GetServerSideProps } from "next";
-import { checkExistSession } from "@/_utils/permissionRules";
+import { checkPermissionRules } from "@/_utils/permissionRules";
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const permission = checkExistSession({
+  const permission = checkPermissionRules({
     context
   });
   return permission;

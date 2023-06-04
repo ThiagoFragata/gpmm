@@ -21,7 +21,7 @@ const toHome = {
 
 export function checkPermissionRules({
   context,
-  isOnlyAdm
+  isOnlyAdm = true
 }: PermissionRulesProps): PermissionRulesData {
   const cookie = parseCookies(context);
   const isValidDateCookie =
@@ -39,11 +39,12 @@ export function checkPermissionRules({
     return withoutRedirect;
   }
 
-  if (data?.typeProfile === "NORMAL" && isOnlyAdm === false) {
+  if (data?.typeProfile === "NORMAL" && !isOnlyAdm) {
     return withoutRedirect;
   }
-
   return toLogin;
+  // return toHome;
+  // return withoutRedirect;
 }
 
 export function checkExistSession({

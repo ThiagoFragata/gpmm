@@ -66,8 +66,11 @@ const USERS = {
 const SOLICITATIONS = {
   id: "solicitacoes",
   label: "Solicitações",
-  path: PATHS.dashboard.solicitacoes,
-  paths: [PATHS.dashboard.solicitacoes],
+  path: PATHS.dashboard.solicitacoesLocais,
+  paths: [
+    PATHS.dashboard.solicitacoesLocais,
+    PATHS.dashboard.solicitacoesLocais
+  ],
   icon: ({ className }: { className?: string }) => (
     <MySolicitationIcon className={className} />
   )

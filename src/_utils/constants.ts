@@ -1,5 +1,6 @@
 import { type typeStringStatus } from "@/_types/Common";
 import { type IScreenSteps } from "@/_types/FirstAccess";
+import { type ITabOptionsRequests } from "@/_types/Requests";
 import { type ITabOptions } from "@/_types/Resources";
 
 export const widthSideBarExpanded = 220;
@@ -10,6 +11,11 @@ export const TABS_RESOURCES: Record<string, ITabOptions> = {
   TAB_LIST_PLACE: 1,
   TAB_LIST_TRANSPORT: 2,
   TAB_LIST_DRIVER: 3
+};
+
+export const TABS_REQUESTS: Record<string, ITabOptionsRequests> = {
+  TAB_LIST_PLACE: 0,
+  TAB_LIST_TRANSPORT: 1
 };
 
 export const FIRST_ACCESS_SCREENS: Record<string, IScreenSteps> = {
@@ -38,13 +44,17 @@ const PATHS_USERS = {
   usuarioEditar: "/dashboard/usuarios/editar/"
 };
 
+const PATHS_REQUESTS = {
+  solicitacoesLocais: "/dashboard/solicitacoes/locais",
+  solicitacoesTranportes: "/dashboard/solicitacoes/tranportes"
+};
+
 export const PATHS = {
   login: "/",
   primeiroAcesso: "/primeiro-acesso",
   forgotPassword: "/recuperar-conta",
   dashboard: {
     inicio: "/dashboard",
-    solicitacoes: "/dashboard/solicitacoes",
     recursos: "/dashboard/recursos",
     recursosMotoristas: "/dashboard/recursos/motoristas",
     perfil: "/dashboard/perfil",
@@ -52,7 +62,8 @@ export const PATHS = {
     sobre: "/dashboard/sobre",
     ...PATHS_LOCAL,
     ...PATHS_TRANSPORTS,
-    ...PATHS_USERS
+    ...PATHS_USERS,
+    ...PATHS_REQUESTS
   }
 };
 
