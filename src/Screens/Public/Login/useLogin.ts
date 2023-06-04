@@ -2,9 +2,10 @@ import React from "react";
 import type { onSubmitLoginProps, useLoginData } from "@/_types/Login";
 import { useRouter } from "next/navigation";
 import { PATHS } from "@/_utils/constants";
-import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
+import { servicePostLogin } from "@/services/api/user";
+import { setCookie } from "nookies";
 
 export function useLogin(): useLoginData {
   const dispatch = useDispatch();
@@ -13,32 +14,26 @@ export function useLogin(): useLoginData {
   const titleButton = isLoading ? "Aguarde..." : "Entrar";
   async function onSubmitLogin(payload: onSubmitLoginProps): Promise<void> {
     try {
-      setIsLoading(true);
-      const result = await signIn("credentials", {
-        ...payload,
-        redirect: false
+      const result = await servicePostLogin(payload);
+      const firstName = result?.usuario?.nome.split(" ")[0];
+      const dataToCookie = {
+        jwt: result?.token,
+        idUser: result.usuario?.id,
+        typeProfile: result?.usuario?.tipoPerfil
+      };
+      const twentyFourHoursInSeconds = 24 * 60 * 60; // 24 horas em segundos
+      setCookie(undefined, "42auth-nextts", JSON.stringify(dataToCookie), {
+        maxAge: twentyFourHoursInSeconds
       });
-
-      if (result?.error !== null) {
-        dispatch(
-          onChangeToastAlert({
-            isVisible: true,
-            variant: "error",
-            title: "Falha ao logar!",
-            description: result?.error
-          })
-        );
-        return;
-      }
       dispatch(
         onChangeToastAlert({
           isVisible: true,
           variant: "success",
           title: "Logado com sucesso!",
-          description: `Seja bem-vindo!`
+          description: `Seja bem-vindo ${firstName}!`
         })
       );
-      router.push(PATHS.dashboard.usuarios);
+      router.push(PATHS.dashboard.inicio);
     } catch (error) {
       dispatch(
         onChangeToastAlert({

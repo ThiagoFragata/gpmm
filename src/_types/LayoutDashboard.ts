@@ -20,6 +20,7 @@ export type SideBarProps = Pick<
 export interface useSideBarData {
   checkPathSelected: (value: string[]) => boolean;
   onHandlerDialogModal: () => void;
+  onLogout: () => void;
   isOpenModal: boolean;
 }
 

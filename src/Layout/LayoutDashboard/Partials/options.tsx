@@ -13,75 +13,69 @@ import {
   UsersIcon
 } from "@/assets/icons";
 
-export const ITEMS__SIDEBAR = {
-  MAIN: [
-    {
-      id: "inicio",
-      label: "Início",
-      path: PATHS.dashboard.inicio,
-      paths: [PATHS.dashboard.inicio],
-      icon: ({ className }: { className?: string }) => (
-        <DashboardIcon className={className} />
-      )
-    },
-    {
-      id: "solicitacoes",
-      label: "Solicitações",
-      path: PATHS.dashboard.solicitacoes,
-      paths: [PATHS.dashboard.solicitacoes],
-      icon: ({ className }: { className?: string }) => (
-        <MySolicitationIcon className={className} />
-      )
-    },
-    {
-      id: "recursos",
-      label: "Recursos",
-      path: PATHS.dashboard.recursos,
-      paths: [
-        PATHS.dashboard.recursos,
-        PATHS.dashboard.recursosLocais,
-        PATHS.dashboard.recursosNovoLocal,
-        PATHS.dashboard.recursosEditarLocal,
-        PATHS.dashboard.recursosTransportes,
-        PATHS.dashboard.recursosNovoTransporte,
-        PATHS.dashboard.recursosMotoristas
-      ],
-      icon: ({ className }: { className?: string }) => (
-        <ResourcesIcon className={className} />
-      )
-    },
-    {
-      id: "usuarios",
-      label: "Usuários",
-      path: PATHS.dashboard.usuarios,
-      paths: [
-        PATHS.dashboard.usuarios,
-        PATHS.dashboard.usuarioNovo,
-        PATHS.dashboard.usuarioEditar
-      ],
-      icon: ({ className }: { className?: string }) => (
-        <UsersIcon className={className} />
-      )
-    },
-    {
-      id: "perfil",
-      label: "Perfil",
-      path: PATHS.dashboard.perfil,
-      paths: [PATHS.dashboard.perfil],
-      icon: ({ className }: { className?: string }) => (
-        <ProfileIcon className={className} />
-      )
-    }
-    // {
-    //   id: "notificacoes",
-    //   label: "Notificações",
-    //   path: PATHS.dashboard.notificoes,
-    //   paths: [PATHS.dashboard.notificoes],
-    //   icon: ({ className }: { className?: string }) => (
-    //     <NotificationIcon className={className} />
-    //   )
-    // }
+const HOME = {
+  id: "inicio",
+  label: "Início",
+  path: PATHS.dashboard.inicio,
+  paths: [PATHS.dashboard.inicio],
+  icon: ({ className }: { className?: string }) => (
+    <DashboardIcon className={className} />
+  )
+};
+
+const RESOURCE = {
+  id: "recursos",
+  label: "Recursos",
+  path: PATHS.dashboard.recursos,
+  paths: [
+    PATHS.dashboard.recursos,
+    PATHS.dashboard.recursosLocais,
+    PATHS.dashboard.recursosNovoLocal,
+    PATHS.dashboard.recursosEditarLocal,
+    PATHS.dashboard.recursosTransportes,
+    PATHS.dashboard.recursosNovoTransporte,
+    PATHS.dashboard.recursosMotoristas
   ],
+  icon: ({ className }: { className?: string }) => (
+    <ResourcesIcon className={className} />
+  )
+};
+
+const USERS = {
+  id: "usuarios",
+  label: "Usuários",
+  path: PATHS.dashboard.usuarios,
+  paths: [
+    PATHS.dashboard.usuarios,
+    PATHS.dashboard.usuarioNovo,
+    PATHS.dashboard.usuarioEditar
+  ],
+  icon: ({ className }: { className?: string }) => (
+    <UsersIcon className={className} />
+  )
+};
+
+const SOLICITATIONS = {
+  id: "solicitacoes",
+  label: "Solicitações",
+  path: PATHS.dashboard.solicitacoes,
+  paths: [PATHS.dashboard.solicitacoes],
+  icon: ({ className }: { className?: string }) => (
+    <MySolicitationIcon className={className} />
+  )
+};
+
+const PROFILE = {
+  id: "perfil",
+  label: "Perfil",
+  path: PATHS.dashboard.perfil,
+  paths: [PATHS.dashboard.perfil],
+  icon: ({ className }: { className?: string }) => (
+    <ProfileIcon className={className} />
+  )
+};
+
+export const ITEMS_SIDEBAR = {
   ABOUT: {
     label: "Sobre",
     path: PATHS.dashboard.sobre,
@@ -102,4 +96,14 @@ export const ITEMS__SIDEBAR = {
       <ArrowLeftIcon className={className} />
     )
   }
+};
+
+export const ITEMS_SIDEBAR_ADMIN = {
+  ...ITEMS_SIDEBAR,
+  MAIN: [HOME, RESOURCE, USERS, SOLICITATIONS, PROFILE]
+};
+
+export const ITEMS_SIDEBAR_NORMAL = {
+  ...ITEMS_SIDEBAR,
+  MAIN: [HOME, SOLICITATIONS, PROFILE]
 };

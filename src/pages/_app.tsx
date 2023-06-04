@@ -45,24 +45,23 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-
 function MyApp({ Component, ...rest }: AppPropsWithLayout): JSX.Element {
   const getLayout = Component.getLayout ?? (page => page);
   const { store, props } = wrapper.useWrappedStore(rest);
   return (
-    <ThemeProvider>
-      <main className={roboto.className}>
-        <SessionProvider session={props?.session}>
+    <SessionProvider session={props?.pageProps.session}>
+      <ThemeProvider>
+        <main className={roboto.className}>
           {getLayout(
             <Provider store={store}>
               <ToastAlert />
               <Component {...props?.pageProps} />
             </Provider>
           )}
-        </SessionProvider>
-        <GlobalStyle />
-      </main>
-    </ThemeProvider>
+          <GlobalStyle />
+        </main>
+      </ThemeProvider>
+    </SessionProvider>
   );
 }
 

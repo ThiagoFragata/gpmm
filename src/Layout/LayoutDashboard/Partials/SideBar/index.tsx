@@ -1,25 +1,29 @@
 import React from "react";
 import type { SideBarProps } from "@/_types/LayoutDashboard";
 import { ContainerSideBar, TitleDivider } from "./style";
-import { ITEMS__SIDEBAR } from "../options";
 import { useSideBar } from "./useSideBar";
 import Link from "next/link";
 import Image from "next/image";
 import { DialogModal } from "@/Components";
+import { getCookieParser } from "next/dist/server/api-utils";
+import { ITEMS_SIDEBAR_ADMIN, ITEMS_SIDEBAR_NORMAL } from "../options";
 
 export function SideBar({
   isExpanded,
   onHandlerExpand
 }: SideBarProps): JSX.Element {
-  const { onHandlerDialogModal, isOpenModal, checkPathSelected } = useSideBar();
+  const { isOpenModal, onHandlerDialogModal, checkPathSelected, onLogout } =
+    useSideBar();
+  // const cookies = parseCookies();
+  // const ITEMS_SIDEBAR =
+  //   cookieValue !== undefined ? ITEMS_SIDEBAR_ADMIN : ITEMS_SIDEBAR_NORMAL;
+  const ITEMS_SIDEBAR = ITEMS_SIDEBAR_ADMIN;
   return (
     <ContainerSideBar isExpanded={isExpanded}>
       <DialogModal
         title="Deseja realmente sair?"
         description="Ao realizar esta ação, será solicitado o login novamente para acessar o sistema."
-        onActionConfirm={() => {
-          alert("quero sair");
-        }}
+        onActionConfirm={onLogout}
         isOpen={isOpenModal}
         ocActionCancel={onHandlerDialogModal}
         titleActionCancel="Não"
@@ -37,7 +41,7 @@ export function SideBar({
         <li className="option__item">
           <TitleDivider className="option__title">Principal</TitleDivider>
         </li>
-        {ITEMS__SIDEBAR.MAIN.map(({ id, label, path, paths, icon: Icon }) => {
+        {ITEMS_SIDEBAR.MAIN.map(({ id, label, path, paths, icon: Icon }) => {
           const shouldSelectTab = checkPathSelected(paths);
           const classOptionLink = shouldSelectTab
             ? "option__link option__link--selected"
@@ -57,9 +61,9 @@ export function SideBar({
           <TitleDivider className="option__title">Outros</TitleDivider>
         </li>
         <li className="option__item">
-          <Link href={ITEMS__SIDEBAR.ABOUT.path} className="option__link">
-            <ITEMS__SIDEBAR.ABOUT.icon className="option__icon" />
-            <span className="option__text">{ITEMS__SIDEBAR.ABOUT.label}</span>
+          <Link href={ITEMS_SIDEBAR.ABOUT.path} className="option__link">
+            <ITEMS_SIDEBAR.ABOUT.icon className="option__icon" />
+            <span className="option__text">{ITEMS_SIDEBAR.ABOUT.label}</span>
           </Link>
         </li>
         <li className="option__item">
@@ -68,8 +72,8 @@ export function SideBar({
             className="option__link option__link--button"
             onClick={onHandlerDialogModal}
           >
-            <ITEMS__SIDEBAR.CLOSE.icon className="option__icon" />
-            <span className="option__text">{ITEMS__SIDEBAR.CLOSE.label}</span>
+            <ITEMS_SIDEBAR.CLOSE.icon className="option__icon" />
+            <span className="option__text">{ITEMS_SIDEBAR.CLOSE.label}</span>
           </button>
         </li>
       </ul>
@@ -80,8 +84,8 @@ export function SideBar({
             className="option__link option__link--button"
             onClick={onHandlerExpand}
           >
-            <ITEMS__SIDEBAR.EXPAND.icon className="option__icon option__icon--expand" />
-            <span className="option__text">{ITEMS__SIDEBAR.EXPAND.label}</span>
+            <ITEMS_SIDEBAR.EXPAND.icon className="option__icon option__icon--expand" />
+            <span className="option__text">{ITEMS_SIDEBAR.EXPAND.label}</span>
           </button>
         </li>
       </ul>

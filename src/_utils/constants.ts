@@ -86,3 +86,5 @@ export const TYPES_STATUS: typeStringStatus[] = [
   "DESATIVADA",
   "ATIVADA"
 ];
+
+export const NAME_COOKIE_LOGIN = "42auth-nextts";

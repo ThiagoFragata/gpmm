@@ -8,7 +8,6 @@ export function LayoutDashboard({
   children: React.ReactNode;
 }): JSX.Element {
   const { onHandlerExpand, isExpanded } = useLayoutDashboard();
-
   return (
     <ContainerLayoutDashboard isExpanded={isExpanded}>
       <SideBar onHandlerExpand={onHandlerExpand} isExpanded={isExpanded} />

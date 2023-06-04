@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const baseAPI = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
-  // headers: {
-  //   Authorization:
-  //     "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjb211bmljYWNhb2ludGVybmFAZ21haWwuY29tIiwiZXhwIjoxNjg1NjU2NTQxfQ.keLK7wR9ZfINC0FRgs4Kh1ABIBsPBPXTY0lzqlthvieIP8HGBe-hWCJHZeVwf3SxXjqbuQN15YURQ__EPCeRyA"
-  // }
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  headers: {
+    Authorization:
+      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb3NpdmFuY2FyZG9zbzc2N0BnbWFpbC5jb20iLCJleHAiOjE2ODU4NDYxMjB9.ouufebsU1AKYxh2LDVjS7SQ3buaB2J1So_bre8SRBfo-aMtO0pWG1QaeZkbcBUxPbU8EfKMt9pBc1cnYRnV0ew"
+  }
 });
 
 export const setToken = (token: string): void => {
