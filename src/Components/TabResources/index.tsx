@@ -1,14 +1,13 @@
 import React from "react";
 import { ContainerTabResources } from "./style";
-import { useTabResources } from "./useTabResources";
 import type { TabResourcesProps } from "@/_types/TabResources";
 
 export function TabResources({
+  tabName,
   onChange,
-  currentTab
+  currentTab,
+  optionsTab
 }: TabResourcesProps): JSX.Element {
-  const { optionsTab } = useTabResources();
-
   return (
     <ContainerTabResources>
       {optionsTab.map(item => {

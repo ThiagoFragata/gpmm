@@ -8,6 +8,7 @@ import { type RenderCurrenTabProps } from "@/_types/Resources";
 import { ListLocal } from "../Local/ListLocal";
 import { ListDriver } from "./Partials/ListDriver";
 import { ListTransport } from "../Transport/ListTransport";
+import { TABS_RESOURCES } from "@/_utils/constants";
 
 function RenderCurrenTab({
   currentTab,
@@ -28,6 +29,7 @@ export const Resources: NextPageWithLayout = () => {
     onChangeTab,
     currentTab,
     breadCrumb,
+    optionsTab,
     isListPlace,
     isListTransport,
     isListDriver
@@ -36,7 +38,12 @@ export const Resources: NextPageWithLayout = () => {
     <ContainerResources>
       <BreadCrumb items={breadCrumb} />
       <DataBox>
-        <TabResources onChange={onChangeTab} currentTab={currentTab} />
+        <TabResources
+          tabName="resources"
+          onChange={onChangeTab}
+          currentTab={currentTab}
+          optionsTab={optionsTab}
+        />
         <RenderCurrenTab currentTab={currentTab} onChangeTab={onChangeTab} />
       </DataBox>
     </ContainerResources>

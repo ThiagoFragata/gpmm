@@ -20,6 +20,7 @@ function RenderCurrenTab({
 export const Requests: NextPageWithLayout = () => {
   const {
     onChangeTab,
+    optionsTab,
     currentTab,
     breadCrumb,
     isListRequestPlace,
@@ -29,7 +30,12 @@ export const Requests: NextPageWithLayout = () => {
     <ContainerRequests>
       <BreadCrumb items={breadCrumb} />
       <DataBox>
-        {/* <TabRequests onChange={onChangeTab} currentTab={currentTab} /> */}
+        <TabResources
+          tabName="requests"
+          onChange={onChangeTab}
+          currentTab={currentTab}
+          optionsTab={optionsTab}
+        />
         <RenderCurrenTab currentTab={currentTab} onChangeTab={onChangeTab} />
       </DataBox>
     </ContainerRequests>

@@ -22,7 +22,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "typeRoots": ["./node_modules/@types", "./src/_types"]
+    // "typeRoots": ["./node_modules/@types", "./src/_types"]
   },
   "include": [
     "next-env.d.ts",

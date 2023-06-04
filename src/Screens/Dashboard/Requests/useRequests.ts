@@ -22,7 +22,19 @@ export function useRequests(): useRequestsData {
     }
   ];
 
-  function onChangeTab(tab: ITabOptionsRequests): void {
+  const optionsTab = [
+    {
+      id: TAB_LIST_PLACE,
+      label: "Locais"
+    },
+    {
+      id: TAB_LIST_TRANSPORT,
+      label: "Transportes"
+    }
+  ];
+
+  function onChangeTab(value: number): void {
+    const tab = value as ITabOptionsRequests;
     const mapScreens = {
       0: PATHS.dashboard.solicitacoesLocais,
       1: PATHS.dashboard.solicitacoesTranportes
@@ -49,6 +61,7 @@ export function useRequests(): useRequestsData {
 
   return {
     onChangeTab,
+    optionsTab,
     currentTab,
     breadCrumb,
     isListRequestPlace: currentTab === TAB_LIST_PLACE,

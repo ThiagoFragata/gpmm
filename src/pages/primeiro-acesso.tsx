@@ -10,6 +10,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
   return permission;
 };
 
-export default function FirstAccessScreen(): JSX.Element {
+export default function FirstAccessScreen(): React.ReactNode {
   return <FirstAccess />;
 }

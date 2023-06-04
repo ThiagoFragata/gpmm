@@ -19,7 +19,23 @@ export function useResources(): useResourcesData {
     }
   ];
 
-  function onChangeTab(tab: ITabOptions): void {
+  const optionsTab = [
+    {
+      id: TAB_LIST_PLACE,
+      label: "Locais"
+    },
+    {
+      id: TAB_LIST_TRANSPORT,
+      label: "Transportes"
+    },
+    {
+      id: TAB_LIST_DRIVER,
+      label: "Motoristas"
+    }
+  ];
+
+  function onChangeTab(value: number): void {
+    const tab = value as ITabOptions;
     const mapScreens = {
       0: PATHS.dashboard.recursos,
       1: PATHS.dashboard.recursosLocais,
@@ -50,6 +66,7 @@ export function useResources(): useResourcesData {
 
   return {
     onChangeTab,
+    optionsTab,
     breadCrumb,
     currentTab,
     isListPlace: currentTab === TAB_LIST_PLACE,
