@@ -16,3 +16,6 @@ export const SECTORS = "setores";
 export const USERS = "pessoas";
 export const LOGIN = "login";
 export const USER_ADM_SEND_CODE = "pessoas/envia-codigo/envio-admin";
+
+// REQUESTS
+export const REQUEST_LOCAL = "solicitacoes/locais";

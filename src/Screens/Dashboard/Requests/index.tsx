@@ -1,8 +1,9 @@
 import React from "react";
 import { ContainerRequests } from "./style";
-import { type NextPageWithLayout } from "@/pages/_app";
-import { BreadCrumb, DataBox, TabResources } from "@/Components";
 import { useRequests } from "./useRequests";
+import { BreadCrumb, DataBox, TabResources } from "@/Components";
+import { ListRequestLocal } from "../RequestLocal/ListRequestLocal";
+import { type NextPageWithLayout } from "@/pages/_app";
 import { type RenderCurrenTabProps } from "@/_types/Requests";
 
 function RenderCurrenTab({
@@ -10,7 +11,7 @@ function RenderCurrenTab({
   onChangeTab
 }: RenderCurrenTabProps): JSX.Element {
   const tabs = {
-    0: <h1>LISTA LOCAL</h1>,
+    0: <ListRequestLocal />,
     1: <h1>LISTA TRANSPORTE</h1>
   };
 
