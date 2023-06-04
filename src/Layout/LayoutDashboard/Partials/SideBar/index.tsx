@@ -5,8 +5,12 @@ import { useSideBar } from "./useSideBar";
 import Link from "next/link";
 import Image from "next/image";
 import { DialogModal } from "@/Components";
-import { getCookieParser } from "next/dist/server/api-utils";
-import { ITEMS_SIDEBAR_ADMIN, ITEMS_SIDEBAR_NORMAL } from "../options";
+import {
+  type ITEMS_MAIN,
+  ITEMS_SIDEBAR_ADMIN,
+  ITEMS_SIDEBAR_NORMAL
+} from "../options";
+import { parseCookies } from "nookies";
 
 export function SideBar({
   isExpanded,
@@ -14,10 +18,23 @@ export function SideBar({
 }: SideBarProps): JSX.Element {
   const { isOpenModal, onHandlerDialogModal, checkPathSelected, onLogout } =
     useSideBar();
-  // const cookies = parseCookies();
-  // const ITEMS_SIDEBAR =
-  //   cookieValue !== undefined ? ITEMS_SIDEBAR_ADMIN : ITEMS_SIDEBAR_NORMAL;
-  const ITEMS_SIDEBAR = ITEMS_SIDEBAR_ADMIN;
+  const [optionsSideBar, setOptionsSideBar] =
+    React.useState(ITEMS_SIDEBAR_NORMAL);
+
+  React.useEffect(() => {
+    const cookie = parseCookies();
+    const isValidDateCookie =
+      cookie["42auth-nextts"] !== undefined &&
+      typeof cookie["42auth-nextts"] === "string";
+    const data = isValidDateCookie ? JSON.parse(cookie["42auth-nextts"]) : "";
+    const _data = data as { typeProfile: string };
+    const currentOptionsideBar =
+      _data.typeProfile === "NORMAL"
+        ? ITEMS_SIDEBAR_NORMAL
+        : ITEMS_SIDEBAR_ADMIN;
+    setOptionsSideBar(currentOptionsideBar);
+  }, []);
+
   return (
     <ContainerSideBar isExpanded={isExpanded}>
       <DialogModal
@@ -41,16 +58,17 @@ export function SideBar({
         <li className="option__item">
           <TitleDivider className="option__title">Principal</TitleDivider>
         </li>
-        {ITEMS_SIDEBAR.MAIN.map(({ id, label, path, paths, icon: Icon }) => {
-          const shouldSelectTab = checkPathSelected(paths);
+        {optionsSideBar.MAIN.map((item: ITEMS_MAIN) => {
+          const shouldSelectTab = checkPathSelected(item?.paths);
+          const Icon = item?.icon;
           const classOptionLink = shouldSelectTab
             ? "option__link option__link--selected"
             : "option__link";
           return (
-            <li key={id} className="option__item">
-              <Link href={path} className={classOptionLink}>
+            <li key={item?.id} className="option__item">
+              <Link href={item?.path} className={classOptionLink}>
                 <Icon className="option__icon" />
-                <span className="option__text">{label}</span>
+                <span className="option__text">{item?.label}</span>
               </Link>
             </li>
           );
@@ -61,9 +79,9 @@ export function SideBar({
           <TitleDivider className="option__title">Outros</TitleDivider>
         </li>
         <li className="option__item">
-          <Link href={ITEMS_SIDEBAR.ABOUT.path} className="option__link">
-            <ITEMS_SIDEBAR.ABOUT.icon className="option__icon" />
-            <span className="option__text">{ITEMS_SIDEBAR.ABOUT.label}</span>
+          <Link href={optionsSideBar.ABOUT.path} className="option__link">
+            <optionsSideBar.ABOUT.icon className="option__icon" />
+            <span className="option__text">{optionsSideBar.ABOUT.label}</span>
           </Link>
         </li>
         <li className="option__item">
@@ -72,8 +90,8 @@ export function SideBar({
             className="option__link option__link--button"
             onClick={onHandlerDialogModal}
           >
-            <ITEMS_SIDEBAR.CLOSE.icon className="option__icon" />
-            <span className="option__text">{ITEMS_SIDEBAR.CLOSE.label}</span>
+            <optionsSideBar.CLOSE.icon className="option__icon" />
+            <span className="option__text">{optionsSideBar.CLOSE.label}</span>
           </button>
         </li>
       </ul>
@@ -84,8 +102,8 @@ export function SideBar({
             className="option__link option__link--button"
             onClick={onHandlerExpand}
           >
-            <ITEMS_SIDEBAR.EXPAND.icon className="option__icon option__icon--expand" />
-            <span className="option__text">{ITEMS_SIDEBAR.EXPAND.label}</span>
+            <optionsSideBar.EXPAND.icon className="option__icon option__icon--expand" />
+            <span className="option__text">{optionsSideBar.EXPAND.label}</span>
           </button>
         </li>
       </ul>

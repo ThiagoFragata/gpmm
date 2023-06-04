@@ -13,6 +13,14 @@ import {
   UsersIcon
 } from "@/assets/icons";
 
+export interface ITEMS_MAIN {
+  id: string;
+  label: string;
+  path: string;
+  paths: string[];
+  icon: ({ className }: { className?: string }) => JSX.Element;
+}
+
 const HOME = {
   id: "inicio",
   label: "Início",
