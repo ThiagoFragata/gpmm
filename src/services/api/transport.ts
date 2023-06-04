@@ -4,7 +4,7 @@ import type {
   serviceGetTransportResponse,
   servicePostTransportProps
 } from "@/_types/Transport/serviceTransport";
-import { baseAPI } from "./";
+import { apiToken, baseAPI } from "./";
 import { RESOURCE_TRANSPORT } from "./endpoints";
 
 export async function serviceGetTransport({
@@ -12,7 +12,8 @@ export async function serviceGetTransport({
   size
 }: serviceGetTransportProps): Promise<serviceGetTransportResponse> {
   const { data } = await baseAPI.get<serviceGetTransportResponse>(
-    `${RESOURCE_TRANSPORT}?page=${page}&size=${size}`
+    `${RESOURCE_TRANSPORT}?page=${page}&size=${size}`,
+    apiToken
   );
   return data;
 }
@@ -22,7 +23,8 @@ export async function servicePostTransport(
 ): Promise<serviceGetTransportResponse> {
   const { data } = await baseAPI.post<serviceGetTransportResponse>(
     RESOURCE_TRANSPORT,
-    payload
+    payload,
+    apiToken
   );
   return data;
 }

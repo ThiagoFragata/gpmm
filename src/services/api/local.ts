@@ -6,7 +6,7 @@ import type {
   servicePutLocalProps,
   serviceGetLocalProps
 } from "@/_types/Local/ServiceLocal";
-import { baseAPI } from "./";
+import { apiToken, baseAPI } from "./";
 import { RESOURCE, RESOURCE_LOCAL } from "./endpoints";
 
 export async function serviceGetLocal({
@@ -14,7 +14,8 @@ export async function serviceGetLocal({
   size
 }: serviceGetLocalProps): Promise<serviceGetLocalResponse> {
   const { data } = await baseAPI.get<serviceGetLocalResponse>(
-    `${RESOURCE_LOCAL}?page=${page}&size=${size}`
+    `${RESOURCE_LOCAL}?page=${page}&size=${size}`,
+    apiToken
   );
   return data;
 }
@@ -23,7 +24,8 @@ export async function serviceGetLocalById(
   id: number
 ): Promise<serviceGetLocalByIdResponse> {
   const { data } = await baseAPI.get<serviceGetLocalByIdResponse>(
-    `${RESOURCE}/${id}`
+    `${RESOURCE}/${id}`,
+    apiToken
   );
   return data;
 }
@@ -33,7 +35,8 @@ export async function servicePostLocal(
 ): Promise<serviceGetLocalResponse> {
   const { data } = await baseAPI.post<serviceGetLocalResponse>(
     RESOURCE_LOCAL,
-    payload
+    payload,
+    apiToken
   );
   return data;
 }
@@ -43,7 +46,8 @@ export async function servicePutLocal(
 ): Promise<serviceGetLocalResponse> {
   const { data } = await baseAPI.put<serviceGetLocalResponse>(
     RESOURCE_LOCAL,
-    payload
+    payload,
+    apiToken
   );
   return data;
 }

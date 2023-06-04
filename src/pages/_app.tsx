@@ -1,7 +1,6 @@
 import React from "react";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@/style/ThemeProvider";
-import { SessionProvider } from "next-auth/react";
 import GlobalStyle from "@/style/global";
 
 import type { ReactElement, ReactNode } from "react";
@@ -45,23 +44,27 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-function MyApp({ Component, ...rest }: AppPropsWithLayout): JSX.Element {
+function MyApp({
+  Component,
+  pageProps,
+  ...rest
+}: AppPropsWithLayout): JSX.Element {
   const getLayout = Component.getLayout ?? (page => page);
-  const { store, props } = wrapper.useWrappedStore(rest);
+  const { store } = wrapper.useWrappedStore(rest);
   return (
-    <SessionProvider session={props?.pageProps.session}>
-      <ThemeProvider>
-        <main className={roboto.className}>
-          {getLayout(
-            <Provider store={store}>
-              <ToastAlert />
-              <Component {...props?.pageProps} />
-            </Provider>
-          )}
-          <GlobalStyle />
-        </main>
-      </ThemeProvider>
-    </SessionProvider>
+    // <SessionProvider session={props?.pageProps.session}>
+    <ThemeProvider>
+      <main className={roboto.className}>
+        {getLayout(
+          <Provider store={store}>
+            <ToastAlert />
+            <Component {...pageProps} />
+          </Provider>
+        )}
+        <GlobalStyle />
+      </main>
+    </ThemeProvider>
+    // {/* </SessionProvider> */}
   );
 }
 

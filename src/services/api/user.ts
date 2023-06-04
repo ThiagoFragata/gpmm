@@ -7,7 +7,7 @@ import type {
   servicePostUserProps,
   servicePutUserProps
 } from "@/_types/Users/serviceUsers";
-import { baseAPI } from "./";
+import { apiToken, baseAPI } from "./";
 import { LOGIN, USERS, USER_ADM_SEND_CODE } from "./endpoints";
 
 export async function servicePostLogin(
@@ -22,7 +22,8 @@ export async function serviceGetUsers({
   size
 }: serviceGetUsersProps): Promise<serviceGetUserResponse> {
   const { data } = await baseAPI.get<serviceGetUserResponse>(
-    `${USERS}?page=${page}&size=${size}`
+    `${USERS}?page=${page}&size=${size}`,
+    apiToken
   );
   return data;
 }
@@ -31,7 +32,8 @@ export async function serviceGetUserById(
   id: number
 ): Promise<serviceGetUserByIdResponse> {
   const { data } = await baseAPI.get<serviceGetUserByIdResponse>(
-    `${USERS}/${id}`
+    `${USERS}/${id}`,
+    apiToken
   );
   return data;
 }
@@ -39,10 +41,18 @@ export async function serviceGetUserById(
 export async function servicePostUser(
   payload: servicePostUserProps
 ): Promise<serviceGetUserResponse> {
-  const { data } = await baseAPI.post<serviceGetUserResponse>(USERS, payload);
-  baseAPI.post(USER_ADM_SEND_CODE, {
-    email: payload?.email
-  });
+  const { data } = await baseAPI.post<serviceGetUserResponse>(
+    USERS,
+    payload,
+    apiToken
+  );
+  baseAPI.post(
+    USER_ADM_SEND_CODE,
+    {
+      email: payload?.email
+    },
+    apiToken
+  );
   return data;
 }
 
@@ -52,7 +62,8 @@ export async function servicePutUser({
 }: servicePutUserProps): Promise<serviceGetUserResponse> {
   const { data } = await baseAPI.put<serviceGetUserResponse>(
     `${USERS}/${id}`,
-    payload
+    payload,
+    apiToken
   );
   return data;
 }
