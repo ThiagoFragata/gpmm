@@ -1,0 +1,56 @@
+import { pxToRem } from "@/_utils/pxToRem";
+import { colors } from "@/style/theme";
+import styled from "styled-components";
+
+export const ContainerTimes = styled.div`
+  display: flex;
+  height: 50vh;
+  width: 100%;
+  .time__scroll .scroll {
+    width: fit-content;
+    padding: 0;
+    padding: 10px;
+    background-color: ${colors.WHITE};
+    border-radius: 4px;
+    .time__map {
+      display: flex;
+      column-gap: 16px;
+      .time__box {
+        border-bottom: 1px solid ${colors.GRAY_LIGHT};
+        height: 60px;
+        width: 120px;
+        display: flex;
+        align-items: center;
+        /* justify-content: center; */
+        .button__box {
+          height: 100%;
+          width: 100%;
+          margin: auto;
+          border-radius: 8px;
+          border: none;
+          color: ${colors.WHITE};
+          font-weight: 600;
+          font-size: ${pxToRem(14)};
+          transition: all 0.2s;
+          :hover {
+            cursor: grabbing;
+          }
+          :disabled {
+            :hover {
+              cursor: no-drop;
+            }
+          }
+        }
+        .button__box--reserved {
+          background-color: ${colors.RED_DARK};
+        }
+        .button__box--available {
+          background-color: ${colors.BLUE_PRIMARY};
+        }
+        .button__box--selected {
+          background-color: ${colors.SUCCESS};
+        }
+      }
+    }
+  }
+`;

@@ -25,7 +25,7 @@ export function ToastAlert(): JSX.Element {
     if (isVisible) {
       setTimeout(() => {
         onResetAlert();
-      }, 5000);
+      }, 6000);
     }
   }, [isVisible]);
 

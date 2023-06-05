@@ -19,6 +19,7 @@ export function TextInput({
   const { onHandlerInputPassword, shouldRenderButton, isPassword } =
     useTextInput({ type });
   const isHidden = type === "hidden";
+  const { onChange } = rest;
   return (
     <Field
       parse={parse}
@@ -39,6 +40,10 @@ export function TextInput({
                 disabled={disabled}
                 {...input}
                 {...rest}
+                onChange={e => {
+                  input.onChange(e);
+                  onChange?.(e);
+                }}
               />
               {shouldRenderButton && (
                 <ButtonChangeInput

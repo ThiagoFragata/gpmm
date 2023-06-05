@@ -1,0 +1,93 @@
+import React from "react";
+import { ContainerCreateRequestLocal } from "./style";
+import { type NextPageWithLayout } from "@/pages/_app";
+import { useCreateRequestLocal } from "./useCreateRequestLocal";
+import {
+  AwaitRequest,
+  BreadCrumb,
+  CalendarForm,
+  ContentScroll,
+  DataBox,
+  FormToggle,
+  TextInput,
+  TitleDivider
+} from "@/Components";
+import { Form } from "react-final-form";
+import {
+  initialValuesRequestLocal,
+  validateRequestLocal
+} from "@/_utils/form/validations/requestLocal";
+import { regexDate } from "@/_utils/masks";
+import { TextNote } from "@/style/shareStyle";
+
+export const CreateRequestLocal: NextPageWithLayout = () => {
+  const { onGetRequestsDay, isLoading, breadCrumb, reservedHoursDay } =
+    useCreateRequestLocal();
+  return (
+    <ContainerCreateRequestLocal>
+      <BreadCrumb items={breadCrumb} />
+      <AwaitRequest isVisible={isLoading} />
+      <DataBox>
+        <Form
+          onSubmit={values => {
+            console.log(JSON.stringify(values, null, 2));
+          }}
+          initialValues={initialValuesRequestLocal}
+          validate={validateRequestLocal}
+          render={({ handleSubmit, form, values, errors }) => {
+            const shouldRenderFieldExternal = values?.is__external === true;
+            return (
+              <ContentScroll>
+                <form onSubmit={handleSubmit} className="container__form">
+                  <TitleDivider title="Dados gerais" />
+                  <div className="childrens__form items__fields">
+                    <TextInput
+                      label="Finalidade *"
+                      name="finalidade"
+                      placeholder="Informe a finalidade"
+                      disabled={isLoading}
+                      maxLength={200}
+                    />
+                    <FormToggle name="is__external" label="É pessoa externa" />
+                    {shouldRenderFieldExternal && (
+                      <TextInput
+                        label="Nome pessoa externa *"
+                        name="externo"
+                        placeholder="Informe o nome da pessoa"
+                        disabled={isLoading}
+                      />
+                    )}
+                  </div>
+                  <TitleDivider
+                    title="Data do evento - Digite uma data para verificar a disponibilidade"
+                    className="item__divider"
+                  />
+                  <TextNote className="note__text">
+                    Nota: Basta digitar uma data para buscar os horários
+                    disponíves do dia, após isso selecione os horários
+                    disponíves
+                  </TextNote>
+                  <div className="childrens__form items__fields">
+                    <div className="field__date">
+                      <TextInput
+                        label="Data *"
+                        name="event__data"
+                        placeholder="Informe a data"
+                        disabled={isLoading}
+                        parse={regexDate}
+                        onChange={e =>
+                          onGetRequestsDay((e.target as HTMLInputElement).value)
+                        }
+                      />
+                      <CalendarForm reservedHoursDay={reservedHoursDay} />
+                    </div>
+                  </div>
+                </form>
+              </ContentScroll>
+            );
+          }}
+        />
+      </DataBox>
+    </ContainerCreateRequestLocal>
+  );
+};

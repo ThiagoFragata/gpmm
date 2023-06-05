@@ -50,3 +50,11 @@ export interface IDataServeError {
     };
   };
 }
+
+export interface getOnlyRequestDayProps {
+  informedDay: string;
+  times: Array<{
+    data_final: string;
+    data_inicio: string;
+  }>;
+}

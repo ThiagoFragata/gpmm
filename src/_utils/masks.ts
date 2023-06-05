@@ -37,3 +37,16 @@ export function formatDateToBack(value: string): string {
   )}`;
   return formated;
 }
+
+export function checkValidDate(value: string): boolean {
+  const jack = value.split("/");
+  const day = parseInt(jack[0], 10);
+  const month = parseInt(jack[1], 10);
+  const year = parseInt(jack[2], 10);
+  const date = new Date(year, month - 1, day);
+  const dayValidate = date.getDate() === day;
+  const monthValidate = date.getMonth() === month - 1;
+  const yearValidate = date.getFullYear() === year;
+  const isValidDate = dayValidate && monthValidate && yearValidate;
+  return isValidDate;
+}

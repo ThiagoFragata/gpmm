@@ -54,7 +54,7 @@ export function ListRequestLocal(): JSX.Element {
         <Button
           title="Novo"
           iconName="MoreIcon"
-          navigateTo={PATHS.dashboard.recursosNovoLocal}
+          navigateTo={PATHS.dashboard.solicitacoesNovoLocal}
         />
       </div>
       <TableTitle items={tableTitle} />

@@ -11,14 +11,25 @@ export function useRequests(): useRequestsData {
   const { TAB_LIST_PLACE, TAB_LIST_TRANSPORT } = TABS_REQUESTS;
   const [currentTab, setCurrentTab] =
     React.useState<ITabOptionsRequests>(TAB_LIST_PLACE);
+  const [currentBreadCrumb, setCurrentBreadCrumb] = React.useState<
+    itemBreadCrumb[]
+  >([]);
   const router = useRouter();
   const pathname = usePathname();
-  const breadCrumb: itemBreadCrumb[] = [
+  const breadCrumbPlace: itemBreadCrumb[] = [
     {
-      label: "Recursos"
+      label: "Solicitações"
     },
     {
-      label: "Todos locais"
+      label: "Solicitações de locais"
+    }
+  ];
+  const breadCrumbTransport: itemBreadCrumb[] = [
+    {
+      label: "Solicitações"
+    },
+    {
+      label: "Solicitações de transportes"
     }
   ];
 
@@ -63,7 +74,7 @@ export function useRequests(): useRequestsData {
     onChangeTab,
     optionsTab,
     currentTab,
-    breadCrumb,
+    breadCrumb: breadCrumbPlace,
     isListRequestPlace: currentTab === TAB_LIST_PLACE,
     isListRequestTransport: currentTab === TAB_LIST_TRANSPORT
   };

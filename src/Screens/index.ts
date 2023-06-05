@@ -14,3 +14,4 @@ export { EditUser } from "./Dashboard/Users/EditUser";
 export { CreateTransport } from "./Dashboard/Transport/CreateTransport";
 export { Requests } from "./Dashboard/Requests";
 export { ListRequestLocal } from "./Dashboard/RequestLocal/ListRequestLocal";
+export { CreateRequestLocal } from "./Dashboard/RequestLocal/CreateRequestLocal";

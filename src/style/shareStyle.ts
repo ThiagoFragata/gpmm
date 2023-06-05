@@ -1,4 +1,6 @@
+import { pxToRem } from "@/_utils/pxToRem";
 import styled from "styled-components";
+import { colors } from "./theme";
 
 export const ContainerDashboard = styled.section`
   flex: 1;
@@ -10,4 +12,11 @@ export const ContainerDashboard = styled.section`
     justify-content: space-between;
     align-items: center;
   }
+`;
+
+export const TextNote = styled.span`
+  font-size: ${pxToRem(15)};
+  color: ${colors.DARK_PRIMARY};
+  font-style: italic;
+  opacity: 0.8;
 `;
