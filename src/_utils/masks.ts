@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function regexOnlyNumber(value: string): string {
   return value.replace(/\D/g, "");
 }
@@ -49,4 +51,12 @@ export function checkValidDate(value: string): boolean {
   const yearValidate = date.getFullYear() === year;
   const isValidDate = dayValidate && monthValidate && yearValidate;
   return isValidDate;
+}
+
+export function validFutureDate(value: string): boolean {
+  const currentDate = new Date();
+  const isBefore = moment(new Date(value)).isBefore(currentDate, "day");
+  const isToday = moment(value, "DD/MM/YYYY").isSame(moment(), "day");
+  const isValid = !isBefore || isToday;
+  return isValid;
 }

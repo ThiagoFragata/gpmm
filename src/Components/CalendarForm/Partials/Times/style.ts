@@ -50,6 +50,10 @@ export const ContainerTimes = styled.div`
         .button__box--selected {
           background-color: ${colors.SUCCESS};
         }
+        .button__box--disabled {
+          background-color: ${colors.GRAY_SECONDARY};
+          opacity: 0.4;
+        }
       }
     }
   }

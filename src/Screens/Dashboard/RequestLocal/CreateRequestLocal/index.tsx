@@ -5,6 +5,7 @@ import { useCreateRequestLocal } from "./useCreateRequestLocal";
 import {
   AwaitRequest,
   BreadCrumb,
+  Button,
   CalendarForm,
   ContentScroll,
   DataBox,
@@ -19,10 +20,20 @@ import {
 } from "@/_utils/form/validations/requestLocal";
 import { regexDate } from "@/_utils/masks";
 import { TextNote } from "@/style/shareStyle";
+import { PATHS } from "@/_utils/constants";
 
 export const CreateRequestLocal: NextPageWithLayout = () => {
-  const { onGetRequestsDay, isLoading, breadCrumb, reservedHoursDay } =
-    useCreateRequestLocal();
+  const {
+    onGetRequestsDay,
+    focusOnError,
+    onCreateRequestLocal,
+    setSelectedTimes,
+    disabledCalendarForm,
+    selectedTimes,
+    isLoading,
+    breadCrumb,
+    reservedHoursDay
+  } = useCreateRequestLocal();
   return (
     <ContainerCreateRequestLocal>
       <BreadCrumb items={breadCrumb} />
@@ -30,12 +41,13 @@ export const CreateRequestLocal: NextPageWithLayout = () => {
       <DataBox>
         <Form
           onSubmit={values => {
-            console.log(JSON.stringify(values, null, 2));
+            onCreateRequestLocal(values);
           }}
+          decorators={[focusOnError]}
           initialValues={initialValuesRequestLocal}
           validate={validateRequestLocal}
           render={({ handleSubmit, form, values, errors }) => {
-            const shouldRenderFieldExternal = values?.is__external === true;
+            const shouldRenderFieldExternal = values?.is__external;
             return (
               <ContentScroll>
                 <form onSubmit={handleSubmit} className="container__form">
@@ -48,7 +60,13 @@ export const CreateRequestLocal: NextPageWithLayout = () => {
                       disabled={isLoading}
                       maxLength={200}
                     />
-                    <FormToggle name="is__external" label="É pessoa externa" />
+                    <FormToggle
+                      name="is__external"
+                      label="É pessoa externa"
+                      onClick={() => {
+                        if (values?.is__external) form.change("externo", "");
+                      }}
+                    />
                     {shouldRenderFieldExternal && (
                       <TextInput
                         label="Nome pessoa externa *"
@@ -58,6 +76,10 @@ export const CreateRequestLocal: NextPageWithLayout = () => {
                       />
                     )}
                   </div>
+                  <textarea
+                    style={{ minHeight: "150px", minWidth: "300px" }}
+                    value={JSON.stringify(values, null, 2)}
+                  />
                   <TitleDivider
                     title="Data do evento - Digite uma data para verificar a disponibilidade"
                     className="item__divider"
@@ -79,8 +101,26 @@ export const CreateRequestLocal: NextPageWithLayout = () => {
                           onGetRequestsDay((e.target as HTMLInputElement).value)
                         }
                       />
-                      <CalendarForm reservedHoursDay={reservedHoursDay} />
+                      <CalendarForm
+                        disabled={disabledCalendarForm}
+                        reservedHoursDay={reservedHoursDay}
+                        setSelectedTimes={setSelectedTimes}
+                        selectedTimes={selectedTimes}
+                        onSelectHours={data => {
+                          form.change("hours", data);
+                        }}
+                      />
                     </div>
+                  </div>
+                  <div className="form__buttons">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      title="Cancelar"
+                      disabled={isLoading}
+                      navigateTo={PATHS.dashboard.solicitacoesLocais}
+                    />
+                    <Button type="submit" title="Salvar" disabled={isLoading} />
                   </div>
                 </form>
               </ContentScroll>

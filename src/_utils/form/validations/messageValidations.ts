@@ -5,6 +5,7 @@ export const messageValidations = {
   number: "Número inválido.",
   sector: "O setor é obrigatório.",
   date: "Formato de data inválido.",
+  dateBefore: "Informe uma data no futuro.",
   phone: "Formato de telefone inválido.",
   document: "Formato de documento inválido.",
   maxSize: ({ name, size }: { name: string; size: number }) =>

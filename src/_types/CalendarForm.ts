@@ -1,9 +1,17 @@
-export interface CalendarFormProps {
+import { type ISelectedTimes } from "./Common";
+
+export type CalendarFormProps = {
   className?: string;
   reservedHoursDay: string[];
-}
+  onSelectHours: (hours: { start: string; end: string } | null) => void;
+  disabled: boolean;
+} & ISelectedTimes;
 
-export type TimesProps = Pick<CalendarFormProps, "reservedHoursDay">;
+export type TimesProps = Pick<
+  CalendarFormProps,
+  "reservedHoursDay" | "onSelectHours" | "disabled"
+> &
+  ISelectedTimes;
 
 export interface checkStatusTimeData {
   disabledButton: boolean;
@@ -11,7 +19,11 @@ export interface checkStatusTimeData {
   label: string;
 }
 
-export type useTimesProps = Pick<CalendarFormProps, "reservedHoursDay">;
+export type useTimesProps = Pick<
+  CalendarFormProps,
+  "reservedHoursDay" | "onSelectHours"
+> &
+  ISelectedTimes;
 
 export interface useTimesData {
   checkStatusTime: (value: string) => checkStatusTimeData;

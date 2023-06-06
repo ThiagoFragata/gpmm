@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { validateFormValues } from "../validateForm";
 import { messageValidations } from "./messageValidations";
-import { checkValidDate } from "@/_utils/masks";
+import { checkValidDate, validFutureDate } from "@/_utils/masks";
 
 export const initialValuesRequestLocal = {
   finalidade: "",
@@ -21,8 +21,26 @@ export const validateRequestLocal = validateFormValues(
       .string()
       .required(messageValidations.required)
       .min(10, messageValidations.date)
-      .test("event__data", messageValidations.date, value =>
-        checkValidDate(value)
+      .test(
+        "event__data",
+        messageValidations.date,
+        (value, { createError, path }) => {
+          if (value?.length === 10) {
+            if (!validFutureDate(value)) {
+              return createError({
+                message: messageValidations.dateBefore,
+                path
+              });
+            }
+          }
+          if (!checkValidDate(value)) {
+            return createError({
+              message: messageValidations.date,
+              path
+            });
+          }
+          return true;
+        }
       )
   })
 );

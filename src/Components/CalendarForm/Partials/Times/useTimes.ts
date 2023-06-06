@@ -5,13 +5,15 @@ import {
   type useTimesProps
 } from "@/_types/CalendarForm";
 import { getDivision30Minutes } from "@/_utils/treatAvailability";
-import React from "react";
 import { useDispatch } from "react-redux";
 
-export function useTimes({ reservedHoursDay }: useTimesProps): useTimesData {
+export function useTimes({
+  selectedTimes,
+  reservedHoursDay,
+  setSelectedTimes,
+  onSelectHours
+}: useTimesProps): useTimesData {
   const dispatch = useDispatch();
-  const [selectedTimes, setSelectedTimes] = React.useState<string[]>([]);
-
   function checkStatusTime(value: string): checkStatusTimeData {
     const isReserved = reservedHoursDay.some(item => item === value);
 
@@ -51,8 +53,6 @@ export function useTimes({ reservedHoursDay }: useTimesProps): useTimesData {
       ? selectedTimes.filter(time => time !== value)
       : [...selectedTimes, value];
 
-    console.log(JSON.stringify(updatedArray, null, 2));
-
     const nextHoursItens = updatedArray.map(obj => obj);
     const start = nextHoursItens.reduce(
       (min, val) => (val < min ? val : min),
@@ -86,7 +86,24 @@ export function useTimes({ reservedHoursDay }: useTimesProps): useTimesData {
       );
       return;
     }
-    setSelectedTimes(formatted);
+
+    const isOnlyTowItens = formatted.length === 2;
+    let _formatted: string[] = formatted;
+    if (isOnlyTowItens) {
+      if (formatted[0] === formatted[1]) {
+        _formatted = [formatted[0]];
+      }
+    }
+
+    onSelectHours(
+      _formatted.length > 0
+        ? {
+            start,
+            end: _end
+          }
+        : null
+    );
+    setSelectedTimes(_formatted);
   }
 
   return {

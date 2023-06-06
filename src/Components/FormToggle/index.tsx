@@ -6,8 +6,10 @@ import { Field } from "react-final-form";
 export function FormToggle({
   label,
   disabled,
-  name
+  name,
+  onClick
 }: FormToggleProps): JSX.Element {
+  const isExistOnClick = onClick !== undefined;
   return (
     <Field
       name={name}
@@ -23,6 +25,7 @@ export function FormToggle({
               className="toggle__button"
               onClick={() => {
                 input.onChange(!isChecked);
+                if (isExistOnClick) onClick();
               }}
               disabled={disabled}
             >

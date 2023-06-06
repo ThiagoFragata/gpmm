@@ -58,3 +58,8 @@ export interface getOnlyRequestDayProps {
     data_inicio: string;
   }>;
 }
+
+export interface ISelectedTimes {
+  setSelectedTimes: (value: string[]) => void;
+  selectedTimes: string[];
+}

@@ -5,8 +5,19 @@ import { ContentScroll } from "@/Components/ContentScroll";
 import { type TimesProps } from "@/_types/CalendarForm";
 import { useTimes } from "./useTimes";
 
-export function Times({ reservedHoursDay }: TimesProps): JSX.Element {
-  const { checkStatusTime, onSelectItem } = useTimes({ reservedHoursDay });
+export function Times({
+  reservedHoursDay,
+  selectedTimes,
+  disabled,
+  onSelectHours,
+  setSelectedTimes
+}: TimesProps): JSX.Element {
+  const { checkStatusTime, onSelectItem } = useTimes({
+    selectedTimes,
+    reservedHoursDay,
+    setSelectedTimes,
+    onSelectHours
+  });
   return (
     <ContainerTimes>
       <ContentScroll className="time__scroll">
@@ -22,6 +33,10 @@ export function Times({ reservedHoursDay }: TimesProps): JSX.Element {
             {HOURS__AVAILABLE.map(({ id, value }) => {
               const { disabledButton, classStatus, label } =
                 checkStatusTime(value);
+              const styleStatus = disabled
+                ? "button__box button__box--disabled"
+                : classStatus;
+              const labelButton = disabled ? "..." : label;
               return (
                 <li
                   key={id}
@@ -32,10 +47,10 @@ export function Times({ reservedHoursDay }: TimesProps): JSX.Element {
                 >
                   <button
                     type="button"
-                    className={classStatus}
-                    disabled={disabledButton}
+                    className={styleStatus}
+                    disabled={disabledButton || disabled}
                   >
-                    {label}
+                    {labelButton}
                   </button>
                 </li>
               );

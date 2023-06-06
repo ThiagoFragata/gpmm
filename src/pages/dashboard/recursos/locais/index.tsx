@@ -8,7 +8,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const permission = checkPermissionRules({
     context
   });
-  console.log(JSON.stringify(permission, null, 2));
   return permission;
 };
 

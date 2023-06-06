@@ -1,17 +1,24 @@
 import React from "react";
 import { type itemBreadCrumb } from "@/_types/BreadCrumb";
-import { type useCreateRequestLocalData } from "@/_types/RequestsLocal/CreateRequestLocal";
+import {
+  type IDataFormRequestLocal,
+  type useCreateRequestLocalData
+} from "@/_types/RequestsLocal/CreateRequestLocal";
 import { serviceGeRequestLocal } from "@/services/api/requestLocal";
 import { PATHS } from "@/_utils/constants";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { checkValidDate } from "@/_utils/masks";
+import { checkValidDate, validFutureDate } from "@/_utils/masks";
 import { getOnlyRequestDay } from "@/_utils/treatAvailability";
+import createDecorator from "final-form-focus";
 
 export function useCreateRequestLocal(): useCreateRequestLocalData {
   const dispatch = useDispatch();
   const [reservedHoursDay, setReservedHoursDay] = React.useState<string[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [disabledCalendarForm, setDisabledCalendarForm] =
+    React.useState<boolean>(true);
+  const [selectedTimes, setSelectedTimes] = React.useState<string[]>([]);
   const breadCrumb: itemBreadCrumb[] = [
     {
       label: "Solicitações"
@@ -29,7 +36,23 @@ export function useCreateRequestLocal(): useCreateRequestLocalData {
     if (value.length === 10) {
       const isValidDate = checkValidDate(value);
       if (isValidDate) {
+        const isValidFuture = validFutureDate(value);
+        if (!isValidFuture) {
+          dispatch(
+            onChangeToastAlert({
+              isVisible: true,
+              variant: "warning",
+              title: "Atenção",
+              description: "Informa uma data a partir de hoje"
+            })
+          );
+          return;
+        }
+
+        if (disabledCalendarForm) setDisabledCalendarForm(false);
+
         try {
+          setSelectedTimes([]);
           setIsLoading(true);
           const data = await serviceGeRequestLocal({
             size: 0,
@@ -63,14 +86,47 @@ export function useCreateRequestLocal(): useCreateRequestLocalData {
         dispatch(
           onChangeToastAlert({
             isVisible: true,
-            variant: "error",
+            variant: "warning",
             title: "Data inválida",
-            description: "Verifique o formato informato"
+            description: "Verifique o formato de data informado"
           })
         );
       }
     }
   }
 
-  return { onGetRequestsDay, breadCrumb, isLoading, reservedHoursDay };
+  async function onCreateRequestLocal(
+    data: IDataFormRequestLocal
+  ): Promise<void> {
+    const isNoTimeGap = data?.hours === null || data?.hours === undefined;
+    console.log(JSON.stringify(data?.hours, null, 2));
+    if (isNoTimeGap) {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "warning",
+          title: "Atenção",
+          description: "Selecione ao menos um intervalo de horas."
+        })
+      );
+    }
+  }
+
+  const focusOnError = React.useMemo(
+    () =>
+      createDecorator<IDataFormRequestLocal, Partial<IDataFormRequestLocal>>(),
+    []
+  );
+
+  return {
+    onGetRequestsDay,
+    focusOnError,
+    onCreateRequestLocal,
+    setSelectedTimes,
+    disabledCalendarForm,
+    breadCrumb,
+    selectedTimes,
+    isLoading,
+    reservedHoursDay
+  };
 }
