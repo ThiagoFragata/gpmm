@@ -14,8 +14,8 @@ export const TABS_RESOURCES: Record<string, ITabOptions> = {
 };
 
 export const TABS_REQUESTS: Record<string, ITabOptionsRequests> = {
-  TAB_LIST_PLACE: 0,
-  TAB_LIST_TRANSPORT: 1
+  TAB_LIST_PLACE: 1,
+  TAB_LIST_TRANSPORT: 2
 };
 
 export const FIRST_ACCESS_SCREENS: Record<string, IScreenSteps> = {

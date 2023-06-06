@@ -1,6 +1,6 @@
 import type { itemBreadCrumb } from "./BreadCrumb";
 
-export type ITabOptionsRequests = 0 | 1;
+export type ITabOptionsRequests = 1 | 2;
 
 export interface useRequestsData {
   onChangeTab: (tab: number) => void;

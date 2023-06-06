@@ -47,8 +47,8 @@ export function useRequests(): useRequestsData {
   function onChangeTab(value: number): void {
     const tab = value as ITabOptionsRequests;
     const mapScreens = {
-      0: PATHS.dashboard.solicitacoesLocais,
-      1: PATHS.dashboard.solicitacoesTranportes
+      1: PATHS.dashboard.solicitacoesLocais,
+      2: PATHS.dashboard.solicitacoesTranportes
     };
     setCurrentTab(tab);
     router.push(mapScreens[tab]);

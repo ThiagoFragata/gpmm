@@ -11,8 +11,8 @@ function RenderCurrenTab({
   onChangeTab
 }: RenderCurrenTabProps): JSX.Element {
   const tabs = {
-    0: <ListRequestLocal />,
-    1: <h1>LISTA TRANSPORTE</h1>
+    1: <ListRequestLocal />,
+    2: <h1>LISTA TRANSPORTE</h1>
   };
 
   return tabs[currentTab] ?? <h1>SEMN ADA</h1>;
