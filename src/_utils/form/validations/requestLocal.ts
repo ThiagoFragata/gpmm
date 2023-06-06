@@ -17,6 +17,10 @@ export const validateRequestLocal = validateFormValues(
       is: true,
       then: schema => schema.required(messageValidations.required)
     }),
+    idLocal: yup
+      .string()
+      .required(messageValidations.required)
+      .typeError(messageValidations.number),
     event__data: yup
       .string()
       .required(messageValidations.required)

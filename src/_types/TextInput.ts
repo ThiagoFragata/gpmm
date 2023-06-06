@@ -5,6 +5,7 @@ export type TextInputProps = {
   type?: "text" | "email" | "password" | "number" | "hidden";
   inputMode?: "text";
   parse?: (value: string) => string;
+  classNameContainer?: string;
   className?: string;
   disabled?: boolean;
 } & React.HTMLProps<HTMLInputElement>;

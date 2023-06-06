@@ -1,9 +1,10 @@
 import {
   type serviceGetRequestLocalResponse,
-  type serviceGetRequestLocalProps
+  type serviceGetRequestLocalProps,
+  type servicePostRequestLocalProps
 } from "@/_types/RequestsLocal/ServiceRequestLocal";
 import { apiToken, baseAPI } from "./";
-import { REQUEST_LOCAL } from "./endpoints";
+import { REQUEST_CREATE_LOCAL, REQUEST_LOCAL } from "./endpoints";
 
 export async function serviceGeRequestLocal({
   page,
@@ -16,22 +17,22 @@ export async function serviceGeRequestLocal({
   return data;
 }
 
+export async function servicePostrequestLocal(
+  payload: servicePostRequestLocalProps
+): Promise<serviceGetRequestLocalResponse> {
+  const { data } = await baseAPI.post<serviceGetRequestLocalResponse>(
+    REQUEST_CREATE_LOCAL,
+    payload,
+    apiToken
+  );
+  return data;
+}
+
 // export async function serviceGetrequestLocalById(
 //   id: number
 // ): Promise<serviceGetrequestLocalByIdResponse> {
 //   const { data } = await baseAPI.get<serviceGetrequestLocalByIdResponse>(
 //     `${RESOURCE}/${id}`,
-//     apiToken
-//   );
-//   return data;
-// }
-
-// export async function servicePostrequestLocal(
-//   payload: servicePostrequestLocalProps
-// ): Promise<serviceGetrequestLocalResponse> {
-//   const { data } = await baseAPI.post<serviceGetrequestLocalResponse>(
-//     REQUEST_LOCAL,
-//     payload,
 //     apiToken
 //   );
 //   return data;

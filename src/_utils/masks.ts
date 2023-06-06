@@ -54,9 +54,8 @@ export function checkValidDate(value: string): boolean {
 }
 
 export function validFutureDate(value: string): boolean {
-  const currentDate = new Date();
-  const isBefore = moment(new Date(value)).isBefore(currentDate, "day");
-  const isToday = moment(value, "DD/MM/YYYY").isSame(moment(), "day");
-  const isValid = !isBefore || isToday;
+  const currentDate = moment().startOf("day");
+  const providedDate = moment(value, "DD/MM/YYYY").startOf("day");
+  const isValid = providedDate.isSameOrAfter(currentDate);
   return isValid;
 }

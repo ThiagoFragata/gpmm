@@ -30,7 +30,14 @@ export interface serviceGetRequestLocalProps {
 
 export type serviceGetRequestLocalByIdResponse = IItemRequestLocal;
 
-export type servicePostRequestLocalProps = IItemRequestLocal;
+export interface servicePostRequestLocalProps {
+  idPessoa?: string;
+  dataInicio?: string;
+  dataFinal?: string;
+  finalidade?: string;
+  idLocal?: string;
+  externo?: string;
+}
 
 export type servicePutRequestLocalProps = IItemRequestLocal;
 

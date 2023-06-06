@@ -3,6 +3,7 @@ import { type itemBreadCrumb } from "../BreadCrumb";
 import { type ISelectedTimes } from "../Common";
 
 export interface IDataFormRequestLocal {
+  idLocal?: string;
   finalidade: string;
   is__external: boolean;
   externo?: string;
@@ -15,6 +16,10 @@ export type useCreateRequestLocalData = {
   isLoading: boolean;
   reservedHoursDay: string[];
   disabledCalendarForm: boolean;
+  dataLocal: Array<{
+    id: number;
+    name: string;
+  }>;
   onCreateRequestLocal: (data: IDataFormRequestLocal) => Promise<void>;
   onGetRequestsDay: (value: string) => Promise<void>;
   focusOnError: Decorator<

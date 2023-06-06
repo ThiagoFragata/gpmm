@@ -19,3 +19,4 @@ export const USER_ADM_SEND_CODE = "pessoas/envia-codigo/envio-admin";
 
 // REQUESTS
 export const REQUEST_LOCAL = "solicitacoes/locais";
+export const REQUEST_CREATE_LOCAL = "solicitacoes/local";

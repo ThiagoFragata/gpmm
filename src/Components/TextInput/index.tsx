@@ -11,9 +11,10 @@ export function TextInput({
   placeholder,
   type = "text",
   inputMode,
-  parse,
+  classNameContainer,
   className,
   disabled = false,
+  parse,
   ...rest
 }: TextInputProps): JSX.Element {
   const { onHandlerInputPassword, shouldRenderButton, isPassword } =
@@ -28,7 +29,11 @@ export function TextInput({
         const isInvalid: boolean =
           meta.error !== undefined && meta.touched === true;
         return (
-          <ContainerTextInput error={isInvalid} isHidden={isHidden}>
+          <ContainerTextInput
+            error={isInvalid}
+            isHidden={isHidden}
+            className={classNameContainer}
+          >
             <span className="input__label">{label}</span>
             <div className="container__input">
               <input

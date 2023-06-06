@@ -10,6 +10,7 @@ import {
   ContentScroll,
   DataBox,
   FormToggle,
+  InputSelect,
   TextInput,
   TitleDivider
 } from "@/Components";
@@ -28,6 +29,7 @@ export const CreateRequestLocal: NextPageWithLayout = () => {
     focusOnError,
     onCreateRequestLocal,
     setSelectedTimes,
+    dataLocal,
     disabledCalendarForm,
     selectedTimes,
     isLoading,
@@ -46,19 +48,30 @@ export const CreateRequestLocal: NextPageWithLayout = () => {
           decorators={[focusOnError]}
           initialValues={initialValuesRequestLocal}
           validate={validateRequestLocal}
-          render={({ handleSubmit, form, values, errors }) => {
+          render={({ handleSubmit, form, values }) => {
             const shouldRenderFieldExternal = values?.is__external;
             return (
               <ContentScroll>
                 <form onSubmit={handleSubmit} className="container__form">
                   <TitleDivider title="Dados gerais" />
                   <div className="childrens__form items__fields">
+                    <InputSelect
+                      label="Local *"
+                      name="idLocal"
+                      placeholder="Informe o local"
+                      disabled={isLoading}
+                      data={dataLocal}
+                      direction="bottom"
+                      form={form}
+                      isAwaiting={isLoading}
+                    />
                     <TextInput
                       label="Finalidade *"
                       name="finalidade"
                       placeholder="Informe a finalidade"
                       disabled={isLoading}
                       maxLength={200}
+                      classNameContainer="field__goal"
                     />
                     <FormToggle
                       name="is__external"
@@ -76,10 +89,6 @@ export const CreateRequestLocal: NextPageWithLayout = () => {
                       />
                     )}
                   </div>
-                  <textarea
-                    style={{ minHeight: "150px", minWidth: "300px" }}
-                    value={JSON.stringify(values, null, 2)}
-                  />
                   <TitleDivider
                     title="Data do evento - Digite uma data para verificar a disponibilidade"
                     className="item__divider"
