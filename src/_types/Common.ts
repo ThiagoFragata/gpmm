@@ -63,3 +63,8 @@ export interface ISelectedTimes {
   setSelectedTimes: (value: string[]) => void;
   selectedTimes: string[];
 }
+
+export interface formatDataStartEndProps {
+  start: string;
+  end: string;
+}

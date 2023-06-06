@@ -5,6 +5,7 @@ import { BreadCrumb, DataBox, TabResources } from "@/Components";
 import { ListRequestLocal } from "../RequestLocal/ListRequestLocal";
 import { type NextPageWithLayout } from "@/pages/_app";
 import { type RenderCurrenTabProps } from "@/_types/Requests";
+import { ListRequestTransport } from "../RequestTransport/ListRequestTransport";
 
 function RenderCurrenTab({
   currentTab,
@@ -12,7 +13,7 @@ function RenderCurrenTab({
 }: RenderCurrenTabProps): JSX.Element {
   const tabs = {
     1: <ListRequestLocal />,
-    2: <h1>LISTA TRANSPORTE</h1>
+    2: <ListRequestTransport />
   };
 
   return tabs[currentTab] ?? <h1>SEMN ADA</h1>;

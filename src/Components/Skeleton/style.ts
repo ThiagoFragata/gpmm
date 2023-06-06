@@ -14,8 +14,8 @@ const reflexAnimation = keyframes`
 `;
 
 export const ContainerSkeleton = styled.div<SkeletonModifier>`
-  height: ${({ height }) => pxToRem(height ?? 18)};
-  width: ${({ width }) => width ?? "30%"};
+  height: ${({ height }) => pxToRem(height ?? 20)};
+  width: ${({ width }) => width ?? "50%"};
   background-color: ${colors.GRAY_LIGHT};
   border-radius: 10px;
   position: relative;

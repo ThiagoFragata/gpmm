@@ -1,3 +1,4 @@
+import { type formatDataStartEndProps } from "@/_types/Common";
 import moment from "moment";
 
 export function regexOnlyNumber(value: string): string {
@@ -58,4 +59,14 @@ export function validFutureDate(value: string): boolean {
   const providedDate = moment(value, "DD/MM/YYYY").startOf("day");
   const isValid = providedDate.isSameOrAfter(currentDate);
   return isValid;
+}
+
+export function formatDataStartEnd({
+  start,
+  end
+}: formatDataStartEndProps): string {
+  const formatted = `${moment(start).format(
+    "DD[/]MM[/]YYYY [de] HH:mm"
+  )} às ${moment(end).format("HH:mm")}`;
+  return formatted;
 }

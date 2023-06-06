@@ -47,7 +47,9 @@ const PATHS_USERS = {
 const PATHS_REQUESTS = {
   solicitacoesLocais: "/dashboard/solicitacoes/locais",
   solicitacoesNovoLocal: "/dashboard/solicitacoes/locais/novo",
-  solicitacoesTranportes: "/dashboard/solicitacoes/tranportes"
+  solicitacoesTranportes: "/dashboard/solicitacoes/tranportes",
+  solicitacoesNovoTranporte: "/dashboard/solicitacoes/tranportes/novo",
+  solicitacoesEditarTranporte: "/dashboard/solicitacoes/tranportes/editar/"
 };
 
 export const PATHS = {

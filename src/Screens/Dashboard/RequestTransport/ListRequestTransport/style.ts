@@ -8,4 +8,11 @@ export const ContainerListRequestTransport = styled.div`
   .column__table {
     width: 23%;
   }
+
+  .column__partida {
+    width: 26%;
+  }
+  .column__status {
+    width: 20%;
+  }
 `;

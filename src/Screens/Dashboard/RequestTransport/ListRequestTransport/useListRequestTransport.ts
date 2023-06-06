@@ -1,61 +1,51 @@
 import React from "react";
-import { useRouter } from "next/navigation";
-import type {
-  onGetDataDeleteProps,
-  useListLocalData
-} from "@/_types/Local/ListLocal";
-import type { IItemLocal } from "@/_types/Local/ServiceLocal";
-import { type dataDeleteProps } from "@/_types/Common";
-import { serviceDeleteLocal, serviceGetLocal } from "@/services/api/local";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { type IItemRequestLocal } from "@/_types/RequestsLocal/ServiceRequestLocal";
+import { type dataDeleteProps } from "@/_types/Common";
+import { serviceGetRequestTransport } from "@/services/api/requestTransport";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
+import { type IItemRequestTransport } from "@/_types/RequestTransport/ServiceRequestTransport";
+import { type useListRequestTransportData } from "@/_types/RequestTransport/ListRequestTransport";
 import { PATHS } from "@/_utils/constants";
 
-export function useListLocal(): useListLocalData {
+export function useListRequestTransport(): useListRequestTransportData {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [dataLocal, setDataLocal] = React.useState<IItemLocal[]>([]);
+  const [dataRequestTransport, setDataRequestTransport] = React.useState<
+    IItemRequestTransport[]
+  >([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [isAwaitDelete, setIsAwaitDelete] = React.useState<boolean>(false);
-  const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(0);
   const [currentSizePage, setCurrentSizePage] = React.useState(10);
-  const [dataDelete, setDataDelete] = React.useState<dataDeleteProps>({
-    name: "",
-    id: 0
-  });
   const [dataPagination, setDataPagination] = React.useState({
     totalPages: 0,
     totalPerPage: 0,
     currentPage: 0
   });
+
   const tableTitle = [
     {
-      label: "Descrição",
+      label: "Finalidade",
       className: "column__table"
     },
     {
-      label: "Identificação",
+      label: "Início - Fim",
       className: "column__table"
     },
     {
-      label: "N° de Assentos",
-      className: "column__table"
+      label: "Partida - Destino",
+      className: "column__partida"
+    },
+    {
+      label: "Status",
+      className: "column__status"
     },
     {
       label: "Ação",
       className: "size__action"
     }
   ];
-
-  function onHandlerDialogModal(): void {
-    setIsOpenModal(!isOpenModal);
-  }
-
-  function onGetDataDelete(data: onGetDataDeleteProps): void {
-    onHandlerDialogModal();
-    setDataDelete(data);
-  }
 
   function onChangeSizePage(value: number): void {
     setCurrentPage(0);
@@ -65,7 +55,7 @@ export function useListLocal(): useListLocalData {
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
-      const data = await serviceGetLocal({
+      const data = await serviceGetRequestTransport({
         size: currentSizePage,
         page: currentPage
       });
@@ -74,7 +64,7 @@ export function useListLocal(): useListLocalData {
         totalPerPage: data?.size,
         currentPage: data?.number
       });
-      setDataLocal(data?.content);
+      setDataRequestTransport(data?.content);
     } catch (error) {
       dispatch(
         onChangeToastAlert({
@@ -89,51 +79,23 @@ export function useListLocal(): useListLocalData {
     }
   }, [currentPage, currentSizePage, dispatch]);
 
-  async function onConfirmDelete(): Promise<void> {
-    try {
-      setIsAwaitDelete(true);
-      onHandlerDialogModal();
-      await serviceDeleteLocal({
-        id: dataDelete?.id
-      });
-      getListData();
-    } catch {
-      dispatch(
-        onChangeToastAlert({
-          isVisible: true,
-          variant: "error",
-          title: `Falha excluir o item "${dataDelete.name}"`,
-          description: "Não foi realizar a ação, tente novamente mais tarde"
-        })
-      );
-    } finally {
-      setIsAwaitDelete(false);
-    }
-  }
-
   React.useEffect(() => {
     getListData();
   }, [currentPage, currentSizePage]);
 
   return {
-    dataLocal,
+    dataRequestTransport,
     tableTitle,
     isLoading,
-    isNotFoundData: !isLoading && dataLocal?.length === 0,
-    isOpenModal,
-    dataDelete,
-    isAwaitDelete,
+    isNotFoundData: !isLoading && dataRequestTransport?.length === 0,
     dataPagination,
     onTryAgainGetData: () => getListData(),
     onSendToEdit: id => {
-      router.push(`${PATHS.dashboard.recursosEditarLocal}${id}`);
+      router.push(`${PATHS.dashboard.solicitacoesEditarTranporte}${id}`);
     },
-    onHandlerDialogModal,
-    onGetDataDelete,
-    onConfirmDelete,
+    onChangeSizePage,
     onChangePage: (value: number): void => {
       setCurrentPage(value);
-    },
-    onChangeSizePage
+    }
   };
 }
