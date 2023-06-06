@@ -27,31 +27,3 @@ export async function servicePostrequestLocal(
   );
   return data;
 }
-
-// export async function serviceGetrequestLocalById(
-//   id: number
-// ): Promise<serviceGetrequestLocalByIdResponse> {
-//   const { data } = await baseAPI.get<serviceGetrequestLocalByIdResponse>(
-//     `${RESOURCE}/${id}`,
-//     apiToken
-//   );
-//   return data;
-// }
-
-// export async function servicePutrequestLocal(
-//   payload: servicePutrequestLocalProps
-// ): Promise<serviceGetrequestLocalResponse> {
-//   const { data } = await baseAPI.put<serviceGetrequestLocalResponse>(
-//     REQUEST_LOCAL,
-//     payload,
-//     apiToken
-//   );
-//   return data;
-// }
-
-// export async function serviceDeleterequestLocal(
-//   payload: serviceDeleterequestLocalProps
-// ): Promise<void> {
-//   const { id } = payload;
-//   await baseAPI.delete(`${REQUEST_LOCAL}/${id}`);
-// }

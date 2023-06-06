@@ -68,3 +68,14 @@ export interface formatDataStartEndProps {
   start: string;
   end: string;
 }
+
+export type IDataInputSelect = Array<{
+  id: number;
+  name: string;
+}>;
+
+export type IDataInputSelectTransport = Array<{
+  id: number;
+  name: string;
+  totalDeAssentos: number;
+}>;

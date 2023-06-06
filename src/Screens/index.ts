@@ -15,3 +15,4 @@ export { CreateTransport } from "./Dashboard/Transport/CreateTransport";
 export { Requests } from "./Dashboard/Requests";
 export { ListRequestLocal } from "./Dashboard/RequestLocal/ListRequestLocal";
 export { CreateRequestLocal } from "./Dashboard/RequestLocal/CreateRequestLocal";
+export { CreateRequestTransport } from "./Dashboard/RequestTransport/CreateRequestTransport";

@@ -71,7 +71,8 @@ const SOLICITATIONS = {
     PATHS.dashboard.solicitacoesLocais,
     PATHS.dashboard.solicitacoesLocais,
     PATHS.dashboard.solicitacoesNovoLocal,
-    PATHS.dashboard.solicitacoesTranportes
+    PATHS.dashboard.solicitacoesTranportes,
+    PATHS.dashboard.solicitacoesNovoTranporte
   ],
   icon: ({ className }: { className?: string }) => (
     <MySolicitationIcon className={className} />

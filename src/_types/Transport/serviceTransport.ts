@@ -4,7 +4,7 @@ export interface IItemTransport {
   id?: number;
   descricao: string;
   placa: string;
-  totalDeAssentos: string;
+  totalDeAssentos: number;
 }
 
 export type serviceGetTransportResponse = {
