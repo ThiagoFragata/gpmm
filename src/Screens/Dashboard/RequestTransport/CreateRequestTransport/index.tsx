@@ -16,7 +16,7 @@ import {
 } from "@/Components";
 import { Form } from "react-final-form";
 import { TextNote } from "@/style/shareStyle";
-import { regexDate } from "@/_utils/masks";
+import { regexCPF, regexDate } from "@/_utils/masks";
 import {
   initialValuesRequestTransport,
   validateCreateRequestTransport
@@ -127,6 +127,7 @@ export const CreateRequestTransport: NextPageWithLayout = () => {
                             label={`CPF`}
                             name={`cpf_passageiro_${position}`}
                             placeholder="Informe o CPF do passageiro"
+                            parse={regexCPF}
                             disabled={isLoading}
                           />
                         </div>
