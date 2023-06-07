@@ -28,6 +28,7 @@ export const CreateRequestTransport: NextPageWithLayout = () => {
     setSelectedTimes,
     focusOnError,
     getVacanciesTransportSelected,
+    onGetRequestsDay,
     dataTransport,
     dataDriver,
     breadCrumb,
@@ -151,11 +152,8 @@ export const CreateRequestTransport: NextPageWithLayout = () => {
                         placeholder="Informe a data"
                         disabled={isLoading}
                         parse={regexDate}
-                        onChange={
-                          e => {
-                            console.log(JSON.stringify(e, null, 2));
-                          }
-                          // onGetRequestsDay((e.target as HTMLInputElement).value)
+                        onChange={e =>
+                          onGetRequestsDay((e.target as HTMLInputElement).value)
                         }
                       />
                       <CalendarForm

@@ -16,6 +16,9 @@ import {
   type IDataServeError
 } from "@/_types/Common";
 import { serviceGetTransport } from "@/services/api/transport";
+import { checkValidDate, validFutureDate } from "@/_utils/masks";
+import { serviceGetRequestTransport } from "@/services/api/requestTransport";
+import { getOnlyRequestDay } from "@/_utils/treatAvailability";
 
 export function useCreateRequestTransport(): useCreateRequestTransportData {
   const dispatch = useDispatch();
@@ -55,6 +58,69 @@ export function useCreateRequestTransport(): useCreateRequestTransportData {
     const result =
       dataTransport.find(item => item.id === _id)?.totalDeAssentos ?? 0;
     return result;
+  }
+
+  async function onGetRequestsDay(value: string): Promise<void> {
+    if (value.length === 10) {
+      const isValidDate = checkValidDate(value);
+      if (isValidDate) {
+        const isValidFuture = validFutureDate(value);
+        if (!isValidFuture) {
+          dispatch(
+            onChangeToastAlert({
+              isVisible: true,
+              variant: "warning",
+              title: "Atenção",
+              description: "Informe uma data a partir de hoje"
+            })
+          );
+          return;
+        }
+
+        if (disabledCalendarForm) setDisabledCalendarForm(false);
+
+        try {
+          setSelectedTimes([]);
+          setIsLoading(true);
+          const data = await serviceGetRequestTransport({
+            size: 0,
+            page: 0
+          });
+          const isExistRequests = data?.content.length > 0;
+          if (isExistRequests) {
+            const _reservedHoursDay = getOnlyRequestDay({
+              informedDay: value,
+              times: (data?.content ?? []).map(item => ({
+                data_inicio: item?.solicitacao?.dataInicio,
+                data_final: item?.solicitacao?.dataFinal
+              }))
+            });
+            setReservedHoursDay(_reservedHoursDay);
+          }
+        } catch (error) {
+          dispatch(
+            onChangeToastAlert({
+              isVisible: true,
+              variant: "error",
+              title: "Falha ao buscar dados",
+              description:
+                "Não foi possível recuperar os dados das solicitações"
+            })
+          );
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        dispatch(
+          onChangeToastAlert({
+            isVisible: true,
+            variant: "warning",
+            title: "Data inválida",
+            description: "Verifique o formato de data informado"
+          })
+        );
+      }
+    }
   }
 
   const getDataTransportdAndDrivers = React.useCallback(async () => {
@@ -113,6 +179,7 @@ export function useCreateRequestTransport(): useCreateRequestTransportData {
     setSelectedTimes,
     focusOnError,
     getVacanciesTransportSelected,
+    onGetRequestsDay,
     dataTransport,
     dataDriver,
     breadCrumb,

@@ -22,12 +22,12 @@ export type useCreateRequestTransportData = {
   disabledCalendarForm: boolean;
   dataTransport: IDataInputSelect;
   dataDriver: IDataInputSelect;
-  // dataTransport: Array<{
+  onGetRequestsDay: (value: string) => Promise<void>;
+  // dateTransport: Array<{
   //   id: number;
   //   name: string;
   // }>;
   // onCreateRequestTransport: (data: IDataFormRequestLocal) => Promise<void>;
-  // onGetRequestsDay: (value: string) => Promise<void>;
   getVacanciesTransportSelected: (id?: string) => number;
   focusOnError: Decorator<
     IDataFormRequestTransport,

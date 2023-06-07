@@ -21,7 +21,8 @@ export function useSideBar(): useSideBarData {
   }
 
   function onLogout(): void {
-    destroyCookie(null, NAME_COOKIE_LOGIN);
+    destroyCookie({}, NAME_COOKIE_LOGIN);
+
     router.push(PATHS.login);
   }
 

@@ -58,7 +58,7 @@ export function useCreateRequestLocal(): useCreateRequestLocalData {
               isVisible: true,
               variant: "warning",
               title: "Atenção",
-              description: "Informa uma data a partir de hoje"
+              description: "Informe uma data a partir de hoje"
             })
           );
           return;
