@@ -3,7 +3,8 @@ import { REQUEST_CREATE_TRANSPORT, REQUEST_TRANSPORT } from "./endpoints";
 import {
   type servicePostrequestTransportProps,
   type serviceGetRequestTransportProps,
-  type serviceGetRequestTransportResponse
+  type serviceGetRequestTransportResponse,
+  type IItemRequestTransport
 } from "@/_types/RequestTransport/ServiceRequestTransport";
 
 export async function serviceGetRequestTransport({
@@ -23,6 +24,16 @@ export async function servicePostrequestTransport(
   const { data } = await baseAPI.post<serviceGetRequestTransportResponse>(
     REQUEST_CREATE_TRANSPORT,
     payload,
+    apiToken
+  );
+  return data;
+}
+
+export async function serviceGetRequestTransportById(
+  id: number
+): Promise<IItemRequestTransport> {
+  const { data } = await baseAPI.get<IItemRequestTransport>(
+    `${REQUEST_TRANSPORT}/${id}`,
     apiToken
   );
   return data;

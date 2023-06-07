@@ -1,6 +1,7 @@
 import { type ISelectedTimes } from "./Common";
 
 export type CalendarFormProps = {
+  typeCalendar?: "register" | "edit";
   className?: string;
   reservedHoursDay: string[];
   onSelectHours: (hours: { start: string; end: string } | null) => void;
@@ -9,9 +10,11 @@ export type CalendarFormProps = {
 
 export type TimesProps = Pick<
   CalendarFormProps,
-  "reservedHoursDay" | "onSelectHours" | "disabled"
+  "reservedHoursDay" | "onSelectHours" | "disabled" | "typeCalendar"
 > &
   ISelectedTimes;
+
+export type TimesModifier = Pick<CalendarFormProps, "typeCalendar">;
 
 export interface checkStatusTimeData {
   disabledButton: boolean;

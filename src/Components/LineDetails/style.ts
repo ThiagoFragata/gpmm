@@ -12,7 +12,7 @@ export const ContainerLineDetails = styled.div`
     color: ${colors.DARK_PRIMARY};
   }
   .value {
-    margin-top: 6px;
+    margin-top: 8px;
     color: ${colors.GRAY_SECONDARY};
   }
 `;

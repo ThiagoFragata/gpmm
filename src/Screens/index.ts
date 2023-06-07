@@ -16,3 +16,4 @@ export { Requests } from "./Dashboard/Requests";
 export { ListRequestLocal } from "./Dashboard/RequestLocal/ListRequestLocal";
 export { CreateRequestLocal } from "./Dashboard/RequestLocal/CreateRequestLocal";
 export { CreateRequestTransport } from "./Dashboard/RequestTransport/CreateRequestTransport";
+export { EditRequestTransport } from "./Dashboard/RequestTransport/EditRequestTransport";

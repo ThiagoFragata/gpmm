@@ -9,11 +9,13 @@ export function CalendarForm({
   disabled,
   selectedTimes,
   className,
-  reservedHoursDay
+  reservedHoursDay,
+  typeCalendar = "register"
 }: CalendarFormProps): JSX.Element {
   return (
     <ContainerCalendarForm className={className}>
       <Times
+        typeCalendar={typeCalendar}
         disabled={disabled}
         setSelectedTimes={setSelectedTimes}
         selectedTimes={selectedTimes}

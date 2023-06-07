@@ -9,6 +9,7 @@ export function Times({
   reservedHoursDay,
   selectedTimes,
   disabled,
+  typeCalendar,
   onSelectHours,
   setSelectedTimes
 }: TimesProps): JSX.Element {
@@ -19,7 +20,7 @@ export function Times({
     onSelectHours
   });
   return (
-    <ContainerTimes>
+    <ContainerTimes typeCalendar={typeCalendar}>
       <ContentScroll className="time__scroll">
         <div className="time__map">
           <ul>

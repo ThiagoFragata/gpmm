@@ -1,8 +1,25 @@
+import { type TimesModifier } from "@/_types/CalendarForm";
 import { pxToRem } from "@/_utils/pxToRem";
 import { colors } from "@/style/theme";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const ContainerTimes = styled.div`
+const modifier = {
+  register: css``,
+  edit: css`
+    .time__scroll .scroll .time__map .time__box {
+      .button__box {
+        cursor: no-drop !important;
+      }
+      .button__box--available {
+        color: transparent !important;
+        background-color: transparent !important;
+      }
+    }
+  `
+};
+
+export const ContainerTimes = styled.div<TimesModifier>`
+  ${({ typeCalendar }) => modifier[typeCalendar ?? "register"]};
   display: flex;
   height: 50vh;
   width: 100%;
