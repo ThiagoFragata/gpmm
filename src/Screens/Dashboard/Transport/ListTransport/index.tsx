@@ -80,7 +80,7 @@ export function ListTransport(): JSX.Element {
                     />
                     <TableItem
                       item={{
-                        label: item?.totalDeAssentos,
+                        label: String(item?.totalDeAssentos),
                         className: "column__table"
                       }}
                     />
