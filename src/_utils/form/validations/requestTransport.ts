@@ -72,3 +72,13 @@ export const validateCreateRequestTransport = validateFormValues(
     ...setAmoutItensValidation(20)
   })
 );
+
+export const validateTransportAuthorization = validateFormValues(
+  yup.object({
+    isAuthorized: yup.bool(),
+    justificativa: yup.string().when("isAuthorized", {
+      is: false,
+      then: schema => schema.required(messageValidations.required)
+    })
+  })
+);

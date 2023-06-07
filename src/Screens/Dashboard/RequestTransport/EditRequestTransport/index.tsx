@@ -6,7 +6,6 @@ import {
   AwaitRequest,
   BreadCrumb,
   Button,
-  CalendarForm,
   ContentScroll,
   DataBox,
   FormToggle,
@@ -18,10 +17,13 @@ import {
 import { Form } from "react-final-form";
 import { PATHS } from "@/_utils/constants";
 import { regexCPF } from "@/_utils/masks";
+import { validateTransportAuthorization } from "@/_utils/form/validations/requestTransport";
 
 export const EditRequestTransport: NextPageWithLayout = () => {
-  const { breadCrumb, isLoading, reservedHoursDay, showData } =
+  const { onSendAuthorization, breadCrumb, isLoading, showData } =
     useEditRequestTransport();
+  const shouldRendeButtonSubmit = !showData.isAuthorized;
+  const titleCancelButton = shouldRendeButtonSubmit ? "Cancelar" : "Voltar";
   return (
     <ContainerEditRequestTransport>
       <BreadCrumb items={breadCrumb} />
@@ -29,15 +31,19 @@ export const EditRequestTransport: NextPageWithLayout = () => {
       <DataBox>
         <Form
           onSubmit={values => {
-            // onCreateRequestTransport(values);
-            console.log(JSON.stringify(values, null, 2));
+            onSendAuthorization(values);
           }}
-          // decorators={[focusOnError]}
-          // initialValues={initialValuesRequestTransport}
-          // validate={validateCreateRequestTransport}
+          initialValues={{
+            isAuthorized: !showData.isDenied,
+            justificativa: showData?.justificativa ?? ""
+          }}
+          validate={validateTransportAuthorization}
           render={({ handleSubmit, form, values, errors }) => {
-            // const vacanciesTransport = new Array(amountVacancies).fill("");
-            const shouldRenderFieldJustify = values?.is__justify === true;
+            const shouldRenderFieldJustify = values?.isAuthorized === false;
+            const titleButton = shouldRenderFieldJustify
+              ? "Negar"
+              : "Autorizar";
+            const variantButton = shouldRenderFieldJustify ? "danger" : "light";
             return (
               <ContentScroll>
                 <form onSubmit={handleSubmit} className="container__form">
@@ -93,7 +99,7 @@ export const EditRequestTransport: NextPageWithLayout = () => {
                   <div className="childrens__form items__fields">
                     <div className="field__date">
                       <LineDetails label="Data" value={showData.dataEvento} />
-                      <CalendarForm
+                      {/* <CalendarForm
                         typeCalendar="edit"
                         disabled={false}
                         reservedHoursDay={[]}
@@ -102,7 +108,7 @@ export const EditRequestTransport: NextPageWithLayout = () => {
                         onSelectHours={data => {
                           form.change("hours", data);
                         }}
-                      />
+                      /> */}
                     </div>
                   </div>
                   <TitleDivider
@@ -111,10 +117,11 @@ export const EditRequestTransport: NextPageWithLayout = () => {
                   />
                   <div className="childrens__form items__fields">
                     <FormToggle
-                      name="is__justify"
-                      label="Negar solicitaçao"
+                      name="isAuthorized"
+                      label="Autorizar solicitação"
+                      disabled={showData.isAuthorized}
                       onClick={() => {
-                        if (values?.is__justify === true)
+                        if (values?.isAuthorized === true)
                           form.change("justificativa", "");
                       }}
                     />
@@ -133,11 +140,18 @@ export const EditRequestTransport: NextPageWithLayout = () => {
                     <Button
                       type="button"
                       variant="outline"
-                      title="Cancelar"
+                      title={titleCancelButton}
                       disabled={isLoading}
                       navigateTo={PATHS.dashboard.solicitacoesTranportes}
                     />
-                    <Button type="submit" title="Salvar" disabled={isLoading} />
+                    {shouldRendeButtonSubmit && (
+                      <Button
+                        type="submit"
+                        variant={variantButton}
+                        title={titleButton}
+                        disabled={isLoading}
+                      />
+                    )}
                   </div>
                 </form>
               </ContentScroll>

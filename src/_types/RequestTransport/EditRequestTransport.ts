@@ -1,11 +1,19 @@
 import { type itemBreadCrumb } from "../BreadCrumb";
 
+export interface onSendAuthorizationProps {
+  isAuthorized: boolean;
+  justificativa?: string;
+}
+
 export interface IShowData {
   motorista: string;
   finalidade: string;
   transporte: string;
   saida: string;
+  justificativa?: string;
   destino: string;
+  isAuthorized: boolean;
+  isDenied: boolean;
   passageiros:
     | Array<{
         id: number;
@@ -21,4 +29,5 @@ export interface useEditRequestTransportData {
   isLoading: boolean;
   reservedHoursDay: string[];
   showData: IShowData;
+  onSendAuthorization: (data: onSendAuthorizationProps) => Promise<void>;
 }

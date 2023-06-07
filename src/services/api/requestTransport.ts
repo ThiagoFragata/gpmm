@@ -38,3 +38,19 @@ export async function serviceGetRequestTransportById(
   );
   return data;
 }
+
+export async function servicePutTransportAuthorization(payload: {
+  autorizacao: string;
+  justificativa?: string;
+  id: number;
+}): Promise<IItemRequestTransport> {
+  const { data } = await baseAPI.put<IItemRequestTransport>(
+    `${REQUEST_TRANSPORT}/${payload.id}`,
+    {
+      autorizacao: payload?.autorizacao,
+      justificativa: payload?.justificativa
+    },
+    apiToken
+  );
+  return data;
+}
