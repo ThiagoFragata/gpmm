@@ -57,3 +57,20 @@ export interface serviceGetRequestTransportProps {
   page: number;
   size: number;
 }
+
+export interface servicePostrequestTransportProps {
+  idPessoa: string;
+  dataInicio: string;
+  dataFinal: string;
+  idMotorista: string;
+  idTransporte: string;
+  finalidade: string;
+  saida: string;
+  destino: string;
+  passageiros:
+    | Array<{
+        nome: string;
+        cpf: string;
+      }>
+    | [];
+}

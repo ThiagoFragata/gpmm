@@ -1,6 +1,7 @@
 import { apiToken, baseAPI } from "./";
-import { REQUEST_TRANSPORT } from "./endpoints";
+import { REQUEST_CREATE_TRANSPORT, REQUEST_TRANSPORT } from "./endpoints";
 import {
+  type servicePostrequestTransportProps,
   type serviceGetRequestTransportProps,
   type serviceGetRequestTransportResponse
 } from "@/_types/RequestTransport/ServiceRequestTransport";
@@ -16,13 +17,13 @@ export async function serviceGetRequestTransport({
   return data;
 }
 
-// export async function servicePostrequestLocal(
-//   payload: servicePostRequestLocalProps
-// ): Promise<serviceGetRequestLocalResponse> {
-//   const { data } = await baseAPI.post<serviceGetRequestLocalResponse>(
-//     REQUEST_CREATE_LOCAL,
-//     payload,
-//     apiToken
-//   );
-//   return data;
-// }
+export async function servicePostrequestTransport(
+  payload: servicePostrequestTransportProps
+): Promise<serviceGetRequestTransportResponse> {
+  const { data } = await baseAPI.post<serviceGetRequestTransportResponse>(
+    REQUEST_CREATE_TRANSPORT,
+    payload,
+    apiToken
+  );
+  return data;
+}

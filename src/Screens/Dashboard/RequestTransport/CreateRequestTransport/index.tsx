@@ -29,6 +29,7 @@ export const CreateRequestTransport: NextPageWithLayout = () => {
     focusOnError,
     getVacanciesTransportSelected,
     onGetRequestsDay,
+    onCreateRequestTransport,
     dataTransport,
     dataDriver,
     breadCrumb,
@@ -45,12 +46,12 @@ export const CreateRequestTransport: NextPageWithLayout = () => {
       <DataBox>
         <Form
           onSubmit={values => {
-            console.log(JSON.stringify(values, null, 2));
+            onCreateRequestTransport(values);
           }}
           decorators={[focusOnError]}
           initialValues={initialValuesRequestTransport}
           validate={validateCreateRequestTransport}
-          render={({ handleSubmit, form, values }) => {
+          render={({ handleSubmit, form, values, errors }) => {
             const amountVacancies = getVacanciesTransportSelected(
               values.idTransporte
             );
@@ -110,27 +111,29 @@ export const CreateRequestTransport: NextPageWithLayout = () => {
                     className="item__divider"
                   />
                   <div className="childrens__form items__fields">
-                    {vacanciesTransport.map((item, index) => {
+                    {vacanciesTransport.map((_, index) => {
                       const position = index + 1;
                       return (
-                        <div key={index} className="fields__vacancies">
+                        <div key={index} className="container__vacancies">
                           <TitleSubtitle
                             title={`Passageiro ${position}`}
                             className="vacancies__title"
                           />
-                          <TextInput
-                            label={`Nome`}
-                            name={`nome_passageiro_${position}`}
-                            placeholder="Informe o nome do passageiro"
-                            disabled={isLoading}
-                          />
-                          <TextInput
-                            label={`CPF`}
-                            name={`cpf_passageiro_${position}`}
-                            placeholder="Informe o CPF do passageiro"
-                            parse={regexCPF}
-                            disabled={isLoading}
-                          />
+                          <div className="fields__vacancies">
+                            <TextInput
+                              label={`Nome`}
+                              name={`nome_passageiro_${position}`}
+                              placeholder="Informe o nome do passageiro"
+                              disabled={isLoading}
+                            />
+                            <TextInput
+                              label={`CPF`}
+                              name={`cpf_passageiro_${position}`}
+                              placeholder="Informe o CPF do passageiro"
+                              parse={regexCPF}
+                              disabled={isLoading}
+                            />
+                          </div>
                         </div>
                       );
                     })}

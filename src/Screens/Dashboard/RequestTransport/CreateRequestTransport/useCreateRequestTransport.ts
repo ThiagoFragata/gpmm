@@ -17,8 +17,13 @@ import {
 } from "@/_types/Common";
 import { serviceGetTransport } from "@/services/api/transport";
 import { checkValidDate, validFutureDate } from "@/_utils/masks";
-import { serviceGetRequestTransport } from "@/services/api/requestTransport";
+import {
+  serviceGetRequestTransport,
+  servicePostrequestTransport
+} from "@/services/api/requestTransport";
 import { getOnlyRequestDay } from "@/_utils/treatAvailability";
+import { parseCookies } from "nookies";
+import moment from "moment";
 
 export function useCreateRequestTransport(): useCreateRequestTransportData {
   const dispatch = useDispatch();
@@ -33,10 +38,7 @@ export function useCreateRequestTransport(): useCreateRequestTransportData {
   const [dataDriver, setDataDriver] = React.useState<IDataInputSelect>([]);
   const breadCrumb: itemBreadCrumb[] = [
     {
-      label: "Solicitações"
-    },
-    {
-      label: "Solicitações de transportes",
+      label: "Solicitações",
       destiny: PATHS.dashboard.solicitacoesTranportes
     },
     {
@@ -57,7 +59,9 @@ export function useCreateRequestTransport(): useCreateRequestTransportData {
     const _id = Number(id);
     const result =
       dataTransport.find(item => item.id === _id)?.totalDeAssentos ?? 0;
-    return result;
+    const isExistAmount = result > 0;
+    const amount = isExistAmount ? result - 1 : result;
+    return amount;
   }
 
   async function onGetRequestsDay(value: string): Promise<void> {
@@ -123,6 +127,84 @@ export function useCreateRequestTransport(): useCreateRequestTransportData {
     }
   }
 
+  async function onCreateRequestTransport(
+    data: IDataFormRequestTransport
+  ): Promise<void> {
+    const isNoTimeGap = data?.hours === null || data?.hours === undefined;
+    if (isNoTimeGap) {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "warning",
+          title: "Atenção",
+          description: "Selecione ao menos um intervalo de horas."
+        })
+      );
+    }
+    try {
+      const hourStart = data?.hours != null ? data?.hours?.start : "";
+      const hourEnd = data?.hours != null ? data?.hours?.end : "";
+      const cookie = parseCookies();
+      const isValidDateCookie =
+        cookie["42auth-nextts"] !== undefined &&
+        typeof cookie["42auth-nextts"] === "string";
+      const dataCookie = isValidDateCookie
+        ? JSON.parse(cookie["42auth-nextts"])
+        : "";
+      const _dataCookie = dataCookie as { idUser: string };
+      const eventData = moment(data?.event__data, "DD/MM/YYYY").format(
+        "YYYY-MM-DD"
+      );
+      const amountVacancies = getVacanciesTransportSelected(data.idTransporte);
+      const vacanciesTransport = new Array(amountVacancies).fill("");
+      const getFormattedPassengers = vacanciesTransport.map((_, index) => {
+        const position = index + 1;
+        return {
+          nome: data[`nome_passageiro_${position}`],
+          cpf: data[`cpf_passageiro_${position}`]
+        };
+      });
+      const payload = {
+        idPessoa: _dataCookie?.idUser,
+        dataInicio: `${eventData}T${hourStart}:00`,
+        dataFinal: `${eventData}T${hourEnd}:00`,
+        idMotorista: data?.idMotorista,
+        idTransporte: data?.idTransporte,
+        finalidade: data?.finalidade,
+        saida: data?.saida,
+        destino: data?.destino,
+        passageiros: getFormattedPassengers.filter(
+          item => item.nome !== undefined && item.cpf !== undefined
+        )
+      };
+      await servicePostrequestTransport(payload);
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "success",
+          title: "Tudo certo!",
+          description: "Solicitção enviada com sucesso"
+        })
+      );
+      router.push(PATHS.dashboard.solicitacoesTranportes);
+    } catch (error) {
+      const _error = error as IDataServeError;
+      const messageError =
+        _error?.response?.data?.errors[0] ??
+        "Falha ao solicitar transporte, tente novamente mais tarde";
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "error",
+          title: "Erro ao realizar ação!",
+          description: messageError
+        })
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   const getDataTransportdAndDrivers = React.useCallback(async () => {
     try {
       setIsLoading(true);
@@ -180,6 +262,7 @@ export function useCreateRequestTransport(): useCreateRequestTransportData {
     focusOnError,
     getVacanciesTransportSelected,
     onGetRequestsDay,
+    onCreateRequestTransport,
     dataTransport,
     dataDriver,
     breadCrumb,

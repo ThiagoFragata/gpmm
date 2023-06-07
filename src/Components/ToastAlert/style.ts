@@ -56,8 +56,12 @@ export const ContainerToastAlert = styled.div<ToastAlertModifier>`
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   transition: all 0.3s;
   max-width: 320px;
+  z-index: 5;
   ${({ variant }) => modifider.variants[variant]};
   ${({ isVisible }) => modifider.show[isVisible ? "visible" : "hidden"]};
+  svg {
+    width: 50px;
+  }
   .alert__texts {
     display: flex;
     flex-direction: column;

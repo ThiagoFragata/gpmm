@@ -2,18 +2,15 @@ import { type Decorator } from "final-form";
 import { type itemBreadCrumb } from "../BreadCrumb";
 import { type IDataInputSelect, type ISelectedTimes } from "../Common";
 
-export interface IDataFormRequestTransport {
-  idMotorista?: string;
-  idTransporte?: string;
+export type IDataFormRequestTransport = {
   finalidade: string;
-  passageiros: string;
-  // dataInicio: string;
-  // dataFinal: string;
   saida: string;
   destino: string;
+  idMotorista: string;
+  idTransporte: string;
   event__data: string;
   hours: { start: string; end: string } | null;
-}
+} & Record<string, string>;
 
 export type useCreateRequestTransportData = {
   breadCrumb: itemBreadCrumb[];
@@ -23,11 +20,7 @@ export type useCreateRequestTransportData = {
   dataTransport: IDataInputSelect;
   dataDriver: IDataInputSelect;
   onGetRequestsDay: (value: string) => Promise<void>;
-  // dateTransport: Array<{
-  //   id: number;
-  //   name: string;
-  // }>;
-  // onCreateRequestTransport: (data: IDataFormRequestLocal) => Promise<void>;
+  onCreateRequestTransport: (data: IDataFormRequestTransport) => Promise<void>;
   getVacanciesTransportSelected: (id?: string) => number;
   focusOnError: Decorator<
     IDataFormRequestTransport,

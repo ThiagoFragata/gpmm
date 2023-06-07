@@ -36,10 +36,7 @@ export function useCreateRequestLocal(): useCreateRequestLocalData {
   const [selectedTimes, setSelectedTimes] = React.useState<string[]>([]);
   const breadCrumb: itemBreadCrumb[] = [
     {
-      label: "Solicitações"
-    },
-    {
-      label: "Solicitações de locais",
+      label: "Solicitações",
       destiny: PATHS.dashboard.solicitacoesLocais
     },
     {

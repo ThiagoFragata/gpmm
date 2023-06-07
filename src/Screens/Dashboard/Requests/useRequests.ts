@@ -19,9 +19,6 @@ export function useRequests(): useRequestsData {
   const breadCrumbPlace: itemBreadCrumb[] = [
     {
       label: "Solicitações"
-    },
-    {
-      label: "Solicitações de locais"
     }
   ];
   const breadCrumbTransport: itemBreadCrumb[] = [

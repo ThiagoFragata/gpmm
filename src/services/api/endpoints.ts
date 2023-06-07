@@ -21,6 +21,7 @@ export const USER_ADM_SEND_CODE = "pessoas/envia-codigo/envio-admin";
 export const REQUEST_LOCAL = "solicitacoes/locais";
 export const REQUEST_CREATE_LOCAL = "solicitacoes/local";
 export const REQUEST_TRANSPORT = "solicitacoes/viagens";
+export const REQUEST_CREATE_TRANSPORT = "solicitacoes/transporte";
 
 // DRIVER
 export const DRIVER = "pessoas/motoristas";

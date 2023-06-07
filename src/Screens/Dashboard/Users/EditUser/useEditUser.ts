@@ -41,7 +41,9 @@ export function useEditUser(): useEditUserData {
         const status: typeStringStatus =
           TYPES_STATUS.find(item => item === data?.status) ?? "unknow";
         const formInitialData = {
-          auth__drive: data?.motorista?.numeroCnh !== undefined,
+          auth__drive:
+            data?.motorista?.numeroCnh !== undefined &&
+            data?.motorista?.numeroCnh !== "",
           numeroCnh:
             data?.motorista?.numeroCnh !== undefined
               ? data?.motorista?.numeroCnh

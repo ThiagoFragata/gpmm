@@ -1,4 +1,5 @@
 import { ContainerDashboard } from "@/style/shareStyle";
+import { colors } from "@/style/theme";
 import styled from "styled-components";
 
 export const ContainerCreateRequestTransport = styled(ContainerDashboard)`
@@ -11,9 +12,16 @@ export const ContainerCreateRequestTransport = styled(ContainerDashboard)`
   .item__divider {
     margin-top: 50px;
   }
-  .fields__vacancies {
+  .container__vacancies {
+    padding-bottom: 8px;
+    border-bottom: 1px solid ${colors.GRAY_LIGHT};
     .vacancies__title {
       margin-bottom: 16px;
+    }
+    .fields__vacancies {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
   }
   .form__buttons {
