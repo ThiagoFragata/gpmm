@@ -5,7 +5,7 @@ import type {
   useListLocalData
 } from "@/_types/Local/ListLocal";
 import type { IItemLocal } from "@/_types/Local/ServiceLocal";
-import { type dataDeleteProps } from "@/_types/Common";
+import { type IDataServeError, type dataDeleteProps } from "@/_types/Common";
 import { serviceDeleteLocal, serviceGetLocal } from "@/services/api/local";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
@@ -97,13 +97,24 @@ export function useListLocal(): useListLocalData {
         id: dataDelete?.id
       });
       getListData();
-    } catch {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "success",
+          description: "Local excluido com sucesso!"
+        })
+      );
+    } catch (error) {
+      const _error = error as IDataServeError;
+      const messageError =
+        _error?.response?.data?.errors[0] ??
+        "Não foi realizar a ação, tente novamente mais tarde";
       dispatch(
         onChangeToastAlert({
           isVisible: true,
           variant: "error",
           title: `Falha excluir o item "${dataDelete.name}"`,
-          description: "Não foi realizar a ação, tente novamente mais tarde"
+          description: messageError
         })
       );
     } finally {

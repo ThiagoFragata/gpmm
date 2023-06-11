@@ -9,7 +9,7 @@ import {
   type useListSectorsData,
   type onSelectSectorProps
 } from "@/_types/Sectors/ListSectors";
-import { type dataDeleteProps } from "@/_types/Common";
+import { type IDataServeError, type dataDeleteProps } from "@/_types/Common";
 
 export function useListSectors({
   formRef,
@@ -95,11 +95,15 @@ export function useListSectors({
         })
       );
     } catch (error) {
+      const _error = error as IDataServeError;
+      const messageError =
+        _error?.response?.data?.errors[0] ??
+        "Falha ao criar registro, tente novamente";
       dispatch(
         onChangeToastAlert({
           isVisible: true,
           variant: "error",
-          description: "Falha ao criar registro, tente novamente"
+          description: messageError
         })
       );
     } finally {
