@@ -33,7 +33,8 @@ export function useLogin(): useLoginData {
           description: `Seja bem-vindo ${firstName}!`
         })
       );
-      router.push(PATHS.dashboard.inicio);
+      window.location.href = PATHS.dashboard.inicio;
+      // router.push(PATHS.dashboard.inicio);
     } catch (error) {
       dispatch(
         onChangeToastAlert({

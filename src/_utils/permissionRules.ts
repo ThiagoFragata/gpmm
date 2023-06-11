@@ -42,6 +42,7 @@ export function checkPermissionRules({
   if (data?.typeProfile === "NORMAL" && !isOnlyAdm) {
     return withoutRedirect;
   }
+
   return toLogin;
   // return toHome;
   // return withoutRedirect;

@@ -49,12 +49,16 @@ export const EditRequestTransport: NextPageWithLayout = () => {
                 <form onSubmit={handleSubmit} className="container__form">
                   <TitleDivider title="Dados gerais" />
                   <div className="childrens__form items__fields">
-                    <LineDetails label="Motorista" value={showData.motorista} />
+                    <LineDetails
+                      label="Solicitante"
+                      value={showData.solicitante}
+                    />
                     <LineDetails
                       label="Finalidade"
                       value={showData.finalidade}
                       className="field__goal"
                     />
+                    <LineDetails label="Motorista" value={showData.motorista} />
                     <LineDetails
                       label="Transporte"
                       value={showData.transporte}

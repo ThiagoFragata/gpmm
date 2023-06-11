@@ -20,3 +20,17 @@ export const TextNote = styled.span`
   font-style: italic;
   opacity: 0.8;
 `;
+
+export const ContainerDefaultShowDetails = styled.div`
+  .details__hedaer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .details__status {
+    margin-top: 25px;
+  }
+  .title__section {
+    margin-top: 40px;
+  }
+`;

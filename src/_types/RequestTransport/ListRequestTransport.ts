@@ -17,3 +17,9 @@ export interface getListDataProps {
 }
 
 export type onGetDataDeleteProps = dataDeleteProps;
+
+export interface ShowDetailsRequestTransportProps {
+  onClose: () => void;
+  isOpen: boolean;
+  data: IItemRequestTransport;
+}

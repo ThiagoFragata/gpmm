@@ -9,6 +9,7 @@ export interface IShowData {
   motorista: string;
   finalidade: string;
   transporte: string;
+  solicitante: string;
   saida: string;
   justificativa?: string;
   destino: string;

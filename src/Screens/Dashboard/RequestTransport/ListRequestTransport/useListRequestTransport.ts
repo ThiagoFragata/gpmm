@@ -1,8 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { type IItemRequestLocal } from "@/_types/RequestsLocal/ServiceRequestLocal";
-import { type dataDeleteProps } from "@/_types/Common";
 import { serviceGetRequestTransport } from "@/services/api/requestTransport";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { type IItemRequestTransport } from "@/_types/RequestTransport/ServiceRequestTransport";

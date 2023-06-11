@@ -95,6 +95,7 @@ export function useEditRequestTransport(): useEditRequestTransportData {
           transporte: `${data?.transporte?.descricao} - ${data?.transporte.placa}`,
           saida: data?.saida,
           destino: data?.destino,
+          solicitante: data?.solicitacao.solicitante.nome,
           passageiros: data?.passageiros ?? [],
           isAuthorized: data?.solicitacao?.autorizacao === "AUTORIZADO",
           isDenied: data?.solicitacao?.autorizacao === "NEGADO",

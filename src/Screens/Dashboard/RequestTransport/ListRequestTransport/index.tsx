@@ -16,6 +16,7 @@ import {
 } from "@/Components";
 import { PATHS } from "@/_utils/constants";
 import { formatDataStartEnd } from "@/_utils/masks";
+import { ShowDetailsRequestTransport } from "./Partials/ShowDetailsRequestTransport";
 
 export function ListRequestTransport(): JSX.Element {
   const {
@@ -31,6 +32,14 @@ export function ListRequestTransport(): JSX.Element {
   } = useListRequestTransport();
   return (
     <ContainerListRequestTransport>
+      {/* <ShowDetailsRequestTransport
+        // isOpen={isOpenShowDetails}
+        // data={dataShowUser}
+        // onClose={onCloseDetails}
+        isOpen={isOpenShowDetails}
+        data={dataShowUser}
+        onClose={onCloseDetails}
+      /> */}
       <div className="top__options">
         <span />
         <Button
