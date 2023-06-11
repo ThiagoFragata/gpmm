@@ -70,9 +70,10 @@ export function useEditLocal(): useEditLocalData {
             isVisible: true,
             variant: "error",
             title: "Falha ao buscar dados",
-            description: "Não foi possível recuperar os dados dos locais"
+            description: "Não foi possível recuperar os dados do local"
           })
         );
+        router.push(PATHS.dashboard.recursosLocais);
       } finally {
         setIsLoading(false);
       }

@@ -19,13 +19,4 @@ export const validateCreateTransport = validateFormValues(
   })
 );
 
-export const validateEditTransport = validateFormValues(
-  yup.object({
-    descricao: yup.string().required(messageValidations.required),
-    placa: yup.string().required(messageValidations.required),
-    totalDeAssentos: yup
-      .number()
-      .typeError(messageValidations.number)
-      .required(messageValidations.required)
-  })
-);
+export const validateEditTransport = validateCreateTransport;

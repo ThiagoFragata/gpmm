@@ -13,6 +13,7 @@ export { EditLocal } from "./Dashboard/Local/EditLocal";
 export { CreateUser } from "./Dashboard/Users/CreateUser";
 export { EditUser } from "./Dashboard/Users/EditUser";
 export { CreateTransport } from "./Dashboard/Transport/CreateTransport";
+export { EditTransport } from "./Dashboard/Transport/EditTransport";
 export { Requests } from "./Dashboard/Requests";
 export { ListRequestLocal } from "./Dashboard/RequestLocal/ListRequestLocal";
 export { CreateRequestLocal } from "./Dashboard/RequestLocal/CreateRequestLocal";

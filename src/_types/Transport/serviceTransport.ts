@@ -20,7 +20,12 @@ export type serviceGetTransportByIdResponse = IItemTransport;
 
 export type servicePostTransportProps = IItemTransport;
 
-export type servicePutTransportProps = IItemTransport;
+export interface servicePutTransportProps {
+  id: number;
+  descricao: string;
+  identificacao: string;
+  totalDeAssento?: number;
+}
 
 export interface serviceDeleteTransportProps {
   id: number;

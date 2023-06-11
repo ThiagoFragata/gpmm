@@ -8,7 +8,6 @@ import {
   FooterData,
   MenuAction,
   MultSkeleton,
-  Search,
   Skeleton,
   TableContent,
   TableItem,
@@ -50,7 +49,7 @@ export function ListTransport(): JSX.Element {
         variant="danger"
       />
       <div className="top__options">
-        <Search />
+        <span />
         <Button
           title="Novo"
           iconName="MoreIcon"

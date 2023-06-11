@@ -41,6 +41,7 @@ const RESOURCE = {
     PATHS.dashboard.recursosNovoLocal,
     PATHS.dashboard.recursosEditarLocal,
     PATHS.dashboard.recursosTransportes,
+    PATHS.dashboard.recursosEditarTransporte,
     PATHS.dashboard.recursosNovoTransporte,
     PATHS.dashboard.recursosMotoristas
   ],
