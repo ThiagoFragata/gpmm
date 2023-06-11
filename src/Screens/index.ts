@@ -2,6 +2,7 @@
 export { Login } from "./Public/Login";
 export { FirstAccess } from "./Public/FirstAccess";
 export { ForgotPassword } from "./Public/ForgotPassword";
+export { RegisterUser } from "./Public/RegisterUser";
 
 /* DASHBOARD */
 export { Home } from "./Dashboard/Home";
