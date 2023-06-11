@@ -45,8 +45,12 @@ export async function servicePutLocal(
   payload: servicePutLocalProps
 ): Promise<serviceGetLocalResponse> {
   const { data } = await baseAPI.put<serviceGetLocalResponse>(
-    RESOURCE_LOCAL,
-    payload,
+    `${RESOURCE_LOCAL}/${payload?.id ?? ""}`,
+    {
+      descricao: payload?.descricao,
+      identificacao: payload?.identificacao,
+      totalDeAssento: payload?.totalDeAssento
+    },
     apiToken
   );
   return data;
@@ -56,5 +60,5 @@ export async function serviceDeleteLocal(
   payload: serviceDeleteLocalProps
 ): Promise<void> {
   const { id } = payload;
-  await baseAPI.delete(`${RESOURCE_LOCAL}/${id}`);
+  await baseAPI.delete(`${RESOURCE}/${id}`, apiToken);
 }

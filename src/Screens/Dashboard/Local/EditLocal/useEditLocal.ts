@@ -33,7 +33,10 @@ export function useEditLocal(): useEditLocalData {
   async function onEditLocal(payload: onEditLocalProps): Promise<void> {
     try {
       setIsLoading(true);
-      await servicePutLocal(payload);
+      await servicePutLocal({
+        id: Number(idLocal),
+        ...payload
+      });
       dispatch(
         onChangeToastAlert({
           isVisible: true,
