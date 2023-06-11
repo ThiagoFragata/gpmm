@@ -10,14 +10,6 @@ export function useResources(): useResourcesData {
   const [currentTab, setCurrentTab] = React.useState<ITabOptions>(TAB_ONBOARD);
   const router = useRouter();
   const pathname = usePathname();
-  const breadCrumb: itemBreadCrumb[] = [
-    {
-      label: "Recursos"
-    },
-    {
-      label: "Todos locais"
-    }
-  ];
 
   const optionsTab = [
     {
@@ -33,6 +25,37 @@ export function useResources(): useResourcesData {
       label: "Motoristas"
     }
   ];
+
+  function getCurrentBreadCrumb(): itemBreadCrumb[] {
+    if (currentTab === TAB_LIST_PLACE) {
+      return [
+        {
+          label: "Recursos"
+        },
+        {
+          label: "Todos locais"
+        }
+      ];
+    }
+    if (currentTab === TAB_LIST_TRANSPORT) {
+      return [
+        {
+          label: "Recursos"
+        },
+        {
+          label: "Todos transportes"
+        }
+      ];
+    }
+    return [
+      {
+        label: "Recursos"
+      },
+      {
+        label: "Todos motoristas"
+      }
+    ];
+  }
 
   function onChangeTab(value: number): void {
     const tab = value as ITabOptions;
@@ -67,7 +90,7 @@ export function useResources(): useResourcesData {
   return {
     onChangeTab,
     optionsTab,
-    breadCrumb,
+    breadCrumb: getCurrentBreadCrumb(),
     currentTab,
     isListPlace: currentTab === TAB_LIST_PLACE,
     isListTransport: currentTab === TAB_LIST_TRANSPORT,
