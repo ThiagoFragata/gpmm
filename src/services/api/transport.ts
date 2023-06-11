@@ -61,5 +61,5 @@ export async function serviceDeleteTransport(
   payload: serviceDeleteTransportProps
 ): Promise<void> {
   const { id } = payload;
-  await baseAPI.delete(`${RESOURCE_TRANSPORT}/${id}`);
+  await baseAPI.delete(`${RESOURCE}/${id}`, apiToken);
 }

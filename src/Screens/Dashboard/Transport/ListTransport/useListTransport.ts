@@ -1,5 +1,5 @@
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { type dataDeleteProps } from "@/_types/Common";
+import { type IDataServeError, type dataDeleteProps } from "@/_types/Common";
 import { useRouter } from "next/navigation";
 import {
   type onGetDataDeleteProps,
@@ -103,13 +103,24 @@ export function useListTransport(): useListTransportData {
         id: dataDelete?.id
       });
       getListData();
-    } catch {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "success",
+          description: "Transporte excluido com sucesso!"
+        })
+      );
+    } catch (error) {
+      const _error = error as IDataServeError;
+      const messageError =
+        _error?.response?.data?.errors[0] ??
+        "Não foi realizar a ação, tente novamente mais tarde";
       dispatch(
         onChangeToastAlert({
           isVisible: true,
           variant: "error",
           title: `Falha excluir o item "${dataDelete.name}"`,
-          description: "Não foi realizar a ação, tente novamente mais tarde"
+          description: messageError
         })
       );
     } finally {
