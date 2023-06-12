@@ -16,6 +16,8 @@ export { CreateTransport } from "./Dashboard/Transport/CreateTransport";
 export { EditTransport } from "./Dashboard/Transport/EditTransport";
 export { Requests } from "./Dashboard/Requests";
 export { ListRequestLocal } from "./Dashboard/RequestLocal/ListRequestLocal";
+export { EditDriver } from "./Dashboard/Driver/EditDriver";
+export { CreateDrive } from "./Dashboard/Driver/CreateDrive";
 export { CreateRequestLocal } from "./Dashboard/RequestLocal/CreateRequestLocal";
 export { CreateRequestTransport } from "./Dashboard/RequestTransport/CreateRequestTransport";
 export { EditRequestTransport } from "./Dashboard/RequestTransport/EditRequestTransport";
