@@ -8,7 +8,6 @@ import { type RenderCurrenTabProps } from "@/_types/Resources";
 import { ListLocal } from "../Local/ListLocal";
 import { ListDriver } from "./Partials/ListDriver";
 import { ListTransport } from "../Transport/ListTransport";
-import { TABS_RESOURCES } from "@/_utils/constants";
 
 function RenderCurrenTab({
   currentTab,

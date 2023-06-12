@@ -44,6 +44,12 @@ const PATHS_USERS = {
   usuarioEditar: "/dashboard/usuarios/editar/"
 };
 
+const PATHS_DRIVER = {
+  recursosMotoristas: "/dashboard/recursos/motoristas",
+  recursosNovoMotorista: "/dashboard/recursos/motoristas/novo",
+  recursosEditarMotorista: "/dashboard/recursos/motoristas/editar/"
+};
+
 const PATHS_REQUESTS = {
   solicitacoesLocais: "/dashboard/solicitacoes/locais",
   solicitacoesNovoLocal: "/dashboard/solicitacoes/locais/novo",
@@ -59,14 +65,14 @@ export const PATHS = {
   dashboard: {
     inicio: "/dashboard",
     recursos: "/dashboard/recursos",
-    recursosMotoristas: "/dashboard/recursos/motoristas",
     perfil: "/dashboard/perfil",
     notificoes: "/dashboard/notificoes",
     sobre: "/dashboard/sobre",
     ...PATHS_LOCAL,
     ...PATHS_TRANSPORTS,
     ...PATHS_USERS,
-    ...PATHS_REQUESTS
+    ...PATHS_REQUESTS,
+    ...PATHS_DRIVER
   }
 };
 

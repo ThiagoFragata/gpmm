@@ -1,7 +1,7 @@
 import { type IDataPage } from "../Common";
 
 export interface IItemDriver {
-  id: number;
+  id?: number;
   nome: string;
   numero_cnh: string;
 }

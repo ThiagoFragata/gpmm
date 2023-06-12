@@ -43,7 +43,9 @@ const RESOURCE = {
     PATHS.dashboard.recursosTransportes,
     PATHS.dashboard.recursosEditarTransporte,
     PATHS.dashboard.recursosNovoTransporte,
-    PATHS.dashboard.recursosMotoristas
+    PATHS.dashboard.recursosMotoristas,
+    PATHS.dashboard.recursosNovoMotorista,
+    PATHS.dashboard.recursosEditarMotorista
   ],
   icon: ({ className }: { className?: string }) => (
     <ResourcesIcon className={className} />
