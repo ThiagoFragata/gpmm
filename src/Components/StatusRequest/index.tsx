@@ -9,7 +9,7 @@ export function StatusRequest({
   return (
     <ContainerStatusRequest type={type} className={className}>
       <p className="status__label">
-        {type.charAt(0).toUpperCase() + type.slice(1).toLocaleLowerCase()}
+        {type?.charAt(0).toUpperCase() + type?.slice(1).toLocaleLowerCase()}
       </p>
     </ContainerStatusRequest>
   );

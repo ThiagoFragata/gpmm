@@ -52,7 +52,6 @@ export const ListUsers: NextPageWithLayout = () => {
         data={dataShowUser}
         onClose={onCloseDetails}
       />
-
       <DataBox>
         <div className="top__options">
           <span />

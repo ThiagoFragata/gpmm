@@ -7,11 +7,13 @@ import { type dataDeleteProps } from "@/_types/Common";
 import { serviceGeRequestLocal } from "@/services/api/requestLocal";
 import { type IItemRequestLocal } from "@/_types/RequestsLocal/ServiceRequestLocal";
 import {
+  type IShowRequestLocal,
   type formatDataStartEndProps,
   type useListRequestLocalData
 } from "@/_types/RequestsLocal/ListRequestLocal";
 import moment from "moment";
 import "moment/locale/pt-br";
+import { regexCPF, regexPhone } from "@/_utils/masks";
 
 export function useListRequestLocal(): useListRequestLocalData {
   const dispatch = useDispatch();
@@ -24,6 +26,9 @@ export function useListRequestLocal(): useListRequestLocalData {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(0);
   const [currentSizePage, setCurrentSizePage] = React.useState(10);
+  const [isOpenShowDetails, setIsOpenShowDetails] = React.useState(false);
+  const [dataShowRequestLocal, setDataShowRequestLocal] =
+    React.useState<IShowRequestLocal>({} as IShowRequestLocal);
   const [dataDelete, setDataDelete] = React.useState<dataDeleteProps>({
     name: "",
     id: 0
@@ -76,6 +81,32 @@ export function useListRequestLocal(): useListRequestLocalData {
       "DD[/]MM[/]YYYY [de] HH:mm"
     )} às ${moment(end).format("HH:mm")}`;
     return formatted;
+  }
+
+  function onGetDataShowDetails(value: IItemRequestLocal): void {
+    const externo =
+      value?.externo !== null && value?.externo !== "" ? value?.externo : "Não";
+    setDataShowRequestLocal({
+      solicitante: value?.solicitante,
+      externo,
+      telefone:
+        value?.telefone !== "" ? regexPhone(value?.telefone) : "Não informado",
+      cpf: value?.cpf !== "" ? regexCPF(value?.cpf) : "Não informado",
+      siape: value?.siape,
+      autorizacao: value?.autorizacao,
+      identificacao: value?.identificacao,
+      local: value?.local,
+      finalidade: value?.finalidade,
+      data_solicitacao: moment(value?.data_solicitacao).format(
+        "DD[/]MM[/]YYYY [às] HH:mm"
+      ),
+      data_evento: formatDataStartEnd({
+        start: value?.data_inicio,
+        end: value?.data_final
+      })
+    });
+
+    setIsOpenShowDetails(true);
   }
 
   const getListData = React.useCallback(async () => {
@@ -142,6 +173,12 @@ export function useListRequestLocal(): useListRequestLocalData {
     dataDelete,
     isAwaitDelete,
     dataPagination,
+    isOpenShowDetails,
+    dataShowRequestLocal,
+    onGetDataShowDetails,
+    onCloseDetails: () => {
+      setIsOpenShowDetails(false);
+    },
     onTryAgainGetData: () => getListData(),
     onSendToEdit: id => {
       router.push(`${PATHS.dashboard.recursosEditarLocal}${id}`);

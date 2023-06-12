@@ -94,6 +94,7 @@ export function useListUsers(): useListUsersData {
     setDataShowUser(formatedData);
     setIsOpenShowDetails(true);
   }
+
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);

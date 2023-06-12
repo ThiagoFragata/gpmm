@@ -16,6 +16,7 @@ import {
   TableTitle
 } from "@/Components";
 import { PATHS } from "@/_utils/constants";
+import { ShowDetailsRequestLocal } from "./Partials/ShowDetails";
 
 export function ListRequestLocal(): JSX.Element {
   const {
@@ -27,6 +28,10 @@ export function ListRequestLocal(): JSX.Element {
     onChangePage,
     onChangeSizePage,
     formatDataStartEnd,
+    onGetDataShowDetails,
+    onCloseDetails,
+    dataShowRequestLocal,
+    isOpenShowDetails,
     dataPagination,
     dataDelete,
     isOpenModal,
@@ -39,6 +44,11 @@ export function ListRequestLocal(): JSX.Element {
   return (
     <ContainerListRequestLocal>
       <AwaitRequest isVisible={isAwaitDelete} />
+      <ShowDetailsRequestLocal
+        isOpen={isOpenShowDetails}
+        data={dataShowRequestLocal}
+        onClose={onCloseDetails}
+      />
       {/* <DialogModal
         title={`Deseja realmente excluir o local ${dataDelete.name}?`}
         description="Ao realizar está ação, o item não poderá ser recuperado."
@@ -98,7 +108,7 @@ export function ListRequestLocal(): JSX.Element {
                         disabled={isAwaitDelete}
                         direction={directionMenu}
                         onShowDetails={() => {
-                          alert("ver detalhes");
+                          onGetDataShowDetails(item);
                         }}
                         // onDelete={() => {
                         // onGetDataDelete({
