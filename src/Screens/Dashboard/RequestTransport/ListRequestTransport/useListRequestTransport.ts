@@ -4,8 +4,14 @@ import { useRouter } from "next/navigation";
 import { serviceGetRequestTransport } from "@/services/api/requestTransport";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { type IItemRequestTransport } from "@/_types/RequestTransport/ServiceRequestTransport";
-import { type useListRequestTransportData } from "@/_types/RequestTransport/ListRequestTransport";
+import {
+  type IShowRequestTransport,
+  type useListRequestTransportData
+} from "@/_types/RequestTransport/ListRequestTransport";
 import { PATHS } from "@/_utils/constants";
+import { regexCPF, regexPhone } from "@/_utils/masks";
+import { type formatDataStartEndProps } from "@/_types/Common";
+import moment from "moment";
 
 export function useListRequestTransport(): useListRequestTransportData {
   const dispatch = useDispatch();
@@ -15,7 +21,10 @@ export function useListRequestTransport(): useListRequestTransportData {
   >([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [currentPage, setCurrentPage] = React.useState(0);
+  const [isOpenShowDetails, setIsOpenShowDetails] = React.useState(false);
   const [currentSizePage, setCurrentSizePage] = React.useState(10);
+  const [dataShowRequestTransport, setDataShowRequestTransport] =
+    React.useState<IShowRequestTransport>({} as IShowRequestTransport);
   const [dataPagination, setDataPagination] = React.useState({
     totalPages: 0,
     totalPerPage: 0,
@@ -48,6 +57,64 @@ export function useListRequestTransport(): useListRequestTransportData {
   function onChangeSizePage(value: number): void {
     setCurrentPage(0);
     setCurrentSizePage(value);
+  }
+  function formatDataStartEnd({ start, end }: formatDataStartEndProps): string {
+    const formatted = `${moment(start).format(
+      "DD[/]MM[/]YYYY [de] HH:mm"
+    )} às ${moment(end).format("HH:mm")}`;
+    return formatted;
+  }
+
+  function onGetDataShowDetails(value: IItemRequestTransport): void {
+    const externo =
+      value?.solicitacao?.externo !== null && value?.solicitacao?.externo !== ""
+        ? value?.solicitacao?.externo
+        : "Não";
+    const formatted = {
+      shouldRenderJustify:
+        value?.solicitacao?.justificativa !== null &&
+        value?.solicitacao?.justificativa !== "" &&
+        value?.solicitacao?.autorizacao === "NEGADO",
+      // Status da solicitação
+      autorizacao: value?.solicitacao?.autorizacao ?? "Não informado",
+      // Informações do solitante
+      externo: externo ?? "Não informado",
+      nome: value?.solicitacao?.solicitante?.nome ?? "Não informado",
+      siape: value?.solicitacao?.solicitante?.siape ?? "Não informado",
+      telefone:
+        value?.solicitacao?.solicitante?.telefone?.numero !== ""
+          ? regexPhone(value?.solicitacao?.solicitante?.telefone?.numero)
+          : "Não informado",
+      email: value?.solicitacao?.solicitante?.email ?? "Não informado",
+      // Informações do translado
+      data_evento:
+        formatDataStartEnd({
+          start: value?.solicitacao?.dataInicio,
+          end: value?.solicitacao?.dataFinal
+        }) ?? "Não informado",
+      finalidade: value?.solicitacao?.finalidade ?? "Não informado",
+      data_solicitacao:
+        moment(value?.solicitacao?.dataSolicitacao).format(
+          "DD[/]MM[/]YYYY [às] HH:mm"
+        ) ?? "Não informado",
+      justificativa: value?.solicitacao?.justificativa ?? "Não informado",
+      destino: value?.destino ?? "Não informado",
+      saida: value?.saida ?? "Não informado",
+      motorista: value?.motorista?.numeroCnh ?? "Não informado",
+      nome_motorista: "Informação indisponível no momento",
+      veiculo: `${value?.transporte?.descricao} - ${value?.transporte?.placa}`,
+      // Informações dos passageiros
+      passageiros: (value?.passageiros ?? []).map(passageiro => ({
+        nome: passageiro?.nome ?? "Não informado",
+        cpf:
+          passageiro?.cpf !== "" && passageiro?.cpf !== null
+            ? regexCPF(passageiro?.cpf)
+            : "Não informado"
+      }))
+    };
+
+    setDataShowRequestTransport(formatted);
+    setIsOpenShowDetails(true);
   }
 
   const getListData = React.useCallback(async () => {
@@ -87,6 +154,12 @@ export function useListRequestTransport(): useListRequestTransportData {
     isLoading,
     isNotFoundData: !isLoading && dataRequestTransport?.length === 0,
     dataPagination,
+    isOpenShowDetails,
+    dataShowRequestTransport,
+    onCloseDetails: () => {
+      setIsOpenShowDetails(false);
+    },
+    onGetDataShowDetails,
     onTryAgainGetData: () => getListData(),
     onSendToEdit: id => {
       router.push(`${PATHS.dashboard.solicitacoesEditarTranporte}${id}`);

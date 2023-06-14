@@ -88,22 +88,23 @@ export function useListRequestLocal(): useListRequestLocalData {
       value?.externo !== null && value?.externo !== "" ? value?.externo : "Não";
     setDataShowRequestLocal({
       solicitante: value?.solicitante,
-      externo,
+      externo: externo ?? "Não informado",
       telefone:
         value?.telefone !== "" ? regexPhone(value?.telefone) : "Não informado",
       cpf: value?.cpf !== "" ? regexCPF(value?.cpf) : "Não informado",
-      siape: value?.siape,
+      siape: value?.siape ?? "Não informado",
       autorizacao: value?.autorizacao,
-      identificacao: value?.identificacao,
-      local: value?.local,
-      finalidade: value?.finalidade,
-      data_solicitacao: moment(value?.data_solicitacao).format(
-        "DD[/]MM[/]YYYY [às] HH:mm"
-      ),
-      data_evento: formatDataStartEnd({
-        start: value?.data_inicio,
-        end: value?.data_final
-      })
+      identificacao: value?.identificacao ?? "Não informado",
+      local: value?.local ?? "Não informado",
+      finalidade: value?.finalidade ?? "Não informado",
+      data_solicitacao:
+        moment(value?.data_solicitacao).format("DD[/]MM[/]YYYY [às] HH:mm") ??
+        "Não informado",
+      data_evento:
+        formatDataStartEnd({
+          start: value?.data_inicio,
+          end: value?.data_final
+        }) ?? "Não informado"
     });
 
     setIsOpenShowDetails(true);

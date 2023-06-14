@@ -55,8 +55,8 @@ export function Login(): JSX.Element {
               />
             </div>
             <div className="login__buttons">
-              <Link href={PATHS.forgotPassword} className="link__forgot">
-                Esqueci minha senha!
+              <Link href={PATHS.criarConta} className="link__forgot">
+                Ainda não tem registro
               </Link>
               <Button
                 type="submit"

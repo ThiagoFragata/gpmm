@@ -10,7 +10,6 @@ export const ContainerRegisterUser = styled.section`
   flex-direction: column;
   height: 100vh;
   padding: 2px 32px 0;
-  border: 2px solid red;
   .top__bar {
     padding-top: 2px;
     display: flex;

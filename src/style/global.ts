@@ -69,6 +69,5 @@ export default createGlobalStyle`
   }
   .field__password {
     padding-right: 40px;
-    border: 2px solid red;
   }
 `;

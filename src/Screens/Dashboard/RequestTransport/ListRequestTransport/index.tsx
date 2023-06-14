@@ -25,6 +25,10 @@ export function ListRequestTransport(): JSX.Element {
     isLoading,
     isNotFoundData,
     dataPagination,
+    isOpenShowDetails,
+    dataShowRequestTransport,
+    onCloseDetails,
+    onGetDataShowDetails,
     onSendToEdit,
     onChangeSizePage,
     onChangePage,
@@ -32,14 +36,11 @@ export function ListRequestTransport(): JSX.Element {
   } = useListRequestTransport();
   return (
     <ContainerListRequestTransport>
-      {/* <ShowDetailsRequestTransport
-        // isOpen={isOpenShowDetails}
-        // data={dataShowUser}
-        // onClose={onCloseDetails}
+      <ShowDetailsRequestTransport
         isOpen={isOpenShowDetails}
-        data={dataShowUser}
         onClose={onCloseDetails}
-      /> */}
+        data={dataShowRequestTransport}
+      />
       <div className="top__options">
         <span />
         <Button
@@ -85,7 +86,7 @@ export function ListRequestTransport(): JSX.Element {
                       <MenuAction
                         direction={directionMenu}
                         onShowDetails={() => {
-                          alert("mostrar detalhes");
+                          onGetDataShowDetails(item);
                         }}
                         onEdit={() => {
                           onSendToEdit(Number(item?.id));

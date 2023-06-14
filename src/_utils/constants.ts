@@ -62,6 +62,7 @@ export const PATHS = {
   login: "/",
   primeiroAcesso: "/primeiro-acesso",
   forgotPassword: "/recuperar-conta",
+  criarConta: "/criar-conta",
   dashboard: {
     inicio: "/dashboard",
     recursos: "/dashboard/recursos",

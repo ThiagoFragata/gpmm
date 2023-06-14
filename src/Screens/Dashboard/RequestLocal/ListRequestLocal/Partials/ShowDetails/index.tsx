@@ -35,7 +35,7 @@ export function ShowDetailsRequestLocal({
           className="details__status"
         />
         <TitleSubtitle
-          title="Informações solitante"
+          title="Informações do solicitante"
           className="title__section"
         />
         <div className="details__fields">
