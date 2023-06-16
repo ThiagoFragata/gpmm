@@ -25,6 +25,7 @@ export const ContainerLogin = styled.section`
       padding-bottom: 2px;
       border-bottom: 1px solid transparent;
       text-decoration: none;
+      margin-bottom: 10px;
       :hover {
         color: ${colors.GREEN_PRIMARY};
         border-bottom: 1px solid ${colors.GREEN_PRIMARY};
@@ -32,6 +33,23 @@ export const ContainerLogin = styled.section`
     }
     .button__item {
       width: 100%;
+    }
+  }
+  .link__text {
+    transition: all 0.3s;
+    font-size: ${pxToRem(16)};
+    color: ${colors.GRAY_PRIMARY};
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+    margin-top: 20px;
+    .link__strong {
+      font-weight: 600;
+      color: ${colors.GREEN_PRIMARY};
+      :hover {
+        color: ${colors.GREEN_PRIMARY};
+        border-bottom: 1px solid ${colors.GREEN_PRIMARY};
+      }
     }
   }
 `;
