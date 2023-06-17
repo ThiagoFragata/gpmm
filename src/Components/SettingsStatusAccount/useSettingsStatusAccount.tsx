@@ -15,6 +15,10 @@ export function useSettingsStatusAccount({
     "PENDENTE_ATIVACAO_ADMIN"
   ].some(item => item === status);
 
+  // function onAdminActive() {
+  //   await;
+  // }
+
   function dataCard(): IDataCard {
     if (status === "DESATIVADA") {
       return {
@@ -43,7 +47,8 @@ export function useSettingsStatusAccount({
         titleCard: "Aguardando ativação do administrador",
         description:
           "Um administrador do sistema precisar liberar a conta do usuário para que ele possa acessá-la.",
-        icon: () => <InfoIcon />
+        icon: () => <InfoIcon />,
+        onPress: () => {}
       };
     }
     return {

@@ -7,6 +7,7 @@ export interface IDataCard {
   titleCard: string;
   description: string;
   icon: () => JSX.Element;
+  onPress?: () => void;
 }
 
 export interface useSettingsStatusAccountData {

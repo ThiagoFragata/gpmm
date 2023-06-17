@@ -8,7 +8,8 @@ import {
   Button,
   FormToggle,
   ListSectors,
-  TextInput
+  TextInput,
+  TitleDivider
 } from "@/Components";
 import { Form } from "react-final-form";
 import {
@@ -30,7 +31,8 @@ export function RegisterUser(): JSX.Element {
     isShowSectors,
     onOpenListSectors,
     onCloseListSectors,
-    focusOnError
+    focusOnError,
+    onCreateUser
   } = useRegisterUser();
   const formRef = React.useRef<FormApi<any, any>>();
   return (
@@ -51,7 +53,7 @@ export function RegisterUser(): JSX.Element {
         <ContainerBoxScreen>
           <Form
             onSubmit={values => {
-              console.log(JSON.stringify(values, null, 2));
+              onCreateUser(values);
             }}
             initialValues={initialValuesUsersPublic}
             validate={validateUsersPublic}
@@ -65,6 +67,10 @@ export function RegisterUser(): JSX.Element {
                     Faça seu cadastro para ter acesso a plataforma
                   </h1>
                   <div className="box__fields">
+                    <TitleDivider
+                      title="Dados gerais"
+                      className="form__divider"
+                    />
                     <TextInput
                       label="Nome *"
                       name="nome"
@@ -95,12 +101,6 @@ export function RegisterUser(): JSX.Element {
                       parse={regexDate}
                     />
                     <TextInput
-                      label="E-mail*"
-                      name="email"
-                      placeholder="Informe o e-mail do usuário"
-                      disabled={isLoading}
-                    />
-                    <TextInput
                       label="Telefone *"
                       name="telefone"
                       placeholder="Informe o número de telefone do usuário"
@@ -124,6 +124,36 @@ export function RegisterUser(): JSX.Element {
                         }}
                       />
                     </div>
+
+                    <TitleDivider
+                      title="Dados de acesso"
+                      className="form__divider"
+                    />
+
+                    <TextInput
+                      label="E-mail*"
+                      name="email"
+                      placeholder="Informe o e-mail do usuário"
+                      disabled={isLoading}
+                    />
+                    <TextInput
+                      label="Senha *"
+                      name="senha"
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Digite uma senha segura"
+                      disabled={isLoading}
+                      className="field__password"
+                    />
+                    <TextInput
+                      label="Digite novamente a senha *"
+                      name="confirmaSenha"
+                      type="password"
+                      placeholder="Digite uma senha segura"
+                      disabled={isLoading}
+                      className="field__password"
+                    />
+
                     <div className="use__terms">
                       <p className="term__text">
                         Antes de se registrar e utilizar a plataforma, é

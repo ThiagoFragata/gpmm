@@ -51,6 +51,20 @@ export interface servicePostLoginProps {
   senha: string;
 }
 
+export interface servicePostPublicUserProps {
+  nome: string;
+  cpf: string;
+  siape: string;
+  dataNascimento: string;
+  telefone: string;
+  setor: number;
+  email: string;
+  senha: string;
+}
+export interface servicePostPublicUserActivateProps {
+  status: string;
+}
+
 export type servicePostLoginResponse = IUserSession;
 
 export type serviceGetUserByIdResponse = IItemUser;

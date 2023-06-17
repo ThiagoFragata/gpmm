@@ -8,6 +8,8 @@ import createDecorator from "final-form-focus";
 import { useRouter } from "next/navigation";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import { PATHS } from "@/_utils/constants";
+import { servicePostPublicUser } from "@/services/api/user";
+import { formatDateToBack } from "@/_utils/masks";
 
 export function useRegisterUser(): RegisterUserData {
   const dispatch = useDispatch();
@@ -15,18 +17,29 @@ export function useRegisterUser(): RegisterUserData {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isShowSectors, setIsShowSectors] = React.useState<boolean>(false);
 
-  async function onCreateUser(payload: ): Promise<void> {
+  async function onCreateUser(data: IDataFormPublicUser): Promise<void> {
     try {
       setIsLoading(true);
-      // await servicePostDrive(payload);``
+      const payload = {
+        nome: data?.nome,
+        cpf: data?.cpf,
+        siape: data?.siape,
+        dataNascimento: formatDateToBack(data?.dataNascimento),
+        telefone: data?.telefone,
+        setor: Number(data?.setor),
+        email: data?.email,
+        senha: data.senha
+      };
+      await servicePostPublicUser(payload);
       dispatch(
         onChangeToastAlert({
           isVisible: true,
           variant: "success",
-          description: "Novo motorista registrado"
+          description:
+            "Cadastro realizado. Agora, um administrador do sistema precisa liberar a conta para que voce possa acessar"
         })
       );
-      // router.push(PATHS.);
+      router.push(PATHS.login);
     } catch (error) {
       dispatch(
         onChangeToastAlert({

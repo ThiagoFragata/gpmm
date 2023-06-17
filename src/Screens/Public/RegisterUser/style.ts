@@ -34,6 +34,9 @@ export const ContainerRegisterUser = styled.section`
     font-weight: 600;
     margin-bottom: 35px;
   }
+  .form__divider {
+    margin-bottom: 20px;
+  }
   .box__form {
     position: relative;
     flex: 1;

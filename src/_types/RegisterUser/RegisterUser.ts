@@ -9,12 +9,14 @@ export interface IDataFormPublicUser {
   setor: number;
   label_setor?: string;
   email: string;
+  senha: string;
 }
 
 export interface RegisterUserData {
+  focusOnError: Decorator<IDataFormPublicUser, Partial<IDataFormPublicUser>>;
   isLoading: boolean;
   isShowSectors: boolean;
   onOpenListSectors: () => void;
   onCloseListSectors: () => void;
-  focusOnError: Decorator<IDataFormPublicUser, Partial<IDataFormPublicUser>>;
+  onCreateUser: (payload: IDataFormPublicUser) => Promise<void>;
 }

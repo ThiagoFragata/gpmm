@@ -10,6 +10,7 @@ export const initialValuesUsersPublic = {
   dataNascimento: "",
   telefone: "",
   email: "",
+  senha: "",
   accept__term: false
 };
 
@@ -42,6 +43,14 @@ export const validateUsersPublic = validateFormValues(
     email: yup
       .string()
       .email(messageValidations.email)
-      .required(messageValidations.required)
+      .required(messageValidations.required),
+    senha: yup
+      .string()
+      .min(8, messageValidations.minSize({ name: "A senha", size: 8 }))
+      .max(50, messageValidations.maxSize({ name: "A senha", size: 50 }))
+      .required(messageValidations.required),
+    confirmaSenha: yup
+      .string()
+      .oneOf([yup.ref("senha")], messageValidations.confirmPassword)
   })
 );
