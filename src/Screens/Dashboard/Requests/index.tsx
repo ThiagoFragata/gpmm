@@ -12,7 +12,6 @@ function RenderCurrenTab({
   onChangeTab
 }: RenderCurrenTabProps): JSX.Element {
   const isTabRequestLocal = currentTab === 1;
-  console.log(JSON.stringify({ isTabRequestLocal }, null, 2));
   const tabs = {
     1: <ListRequestLocal isCurrentTab={isTabRequestLocal} />,
     2: <ListRequestTransport />

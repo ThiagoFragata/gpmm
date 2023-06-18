@@ -11,7 +11,6 @@ export function ApiToken(): AxiosInstance {
     if (session !== null) {
       request.headers.Authorization = `Bearer ${session?.accessToken}`;
     } else {
-      console.log(JSON.stringify("nao tem token", null, 2));
       window.location.href = PATHS.login;
     }
     return request;
