@@ -6,7 +6,7 @@ import type {
   servicePostTransportProps,
   servicePutTransportProps
 } from "@/_types/Transport/serviceTransport";
-import { ApiToken } from ".";
+import { ApiToken } from "./";
 import { RESOURCE, RESOURCE_TRANSPORT } from "./endpoints";
 
 export async function serviceGetTransport({

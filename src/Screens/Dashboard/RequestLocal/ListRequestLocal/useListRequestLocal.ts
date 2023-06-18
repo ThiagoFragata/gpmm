@@ -15,7 +15,11 @@ import moment from "moment";
 import "moment/locale/pt-br";
 import { regexCPF, regexPhone } from "@/_utils/masks";
 
-export function useListRequestLocal(): useListRequestLocalData {
+export function useListRequestLocal({
+  isCurrentTab
+}: {
+  isCurrentTab: boolean;
+}): useListRequestLocalData {
   const dispatch = useDispatch();
   const router = useRouter();
   const [dataRequestLocal, setDataRequestLocal] = React.useState<
@@ -163,7 +167,9 @@ export function useListRequestLocal(): useListRequestLocalData {
   }
 
   React.useEffect(() => {
-    getListData();
+    if (isCurrentTab) {
+      getListData();
+    }
   }, [currentPage, currentSizePage]);
   return {
     dataRequestLocal,
