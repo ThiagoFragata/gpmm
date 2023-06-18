@@ -10,23 +10,12 @@ import { type itemBreadCrumb } from "@/_types/BreadCrumb";
 export function useRequests(): useRequestsData {
   const { TAB_LIST_PLACE, TAB_LIST_TRANSPORT } = TABS_REQUESTS;
   const [currentTab, setCurrentTab] =
-    React.useState<ITabOptionsRequests>(TAB_LIST_PLACE);
-  const [currentBreadCrumb, setCurrentBreadCrumb] = React.useState<
-    itemBreadCrumb[]
-  >([]);
+    React.useState<ITabOptionsRequests>(TAB_LIST_TRANSPORT);
   const router = useRouter();
   const pathname = usePathname();
   const breadCrumbPlace: itemBreadCrumb[] = [
     {
       label: "Solicitações"
-    }
-  ];
-  const breadCrumbTransport: itemBreadCrumb[] = [
-    {
-      label: "Solicitações"
-    },
-    {
-      label: "Solicitações de transportes"
     }
   ];
 

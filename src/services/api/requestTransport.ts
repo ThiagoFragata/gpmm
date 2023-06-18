@@ -1,4 +1,4 @@
-import { apiToken, baseAPI } from "./";
+import { ApiToken } from "./";
 import { REQUEST_CREATE_TRANSPORT, REQUEST_TRANSPORT } from "./endpoints";
 import {
   type servicePostrequestTransportProps,
@@ -11,9 +11,8 @@ export async function serviceGetRequestTransport({
   page,
   size
 }: serviceGetRequestTransportProps): Promise<serviceGetRequestTransportResponse> {
-  const { data } = await baseAPI.get<serviceGetRequestTransportResponse>(
-    `${REQUEST_TRANSPORT}?page=${page}&size=${size}`,
-    apiToken
+  const { data } = await ApiToken().get<serviceGetRequestTransportResponse>(
+    `${REQUEST_TRANSPORT}?page=${page}&size=${size}`
   );
   return data;
 }
@@ -21,10 +20,9 @@ export async function serviceGetRequestTransport({
 export async function servicePostrequestTransport(
   payload: servicePostrequestTransportProps
 ): Promise<serviceGetRequestTransportResponse> {
-  const { data } = await baseAPI.post<serviceGetRequestTransportResponse>(
+  const { data } = await ApiToken().post<serviceGetRequestTransportResponse>(
     REQUEST_CREATE_TRANSPORT,
-    payload,
-    apiToken
+    payload
   );
   return data;
 }
@@ -32,9 +30,8 @@ export async function servicePostrequestTransport(
 export async function serviceGetRequestTransportById(
   id: number
 ): Promise<IItemRequestTransport> {
-  const { data } = await baseAPI.get<IItemRequestTransport>(
-    `${REQUEST_TRANSPORT}/${id}`,
-    apiToken
+  const { data } = await ApiToken().get<IItemRequestTransport>(
+    `${REQUEST_TRANSPORT}/${id}`
   );
   return data;
 }
@@ -44,13 +41,12 @@ export async function servicePutTransportAuthorization(payload: {
   justificativa?: string;
   id: number;
 }): Promise<IItemRequestTransport> {
-  const { data } = await baseAPI.put<IItemRequestTransport>(
+  const { data } = await ApiToken().put<IItemRequestTransport>(
     `${REQUEST_TRANSPORT}/${payload.id}`,
     {
       autorizacao: payload?.autorizacao,
       justificativa: payload?.justificativa
-    },
-    apiToken
+    }
   );
   return data;
 }

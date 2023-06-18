@@ -10,7 +10,7 @@ import {
   ITEMS_SIDEBAR_ADMIN,
   ITEMS_SIDEBAR_NORMAL
 } from "../options";
-import { parseCookies } from "nookies";
+import { getSession } from "next-auth/react";
 
 export function SideBar({
   isExpanded,
@@ -21,18 +21,17 @@ export function SideBar({
   const [optionsSideBar, setOptionsSideBar] =
     React.useState(ITEMS_SIDEBAR_NORMAL);
 
-  React.useEffect(() => {
-    const cookie = parseCookies();
-    const isValidDateCookie =
-      cookie["42auth-nextts"] !== undefined &&
-      typeof cookie["42auth-nextts"] === "string";
-    const data = isValidDateCookie ? JSON.parse(cookie["42auth-nextts"]) : "";
-    const _data = data as { typeProfile: string };
+  const initGetLayoutProfile = React.useCallback(async () => {
+    const session = await getSession();
     const currentOptionsideBar =
-      _data.typeProfile === "NORMAL"
+      session?.user_type === "NORMAL"
         ? ITEMS_SIDEBAR_NORMAL
         : ITEMS_SIDEBAR_ADMIN;
     setOptionsSideBar(currentOptionsideBar);
+  }, []);
+
+  React.useEffect(() => {
+    initGetLayoutProfile();
   }, []);
 
   return (

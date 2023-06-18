@@ -10,7 +10,7 @@ import { useCommonCalendar } from "./useCommonCalendar";
 import { IconButton } from "@/Components/IconButton";
 
 export function CommonCalendar({ isOpen }: CommonCalendarProps): JSX.Element {
-  const { nameDays, nameMonths } = useCommonCalendar();
+  const { nameDays } = useCommonCalendar();
 
   // passar para a logica depois
   const currentDate = new Date();

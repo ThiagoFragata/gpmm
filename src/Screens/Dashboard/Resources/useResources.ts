@@ -47,12 +47,22 @@ export function useResources(): useResourcesData {
         }
       ];
     }
+    if (currentTab === TAB_LIST_DRIVER) {
+      return [
+        {
+          label: "Recursos"
+        },
+        {
+          label: "Todos motoristas"
+        }
+      ];
+    }
     return [
       {
         label: "Recursos"
       },
       {
-        label: "Todos motoristas"
+        label: "Início"
       }
     ];
   }

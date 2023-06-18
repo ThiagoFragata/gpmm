@@ -1,17 +1,14 @@
-import {
-  type PermissionRulesProps,
-  type PermissionRulesData
-} from "@/_types/Permissions";
 import { PATHS } from "./constants";
-import { parseCookies } from "nookies";
+import { type PermissionRulesData } from "@/_types/Permissions";
+import { type Session } from "next-auth";
 
+const withoutRedirect = { props: {} };
 const toLogin = {
   redirect: {
     destination: PATHS.login,
     permanent: false
   }
 };
-
 const toHome = {
   redirect: {
     destination: PATHS.dashboard.inicio,
@@ -19,49 +16,37 @@ const toHome = {
   }
 };
 
-export function checkPermissionRules({
-  context,
-  isOnlyAdm = true
-}: PermissionRulesProps): PermissionRulesData {
-  const cookie = parseCookies(context);
-  const isValidDateCookie =
-    cookie["42auth-nextts"] !== undefined &&
-    typeof cookie["42auth-nextts"] === "string";
-  const data = isValidDateCookie ? JSON.parse(cookie["42auth-nextts"]) : "";
+export function checkPublicPermission(
+  session: Session | null
+): PermissionRulesData {
+  if (session !== null) {
+    return toHome;
+  }
+  return withoutRedirect;
+}
 
-  const withoutRedirect = { props: {} };
-
-  if (data?.jwt === undefined) {
+export function checkProfilePermission({
+  session,
+  isOnlyAdm
+}: {
+  session: Session | null;
+  isOnlyAdm: boolean;
+}): PermissionRulesData {
+  if (session === null) {
     return toLogin;
   }
 
-  if (data?.typeProfile === "ADMIN") {
+  if (session?.user_type === "ADMIN") {
     return withoutRedirect;
   }
 
-  if (data?.typeProfile === "NORMAL" && !isOnlyAdm) {
-    return withoutRedirect;
-  }
-
-  return toLogin;
-  // return toHome;
-  // return withoutRedirect;
-}
-
-export function checkExistSession({
-  context
-}: PermissionRulesProps): PermissionRulesData {
-  const cookie = parseCookies(context);
-  const isValidDateCookie =
-    cookie["42auth-nextts"] !== undefined &&
-    typeof cookie["42auth-nextts"] === "string";
-  const data = isValidDateCookie ? JSON.parse(cookie["42auth-nextts"]) : "";
-
-  const withoutRedirect = { props: {} };
-
-  if (data?.typeProfile === "ADMIN" || data?.typeProfile === "NORMAL") {
+  if (session?.user_type === "NORMAL" && isOnlyAdm) {
     return toHome;
   }
 
-  return withoutRedirect;
+  if (session?.user_type === "NORMAL" && !isOnlyAdm) {
+    return withoutRedirect;
+  }
+
+  return toHome;
 }

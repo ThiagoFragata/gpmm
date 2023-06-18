@@ -9,7 +9,6 @@ import type {
   servicePostUserProps,
   servicePutUserProps
 } from "@/_types/Users/serviceUsers";
-import { apiToken, baseAPI } from "./";
 import {
   LOGIN,
   PUBLIC_USERS,
@@ -19,11 +18,15 @@ import {
   USER_ADM_SEND_CODE,
   USER_UPDATE_STATUS
 } from "./endpoints";
+import { apiPublic, ApiToken } from "./";
 
 export async function servicePostLogin(
   payload: servicePostLoginProps
 ): Promise<servicePostLoginResponse> {
-  const { data } = await baseAPI.post<servicePostLoginResponse>(LOGIN, payload);
+  const { data } = await apiPublic.post<servicePostLoginResponse>(
+    LOGIN,
+    payload
+  );
   return data;
 }
 
@@ -31,9 +34,8 @@ export async function serviceGetUsers({
   page,
   size
 }: serviceGetUsersProps): Promise<serviceGetUserResponse> {
-  const { data } = await baseAPI.get<serviceGetUserResponse>(
-    `${USERS}?page=${page}&size=${size}`,
-    apiToken
+  const { data } = await ApiToken().get<serviceGetUserResponse>(
+    `${USERS}?page=${page}&size=${size}`
   );
   return data;
 }
@@ -41,9 +43,8 @@ export async function serviceGetUsers({
 export async function serviceGetUserById(
   id: number
 ): Promise<serviceGetUserByIdResponse> {
-  const { data } = await baseAPI.get<serviceGetUserByIdResponse>(
-    `${USERS}/${id}`,
-    apiToken
+  const { data } = await ApiToken().get<serviceGetUserByIdResponse>(
+    `${USERS}/${id}`
   );
   return data;
 }
@@ -51,44 +52,38 @@ export async function serviceGetUserById(
 export async function servicePostUser(
   payload: servicePostUserProps
 ): Promise<serviceGetUserResponse> {
-  const { data } = await baseAPI.post<serviceGetUserResponse>(
+  const { data } = await ApiToken().post<serviceGetUserResponse>(
     USERS,
-    payload,
-    apiToken
+    payload
   );
-  baseAPI.post(
-    USER_ADM_SEND_CODE,
-    {
-      email: payload?.email
-    },
-    apiToken
-  );
+  ApiToken().post(USER_ADM_SEND_CODE, {
+    email: payload?.email
+  });
   return data;
 }
 
 export async function servicePostPublicUser(
   payload: servicePostPublicUserProps
 ): Promise<void> {
-  await baseAPI.post(PUBLIC_USERS, payload);
-  baseAPI.post(PUBLIC_USERS_SEND_EMAIL, { email: payload.email });
+  await ApiToken().post(PUBLIC_USERS, payload);
+  ApiToken().post(PUBLIC_USERS_SEND_EMAIL, { email: payload.email });
 }
 
 export async function servicePutPublicUserStatus({
   id,
   status
 }: servicePutPublicUserStatusProps): Promise<void> {
-  await baseAPI.put(UPDATE_STATUS(id), { status }, apiToken);
-  baseAPI.post(USER_UPDATE_STATUS, { id }, apiToken);
+  await ApiToken().put(UPDATE_STATUS(id), { status });
+  ApiToken().post(USER_UPDATE_STATUS, { id });
 }
 
 export async function servicePutUser({
   id,
   payload
 }: servicePutUserProps): Promise<serviceGetUserResponse> {
-  const { data } = await baseAPI.put<serviceGetUserResponse>(
+  const { data } = await ApiToken().put<serviceGetUserResponse>(
     `${USERS}/${id}`,
-    payload,
-    apiToken
+    payload
   );
   return data;
 }

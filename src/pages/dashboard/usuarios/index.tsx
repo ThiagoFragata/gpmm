@@ -1,14 +1,13 @@
 import React from "react";
 import { ListUsers } from "@/Screens";
+import { getSession } from "next-auth/react";
 import { LayoutDashboard } from "@/Components";
 import { type GetServerSideProps } from "next";
-import { checkPermissionRules } from "@/_utils/permissionRules";
+import { checkProfilePermission } from "@/_utils/permissionRules";
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const permission = checkPermissionRules({
-    context,
-    isOnlyAdm: true
-  });
+  const session = await getSession(context);
+  const permission = checkProfilePermission({ session, isOnlyAdm: true });
   return permission;
 };
 

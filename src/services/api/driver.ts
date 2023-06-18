@@ -1,4 +1,4 @@
-import { apiToken, baseAPI } from "./";
+import { ApiToken } from "./";
 import { DRIVER } from "./endpoints";
 import {
   type IItemDriver,
@@ -9,10 +9,9 @@ import {
 export async function servicePostDrive(
   payload: IItemDriver
 ): Promise<serviceGetDriverResponse> {
-  const { data } = await baseAPI.post<serviceGetDriverResponse>(
+  const { data } = await ApiToken().post<serviceGetDriverResponse>(
     DRIVER,
-    payload,
-    apiToken
+    payload
   );
   return data;
 }
@@ -21,9 +20,8 @@ export async function serviceGetDriver({
   page,
   size
 }: serviceGetDriverProps): Promise<serviceGetDriverResponse> {
-  const { data } = await baseAPI.get<serviceGetDriverResponse>(
-    `${DRIVER}?page=${page}&size=${size}`,
-    apiToken
+  const { data } = await ApiToken().get<serviceGetDriverResponse>(
+    `${DRIVER}?page=${page}&size=${size}`
   );
   return data;
 }

@@ -18,7 +18,11 @@ import {
 import { PATHS } from "@/_utils/constants";
 import { ShowDetailsRequestLocal } from "./Partials/ShowDetails";
 
-export function ListRequestLocal(): JSX.Element {
+export function ListRequestLocal({
+  isCurrentTab
+}: {
+  isCurrentTab: boolean;
+}): JSX.Element {
   const {
     onTryAgainGetData,
     onHandlerDialogModal,
@@ -40,7 +44,7 @@ export function ListRequestLocal(): JSX.Element {
     dataRequestLocal,
     isLoading,
     isAwaitDelete
-  } = useListRequestLocal();
+  } = useListRequestLocal({ isCurrentTab });
   return (
     <ContainerListRequestLocal>
       <AwaitRequest isVisible={isAwaitDelete} />
