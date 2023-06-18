@@ -6,16 +6,15 @@ import type {
   servicePostTransportProps,
   servicePutTransportProps
 } from "@/_types/Transport/serviceTransport";
-import { apiToken, baseAPI } from "./";
+import { ApiToken } from ".";
 import { RESOURCE, RESOURCE_TRANSPORT } from "./endpoints";
 
 export async function serviceGetTransport({
   page,
   size
 }: serviceGetTransportProps): Promise<serviceGetTransportResponse> {
-  const { data } = await baseAPI.get<serviceGetTransportResponse>(
-    `${RESOURCE_TRANSPORT}?page=${page}&size=${size}`,
-    apiToken
+  const { data } = await ApiToken().get<serviceGetTransportResponse>(
+    `${RESOURCE_TRANSPORT}?page=${page}&size=${size}`
   );
   return data;
 }
@@ -23,9 +22,8 @@ export async function serviceGetTransport({
 export async function serviceGetTransportById(
   id: number
 ): Promise<serviceGetTransportByIdResponse> {
-  const { data } = await baseAPI.get<serviceGetTransportByIdResponse>(
-    `${RESOURCE}/${id}`,
-    apiToken
+  const { data } = await ApiToken().get<serviceGetTransportByIdResponse>(
+    `${RESOURCE}/${id}`
   );
   return data;
 }
@@ -33,10 +31,9 @@ export async function serviceGetTransportById(
 export async function servicePostTransport(
   payload: servicePostTransportProps
 ): Promise<serviceGetTransportResponse> {
-  const { data } = await baseAPI.post<serviceGetTransportResponse>(
+  const { data } = await ApiToken().post<serviceGetTransportResponse>(
     RESOURCE_TRANSPORT,
-    payload,
-    apiToken
+    payload
   );
   return data;
 }
@@ -44,14 +41,13 @@ export async function servicePostTransport(
 export async function servicePutTransport(
   payload: servicePutTransportProps
 ): Promise<serviceGetTransportResponse> {
-  const { data } = await baseAPI.put<serviceGetTransportResponse>(
+  const { data } = await ApiToken().put<serviceGetTransportResponse>(
     `${RESOURCE}/${payload?.id ?? ""}`,
     {
       descricao: payload?.descricao,
       identificacao: payload?.identificacao,
       totalDeAssento: payload?.totalDeAssento
-    },
-    apiToken
+    }
   );
   return data;
 }
@@ -60,5 +56,5 @@ export async function serviceDeleteTransport(
   payload: serviceDeleteTransportProps
 ): Promise<void> {
   const { id } = payload;
-  await baseAPI.delete(`${RESOURCE}/${id}`, apiToken);
+  await ApiToken().delete(`${RESOURCE}/${id}`);
 }

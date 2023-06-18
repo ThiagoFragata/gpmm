@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { PATHS } from "@/_utils/constants";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { servicePostLogin } from "@/services/api/user";
-import { setCookie } from "nookies";
 import { signIn } from "next-auth/react";
 
 export function useLogin(): useLoginData {
@@ -23,7 +21,6 @@ export function useLogin(): useLoginData {
     setIsLoading(false);
     const isSuccess = result?.error === null;
     if (isSuccess) {
-      router.push(PATHS.dashboard.inicio);
       dispatch(
         onChangeToastAlert({
           isVisible: true,
@@ -32,6 +29,7 @@ export function useLogin(): useLoginData {
           description: `Seja bem-vindo!`
         })
       );
+      router.push(PATHS.dashboard.inicio);
     } else {
       const message =
         result?.error ?? "E-mail ou senha inválido, tente novamente";
