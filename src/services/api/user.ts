@@ -4,7 +4,7 @@ import type {
   serviceGetUsersProps,
   servicePostLoginProps,
   servicePostLoginResponse,
-  servicePostPublicUserActivateProps,
+  servicePutPublicUserStatusProps,
   servicePostPublicUserProps,
   servicePostUserProps,
   servicePutUserProps
@@ -14,8 +14,10 @@ import {
   LOGIN,
   PUBLIC_USERS,
   PUBLIC_USERS_SEND_EMAIL,
+  UPDATE_STATUS,
   USERS,
-  USER_ADM_SEND_CODE
+  USER_ADM_SEND_CODE,
+  USER_UPDATE_STATUS
 } from "./endpoints";
 
 export async function servicePostLogin(
@@ -71,11 +73,12 @@ export async function servicePostPublicUser(
   baseAPI.post(PUBLIC_USERS_SEND_EMAIL, { email: payload.email });
 }
 
-export async function servicePostPublicUserActivate(
-  payload: servicePostPublicUserActivateProps
-): Promise<void> {
-  // await baseAPI.post(PUBLIC_USERS, payload);
-  // baseAPI.post(PUBLIC_USERS_SEND_EMAIL, { email: payload.email });
+export async function servicePutPublicUserStatus({
+  id,
+  status
+}: servicePutPublicUserStatusProps): Promise<void> {
+  await baseAPI.put(UPDATE_STATUS(id), { status }, apiToken);
+  baseAPI.post(USER_UPDATE_STATUS, { id }, apiToken);
 }
 
 export async function servicePutUser({

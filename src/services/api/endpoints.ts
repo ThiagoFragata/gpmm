@@ -15,7 +15,9 @@ export const SECTORS = "setores";
 // USERS
 export const USERS = "pessoas";
 export const PUBLIC_USERS = "pessoas/auto";
-export const PUBLIC_USERS_UPDATE_STATUS = "pessoas/auto";
+export const UPDATE_STATUS = (value: number): string =>
+  `pessoas/${value}/status`;
+export const USER_UPDATE_STATUS = "pessoas/status/envio-email";
 export const PUBLIC_USERS_SEND_EMAIL = "pessoas/auto/envio-emails";
 export const LOGIN = "login";
 export const USER_ADM_SEND_CODE = "pessoas/envia-codigo/envio-admin";

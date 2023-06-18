@@ -34,7 +34,8 @@ export const EditUser: NextPageWithLayout = () => {
     onEditUser,
     onOpenListSectors,
     onCloseListSectors,
-    focusOnError
+    focusOnError,
+    idUser
   } = useEditUser();
   const formRef = React.useRef<FormApi<any, any>>();
   return (
@@ -152,6 +153,7 @@ export const EditUser: NextPageWithLayout = () => {
                       className="user__divider"
                     />
                     <SettingsStatusAccount
+                      userId={idUser}
                       status={dataUser?.status}
                       className="user__fields"
                     />

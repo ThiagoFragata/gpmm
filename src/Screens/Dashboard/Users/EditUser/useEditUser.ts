@@ -139,6 +139,7 @@ export function useEditUser(): useEditUserData {
       setIsShowSectors(false);
     },
     onEditUser,
-    focusOnError
+    focusOnError,
+    idUser: Number(idUser)
   };
 }

@@ -11,6 +11,7 @@ export interface useEditUserData {
   onCloseListSectors: () => void;
   onEditUser: (payload: IDataFormUser) => void;
   focusOnError: Decorator<IDataFormUser, Partial<IDataFormUser>>;
+  idUser: number;
 }
 
 export type onEditUserProps = IDataFormUser;
