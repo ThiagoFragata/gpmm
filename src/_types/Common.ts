@@ -34,6 +34,7 @@ export type typeStringStatus =
   | "unknow";
 
 export type IDataFormUser = {
+  id?: number;
   auth__drive: boolean;
   numeroCnh?: string;
   label_setor?: string;

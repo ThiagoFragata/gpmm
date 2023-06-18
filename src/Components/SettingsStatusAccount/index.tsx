@@ -7,21 +7,25 @@ import { Button } from "../Button";
 
 export function SettingsStatusAccount({
   status = "unknow",
-  className
+  className,
+  userId
 }: SettingsStatusAccountProps): JSX.Element {
   const [currentStatus, setCurrentStatus] = React.useState<typeStringStatus>(
     status === null ? "unknow" : status
   );
   React.useEffect(() => {
     setCurrentStatus(status);
-  }, [status]);
+  }, [status, setCurrentStatus]);
   const { shouldRenderButton, dataCard } = useSettingsStatusAccount({
     status: currentStatus
   });
   const Icon = dataCard.icon;
 
   return (
-    <ContainerSettingsStatusAccount status={status} className={className}>
+    <ContainerSettingsStatusAccount
+      status={currentStatus}
+      className={className}
+    >
       <div className="status__header">
         <div className="status__circle">
           <Icon />
@@ -34,6 +38,11 @@ export function SettingsStatusAccount({
           title={dataCard?.labelButton ?? ""}
           variant={dataCard?.variantButton}
           className="status__button"
+          onClick={() => {
+            if (userId !== undefined && dataCard.onPress != null) {
+              dataCard?.onPress({ userId, setCurrentStatus });
+            }
+          }}
         />
       )}
     </ContainerSettingsStatusAccount>

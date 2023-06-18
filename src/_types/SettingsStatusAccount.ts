@@ -7,7 +7,13 @@ export interface IDataCard {
   titleCard: string;
   description: string;
   icon: () => JSX.Element;
-  onPress?: () => void;
+  onPress?: ({
+    userId,
+    setCurrentStatus
+  }: {
+    userId: number;
+    setCurrentStatus: any;
+  }) => void;
 }
 
 export interface useSettingsStatusAccountData {
@@ -22,6 +28,7 @@ export interface useSettingsStatusAccountProps {
 export interface SettingsStatusAccountProps {
   status?: typeStringStatus;
   className?: string;
+  userId?: number;
 }
 
 export interface SettingsStatusAccountModifier {

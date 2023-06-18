@@ -61,7 +61,8 @@ export interface servicePostPublicUserProps {
   email: string;
   senha: string;
 }
-export interface servicePostPublicUserActivateProps {
+export interface servicePutPublicUserStatusProps {
+  id: number;
   status: string;
 }
 
