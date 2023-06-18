@@ -48,13 +48,23 @@ export function useEditUser(): useEditUserData {
             data?.motorista?.numeroCnh !== undefined
               ? data?.motorista?.numeroCnh
               : undefined,
-          telefone: regexPhone(data?.telefone?.numero),
+          telefone:
+            data?.telefone?.numero !== null &&
+            data?.telefone?.numero !== undefined
+              ? regexPhone(data?.telefone?.numero)
+              : "",
           setor: data?.setor?.id,
           label_setor: data?.setor?.nome,
           nome: data?.nome,
-          cpf: regexCPF(data?.cpf),
+          cpf:
+            data?.cpf !== null && data?.cpf !== undefined
+              ? regexCPF(data?.cpf)
+              : "",
           siape: data?.siape,
-          dataNascimento: moment(data?.dataNascimento).format("DD[/]MM[/]YYYY"),
+          dataNascimento:
+            data?.dataNascimento !== null && data?.dataNascimento !== undefined
+              ? moment(data?.dataNascimento).format("DD[/]MM[/]YYYY")
+              : "",
           tipoPerfil: getIdTypeProfile(data?.tipoPerfil),
           email: data?.email,
           status

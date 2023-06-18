@@ -52,16 +52,15 @@ export function List({
                           disabled={isAwaitDelete}
                           direction={directionMenu}
                           onDelete={() => {
-                            console.log("apagar");
                             onGetDataDelete({
                               name: item?.nome,
                               id: Number(item?.id)
                             });
                           }}
-                          onEdit={() => {
-                            console.log("editar");
-                            // onSendToEdit(Number(item?.id));
-                          }}
+                          // onEdit={() => {
+                          //   console.log("editar");
+                          //   // onSendToEdit(Number(item?.id));
+                          // }}
                         />
                       </TableItem>
                     </TableContent>

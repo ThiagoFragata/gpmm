@@ -1,6 +1,10 @@
 import React from "react";
 import { type IItemSector } from "@/_types/Sectors/serviceSectors";
-import { serviceGetSectors, servicePostSectors } from "@/services/api/sectors";
+import {
+  serviceDeleteSector,
+  serviceGetSectors,
+  servicePostSectors
+} from "@/services/api/sectors";
 import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import {
@@ -82,9 +86,6 @@ export function useListSectors({
 
       await servicePostSectors({ nome: payload?.nome });
       form.restart();
-      // if (set_item) {
-      //   onClose();
-      // }
       setShowComponentTop(SHOW_TOP_DEFAULT);
       getDataSectors();
       dispatch(
@@ -115,17 +116,25 @@ export function useListSectors({
     try {
       setIsAwaitDelete(true);
       onHandlerDialogModal();
-      // await setor({
-      // id: dataDelete?.id
-      // });
+      await serviceDeleteSector(dataDelete?.id);
       getDataSectors();
-    } catch {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "success",
+          description: "Setor excluido com sucesso"
+        })
+      );
+    } catch (error) {
+      const _error = error as IDataServeError;
+      const messageError =
+        _error?.response?.data?.errors[0] ??
+        "Falha ao excluir registro, tente novamente";
       dispatch(
         onChangeToastAlert({
           isVisible: true,
           variant: "error",
-          title: `Falha excluir o item "${dataDelete.name}"`,
-          description: "Não foi realizar a ação, tente novamente mais tarde"
+          description: messageError
         })
       );
     } finally {

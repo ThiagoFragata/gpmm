@@ -20,7 +20,7 @@ export function ApiToken(): AxiosInstance {
       return response;
     },
     error => {
-      console.log(`error`, error);
+      return Promise.reject(error);
     }
   );
 

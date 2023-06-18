@@ -25,3 +25,7 @@ export async function servicePostSectors(
   );
   return data;
 }
+
+export async function serviceDeleteSector(id: number): Promise<void> {
+  await ApiToken().delete(`${SECTORS}/${id}`);
+}

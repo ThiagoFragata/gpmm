@@ -1,7 +1,6 @@
 import React from "react";
 import { ContainerListSectors, TopDefault } from "./style";
 import { useListSectors } from "./useListSectors";
-import { SearchIcon } from "@/assets/icons";
 import { Button } from "../Button";
 import { TopNewSector } from "./Partials/TopNewSector";
 import { List } from "./Partials/List";
