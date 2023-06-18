@@ -36,7 +36,7 @@ const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60 // 30 days
+    maxAge: 86400 // 24h
   },
   callbacks: {
     jwt: async ({ token, user }) => {
@@ -53,16 +53,17 @@ const authOptions: NextAuthOptions = {
       const isExistToken = token !== null && token !== undefined;
       if (isExistToken) {
         session.name = String(token.name ?? "");
+        session.user_type = token?.user_type;
         session.accessToken = String(token.accessToken ?? "");
       }
       return session;
     }
   },
   secret: "jwttoken",
-  pages: {
-    signIn: "/login",
-    error: "/error"
-  },
+  // pages: {
+  //   signIn: "/login",
+  //   error: "/error"
+  // },
   jwt: {
     secret: "jwttoken"
   }

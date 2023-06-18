@@ -9,7 +9,6 @@ import type {
   servicePostUserProps,
   servicePutUserProps
 } from "@/_types/Users/serviceUsers";
-// import { apiToken, baseAPI } from "./";
 import {
   LOGIN,
   PUBLIC_USERS,
@@ -17,12 +16,12 @@ import {
   USERS,
   USER_ADM_SEND_CODE
 } from "./endpoints";
-import { ApiToken } from ".";
+import { apiPublic, ApiToken } from ".";
 
 export async function servicePostLogin(
   payload: servicePostLoginProps
 ): Promise<servicePostLoginResponse> {
-  const { data } = await ApiToken().post<servicePostLoginResponse>(
+  const { data } = await apiPublic.post<servicePostLoginResponse>(
     LOGIN,
     payload
   );

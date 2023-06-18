@@ -1,5 +1,6 @@
 import { getSession } from "next-auth/react";
-import axios, { type AxiosInstance, type AxiosAdapter } from "axios";
+import axios, { type AxiosInstance } from "axios";
+import { PATHS } from "@/_utils/constants";
 
 export function ApiToken(): AxiosInstance {
   const instance = axios.create({
@@ -7,8 +8,11 @@ export function ApiToken(): AxiosInstance {
   });
   instance.interceptors.request.use(async request => {
     const session = await getSession();
-    if (session != null) {
+    if (session !== null) {
       request.headers.Authorization = `Bearer ${session?.accessToken}`;
+    } else {
+      console.log(JSON.stringify("nao tem token", null, 2));
+      window.location.href = PATHS.login;
     }
     return request;
   });
@@ -23,3 +27,7 @@ export function ApiToken(): AxiosInstance {
 
   return instance;
 }
+
+export const apiPublic = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
+});

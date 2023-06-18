@@ -64,6 +64,7 @@ export function checkExistSession({
 
   return withoutRedirect;
 }
+
 // NEW AUTH
 export function checkPublicPermission(
   session: Session | null
@@ -72,4 +73,25 @@ export function checkPublicPermission(
     return toHome;
   }
   return withoutRedirect;
+}
+
+export function checkProfilePermission({
+  session,
+  isOnlyAdm
+}: {
+  session: Session | null;
+  isOnlyAdm: boolean;
+}): PermissionRulesData {
+  if (session === null) {
+    return toLogin;
+  }
+
+  return withoutRedirect;
+  // if (session?.. data?.typeProfile === "ADMIN") {
+  //   return withoutRedirect;
+  // }
+
+  // if (data?.typeProfile === "NORMAL" && !isOnlyAdm) {
+  //   return withoutRedirect;
+  // }
 }

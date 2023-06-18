@@ -6,13 +6,13 @@ import { type GetServerSideProps } from "next";
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const session = await getSession(context);
-  if (session == null) {
+  if (session === null) {
     context.res.writeHead(302, { Location: "/" });
     context.res.end();
   }
-  console.log("🔥🔥🔥🔥________________________🚑");
-  console.log(JSON.stringify(session, null, 2));
-  console.log("🔥🔥🔥🔥________________________🚑");
+  // console.log("🔥🔥🔥🔥________________________🚑");
+  // console.log(JSON.stringify(session, null, 2));
+  // console.log("🔥🔥🔥🔥________________________🚑");
   return { props: {} };
   // const permission = checkPermissionRules({
   //   context,
