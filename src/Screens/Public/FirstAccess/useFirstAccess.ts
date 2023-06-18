@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import type {
   FirstAccessData,
   IScreenSteps,
@@ -27,7 +27,7 @@ export function useFirstAccess(): FirstAccessData {
   const isScreenGetEmail = SCREEN_GET_EMAIL === currentscreen;
   const isScreenGetCode = SCREEN_GET_CODE === currentscreen;
   const isScreenGetPassword = SCREEN_GET_PASSWORD === currentscreen;
-  const [dataCreatePassword, setDataCreatePassword] = useState({
+  const [dataCreatePassword, setDataCreatePassword] = React.useState({
     codigo: "",
     idUser: 0
   });

@@ -30,6 +30,12 @@ export const FIRST_ACCESS_SCREENS: Record<string, IScreenSteps> = {
   SCREEN_GET_PASSWORD: 2
 };
 
+export const FORGOT_PASSWORD_SCREENS: Record<string, 0 | 1 | 2> = {
+  SCREEN_GET_EMAIL: 0,
+  SCREEN_GET_CODE: 1,
+  SCREEN_GET_PASSWORD: 2
+};
+
 export const AMOUNT_PAGE_ITEMS = 2;
 
 const PATHS_LOCAL = {

@@ -1,8 +1,20 @@
+import {
+  CREATE_PASSWORD,
+  FORGOT_REQUEST_CODE,
+  REQUEST_CODE,
+  VALID_CODE
+} from "./endpoints";
 import { apiPublic } from "./";
-import { CREATE_PASSWORD, REQUEST_CODE, VALID_CODE } from "./endpoints";
 
 export async function servicePostRequestCode(email: string): Promise<string> {
   const { data } = await apiPublic.post<string>(REQUEST_CODE, { email });
+  return data;
+}
+
+export async function servicePostRequestCodeForgotPassword(
+  email: string
+): Promise<string> {
+  const { data } = await apiPublic.post<string>(FORGOT_REQUEST_CODE, { email });
   return data;
 }
 

@@ -9,6 +9,9 @@ export const VALID_CODE = "pessoas/valida-codigo";
 export const CREATE_PASSWORD = (value: number): string =>
   `pessoas/${value}/senha`;
 
+// FORGOT PASSWORD
+export const FORGOT_REQUEST_CODE = "pessoas/envia-codigo/recuperar-conta";
+
 // SECTORS
 export const SECTORS = "setores";
 

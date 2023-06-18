@@ -1,7 +1,7 @@
 import React from "react";
 import { ContainerBoxScreen } from "../../style";
 import { Button, TextInput, TitleSubtitle } from "@/Components";
-import { type ChangePasswordProps } from "@/_types/FirstAccess";
+import { type ChangePasswordProps } from "@/_types/ForgotPassword";
 import { Form } from "react-final-form";
 import { validatePasswordFirstAccess } from "@/_utils/form/validations/firstAccess";
 
@@ -15,7 +15,7 @@ export function ChangePassword({
     <ContainerBoxScreen isCurrentScreen={isCurrentScreen}>
       <TitleSubtitle
         title="Agora falta pouco!"
-        subtitle="Para continuar basta criar uma senha segura para poder acessar o sistema."
+        subtitle="Para continuar basta criar uma nova senha e seu acesso será liberado."
       />
       <Form
         onSubmit={values => {
