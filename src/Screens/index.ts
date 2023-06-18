@@ -22,3 +22,4 @@ export { CreateDrive } from "./Dashboard/Driver/CreateDrive";
 export { CreateRequestLocal } from "./Dashboard/RequestLocal/CreateRequestLocal";
 export { CreateRequestTransport } from "./Dashboard/RequestTransport/CreateRequestTransport";
 export { EditRequestTransport } from "./Dashboard/RequestTransport/EditRequestTransport";
+export { CreateRequestCommunication } from "./Dashboard/RequestCommunication/CreateRequestCommunication";
