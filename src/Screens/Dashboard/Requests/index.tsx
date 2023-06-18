@@ -7,17 +7,14 @@ import { type NextPageWithLayout } from "@/pages/_app";
 import { type RenderCurrenTabProps } from "@/_types/Requests";
 import { ListRequestTransport } from "../RequestTransport/ListRequestTransport";
 
-function RenderCurrenTab({
-  currentTab,
-  onChangeTab
-}: RenderCurrenTabProps): JSX.Element {
+function RenderCurrenTab({ currentTab }: RenderCurrenTabProps): JSX.Element {
   const isTabRequestLocal = currentTab === 1;
   const tabs = {
     1: <ListRequestLocal isCurrentTab={isTabRequestLocal} />,
     2: <ListRequestTransport />
   };
 
-  return tabs[currentTab] ?? <h1>SEMN ADA</h1>;
+  return tabs[currentTab] ?? <h1>SEM ABA</h1>;
 }
 
 export const Requests: NextPageWithLayout = () => {

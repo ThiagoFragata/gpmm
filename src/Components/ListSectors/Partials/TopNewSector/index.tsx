@@ -4,7 +4,6 @@ import { Form } from "react-final-form";
 import { TextInput } from "@/Components/TextInput";
 import { Button } from "@/Components/Button";
 import { type TopNewSectorProps } from "@/_types/Sectors/ListSectors";
-// import { FormToggle } from "@/Components/FormToggle";
 import {
   initialValuesSector,
   validateSector
@@ -37,11 +36,6 @@ export function TopNewSector({
                 placeholder="Digite o nome do setor"
                 disabled={isLoading}
               />
-              {/* <FormToggle
-                name="set_item"
-                label="Usar este"
-                disabled={isLoading}
-              /> */}
             </div>
             <div className="sector__buttons">
               <Button

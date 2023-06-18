@@ -1,5 +1,6 @@
 import { type typeStringStatus } from "@/_types/Common";
 import { type IScreenSteps } from "@/_types/FirstAccess";
+import { type ITabOptionsProfile } from "@/_types/Profile";
 import { type ITabOptionsRequests } from "@/_types/Requests";
 import { type ITabOptions } from "@/_types/Resources";
 
@@ -16,6 +17,11 @@ export const TABS_RESOURCES: Record<string, ITabOptions> = {
 export const TABS_REQUESTS: Record<string, ITabOptionsRequests> = {
   TAB_LIST_PLACE: 1,
   TAB_LIST_TRANSPORT: 2
+};
+
+export const TABS_PROFILE: Record<string, ITabOptionsProfile> = {
+  TAB_DATA: 1,
+  TAB_PASSWORD: 2
 };
 
 export const FIRST_ACCESS_SCREENS: Record<string, IScreenSteps> = {

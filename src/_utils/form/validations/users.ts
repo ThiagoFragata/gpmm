@@ -53,3 +53,32 @@ export const validateUser = validateFormValues(
 );
 
 export const validateEditUser = validateUser;
+
+export const validateUserProfile = validateFormValues(
+  yup.object({
+    nome: yup.string().required(messageValidations.required),
+    cpf: yup
+      .string()
+      .required(messageValidations.required)
+      .min(14, messageValidations.document),
+    siape: yup
+      .string()
+      .required(messageValidations.required)
+      .min(7, messageValidations.minSize({ name: "O campo", size: 7 })),
+    dataNascimento: yup
+      .string()
+      .required(messageValidations.required)
+      .min(10, messageValidations.date)
+      .test("dataNascimento", messageValidations.date, value =>
+        checkValidDate(value)
+      ),
+    telefone: yup
+      .string()
+      .required(messageValidations.required)
+      .min(14, messageValidations.phone),
+    email: yup
+      .string()
+      .email(messageValidations.email)
+      .required(messageValidations.required)
+  })
+);

@@ -55,6 +55,7 @@ const authOptions: NextAuthOptions = {
         session.name = String(token.name ?? "");
         session.user_type = token?.user_type;
         session.accessToken = String(token.accessToken ?? "");
+        session.id = String(token.id ?? "");
       }
       return session;
     }

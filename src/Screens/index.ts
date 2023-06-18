@@ -5,6 +5,7 @@ export { ForgotPassword } from "./Public/ForgotPassword";
 export { RegisterUser } from "./Public/RegisterUser";
 
 /* DASHBOARD */
+export { Profile } from "./Dashboard/Profile";
 export { Home } from "./Dashboard/Home";
 export { ListUsers } from "./Dashboard/Users/ListUsers";
 export { Resources } from "./Dashboard/Resources";
