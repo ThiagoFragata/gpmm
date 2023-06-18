@@ -53,6 +53,7 @@ export const ContainerListSectors = styled.div<ListSectorsModifier>`
     .box__search {
       position: relative;
       display: flex;
+      justify-content: flex-end;
       .search__icon {
         position: absolute;
         margin: auto;
@@ -73,11 +74,6 @@ export const ContainerListSectors = styled.div<ListSectorsModifier>`
         }
       }
       .search__close {
-        position: absolute;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        right: 12px;
         display: flex;
         align-items: center;
       }

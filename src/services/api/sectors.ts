@@ -3,7 +3,7 @@ import type {
   serviceGetSectorsResponse,
   servicePostSectorsProps
 } from "@/_types/Sectors/serviceSectors";
-import { apiPublic } from "./";
+import { ApiToken, apiPublic } from "./";
 import { SECTORS } from "./endpoints";
 
 export async function serviceGetSectors({
@@ -19,7 +19,7 @@ export async function serviceGetSectors({
 export async function servicePostSectors(
   payload: servicePostSectorsProps
 ): Promise<serviceGetSectorsResponse> {
-  const { data } = await apiPublic.post<serviceGetSectorsResponse>(
+  const { data } = await ApiToken().post<serviceGetSectorsResponse>(
     SECTORS,
     payload
   );

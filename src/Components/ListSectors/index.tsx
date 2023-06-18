@@ -49,12 +49,12 @@ export function ListSectors({
       />
       <div className="container__box">
         <div className="box__search">
-          <SearchIcon className="search__icon" />
+          {/* <SearchIcon className="search__icon" />
           <input
             type="text"
             className="search__input"
             placeholder="Digite algo para buscar"
-          />
+          /> */}
           <div className="search__close">
             <IconButton name="CloseIcon" onClick={onClose} />
           </div>
