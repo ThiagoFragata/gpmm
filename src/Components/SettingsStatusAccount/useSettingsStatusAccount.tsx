@@ -47,8 +47,8 @@ export function useSettingsStatusAccount({
         titleCard: "Aguardando ativação do administrador",
         description:
           "Um administrador do sistema precisar liberar a conta do usuário para que ele possa acessá-la.",
-        icon: () => <InfoIcon />,
-        onPress: () => {}
+        icon: () => <InfoIcon />
+        // onPress: () => {}
       };
     }
     return {
