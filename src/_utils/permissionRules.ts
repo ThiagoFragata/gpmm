@@ -64,14 +64,12 @@ export function checkExistSession({
 
   return withoutRedirect;
 }
-
+// NEW AUTH
 export function checkPublicPermission(
   session: Session | null
 ): PermissionRulesData {
   if (session !== null) {
     return toHome;
-    // context.res.writeHead(302, { Location: PATHS.dashboard.inicio });
-    // context.res.end();
   }
   return withoutRedirect;
 }
