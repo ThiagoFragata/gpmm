@@ -16,7 +16,8 @@ export const TABS_RESOURCES: Record<string, ITabOptions> = {
 
 export const TABS_REQUESTS: Record<string, ITabOptionsRequests> = {
   TAB_LIST_PLACE: 1,
-  TAB_LIST_TRANSPORT: 2
+  TAB_LIST_TRANSPORT: 2,
+  TAB_LIST_COMMUNICATION: 3
 };
 
 export const TABS_PROFILE: Record<string, ITabOptionsProfile> = {
@@ -67,7 +68,10 @@ const PATHS_REQUESTS = {
   solicitacoesNovoLocal: "/dashboard/solicitacoes/locais/novo",
   solicitacoesTranportes: "/dashboard/solicitacoes/tranportes",
   solicitacoesNovoTranporte: "/dashboard/solicitacoes/tranportes/novo",
-  solicitacoesEditarTranporte: "/dashboard/solicitacoes/tranportes/editar/"
+  solicitacoesEditarTranporte: "/dashboard/solicitacoes/tranportes/editar/",
+  solicitacoesComunicacao: "/dashboard/solicitacoes/comunicacao-interna",
+  solicitacoesNovaComunicacao:
+    "/dashboard/solicitacoes/comunicacao-interna/nova-mensagem"
 };
 
 export const PATHS = {

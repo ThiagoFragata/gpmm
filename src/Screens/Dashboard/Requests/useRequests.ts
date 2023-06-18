@@ -8,7 +8,8 @@ import { useRouter, usePathname } from "next/navigation";
 import { type itemBreadCrumb } from "@/_types/BreadCrumb";
 
 export function useRequests(): useRequestsData {
-  const { TAB_LIST_PLACE, TAB_LIST_TRANSPORT } = TABS_REQUESTS;
+  const { TAB_LIST_PLACE, TAB_LIST_TRANSPORT, TAB_LIST_COMMUNICATION } =
+    TABS_REQUESTS;
   const [currentTab, setCurrentTab] =
     React.useState<ITabOptionsRequests>(TAB_LIST_TRANSPORT);
   const router = useRouter();
@@ -27,6 +28,10 @@ export function useRequests(): useRequestsData {
     {
       id: TAB_LIST_TRANSPORT,
       label: "Transportes"
+    },
+    {
+      id: TAB_LIST_COMMUNICATION,
+      label: "Gerais"
     }
   ];
 
@@ -34,7 +39,8 @@ export function useRequests(): useRequestsData {
     const tab = value as ITabOptionsRequests;
     const mapScreens = {
       1: PATHS.dashboard.solicitacoesLocais,
-      2: PATHS.dashboard.solicitacoesTranportes
+      2: PATHS.dashboard.solicitacoesTranportes,
+      3: PATHS.dashboard.solicitacoesComunicacao
     };
     setCurrentTab(tab);
     router.push(mapScreens[tab]);
@@ -43,7 +49,8 @@ export function useRequests(): useRequestsData {
   function initTab(): void {
     const paths = {
       [PATHS.dashboard.solicitacoesLocais]: TAB_LIST_PLACE,
-      [PATHS.dashboard.solicitacoesTranportes]: TAB_LIST_TRANSPORT
+      [PATHS.dashboard.solicitacoesTranportes]: TAB_LIST_TRANSPORT,
+      [PATHS.dashboard.solicitacoesComunicacao]: TAB_LIST_COMMUNICATION
     };
     const getTab: ITabOptionsRequests =
       pathname !== null

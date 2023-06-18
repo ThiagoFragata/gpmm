@@ -6,12 +6,14 @@ import { ListRequestLocal } from "../RequestLocal/ListRequestLocal";
 import { type NextPageWithLayout } from "@/pages/_app";
 import { type RenderCurrenTabProps } from "@/_types/Requests";
 import { ListRequestTransport } from "../RequestTransport/ListRequestTransport";
+import { ListRequestCommunication } from "../RequestCommunication/ListRequestCommunication";
 
 function RenderCurrenTab({ currentTab }: RenderCurrenTabProps): JSX.Element {
   const isTabRequestLocal = currentTab === 1;
   const tabs = {
     1: <ListRequestLocal isCurrentTab={isTabRequestLocal} />,
-    2: <ListRequestTransport />
+    2: <ListRequestTransport />,
+    3: <ListRequestCommunication />
   };
 
   return tabs[currentTab] ?? <h1>SEM ABA</h1>;
