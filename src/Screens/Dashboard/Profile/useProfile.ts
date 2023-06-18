@@ -48,6 +48,27 @@ export function useProfile(): useProfileData {
     setCurrentTab(tab);
   }
 
+  const getDataUser = React.useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const session = await getSession();
+      const idUser = Number(session?.id);
+      const data = await serviceGetUserById(idUser);
+      setDataProfile(data);
+    } catch (error) {
+      dispatch(
+        onChangeToastAlert({
+          isVisible: true,
+          variant: "error",
+          title: "Falha ao buscar dados",
+          description: "Não foi possível recuperar os dados do usuário logado"
+        })
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }, [dispatch]);
+
   async function onEditProfile({
     payload,
     form
@@ -62,6 +83,7 @@ export function useProfile(): useProfileData {
         dataNascimento: formatDateToBack(payload?.dataNascimento)
       };
       form.restart();
+      getDataUser();
       await servicePutUser({
         payload: formattedPayload,
         id:
@@ -92,27 +114,6 @@ export function useProfile(): useProfileData {
       setIsLoading(false);
     }
   }
-
-  const getDataUser = React.useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const session = await getSession();
-      const idUser = Number(session?.id);
-      const data = await serviceGetUserById(idUser);
-      setDataProfile(data);
-    } catch (error) {
-      dispatch(
-        onChangeToastAlert({
-          isVisible: true,
-          variant: "error",
-          title: "Falha ao buscar dados",
-          description: "Não foi possível recuperar os dados do usuário logado"
-        })
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  }, [dispatch]);
 
   React.useEffect(() => {
     getDataUser();
