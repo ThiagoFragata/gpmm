@@ -8,7 +8,7 @@ const modifier = {
       right: 0;
     `,
     hidden: css`
-      right: -60vw;
+      right: -120vw;
       opacity: 0;
     `
   },

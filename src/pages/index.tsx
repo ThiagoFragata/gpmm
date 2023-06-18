@@ -2,12 +2,18 @@ import React from "react";
 import { Login } from "@/Screens";
 import { LayoutPublic } from "@/Layout/LayoutPublic";
 import { type GetServerSideProps } from "next";
-import { checkExistSession } from "@/_utils/permissionRules";
+import {
+  checkExistSession,
+  checkPublicPermission
+} from "@/_utils/permissionRules";
+import { getSession } from "next-auth/react";
+import { PATHS } from "@/_utils/constants";
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const permission = checkExistSession({
-    context
-  });
+  const session = await getSession(context);
+
+  // return { props: {} };
+  const permission = checkPublicPermission(session);
   return permission;
 };
 

@@ -4,6 +4,9 @@ import {
 } from "@/_types/Permissions";
 import { PATHS } from "./constants";
 import { parseCookies } from "nookies";
+import { type Session } from "next-auth";
+
+const withoutRedirect = { props: {} };
 
 const toLogin = {
   redirect: {
@@ -28,8 +31,6 @@ export function checkPermissionRules({
     cookie["42auth-nextts"] !== undefined &&
     typeof cookie["42auth-nextts"] === "string";
   const data = isValidDateCookie ? JSON.parse(cookie["42auth-nextts"]) : "";
-
-  const withoutRedirect = { props: {} };
 
   if (data?.jwt === undefined) {
     return toLogin;
@@ -57,11 +58,20 @@ export function checkExistSession({
     typeof cookie["42auth-nextts"] === "string";
   const data = isValidDateCookie ? JSON.parse(cookie["42auth-nextts"]) : "";
 
-  const withoutRedirect = { props: {} };
-
   if (data?.typeProfile === "ADMIN" || data?.typeProfile === "NORMAL") {
     return toHome;
   }
 
+  return withoutRedirect;
+}
+
+export function checkPublicPermission(
+  session: Session | null
+): PermissionRulesData {
+  if (session !== null) {
+    return toHome;
+    // context.res.writeHead(302, { Location: PATHS.dashboard.inicio });
+    // context.res.end();
+  }
   return withoutRedirect;
 }

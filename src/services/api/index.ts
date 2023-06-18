@@ -1,23 +1,25 @@
-import axios from "axios";
-import { parseCookies } from "nookies";
+import { getSession } from "next-auth/react";
+import axios, { type AxiosInstance, type AxiosAdapter } from "axios";
 
-export const baseAPI = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
-});
+export function ApiToken(): AxiosInstance {
+  const instance = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL
+  });
+  instance.interceptors.request.use(async request => {
+    const session = await getSession();
+    if (session != null) {
+      request.headers.Authorization = `Bearer ${session?.accessToken}`;
+    }
+    return request;
+  });
+  instance.interceptors.response.use(
+    response => {
+      return response;
+    },
+    error => {
+      console.log(`error`, error);
+    }
+  );
 
-export const setToken = (token: string): void => {
-  baseAPI.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-const cookie = parseCookies();
-const isValidDateCookie =
-  cookie["42auth-nextts"] !== undefined &&
-  typeof cookie["42auth-nextts"] === "string";
-const data = isValidDateCookie ? JSON.parse(cookie["42auth-nextts"]) : "";
-const _data = data as { jwt: string };
-
-export const apiToken = {
-  headers: {
-    Authorization: `Bearer ${_data?.jwt ?? "WITHOUT_TOKEN"}`
-  }
-};
+  return instance;
+}

@@ -79,3 +79,9 @@ export type IDataInputSelectTransport = Array<{
   name: string;
   totalDeAssentos: number;
 }>;
+
+export interface ApiTokenData {
+  headers: {
+    Authorization: string;
+  };
+}

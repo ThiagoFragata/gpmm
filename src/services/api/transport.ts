@@ -1,5 +1,4 @@
 import type {
-  IItemTransport,
   serviceDeleteTransportProps,
   serviceGetTransportByIdResponse,
   serviceGetTransportProps,
