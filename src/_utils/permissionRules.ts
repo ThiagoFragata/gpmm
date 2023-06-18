@@ -86,12 +86,17 @@ export function checkProfilePermission({
     return toLogin;
   }
 
-  return withoutRedirect;
-  // if (session?.. data?.typeProfile === "ADMIN") {
-  //   return withoutRedirect;
-  // }
+  if (session?.user_type === "ADMIN") {
+    return withoutRedirect;
+  }
 
-  // if (data?.typeProfile === "NORMAL" && !isOnlyAdm) {
-  //   return withoutRedirect;
-  // }
+  if (session?.user_type === "NORMAL" && isOnlyAdm) {
+    return toHome;
+  }
+
+  if (session?.user_type === "NORMAL" && !isOnlyAdm) {
+    return withoutRedirect;
+  }
+
+  return toHome;
 }
