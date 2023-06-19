@@ -32,3 +32,4 @@ export { ContentScroll } from "./ContentScroll";
 export { SettingsStatusAccount } from "./SettingsStatusAccount";
 export { CalendarForm } from "./CalendarForm";
 export { StatusRequest } from "./StatusRequest";
+export { TextInputMultiLine } from "./TextInputMultiLine";

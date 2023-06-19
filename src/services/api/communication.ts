@@ -1,4 +1,5 @@
 import {
+  type servicePostCommunicationProps,
   type serviceGetCommunicationProps,
   type serviceGetCommunicationResponse
 } from "@/_types/RequestCommunication/ServiceRequestCommunication";
@@ -13,4 +14,10 @@ export async function serviceGetCommunication({
     `${REQUEST_COMMUNICATION}?page=${page}&size=${size}`
   );
   return data;
+}
+
+export async function servicePostCommunication(
+  payload: servicePostCommunicationProps
+): Promise<void> {
+  await ApiToken().post(REQUEST_COMMUNICATION, payload);
 }

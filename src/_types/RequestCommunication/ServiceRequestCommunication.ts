@@ -18,3 +18,9 @@ export interface serviceGetCommunicationProps {
   page: number;
   size: number;
 }
+
+export interface servicePostCommunicationProps {
+  pessoaId: number;
+  assunto: string;
+  mensagem: string;
+}
