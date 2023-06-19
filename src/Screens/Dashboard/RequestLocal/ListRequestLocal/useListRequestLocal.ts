@@ -150,7 +150,6 @@ export function useListRequestLocal({
       //   await serviceDeleteLocal({
       //     id: dataDelete?.id
       //   });
-      console.log(JSON.stringify(dataDelete?.id, null, 2));
       getListData();
     } catch {
       dispatch(
