@@ -10,7 +10,7 @@ export interface TableTitleProps {
 
 export interface TableContentProps {
   className?: string;
-  children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[] | null;
 }
 
 export interface TableItemProps {
@@ -21,5 +21,5 @@ export interface TableItemProps {
 }
 
 export interface TableScrollProps {
-  children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[] | null;
 }

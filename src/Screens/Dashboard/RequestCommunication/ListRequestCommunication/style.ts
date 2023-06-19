@@ -1,3 +1,5 @@
+import { pxToRem } from "@/_utils/pxToRem";
+import { colors } from "@/style/theme";
 import styled from "styled-components";
 
 export const ContainerListRequestCommunication = styled.div`
@@ -5,13 +7,32 @@ export const ContainerListRequestCommunication = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  .column__object {
-    width: 30%;
+  .table__user {
+    .user__name {
+      color: ${colors.DARK_PRIMARY};
+      font-size: ${pxToRem(16)};
+    }
+    .user__email {
+      color: ${colors.GRAY_SECONDARY};
+      font-size: ${pxToRem(14)};
+    }
   }
-  .column__data {
+  .table__user--loading {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+  }
+
+  .column__user {
     width: 25%;
   }
+  .column__data {
+    width: 15%;
+  }
+  .column__object {
+    width: 20%;
+  }
   .column__message {
-    width: 45%;
+    width: 40%;
   }
 `;

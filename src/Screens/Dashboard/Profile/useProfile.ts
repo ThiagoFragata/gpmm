@@ -36,11 +36,11 @@ export function useProfile(): useProfileData {
     {
       id: TAB_DATA,
       label: "Dados"
-    },
-    {
-      id: TAB_PASSWORD,
-      label: "Segurança"
     }
+    // {
+    //   id: TAB_PASSWORD,
+    //   label: "Segurança"
+    // }
   ];
 
   function onChangeTab(value: number): void {

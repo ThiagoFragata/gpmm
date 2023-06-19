@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { ContainerListRequestCommunication } from "./style";
 import { useListRequestCommunication } from "./useListRequestCommunication";
 import {
@@ -44,12 +44,12 @@ export function ListRequestCommunication(): JSX.Element {
             {!isLoading ? (
               dataCommunication.map((item, index) => (
                 <TableContent key={item?.id}>
-                  <TableItem
-                    item={{
-                      label: item?.assunto,
-                      className: "column__object"
-                    }}
-                  />
+                  <TableItem className="column__user">
+                    <div className="table__user">
+                      <p className="user__name">{item?.pessoa?.nome}</p>
+                      <p className="user__email">{item?.pessoa?.email}</p>
+                    </div>
+                  </TableItem>
                   <TableItem
                     item={{
                       label:
@@ -65,6 +65,12 @@ export function ListRequestCommunication(): JSX.Element {
                   />
                   <TableItem
                     item={{
+                      label: item?.assunto,
+                      className: "column__object"
+                    }}
+                  />
+                  <TableItem
+                    item={{
                       label: item?.mensagem,
                       className: "column__message"
                     }}
@@ -75,10 +81,16 @@ export function ListRequestCommunication(): JSX.Element {
               <React.Fragment>
                 <MultSkeleton amount={10}>
                   <TableContent>
-                    <TableItem className="column__object">
-                      <Skeleton />
+                    <TableItem className="column__user">
+                      <div className="table__user--loading">
+                        <Skeleton width="60%" />
+                        <Skeleton />
+                      </div>
                     </TableItem>
                     <TableItem className="column__data">
+                      <Skeleton />
+                    </TableItem>
+                    <TableItem className="column__object">
                       <Skeleton />
                     </TableItem>
                     <TableItem className="column__message">

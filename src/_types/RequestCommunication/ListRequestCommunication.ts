@@ -7,5 +7,6 @@ export type useListRequestCommunicationData = {
   dataCommunication: IItemCommunicatoin[];
   isNotFoundData: boolean;
   isLoading: boolean;
+  // isAdmin: boolean;
   onTryAgainGetData: () => void;
 } & IRestDataPagination;

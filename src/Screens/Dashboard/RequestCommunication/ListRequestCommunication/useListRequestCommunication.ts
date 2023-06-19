@@ -21,12 +21,16 @@ export function useListRequestCommunication(): useListRequestCommunicationData {
 
   const tableTitle = [
     {
-      label: "Assunto",
-      className: "column__object"
+      label: "Solicitante",
+      className: "column__user"
     },
     {
-      label: "Data",
+      label: "Data solicitação",
       className: "column__data"
+    },
+    {
+      label: "Assunto",
+      className: "column__object"
     },
     {
       label: "Mensagem",
