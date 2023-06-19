@@ -31,6 +31,7 @@ export type useListRequestTransportData = {
   isLoading: boolean;
   isNotFoundData: boolean;
   isOpenShowDetails: boolean;
+  shouldRenderEditOption: boolean;
   dataShowRequestTransport: IShowRequestTransport;
   onGetDataShowDetails: (data: IItemRequestTransport) => void;
   onSendToEdit: (id: number) => void;

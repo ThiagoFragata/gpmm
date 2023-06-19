@@ -12,6 +12,7 @@ import { PATHS } from "@/_utils/constants";
 import { regexCPF, regexPhone } from "@/_utils/masks";
 import { type formatDataStartEndProps } from "@/_types/Common";
 import moment from "moment";
+import { getSession } from "next-auth/react";
 
 export function useListRequestTransport(): useListRequestTransportData {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ export function useListRequestTransport(): useListRequestTransportData {
   const [currentPage, setCurrentPage] = React.useState(0);
   const [isOpenShowDetails, setIsOpenShowDetails] = React.useState(false);
   const [currentSizePage, setCurrentSizePage] = React.useState(10);
+  const [shouldRenderEditOption, setShouldRenderEditOption] =
+    React.useState(false);
   const [dataShowRequestTransport, setDataShowRequestTransport] =
     React.useState<IShowRequestTransport>({} as IShowRequestTransport);
   const [dataPagination, setDataPagination] = React.useState({
@@ -120,6 +123,11 @@ export function useListRequestTransport(): useListRequestTransportData {
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
+      const session = await getSession();
+      if (session?.user_type === "ADMIN") {
+        setShouldRenderEditOption(true);
+      }
+
       const data = await serviceGetRequestTransport({
         size: currentSizePage,
         page: currentPage
@@ -156,6 +164,7 @@ export function useListRequestTransport(): useListRequestTransportData {
     dataPagination,
     isOpenShowDetails,
     dataShowRequestTransport,
+    shouldRenderEditOption,
     onCloseDetails: () => {
       setIsOpenShowDetails(false);
     },

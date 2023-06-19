@@ -27,6 +27,7 @@ export function ListRequestTransport(): JSX.Element {
     dataPagination,
     isOpenShowDetails,
     dataShowRequestTransport,
+    shouldRenderEditOption,
     onCloseDetails,
     onGetDataShowDetails,
     onSendToEdit,
@@ -88,9 +89,13 @@ export function ListRequestTransport(): JSX.Element {
                         onShowDetails={() => {
                           onGetDataShowDetails(item);
                         }}
-                        onEdit={() => {
-                          onSendToEdit(Number(item?.id));
-                        }}
+                        onEdit={
+                          shouldRenderEditOption
+                            ? () => {
+                                onSendToEdit(Number(item?.id));
+                              }
+                            : undefined
+                        }
                       />
                     </TableItem>
                   </TableContent>
