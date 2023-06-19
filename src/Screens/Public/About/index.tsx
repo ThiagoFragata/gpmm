@@ -89,7 +89,7 @@ export const About: NextPageWithLayout = () => {
                   <li className="about__text">
                     Josilene Vitória dos Santos da Silva
                   </li>
-                  <li className="about__text">Adriano Gomes</li>
+                  <li className="about__text">Adriano dos Santos Gomes</li>
                   <li className="about__text">Iano Maciel</li>
                 </ul>
               </div>
