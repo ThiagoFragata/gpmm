@@ -22,6 +22,7 @@ export interface useSideBarData {
   onHandlerDialogModal: () => void;
   onLogout: () => void;
   isOpenModal: boolean;
+  isAbout: boolean;
 }
 
 export type SideBarModifier = Pick<useLayoutDashboardData, "isExpanded">;

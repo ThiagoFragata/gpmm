@@ -30,6 +30,7 @@ export function useSideBar(): useSideBarData {
     checkPathSelected,
     onHandlerDialogModal,
     onLogout,
+    isAbout: currentPath === PATHS.dashboard.sobre,
     isOpenModal
   };
 }

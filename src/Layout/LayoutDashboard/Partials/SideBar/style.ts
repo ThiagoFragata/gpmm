@@ -16,6 +16,7 @@ const modifier = {
     .side__options .option__item {
       .option__title {
         max-height: auto;
+        margin-bottom: 6px;
       }
       .option__link {
         .option__text {

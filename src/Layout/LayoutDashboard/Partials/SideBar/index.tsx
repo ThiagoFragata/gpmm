@@ -16,8 +16,13 @@ export function SideBar({
   isExpanded,
   onHandlerExpand
 }: SideBarProps): JSX.Element {
-  const { isOpenModal, onHandlerDialogModal, checkPathSelected, onLogout } =
-    useSideBar();
+  const {
+    isOpenModal,
+    isAbout,
+    onHandlerDialogModal,
+    checkPathSelected,
+    onLogout
+  } = useSideBar();
   const [optionsSideBar, setOptionsSideBar] =
     React.useState(ITEMS_SIDEBAR_NORMAL);
 
@@ -78,7 +83,12 @@ export function SideBar({
           <TitleDivider className="option__title">Outros</TitleDivider>
         </li>
         <li className="option__item">
-          <Link href={optionsSideBar.ABOUT.path} className="option__link">
+          <Link
+            href={optionsSideBar.ABOUT.path}
+            className={`${
+              isAbout ? "option__link--selected" : ""
+            } option__link`}
+          >
             <optionsSideBar.ABOUT.icon className="option__icon" />
             <span className="option__text">{optionsSideBar.ABOUT.label}</span>
           </Link>

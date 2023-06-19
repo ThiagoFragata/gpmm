@@ -99,7 +99,7 @@ export const ITEMS_SIDEBAR = {
   ABOUT: {
     label: "Sobre",
     path: PATHS.dashboard.sobre,
-    paths: [],
+    paths: [PATHS.dashboard.sobre],
     icon: ({ className }: { className?: string }) => (
       <AboutIcon className={className} />
     )

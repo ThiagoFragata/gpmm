@@ -3,6 +3,7 @@ export { Login } from "./Public/Login";
 export { FirstAccess } from "./Public/FirstAccess";
 export { ForgotPassword } from "./Public/ForgotPassword";
 export { RegisterUser } from "./Public/RegisterUser";
+export { About } from "./Public/About";
 
 /* DASHBOARD */
 export { Profile } from "./Dashboard/Profile";
