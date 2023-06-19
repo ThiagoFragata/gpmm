@@ -93,13 +93,6 @@ export function Data({
                 </div>
                 <div className="form__buttons">
                   <Button
-                    type="button"
-                    variant="ghost"
-                    title="Cancelar"
-                    disabled={isLoading}
-                    navigateTo={PATHS.dashboard.inicio}
-                  />
-                  <Button
                     type="submit"
                     variant="light"
                     title="Atualizar"

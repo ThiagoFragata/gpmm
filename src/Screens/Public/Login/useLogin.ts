@@ -29,7 +29,7 @@ export function useLogin(): useLoginData {
           description: `Seja bem-vindo!`
         })
       );
-      router.push(PATHS.dashboard.inicio);
+      router.push(PATHS.dashboard.solicitacoesLocais);
     } else {
       const message =
         result?.error ?? "E-mail ou senha inválido, tente novamente";
@@ -42,27 +42,6 @@ export function useLogin(): useLoginData {
         })
       );
     }
-    // const result = await servicePostLogin(payload);
-    // const firstName = result?.usuario?.nome.split(" ")[0];
-    // const dataToCookie = {
-    //   jwt: result?.token,
-    //   idUser: result.usuario?.id,
-    //   typeProfile: result?.usuario?.tipoPerfil
-    // };
-    // const twentyFourHoursInSeconds = 24 * 60 * 60; // 24 horas em segundos
-    // setCookie(undefined, "42auth-nextts", JSON.stringify(dataToCookie), {
-    //   maxAge: twentyFourHoursInSeconds
-    // });
-    // dispatch(
-    //   onChangeToastAlert({
-    //     isVisible: true,
-    //     variant: "success",
-    //     title: "Logado com sucesso!",
-    //     description: `Seja bem-vindo ${firstName}!`
-    //   })
-    // );
-    // window.location.href = PATHS.dashboard.inicio;
-    // router.push(PATHS.dashboard.inicio);
   }
   return {
     onSubmitLogin,

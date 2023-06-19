@@ -11,7 +11,7 @@ const toLogin = {
 };
 const toHome = {
   redirect: {
-    destination: PATHS.dashboard.inicio,
+    destination: PATHS.dashboard.solicitacoesLocais,
     permanent: false
   }
 };
