@@ -59,15 +59,15 @@ const authOptions: NextAuthOptions = {
       }
       return session;
     }
-  },
-  secret: "jwttoken",
+  }
+  // secret: process.env.NEXTAUTH_SECRET
   // pages: {
   //   signIn: "/login",
   //   error: "/error"
   // },
-  jwt: {
-    secret: "jwttoken"
-  }
+  // jwt: {
+  //   secret: process.env.NEXTAUTH_SECRET
+  // }
 };
 
 export default NextAuth(authOptions);
