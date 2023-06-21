@@ -11,8 +11,7 @@ export function GetEmail({
   isCurrentScreen,
   email
 }: GetEmailProps): JSX.Element {
-  const titleButton =
-    isLoading === true ? "Enviando e-mail..." : "Solicitar código";
+  const titleButton = isLoading ? "Enviando e-mail..." : "Solicitar código";
   return (
     <ContainerBoxScreen isCurrentScreen={isCurrentScreen}>
       <TitleSubtitle
