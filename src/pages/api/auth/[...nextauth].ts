@@ -10,13 +10,15 @@ const authOptions: NextAuthOptions = {
     CredentialsProvider({
       type: "credentials",
       credentials: {},
-      authorize: async (credentials): Promise<IUserSession | any> => {
+      authorize: async (credentials): Promise<IUserSession | null> => {
         try {
           const { email, password } = credentials as {
             email: string;
             password: string;
           };
+
           const user = await servicePostLogin({ email, senha: password });
+
           const isExistUser = user !== null && user !== undefined;
           if (isExistUser) {
             const userData = user;
@@ -60,14 +62,6 @@ const authOptions: NextAuthOptions = {
       return session;
     }
   }
-  // secret: process.env.NEXTAUTH_SECRET
-  // pages: {
-  //   signIn: "/login",
-  //   error: "/error"
-  // },
-  // jwt: {
-  //   secret: process.env.NEXTAUTH_SECRET
-  // }
 };
 
 export default NextAuth(authOptions);

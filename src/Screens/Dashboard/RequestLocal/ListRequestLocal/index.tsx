@@ -1,6 +1,3 @@
-import React from "react";
-import { ContainerListRequestLocal } from "./style";
-import { useListRequestLocal } from "./useListRequestLocal";
 import {
   AwaitRequest,
   Button,
@@ -16,7 +13,10 @@ import {
   TableTitle
 } from "@/Components";
 import { PATHS } from "@/_utils/constants";
+import React from "react";
 import { ShowDetailsRequestLocal } from "./Partials/ShowDetails";
+import { ContainerListRequestLocal } from "./style";
+import { useListRequestLocal } from "./useListRequestLocal";
 
 export function ListRequestLocal({
   isCurrentTab
@@ -53,7 +53,7 @@ export function ListRequestLocal({
         data={dataShowRequestLocal}
         onClose={onCloseDetails}
       />
-      {/* <DialogModal
+      <DialogModal
         title={`Deseja realmente excluir o local ${dataDelete.name}?`}
         description="Ao realizar está ação, o item não poderá ser recuperado."
         isOpen={isOpenModal}
@@ -62,9 +62,9 @@ export function ListRequestLocal({
         onActionConfirm={onConfirmDelete}
         ocActionCancel={onHandlerDialogModal}
         variant="danger"
-      /> */}
+      />
       <div className="top__options">
-        <span />
+        <h1>barra</h1>
         <Button
           title="Novo"
           iconName="MoreIcon"
@@ -114,15 +114,15 @@ export function ListRequestLocal({
                         onShowDetails={() => {
                           onGetDataShowDetails(item);
                         }}
-                        // onDelete={() => {
-                        // onGetDataDelete({
-                        // name: item?.,
-                        // id: Number(item?.id)
-                        // });
-                        // }}
-                        // onEdit={() => {
-                        // onSendToEdit(Number(item?.id));
-                        // }}
+                        onDelete={() => {
+                          onGetDataDelete({
+                            name: item?.identificacao,
+                            id: Number(item?.identificacao)
+                          });
+                        }}
+                        onEdit={() => {
+                          onSendToEdit(Number(item?.identificacao));
+                        }}
                       />
                     </TableItem>
                   </TableContent>
@@ -152,11 +152,11 @@ export function ListRequestLocal({
               </React.Fragment>
             )}
           </TableScroll>
-          {/* <FooterData
+          <FooterData
             onChangePage={onChangePage}
             onChangeSizePage={onChangeSizePage}
             data={dataPagination}
-          /> */}
+          />
         </React.Fragment>
       ) : (
         <DataNotFound onAction={onTryAgainGetData} />

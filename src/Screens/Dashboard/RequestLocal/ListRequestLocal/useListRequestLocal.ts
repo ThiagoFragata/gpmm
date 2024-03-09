@@ -1,19 +1,20 @@
-import React from "react";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { PATHS } from "@/_utils/constants";
 import { type dataDeleteProps } from "@/_types/Common";
-import { serviceGeRequestLocal } from "@/services/api/requestLocal";
-import { type IItemRequestLocal } from "@/_types/RequestsLocal/ServiceRequestLocal";
 import {
   type IShowRequestLocal,
   type formatDataStartEndProps,
   type useListRequestLocalData
 } from "@/_types/RequestsLocal/ListRequestLocal";
+import { type IItemRequestLocal } from "@/_types/RequestsLocal/ServiceRequestLocal";
+import { PATHS } from "@/_utils/constants";
+import { regexCPF, regexPhone } from "@/_utils/masks";
+import { serviceDeleteLocal } from "@/services/api/local";
+import { serviceGeRequestLocal } from "@/services/api/requestLocal";
 import moment from "moment";
 import "moment/locale/pt-br";
-import { regexCPF, regexPhone } from "@/_utils/masks";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 export function useListRequestLocal({
   isCurrentTab
@@ -29,6 +30,7 @@ export function useListRequestLocal({
   const [isAwaitDelete, setIsAwaitDelete] = React.useState<boolean>(false);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(0);
+  const [sort, setSort] = React.useState("asc");
   const [currentSizePage, setCurrentSizePage] = React.useState(10);
   const [isOpenShowDetails, setIsOpenShowDetails] = React.useState(false);
   const [dataShowRequestLocal, setDataShowRequestLocal] =
@@ -118,10 +120,8 @@ export function useListRequestLocal({
     try {
       setIsLoading(true);
       const data = await serviceGeRequestLocal({
-        // size: currentSizePage,
-        // page: currentPage
-        size: 0,
-        page: 0
+        size: currentSizePage,
+        page: currentPage
       });
       setDataPagination({
         totalPages: data?.totalPages,
@@ -147,9 +147,9 @@ export function useListRequestLocal({
     try {
       setIsAwaitDelete(true);
       onHandlerDialogModal();
-      //   await serviceDeleteLocal({
-      //     id: dataDelete?.id
-      //   });
+      await serviceDeleteLocal({
+        id: dataDelete?.id
+      });
       getListData();
     } catch {
       dispatch(

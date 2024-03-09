@@ -1,12 +1,12 @@
 import {
   configureStore,
-  type ThunkAction,
   type Action,
   type EnhancedStore,
-  type Store
+  type Store,
+  type ThunkAction
 } from "@reduxjs/toolkit";
-import { toastAlert } from "./slices/toastAlertSlice";
 import { createWrapper } from "next-redux-wrapper";
+import { toastAlert } from "./slices/toastAlertSlice";
 
 const store = (): EnhancedStore =>
   configureStore({
@@ -26,7 +26,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action
 >;
-
-// export const wrapper = createWrapper<AppStore>(store);
 
 export const wrapper = createWrapper<Store<RootState>>(store);

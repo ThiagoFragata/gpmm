@@ -1,8 +1,8 @@
-import React from "react";
 import { type useSideBarData } from "@/_types/LayoutDashboard";
-import { useRouter } from "next/router";
 import { PATHS } from "@/_utils/constants";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import React from "react";
 
 export function useSideBar(): useSideBarData {
   const router = useRouter();
@@ -11,7 +11,7 @@ export function useSideBar(): useSideBarData {
 
   function checkPathSelected(arrayPath: string[]): boolean {
     const isExistInArray = arrayPath.some(
-      item => item === String(currentPath).replace("[id]", "")
+      item => item === String(currentPath)?.replace("[id]", "")
     );
     return isExistInArray;
   }

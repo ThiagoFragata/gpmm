@@ -1,7 +1,7 @@
-import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { type ToastAlertProps } from "@/_types/Store/ToastAlert";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import { type RootState } from "..";
-import { type ToastAlertProps } from "@/_types/Store/ToastAlert";
 
 const initialState: ToastAlertProps = {
   isVisible: false,

@@ -2,12 +2,12 @@ import { type formatDataStartEndProps } from "@/_types/Common";
 import moment from "moment";
 
 export function regexOnlyNumber(value: string): string {
-  return value.replace(/\D/g, "");
+  return value?.replace(/\D/g, "");
 }
 
 export function regexCPF(value: string): string {
   const cpf = value
-    .replace(/\D/g, "")
+    ?.replace(/\D/g, "")
     .replace(/(\d{3})(\d)/, "$1.$2")
     .replace(/(.\d{3})(\d)/, "$1.$2")
     .replace(/(.\d{3})(\d)/, "$1-$2")
@@ -17,7 +17,7 @@ export function regexCPF(value: string): string {
 
 export function regexPhone(value: string): string {
   return value
-    .replace(/\D/g, "")
+    ?.replace(/\D/g, "")
     .replace(/(\d)/, "($1")
     .replace(/(\(\d{2})(\d)/, "$1) $2")
     .replace(/(\d{5})(\d{1,4})/, "$1-$2")
@@ -26,7 +26,7 @@ export function regexPhone(value: string): string {
 
 export function regexDate(value: string): string {
   const date = value
-    .replace(/\D/g, "")
+    ?.replace(/\D/g, "")
     .replace(/(\d{2})(\d)/, "$1/$2")
     .replace(/(\d{2})(\d)/, "$1/$2")
     .replace(/(\d{4})\d+?$/, "$1");
@@ -34,7 +34,7 @@ export function regexDate(value: string): string {
 }
 
 export function formatDateToBack(value: string): string {
-  const formated = `${value.slice(6, 10)}-${value.slice(3, 5)}-${value.slice(
+  const formated = `${value?.slice(6, 10)}-${value.slice(3, 5)}-${value.slice(
     0,
     2
   )}`;

@@ -1,25 +1,30 @@
-import React from "react";
-import type { onSubmitLoginProps, useLoginData } from "@/_types/Login";
-import { useRouter } from "next/navigation";
-import { PATHS } from "@/_utils/constants";
-import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
+import type { onSubmitLoginProps, useLoginData } from "@/_types/Login";
+import { PATHS } from "@/_utils/constants";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 export function useLogin(): useLoginData {
   const dispatch = useDispatch();
-  const router = useRouter();
+  const { push } = useRouter();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const titleButton = isLoading ? "Aguarde..." : "Entrar";
+
   async function onSubmitLogin(payload: onSubmitLoginProps): Promise<void> {
     setIsLoading(true);
+
     const result = await signIn("credentials", {
       redirect: false,
       email: payload?.email,
       password: payload?.senha
     });
+
     setIsLoading(false);
+
     const isSuccess = result?.error === null;
+
     if (isSuccess) {
       dispatch(
         onChangeToastAlert({
@@ -29,7 +34,8 @@ export function useLogin(): useLoginData {
           description: `Seja bem-vindo!`
         })
       );
-      router.push(PATHS.dashboard.solicitacoesLocais);
+
+      push(PATHS.dashboard.solicitacoesLocais);
     } else {
       const message =
         result?.error ?? "E-mail ou senha inválido, tente novamente";

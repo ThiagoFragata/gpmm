@@ -4,11 +4,12 @@ import type {
   serviceGetUsersProps,
   servicePostLoginProps,
   servicePostLoginResponse,
-  servicePutPublicUserStatusProps,
   servicePostPublicUserProps,
   servicePostUserProps,
+  servicePutPublicUserStatusProps,
   servicePutUserProps
 } from "@/_types/Users/serviceUsers";
+import { ApiToken, apiPublic } from "./";
 import {
   LOGIN,
   PUBLIC_USERS,
@@ -18,7 +19,6 @@ import {
   USER_ADM_SEND_CODE,
   USER_UPDATE_STATUS
 } from "./endpoints";
-import { apiPublic, ApiToken } from "./";
 
 export async function servicePostLogin(
   payload: servicePostLoginProps

@@ -1,15 +1,14 @@
-import React from "react";
-import Image from "next/image";
-import { ContainerLogin } from "./style";
-import { Form } from "react-final-form";
 import { AwaitRequest, Button, TextInput, TitleSubtitle } from "@/Components";
-import { useLogin } from "./useLogin";
-import {
-  validateLogin,
-  initialValuesLogin
-} from "@/_utils/form/validations/login";
-import Link from "next/link";
 import { PATHS } from "@/_utils/constants";
+import {
+  initialValuesLogin,
+  validateLogin
+} from "@/_utils/form/validations/login";
+import Image from "next/image";
+import Link from "next/link";
+import { Form } from "react-final-form";
+import { ContainerLogin } from "./style";
+import { useLogin } from "./useLogin";
 
 export function Login(): JSX.Element {
   const { onSubmitLogin, isLoading, titleButton } = useLogin();

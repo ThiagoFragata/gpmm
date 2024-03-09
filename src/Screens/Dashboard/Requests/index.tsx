@@ -1,12 +1,11 @@
-import React from "react";
+import { BreadCrumb, DataBox, TabResources } from "@/Components";
+import { type RenderCurrenTabProps } from "@/_types/Requests";
+import { type NextPageWithLayout } from "@/pages/_app";
+import { ListRequestCommunication } from "../RequestCommunication/ListRequestCommunication";
+import { ListRequestLocal } from "../RequestLocal/ListRequestLocal";
+import { ListRequestTransport } from "../RequestTransport/ListRequestTransport";
 import { ContainerRequests } from "./style";
 import { useRequests } from "./useRequests";
-import { BreadCrumb, DataBox, TabResources } from "@/Components";
-import { ListRequestLocal } from "../RequestLocal/ListRequestLocal";
-import { type NextPageWithLayout } from "@/pages/_app";
-import { type RenderCurrenTabProps } from "@/_types/Requests";
-import { ListRequestTransport } from "../RequestTransport/ListRequestTransport";
-import { ListRequestCommunication } from "../RequestCommunication/ListRequestCommunication";
 
 function RenderCurrenTab({ currentTab }: RenderCurrenTabProps): JSX.Element {
   const isTabRequestLocal = currentTab === 1;
@@ -20,14 +19,7 @@ function RenderCurrenTab({ currentTab }: RenderCurrenTabProps): JSX.Element {
 }
 
 export const Requests: NextPageWithLayout = () => {
-  const {
-    onChangeTab,
-    optionsTab,
-    currentTab,
-    breadCrumb,
-    isListRequestPlace,
-    isListRequestTransport
-  } = useRequests();
+  const { onChangeTab, optionsTab, currentTab, breadCrumb } = useRequests();
   return (
     <ContainerRequests>
       <BreadCrumb items={breadCrumb} />
