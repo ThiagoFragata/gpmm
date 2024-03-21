@@ -8,11 +8,16 @@ interface Option {
 }
 
 interface CustomSelectProps {
+  label?: string;
   options: Option[];
   onChange: (selectedValue: string) => void;
 }
 
-export function Select({ options, onChange }: CustomSelectProps) {
+export function Select({
+  options,
+  onChange,
+  label = "Ordenação por data"
+}: CustomSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("asc");
 
@@ -24,7 +29,7 @@ export function Select({ options, onChange }: CustomSelectProps) {
 
   return (
     <SelectContainer>
-      <h1>Ordenação por data</h1>
+      <h1>{label}</h1>
       <SelectLabel
         onClick={() => {
           setIsOpen(!isOpen);

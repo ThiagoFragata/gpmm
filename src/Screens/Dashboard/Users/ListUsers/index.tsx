@@ -1,6 +1,3 @@
-import React from "react";
-import type { NextPageWithLayout } from "@/pages/_app";
-import { ContainerListUsers } from "./style";
 import {
   BreadCrumb,
   Button,
@@ -9,8 +6,6 @@ import {
   FooterData,
   MenuAction,
   MultSkeleton,
-  Search,
-  SideView,
   Skeleton,
   Status,
   TableContent,
@@ -18,10 +13,13 @@ import {
   TableScroll,
   TableTitle
 } from "@/Components";
-import { useListUsers } from "./useListUsers";
-import { PATHS } from "@/_utils/constants";
-import { ShowDetails } from "./Partials/ShowDetails";
 import { type typeStringStatus } from "@/_types/Common";
+import { PATHS } from "@/_utils/constants";
+import type { NextPageWithLayout } from "@/pages/_app";
+import React from "react";
+import { ShowDetails } from "./Partials/ShowDetails";
+import { ButtonSort, ContainerListUsers } from "./style";
+import { useListUsers } from "./useListUsers";
 
 export const ListUsers: NextPageWithLayout = () => {
   const {
@@ -30,9 +28,6 @@ export const ListUsers: NextPageWithLayout = () => {
     breadCrumb,
     isLoading,
     isNotFoundData,
-    isOpenModal,
-    dataDelete,
-    isAwaitDelete,
     dataPagination,
     dataShowUser,
     isOpenShowDetails,
@@ -41,7 +36,9 @@ export const ListUsers: NextPageWithLayout = () => {
     onChangeSizePage,
     onGetDataShowDetails,
     onCloseDetails,
-    onSendToEdit
+    onSendToEdit,
+    ordenacaoAscendente,
+    ordenarPorNome
   } = useListUsers();
 
   return (
@@ -54,7 +51,9 @@ export const ListUsers: NextPageWithLayout = () => {
       />
       <DataBox>
         <div className="top__options">
-          <span />
+          <ButtonSort onClick={ordenarPorNome}>
+            Ordenar por Nome de {ordenacaoAscendente ? "A-Z" : "Z-A"}
+          </ButtonSort>
           <Button
             title="Novo"
             iconName="MoreIcon"

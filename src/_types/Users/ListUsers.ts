@@ -7,6 +7,8 @@ export type IDataShowUser = {
 } & IItemUser;
 
 export type useListUsersData = {
+  ordenarPorNome: () => void;
+  ordenacaoAscendente: boolean;
   dataUsers: IItemUser[];
   breadCrumb: itemBreadCrumb[];
   tableTitle: tableItems[];

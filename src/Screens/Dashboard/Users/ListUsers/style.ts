@@ -39,3 +39,11 @@ export const ContainerListUsers = styled(ContainerDashboard)`
     row-gap: 4px;
   }
 `;
+
+export const ButtonSort = styled.button`
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid ${colors.GRAY_LIGHT};
+  background-color: ${colors.WHITE};
+`;

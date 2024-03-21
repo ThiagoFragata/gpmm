@@ -1,17 +1,17 @@
-import React from "react";
-import { useRouter } from "next/navigation";
+import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
 import type { itemBreadCrumb } from "@/_types/BreadCrumb";
+import { type dataDeleteProps } from "@/_types/Common";
 import type {
   IDataShowUser,
   onGetDataShowDetailsProps,
   useListUsersData
 } from "@/_types/Users/ListUsers";
-import { useDispatch } from "react-redux";
-import { PATHS } from "@/_utils/constants";
-import { type dataDeleteProps } from "@/_types/Common";
 import { type IItemUser } from "@/_types/Users/serviceUsers";
+import { PATHS } from "@/_utils/constants";
 import { serviceGetUsers } from "@/services/api/user";
-import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 export function useListUsers(): useListUsersData {
   const dispatch = useDispatch();
@@ -35,6 +35,7 @@ export function useListUsers(): useListUsersData {
     totalPerPage: 0,
     currentPage: 0
   });
+  const [ordenacaoAscendente, setOrdenacaoAscendente] = React.useState(true);
   const breadCrumb: itemBreadCrumb[] = [
     {
       label: "Usuários"
@@ -95,6 +96,18 @@ export function useListUsers(): useListUsersData {
     setIsOpenShowDetails(true);
   }
 
+  const ordenarPorNome = () => {
+    const dadosOrdenados = [...dataUsers].sort((a, b) => {
+      if (ordenacaoAscendente) {
+        return a.nome.localeCompare(b.nome);
+      } else {
+        return b.nome.localeCompare(a.nome);
+      }
+    });
+    setDataUsers(dadosOrdenados);
+    setOrdenacaoAscendente(!ordenacaoAscendente);
+  };
+
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
@@ -107,7 +120,12 @@ export function useListUsers(): useListUsersData {
         totalPerPage: data?.size,
         currentPage: data?.number
       });
-      setDataUsers(data?.content);
+
+      const dadosOrdenados = data.content.sort((a, b) => {
+        return a.nome.localeCompare(b.nome);
+      });
+      setDataUsers(dadosOrdenados);
+      setOrdenacaoAscendente(!ordenacaoAscendente);
     } catch (error) {
       dispatch(
         onChangeToastAlert({
@@ -149,6 +167,8 @@ export function useListUsers(): useListUsersData {
     onGetDataShowDetails,
     onSendToEdit: id => {
       router.push(`${PATHS.dashboard.usuarioEditar}${id}`);
-    }
+    },
+    ordenarPorNome,
+    ordenacaoAscendente
   };
 }
