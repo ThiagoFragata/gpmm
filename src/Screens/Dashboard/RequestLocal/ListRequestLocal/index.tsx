@@ -6,6 +6,7 @@ import {
   FooterData,
   MenuAction,
   MultSkeleton,
+  Select,
   Skeleton,
   TableContent,
   TableItem,
@@ -43,7 +44,8 @@ export function ListRequestLocal({
     tableTitle,
     dataRequestLocal,
     isLoading,
-    isAwaitDelete
+    isAwaitDelete,
+    setSort
   } = useListRequestLocal({ isCurrentTab });
   return (
     <ContainerListRequestLocal>
@@ -64,13 +66,23 @@ export function ListRequestLocal({
         variant="danger"
       />
       <div className="top__options">
-        <h1>barra</h1>
+        <Select
+          options={[
+            { value: "asc", label: "Crescente" },
+            { value: "desc", label: "Decrescente" }
+          ]}
+          onChange={(selectedValue: string) => {
+            setSort(selectedValue);
+          }}
+        />
+
         <Button
           title="Novo"
           iconName="MoreIcon"
           navigateTo={PATHS.dashboard.solicitacoesNovoLocal}
         />
       </div>
+
       <TableTitle items={tableTitle} />
       {!isNotFoundData ? (
         <React.Fragment>

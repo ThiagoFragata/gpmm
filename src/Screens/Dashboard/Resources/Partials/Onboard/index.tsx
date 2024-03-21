@@ -1,10 +1,9 @@
-import React from "react";
-import { ContainerOnboard } from "./style";
 import { Button } from "@/Components";
-import { useRouter } from "next/navigation";
+import type { OnboardProps } from "@/_types/Onboard";
 import { PATHS, TABS_RESOURCES } from "@/_utils/constants";
 import Image from "next/image";
-import type { OnboardProps } from "@/_types/Onboard";
+import { useRouter } from "next/navigation";
+import { ContainerOnboard } from "./style";
 
 export function Onboard({ onChangeTab }: OnboardProps): JSX.Element {
   const { TAB_LIST_DRIVER, TAB_LIST_PLACE, TAB_LIST_TRANSPORT } =

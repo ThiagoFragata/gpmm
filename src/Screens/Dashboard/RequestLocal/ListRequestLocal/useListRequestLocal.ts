@@ -116,6 +116,46 @@ export function useListRequestLocal({
     setIsOpenShowDetails(true);
   }
 
+  function SortingForDateInitAndFinal(
+    array: IItemRequestLocal[],
+    ordenacao: string | undefined
+  ) {
+    return array.sort((a, b) => {
+      const dataInicioA = new Date(a.data_inicio);
+      const dataInicioB = new Date(b.data_inicio);
+      const dataFinalA = new Date(a.data_final);
+      const dataFinalB = new Date(b.data_final);
+
+      let comparador = 0;
+
+      // Determinando o sentido da ordenação com base no parâmetro "ordenação"
+      if (ordenacao === "asc") {
+        comparador = 1;
+      } else if (ordenacao === "desc") {
+        comparador = -1;
+      }
+
+      // Comparando as datas de início
+      if (dataInicioA < dataInicioB) {
+        return -1 * comparador;
+      }
+      if (dataInicioA > dataInicioB) {
+        return 1 * comparador;
+      }
+
+      // Se as datas de início forem iguais, comparando as datas finais
+      if (dataFinalA < dataFinalB) {
+        return -1 * comparador;
+      }
+      if (dataFinalA > dataFinalB) {
+        return 1 * comparador;
+      }
+
+      // Se ambas as datas de início e fim forem iguais, a ordenação permanece inalterada
+      return 0;
+    });
+  }
+
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
@@ -128,7 +168,10 @@ export function useListRequestLocal({
         totalPerPage: data?.size,
         currentPage: data?.number
       });
-      setDataRequestLocal(data?.content);
+
+      const arrayOrdenado = SortingForDateInitAndFinal(data.content, sort);
+
+      setDataRequestLocal(arrayOrdenado);
     } catch (error) {
       dispatch(
         onChangeToastAlert({
@@ -141,7 +184,7 @@ export function useListRequestLocal({
     } finally {
       setIsLoading(false);
     }
-  }, [currentPage, currentSizePage, dispatch]);
+  }, [currentPage, currentSizePage, dispatch, sort]);
 
   async function onConfirmDelete(): Promise<void> {
     try {
@@ -169,7 +212,8 @@ export function useListRequestLocal({
     if (isCurrentTab) {
       getListData();
     }
-  }, [currentPage, currentSizePage]);
+  }, [currentPage, currentSizePage, sort]);
+
   return {
     dataRequestLocal,
     tableTitle,
@@ -196,6 +240,8 @@ export function useListRequestLocal({
       setCurrentPage(value);
     },
     onChangeSizePage,
-    formatDataStartEnd
+    formatDataStartEnd,
+    setSort,
+    sort
   };
 }

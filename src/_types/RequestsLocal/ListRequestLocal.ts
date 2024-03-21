@@ -1,3 +1,4 @@
+import { type Dispatch } from "react";
 import { type IRestDataPagination, type dataDeleteProps } from "../Common";
 import { type tableItems } from "../Table";
 import { type IItemRequestLocal } from "./ServiceRequestLocal";
@@ -39,6 +40,8 @@ export type useListRequestLocalData = {
   onGetDataDelete: (data: dataDeleteProps) => void;
   onConfirmDelete: () => void;
   onCloseDetails: () => void;
+  setSort: Dispatch<React.SetStateAction<string>>;
+  sort: string;
 } & IRestDataPagination;
 
 export interface ShowDetailsRequestLocalProps {

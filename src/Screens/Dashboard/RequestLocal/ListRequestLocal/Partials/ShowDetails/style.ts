@@ -22,3 +22,7 @@ export const ContainerShowDetails = styled.div`
     }
   }
 `;
+
+export const SelectSorting = styled.select`
+  padding: 16px;
+`;
