@@ -1,9 +1,9 @@
-import React from "react";
-import { type useListRequestCommunicationData } from "@/_types/RequestCommunication/ListRequestCommunication";
-import { useDispatch } from "react-redux";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { serviceGetCommunication } from "@/services/api/communication";
+import { type useListRequestCommunicationData } from "@/_types/RequestCommunication/ListRequestCommunication";
 import { type IItemCommunicatoin } from "@/_types/RequestCommunication/ServiceRequestCommunication";
+import { serviceGetCommunication } from "@/services/api/communication";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 export function useListRequestCommunication(): useListRequestCommunicationData {
   const dispatch = useDispatch();
@@ -18,6 +18,8 @@ export function useListRequestCommunication(): useListRequestCommunicationData {
     totalPerPage: 0,
     currentPage: 0
   });
+
+  const [sort, setSort] = React.useState("asc");
 
   const tableTitle = [
     {
@@ -50,12 +52,17 @@ export function useListRequestCommunication(): useListRequestCommunicationData {
         size: currentSizePage,
         page: currentPage
       });
-      setDataCommunication(data?.content);
       setDataPagination({
         totalPages: data?.totalPages,
         totalPerPage: data?.size,
         currentPage: data?.number
       });
+
+      if (sort === "asc") {
+        setDataCommunication(data.content);
+      } else {
+        setDataCommunication(data.content.reverse());
+      }
     } catch (error) {
       dispatch(
         onChangeToastAlert({
@@ -68,11 +75,11 @@ export function useListRequestCommunication(): useListRequestCommunicationData {
     } finally {
       setIsLoading(false);
     }
-  }, [currentPage, currentSizePage, dispatch]);
+  }, [currentPage, currentSizePage, dispatch, sort]);
 
   React.useEffect(() => {
     getListData();
-  }, [currentPage, currentSizePage]);
+  }, [currentPage, currentSizePage, sort]);
 
   return {
     tableTitle,
@@ -84,6 +91,7 @@ export function useListRequestCommunication(): useListRequestCommunicationData {
     onChangeSizePage,
     onChangePage: (value: number): void => {
       setCurrentPage(value);
-    }
+    },
+    setSort
   };
 }

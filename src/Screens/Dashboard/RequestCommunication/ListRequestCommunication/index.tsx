@@ -1,11 +1,9 @@
-import React, { Fragment } from "react";
-import { ContainerListRequestCommunication } from "./style";
-import { useListRequestCommunication } from "./useListRequestCommunication";
 import {
   Button,
   DataNotFound,
   FooterData,
   MultSkeleton,
+  Select,
   Skeleton,
   TableContent,
   TableItem,
@@ -14,6 +12,9 @@ import {
 } from "@/Components";
 import { PATHS } from "@/_utils/constants";
 import moment from "moment";
+import React from "react";
+import { ContainerListRequestCommunication } from "./style";
+import { useListRequestCommunication } from "./useListRequestCommunication";
 
 export function ListRequestCommunication(): JSX.Element {
   const {
@@ -24,13 +25,23 @@ export function ListRequestCommunication(): JSX.Element {
     isLoading,
     onTryAgainGetData,
     onChangeSizePage,
-    onChangePage
+    onChangePage,
+    setSort
   } = useListRequestCommunication();
 
   return (
     <ContainerListRequestCommunication>
       <div className="top__options">
-        <span />
+        <Select
+          options={[
+            { value: "asc", label: "Crescente" },
+            { value: "desc", label: "Decrescente" }
+          ]}
+          onChange={(selectedValue: string) => {
+            setSort(selectedValue);
+          }}
+        />
+
         <Button
           title="Novo"
           iconName="MoreIcon"

@@ -1,6 +1,5 @@
-import React from "react";
-import { ContainerTabResources } from "./style";
 import type { TabResourcesProps } from "@/_types/TabResources";
+import { ContainerTabResources } from "./style";
 
 export function TabResources({
   tabName,
