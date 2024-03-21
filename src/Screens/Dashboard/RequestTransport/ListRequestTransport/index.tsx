@@ -4,6 +4,7 @@ import {
   FooterData,
   MenuAction,
   MultSkeleton,
+  Select,
   Skeleton,
   StatusRequest,
   TableContent,
@@ -33,7 +34,8 @@ export function ListRequestTransport(): JSX.Element {
     onSendToEdit,
     onChangeSizePage,
     onChangePage,
-    onTryAgainGetData
+    onTryAgainGetData,
+    setSort
   } = useListRequestTransport();
   return (
     <ContainerListRequestTransport>
@@ -43,7 +45,16 @@ export function ListRequestTransport(): JSX.Element {
         data={dataShowRequestTransport}
       />
       <div className="top__options">
-        <span>teste</span>
+        <Select
+          options={[
+            { value: "asc", label: "Crescente" },
+            { value: "desc", label: "Decrescente" }
+          ]}
+          onChange={(selectedValue: string) => {
+            setSort(selectedValue);
+          }}
+        />
+
         <Button
           title="Novo"
           iconName="MoreIcon"

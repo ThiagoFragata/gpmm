@@ -1,3 +1,4 @@
+import { type Dispatch } from "react";
 import { type dataDeleteProps, type IRestDataPagination } from "../Common";
 import { type tableItems } from "../Table";
 import { type IItemRequestTransport } from "./ServiceRequestTransport";
@@ -37,6 +38,7 @@ export type useListRequestTransportData = {
   onSendToEdit: (id: number) => void;
   onTryAgainGetData: () => void;
   onCloseDetails: () => void;
+  setSort: Dispatch<React.SetStateAction<string>>;
 } & IRestDataPagination;
 
 export interface getListDataProps {

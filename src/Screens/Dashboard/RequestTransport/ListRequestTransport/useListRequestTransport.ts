@@ -1,18 +1,18 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
-import { serviceGetRequestTransport } from "@/services/api/requestTransport";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
-import { type IItemRequestTransport } from "@/_types/RequestTransport/ServiceRequestTransport";
+import { type formatDataStartEndProps } from "@/_types/Common";
 import {
   type IShowRequestTransport,
   type useListRequestTransportData
 } from "@/_types/RequestTransport/ListRequestTransport";
+import { type IItemRequestTransport } from "@/_types/RequestTransport/ServiceRequestTransport";
 import { PATHS } from "@/_utils/constants";
 import { regexCPF, regexPhone } from "@/_utils/masks";
-import { type formatDataStartEndProps } from "@/_types/Common";
+import { serviceGetRequestTransport } from "@/services/api/requestTransport";
 import moment from "moment";
 import { getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 export function useListRequestTransport(): useListRequestTransportData {
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ export function useListRequestTransport(): useListRequestTransportData {
     totalPerPage: 0,
     currentPage: 0
   });
+  const [sort, setSort] = React.useState("asc");
 
   const tableTitle = [
     {
@@ -120,6 +121,46 @@ export function useListRequestTransport(): useListRequestTransportData {
     setIsOpenShowDetails(true);
   }
 
+  function SortingForDateInitAndFinal(
+    array: IItemRequestTransport[],
+    ordenacao: string | undefined
+  ) {
+    return array.sort((a, b) => {
+      const dataInicioA = new Date(a.solicitacao.dataInicio);
+      const dataInicioB = new Date(b.solicitacao.dataInicio);
+      const dataFinalA = new Date(a.solicitacao.dataFinal);
+      const dataFinalB = new Date(b.solicitacao.dataFinal);
+
+      let comparador = 0;
+
+      // Determinando o sentido da ordenação com base no parâmetro "ordenação"
+      if (ordenacao === "asc") {
+        comparador = 1;
+      } else if (ordenacao === "desc") {
+        comparador = -1;
+      }
+
+      // Comparando as datas de início
+      if (dataInicioA < dataInicioB) {
+        return -1 * comparador;
+      }
+      if (dataInicioA > dataInicioB) {
+        return 1 * comparador;
+      }
+
+      // Se as datas de início forem iguais, comparando as datas finais
+      if (dataFinalA < dataFinalB) {
+        return -1 * comparador;
+      }
+      if (dataFinalA > dataFinalB) {
+        return 1 * comparador;
+      }
+
+      // Se ambas as datas de início e fim forem iguais, a ordenação permanece inalterada
+      return 0;
+    });
+  }
+
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
@@ -137,7 +178,13 @@ export function useListRequestTransport(): useListRequestTransportData {
         totalPerPage: data?.size,
         currentPage: data?.number
       });
-      setDataRequestTransport(data?.content);
+
+      const arraySorted = SortingForDateInitAndFinal(
+        data.content,
+        sort
+      ) satisfies IItemRequestTransport[];
+
+      setDataRequestTransport(arraySorted);
     } catch (error) {
       dispatch(
         onChangeToastAlert({
@@ -150,15 +197,16 @@ export function useListRequestTransport(): useListRequestTransportData {
     } finally {
       setIsLoading(false);
     }
-  }, [currentPage, currentSizePage, dispatch]);
+  }, [currentPage, currentSizePage, dispatch, sort]);
 
   React.useEffect(() => {
     getListData();
-  }, [currentPage, currentSizePage]);
+  }, [currentPage, currentSizePage, sort]);
 
   return {
     dataRequestTransport,
     tableTitle,
+    setSort,
     isLoading,
     isNotFoundData: !isLoading && dataRequestTransport?.length === 0,
     dataPagination,
