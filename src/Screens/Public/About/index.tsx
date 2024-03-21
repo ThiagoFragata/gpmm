@@ -1,8 +1,7 @@
-import React from "react";
-import { ContainerAbout } from "./style";
-import { type NextPageWithLayout } from "@/pages/_app";
 import { ContentScroll, DataBox } from "@/Components";
+import { type NextPageWithLayout } from "@/pages/_app";
 import Image from "next/image";
+import { ContainerAbout } from "./style";
 
 export const About: NextPageWithLayout = () => {
   return (
@@ -77,7 +76,9 @@ export const About: NextPageWithLayout = () => {
                 />
               </div>
               <div>
-                <h3 className="about__subtitle">Membros da equipe:</h3>
+                <h3 className="about__subtitle">
+                  Membros da equipe de desenvolvimento:
+                </h3>
                 <ul className="about__list">
                   <li className="about__text">
                     Prof. Dr. Vandermi João da Silva
@@ -94,8 +95,27 @@ export const About: NextPageWithLayout = () => {
                 </ul>
               </div>
               <div>
+                <h3 className="about__subtitle">
+                  Membros da equipe de manutenção:
+                </h3>
+                <ul className="about__list">
+                  <li className="about__text">
+                    Prof. Dr. Andrey Antonio Rodrigues
+                  </li>
+                  <li className="about__text">
+                    Prof. João da Mata Libório Filho
+                  </li>
+                  <li className="about__text">
+                    Alberson David Garrido Ribeiro
+                  </li>
+                  <li className="about__text">
+                    Thiago Henrique Guimarães Fragata
+                  </li>
+                </ul>
+              </div>
+              <div>
                 <h3 className="about__subtitle">Versão:</h3>
-                <p className="about__text">1.0.0</p>
+                <p className="about__text">1.0.1</p>
               </div>
             </div>
           </div>

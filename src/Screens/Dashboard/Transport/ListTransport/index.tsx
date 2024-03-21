@@ -1,5 +1,3 @@
-import React from "react";
-import { ContainerListTransport } from "./style";
 import {
   AwaitRequest,
   Button,
@@ -14,8 +12,10 @@ import {
   TableScroll,
   TableTitle
 } from "@/Components";
-import { useListTransport } from "./useListTransport";
 import { PATHS } from "@/_utils/constants";
+import React from "react";
+import { ContainerListTransport } from "./style";
+import { useListTransport } from "./useListTransport";
 
 export function ListTransport(): JSX.Element {
   const {

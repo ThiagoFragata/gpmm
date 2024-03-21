@@ -1,6 +1,3 @@
-import React from "react";
-import { ContainerListLocal } from "./style";
-import { useListLocal } from "./useListLocal";
 import {
   AwaitRequest,
   Button,
@@ -16,6 +13,9 @@ import {
   TableTitle
 } from "@/Components";
 import { PATHS } from "@/_utils/constants";
+import React from "react";
+import { ContainerListLocal } from "./style";
+import { useListLocal } from "./useListLocal";
 
 export function ListLocal(): JSX.Element {
   const {

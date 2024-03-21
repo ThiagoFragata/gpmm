@@ -1,12 +1,12 @@
-import React from "react";
-import { type useListDriverData } from "@/_types/Driver/ListDriver";
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { type IDataServeError, type dataDeleteProps } from "@/_types/Common";
-import { PATHS } from "@/_utils/constants";
-import { type IItemDriver } from "@/_types/Driver/ServiceDriver";
 import { onChangeToastAlert } from "@/_config/store/slices/toastAlertSlice";
+import { type IDataServeError, type dataDeleteProps } from "@/_types/Common";
+import { type useListDriverData } from "@/_types/Driver/ListDriver";
+import { type IItemDriver } from "@/_types/Driver/ServiceDriver";
+import { PATHS } from "@/_utils/constants";
 import { serviceGetDriver } from "@/services/api/driver";
+import { useRouter } from "next/router";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 export function useListDriver(): useListDriverData {
   const dispatch = useDispatch();
@@ -26,6 +26,8 @@ export function useListDriver(): useListDriverData {
     totalPerPage: 0,
     currentPage: 0
   });
+  const [ordenacaoAscendente, setOrdenacaoAscendente] = React.useState(true);
+
   const tableTitle = [
     {
       label: "Nome",
@@ -46,6 +48,18 @@ export function useListDriver(): useListDriverData {
     setCurrentSizePage(value);
   }
 
+  const ordenarPorNome = () => {
+    const dadosOrdenados = [...dataDriver].sort((a, b) => {
+      if (ordenacaoAscendente) {
+        return a.nome.localeCompare(b.nome);
+      } else {
+        return b.nome.localeCompare(a.nome);
+      }
+    });
+    setDataDriver(dadosOrdenados);
+    setOrdenacaoAscendente(!ordenacaoAscendente);
+  };
+
   const getListData = React.useCallback(async () => {
     try {
       setIsLoading(true);
@@ -58,7 +72,11 @@ export function useListDriver(): useListDriverData {
         totalPerPage: data?.size,
         currentPage: data?.number
       });
-      setDataDriver(data?.content);
+      const dadosOrdenados = data.content.sort((a, b) => {
+        return a.nome.localeCompare(b.nome);
+      });
+      setDataDriver(dadosOrdenados);
+      setOrdenacaoAscendente(!ordenacaoAscendente);
     } catch (error) {
       const _error = error as IDataServeError;
       const messageError =
@@ -97,6 +115,8 @@ export function useListDriver(): useListDriverData {
     onChangeSizePage,
     onSendToEdit: id => {
       router.push(`${PATHS.dashboard.recursosEditarMotorista}${id}`);
-    }
+    },
+    ordenarPorNome,
+    ordenacaoAscendente
   };
 }

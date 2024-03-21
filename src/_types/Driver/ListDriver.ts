@@ -3,6 +3,8 @@ import { type tableItems } from "../Table";
 import { type IItemDriver } from "./ServiceDriver";
 
 export type useListDriverData = {
+  ordenarPorNome: () => void;
+  ordenacaoAscendente: boolean;
   dataDriver: IItemDriver[];
   tableTitle: tableItems[];
   isLoading: boolean;

@@ -1,11 +1,7 @@
-import React from "react";
-import { ContainerListDriver } from "./style";
-import { useListDriver } from "./useListDriver";
 import {
   AwaitRequest,
   Button,
   DataNotFound,
-  DialogModal,
   FooterData,
   MenuAction,
   MultSkeleton,
@@ -16,6 +12,10 @@ import {
   TableTitle
 } from "@/Components";
 import { PATHS } from "@/_utils/constants";
+import React from "react";
+import { ButtonSort } from "../../Users/ListUsers/style";
+import { ContainerListDriver } from "./style";
+import { useListDriver } from "./useListDriver";
 
 export function ListDriver(): JSX.Element {
   const {
@@ -30,13 +30,17 @@ export function ListDriver(): JSX.Element {
     onTryAgainGetData,
     onSendToEdit,
     onChangePage,
-    onChangeSizePage
+    onChangeSizePage,
+    ordenacaoAscendente,
+    ordenarPorNome
   } = useListDriver();
   return (
     <ContainerListDriver>
       <AwaitRequest isVisible={isAwaitDelete} />
       <div className="top__options">
-        <span />
+        <ButtonSort onClick={ordenarPorNome}>
+          Ordenar por Nome de {ordenacaoAscendente ? "A-Z" : "Z-A"}
+        </ButtonSort>
         <Button
           title="Novo"
           iconName="MoreIcon"
